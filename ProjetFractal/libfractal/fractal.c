@@ -3,17 +3,28 @@
 
 struct fractal *fractal_new(const char *name, int width, int height, double a, double b)
 {
-	m_name=name;
-	m_width=width;
-	m_height=height;
-	m_a=a;
-	m_b=b;
-    return NULL;
+	name=name;
+	width=width;
+	height=height;
+	a=a;
+	b=b;
+	fractal* f = (fractal*) malloc(sizeof(fractal));
+	if(f==NULL){
+		return NULL;
+	}
+	else {
+		f->name=name=name;
+		f->width=width;
+		f->height=height;
+		f->a=a;
+		f->b=b;
+		return f;
+	}
 }
 
 void fractal_free(struct fractal *f)
 {
-    /* TODO */
+   
 }
 
 const char *fractal_get_name(const struct fractal *f)

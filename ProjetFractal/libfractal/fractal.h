@@ -2,12 +2,12 @@
 #define _FRACTAL_H
 
 typedef struct{
-	char* m_name;
-	int m_width;
-	int m_height;
-	int m_a;
-	int m_b;
-	double m_moyenne;
+	char* name;
+	int width;
+	int height;
+	int a;
+	int b;
+	double moyenne;
 } fractal;
 
 /*
