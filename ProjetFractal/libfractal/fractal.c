@@ -8,6 +8,10 @@ struct fractal *fractal_new(const char *name, int width, int height, double a, d
 		return NULL;
 	}
 	else {
+		double** values= (double**) malloc(width*height*sizeof(double));
+		if (values==NULL)
+			exit(1);
+		f->values=values;
 		f->name=name;
 		f->width=width;
 		f->height=height;
@@ -29,12 +33,12 @@ const char *fractal_get_name(const struct fractal *f)
 
 int fractal_get_value(const struct fractal *f, int x, int y)
 {
-    return f->values[x][y];
+    fractal_compute_value(;
 }
 
 void fractal_set_value(struct fractal *f, int x, int y, int val)
 {
-	f->values[x][y]=val;
+    /* TODO */
 }
 
 int fractal_get_width(const struct fractal *f)
