@@ -8,7 +8,7 @@ struct fractal *fractal_new(const char *name, int width, int height, double a, d
 		return NULL;
 	}
 	else {
-		f->name=name=name;
+		f->name=name;
 		f->width=width;
 		f->height=height;
 		f->a=a;
@@ -24,14 +24,12 @@ void fractal_free(struct fractal *f)
 
 const char *fractal_get_name(const struct fractal *f)
 {
-    /* TODO */
-    return NULL;
+	return f->name;
 }
 
 int fractal_get_value(const struct fractal *f, int x, int y)
 {
-    /* TODO */
-    return 0;
+    return ;
 }
 
 void fractal_set_value(struct fractal *f, int x, int y, int val)
@@ -41,8 +39,7 @@ void fractal_set_value(struct fractal *f, int x, int y, int val)
 
 int fractal_get_width(const struct fractal *f)
 {
-    /* TODO */
-    return 0;
+    return ;
 }
 
 int fractal_get_height(const struct fractal *f)
