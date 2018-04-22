@@ -19,7 +19,7 @@ struct fractal *fractal_new(const char *name, int width, int height, double a, d
 
 void fractal_free(struct fractal *f)
 {
-   
+	free((void*) f);
 }
 
 const char *fractal_get_name(const struct fractal *f)
