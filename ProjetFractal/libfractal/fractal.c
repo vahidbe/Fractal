@@ -3,11 +3,6 @@
 
 struct fractal *fractal_new(const char *name, int width, int height, double a, double b)
 {
-	name=name;
-	width=width;
-	height=height;
-	a=a;
-	b=b;
 	fractal* f = (fractal*) malloc(sizeof(fractal));
 	if(f==NULL){
 		return NULL;
