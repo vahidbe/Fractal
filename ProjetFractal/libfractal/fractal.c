@@ -45,17 +45,16 @@ int fractal_get_width(const struct fractal *f)
 int fractal_get_height(const struct fractal *f)
 {
     /* TODO */
-    return 0;
+    return (f->height);
 }
 
 double fractal_get_a(const struct fractal *f)
 {
     /* TODO */
-    return 0;
+    return (f->a);
 }
 
 double fractal_get_b(const struct fractal *f)
 {
-    /* TODO */
-    return 0;
+    return (f->b);
 }
