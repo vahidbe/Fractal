@@ -1,9 +1,14 @@
 #ifndef _FRACTAL_H
 #define _FRACTAL_H
 
-struct fractal {
-    /* TODO: à remplir */
-};
+typedef struct{
+	char name[64];
+	int width;
+	int height;
+	int a;
+	int b;
+	double moyenne;
+} fractal;
 
 /*
  * fractal_new: alloue une nouvelle structure fractal
