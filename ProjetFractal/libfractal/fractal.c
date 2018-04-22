@@ -29,7 +29,7 @@ const char *fractal_get_name(const struct fractal *f)
 
 int fractal_get_value(const struct fractal *f, int x, int y)
 {
-    return ;
+    fractal_compute_value(;
 }
 
 void fractal_set_value(struct fractal *f, int x, int y, int val)

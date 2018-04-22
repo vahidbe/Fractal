@@ -7,7 +7,7 @@ typedef struct{
 	int height;
 	int a;
 	int b;
-	double value;
+	int** values;
 } fractal;
 
 /*
