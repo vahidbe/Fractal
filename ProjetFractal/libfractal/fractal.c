@@ -3,7 +3,11 @@
 
 struct fractal *fractal_new(const char *name, int width, int height, double a, double b)
 {
-    /* TODO */
+	m_name=name;
+	m_width=width;
+	m_height=height;
+	m_a=a;
+	m_b=b;
     return NULL;
 }
 
