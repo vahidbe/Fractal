@@ -42,7 +42,7 @@ void fractal_set_value(struct fractal *f, int x, int y, int val)
 int fractal_get_width(const struct fractal *f)
 {
     /* TODO */
-    return 0;
+    return (f->width);
 }
 
 int fractal_get_height(const struct fractal *f)
