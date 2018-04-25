@@ -3,7 +3,7 @@
 
 struct fractal *fractal_new(const char *name, int width, int height, double a, double b)
 {
-	struct fractal* f = (struct fractal*) malloc(sizeof(struct fractal));
+	fractal* f = (fractal*) malloc(sizeof(fractal));
 	if(f==NULL){
 		exit(1);
 	}
@@ -11,9 +11,8 @@ struct fractal *fractal_new(const char *name, int width, int height, double a, d
 		double** values= (double**) malloc(width*sizeof(double*));
 		if (values==NULL)
 			exit(1);
-                int i;
-		for(i=0;i<width;i++){
-			values[i]= (double*) malloc(height*sizeof(double));
+		for(int i=0;i<width;i++){
+			values[i]= (double*) malloc(height*sizezof(double));
 			if (values[i]==NULL)
 				exit(1);
 		}
@@ -34,7 +33,7 @@ void fractal_free(struct fractal *f)
 
 const char *fractal_get_name(const struct fractal *f)
 {
-  return  f->name;
+	return f->name;
 }
 
 int fractal_get_value(const struct fractal *f, int x, int y)
