@@ -1,14 +1,14 @@
 #ifndef _FRACTAL_H
 #define _FRACTAL_H
 
-typedef struct{
-	char* name;
+struct fractal{
+	const char* name;
 	int width;
 	int height;
 	int a;
 	int b;
-	int** values;
-} fractal;
+	double** values;
+};
 
 /*
  * fractal_new: alloue une nouvelle structure fractal
