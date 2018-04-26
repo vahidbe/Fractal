@@ -4,6 +4,10 @@
 #include "fractal.h"
 #include "fractal.c"
 #include "tools.c"
+#include <sys/types.h>
+#include <sys/ipc.h>
+#include <sys/sem.h>
+#include <pthread.h>
 
 int main(int argc, char *argv[])
 {
