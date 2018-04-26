@@ -4,7 +4,7 @@ main : main.o
 lib : 
 	$(MAKE) -C ./libfractal/
 main.o : main.c ./libfractal/fractal.h
-	cc -c -I./libfractal main.c
+	cc -c -I./libfractal main.c -lpthread
 
 clean :
 	rm main main.o ./libfractal/fractal.o ./libfractal/tools.o ./libfractal/libfractal.a
