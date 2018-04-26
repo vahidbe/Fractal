@@ -8,6 +8,7 @@
 #include <sys/ipc.h>
 #include <sys/sem.h>
 #include <pthread.h>
+#include <semaphore.h>
 
 #define BUFSIZE 10
 
@@ -16,12 +17,13 @@
 #define EMPTY 2
 
 //TODO: redemander l'architecture à suivre
+//TODO: gérer le fait que le producteur consommateur utilise des struct fractale* au lieu de int
 
 typedef struct {
     int *buf;          /* Buffer partagé */
     int n;             /* Nombre de slots dans le buffer */
-    struct fractal* front;         /* buf[(front+1)%n] est le premier élément */
-    struct fractal* rear;          /* buf[rear%n] est le dernier */
+    int front;         /* buf[(front+1)%n] est le premier élément */
+    int rear;          /* buf[rear%n] est le dernier */
     sem_t mutex;       /* Protège l'accès au buffer */
     sem_t slots;       /* Nombre de places libres */
     sem_t items;       /* Nombre d'items dans le buffer */
