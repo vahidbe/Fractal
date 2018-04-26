@@ -2,10 +2,21 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include "fractal.h"
+#include "fractal.c"
+#include "tools.c"
 
 int main(int argc, char *argv[])
 {
-	struct fractal* f1 = fractal_new(argv[1],*argv[2]-'0',*argv[3]-'0',*argv[4]-'0',*argv[5]-'0');
-	printf("%s",fractal_get_name(f1));
-	fractal_free(f1);
+  int entreestd = 1;
+  pthread[(argc-1)%5] threads;
+  if(entreestd){
+    for(int i=0;(i<argc-1) % 5;i++){
+      struct fractal* f= fractal_create(argv[0+i*5],toInt(argv[1+i*5]),toInt(argv[2+i*5]),toInt(argv[3+i*5]),toInt(argv[4+i*5]));
+      p_thread_create(
+					
 }
+
+
+	int sbuf_remove(sbuf_t *sp)
+	{
+	  

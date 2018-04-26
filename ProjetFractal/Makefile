@@ -1,5 +1,5 @@
 main : main.o 
-	cc -o main main.o 
+	cc -o main main.o -lpthread
 	$(MAKE) -C ./libfractal/
 lib : 
 	$(MAKE) -C ./libfractal/
