@@ -17,15 +17,18 @@
 #define EMPTY 2
 
 //TODO: redemander l'architecture à suivre
-//TODO: gérer le fait que le producteur consommateur utilise des struct fractale* au lieu de int
+//TODO: gérer l'exit des threads (faut-il une variable qui vérifie si les étapes sont terminées?)
 
 struct args{
-		int argc_arg;
-		char** argv_arg;
-		struct sbuf* buf_arg;
+	char* charP_arg;
+	struct sbuf* buf_arg;
+	struct sbuf* bufout_arg;
+	int optionD;
+	char* fileOutName;
 };	
+
 struct sbuf{
-    int *buf;          /* Buffer partagé */
+    struct fractal* *buf;          /* Buffer partagé */
     int n;             /* Nombre de slots dans le buffer */
     int front;         /* buf[(front+1)%n] est le premier élément */
     int rear;          /* buf[rear%n] est le dernier */
@@ -33,14 +36,17 @@ struct sbuf{
     sem_t slots;       /* Nombre de places libres */
     sem_t items;       /* Nombre d'items dans le buffer */
 };
-int entreestd;
+
 /*
  * @pre sp!=NULL, n>0
  * @post a construit un buffer partagé contenant n slots
  */
 void sbuf_init(struct sbuf *sp, int n)
 {
-    sp->buf = calloc(n, sizeof(int));
+    sp->buf =(struct fractal*) calloc(n, sizeof(struct fractal));
+	if((buf==NULL)){
+		exit(-1); //TODO: gérer erreurs
+	}
     sp->n = n;                       /* Buffer content les entiers */
     sp->front = sp->rear = 0;        /* Buffer vide si front == rear */
     sem_init(&sp->mutex, 0, 1);      /* Exclusion mutuelle */
@@ -70,6 +76,7 @@ void sbuf_insert(struct sbuf *sp, struct fractal* item)
 	sem_post(&(sp->mutex));
 	sem_post(&(sp->items));
 }
+
 /* @pre sbuf!=NULL
  * @post retire le dernier item du buffer partagé
  */
@@ -83,61 +90,176 @@ struct fractal* sbuf_remove(struct sbuf *sp)
 	sem_post(&(sp->slots));
 	return res;
 }
+
 void *producer(void* arguments){
+	int done = 0;
 	struct args* argument=(struct args*) arguments;
-	char** argv=argument->argv_arg;
-	int argc=argument->argc_arg;
+	char* fileName=argument->charP_arg;
 	struct sbuf* buf=argument->buf_arg;
-	
-	if(entreestd){
-		int i;
-		for(i=0;(i<argc-1) % 5;i++){
-			//TODO: gérer le toInt
-			struct fractal* f = fractal_create(argv[0+i*5],toInt(argv[1+i*5]),toInt(argv[2+i*5]),toInt(argv[3+i*5]),toInt(argv[4+i*5]));
-			sbuf_insert(buf,f);
-		}
+	free(args);
+	while(!done){
+		//TODO: faire les open et lecture de fichier et les insert dans buf
+		//TODO: gérer quand lecture terminée
 	}
-	else{
-		//TODO: gérer l'entrée par fichier
-	}	
+	//TODO: exit? thread_exit? buf_free? etc
 }
 
-struct fractal* consumer(void* arguments){
+void *consumer(void* arguments){
+	int done=0;
 	struct args* argument=(struct args*) arguments;
-	char** argv=argument->argv_arg;
-	int argc=argument->argc_arg;
+	char* fileName=argument->charP_arg;
 	struct sbuf* buf=argument->buf_arg;
-	
-	struct fractal* f=sbuf_remove(buf);
-	int i;
-	int j;
-	for(i=0;i<f->width;i++){
-		for(j=0;j<f->height;j++){
-			fractal_set_value(f,i,j,fractal_compute_value(f,i,j));
+	struct sbuf* bufout=argument->bufout_arg;
+	free(args);
+	while(!done){
+		struct fractal* f=sbuf_remove(buf);
+		int i;
+		int j;
+		for(i=0;i<f->width;i++){
+			for(j=0;j<f->height;j++){
+				fractal_set_value(f,i,j,fractal_compute_value(f,i,j));
+			}
 		}
+		sbuf_insert(bufout,f);		
+		//TODO: gérer quand lecture terminée
 	}
-	//TODO: envoyer f dans un autre consommateur qui va soit (si -d) sortir un bmp de f, soit garder f en mémoire et, s'il reçoit un autre f plus élevé, garde celui-la en mémoire a la place du premier f, sinon le garde
+	//TODO: exit? thread_exit? buf_free? etc
 }
+
+void *writer(void* arguments){
+	int isEmpty=0;
+	struct args* argument=(struct args*) arguments;
+	struct sbuf* buf=argument->bufout_arg;
+	int optionD=argument->optionD;
+	char* fileOutName=argument->fileOutName;
+	double average;
+	struct fractal* highestF;
+	free(argument);
+	if(!optionD){
+		while(!isEmpty){
+			struct fractal* f = (struct fractal*) sbuf_remove(buf);
+			double newAverage = compute_average(f->values);
+			if(newAverage>average){
+				average=newAverage;
+				highestF=f;
+			}
+		}
+		write_bitmap_sdl(highestF,fileOutName);
+		//TODO: exit? thread_exit? buf_free? etc
+	}
+	else{
+		while(!isEmpty){
+			struct fractal* f = (struct fractal*) sbuf_remove(buf);
+			//TODO: où écrire le bitmap? quel nom?
+			//TODO: besoin de semaphore? les writers peuvent-ils ecrire en meme temps?
+			write_bitmap_sdl(f,fileOutName);	
+		}			
+}
+
 int main(int argc, char *argv[])
 {	
 	//TODO: gérer la lecture des options -d et --maxthreads
-	int numberThreads = 4;
-	entreestd = 1;
-	
-	struct sbuf* buf; 
-	struct args* arguments=(struct args*) malloc(sizeof(struct args));
-	arguments->argc_arg=argc;
-	arguments->argv_arg=argv;
+	int numberThreads=argc-2-optionsCount;
+	int count;
+	int optionsCount=0;
+	int optionD=0;
+	char* fileOutName;	
+	struct sbuf* buf;
+	struct sbuf* bufout;
+
+	if((*argv[0]=='-')&(*(argv[0]+1)=='d'){
+		optionD=1;
+		optionsCount++;
+		if((*argv[1]=='-')&(*(argv[1]+1)=='-'){
+			numberThreads = *(argv[1]+2);
+			optionsCount++;
+		}
+	}
+	else{
+		if(*argv[0]=='-')&(*(argv[0]+1)=='-'){
+			numberThreads = *(argv[0]+2);
+			optionsCount++;
+		}
+	}	
 	
 	sbuf_init(buf, (numberThreads));
-	arguments->buf_arg=buf;
+	sbuf_init(bufout, (numberThreads));
+	count=optionsCount;
+	pthread_t prod[argc-2-optionsCount];
+	pthread_t cons[numberThreads];
+	pthread_t writ[argc-2-optionsCount];
+	if(numberThreads==argc-2-optionsCount){
+		numberThreads=0;
+	}
 	
-
-	pthread_t prod, cons;	
-	pthread_create(&prod, NULL, (void*) &producer, (void*) arguments);
-	pthread_create(&cons, NULL, (void*) &consumer, (void*) arguments);
-	//TODO: créer un autre consommateur pour s'occuper de la sortie
+	for(count=optionsCount;count<argc-1-optionsCount){
+		if(((*argv[count])=='-')&(count!=(argc-1)){
+			//TODO: gérer l'entrée standard
+		}
+		else{
+			if(count!=(argc-1)){
+				//TODO: ne pas oublier les free
+				struct arg* arguments=(struct arg*) malloc(sizeof(struct arg));
+				if(arg==NULL){
+					exit(-1); //TODO: gérer les erreurs et la fermeture des threads
+				}
+				arguments->buf_arg=buf;
+				arguments->charP_arg=argv[count];
+				pthread_create(&(prod[count-optionsCount]), NULL, (void*) &producer, (void*) arguments);
+			}
+			else{
+				//TODO: gérer sortie
+				fileOutName=agrv[count];
+			}	
+		}
+	}
+	int i;
+	if(numberThreads==0){
+		//TODO: ne pas oublier les free
+		struct arg* arguments=(struct arg*) malloc(sizeof(struct arg));
+		if(arg==NULL){
+			exit(-1); //TODO: gérer les erreurs et la fermeture des threads
+		}
+		arguments->buf_arg=buf;
+		arguments->bufout_arg=bufout;
+		pthread_create(&(cons[0]), NULL, (void*) &consumer, (void*) arguments);
+	}
+	else{
+		for(i=0;(i<numberThreads);i++){
+			//TODO: ne pas oublier les free
+			struct arg* arguments=(struct arg*) malloc(sizeof(struct arg));
+			if(arg==NULL){
+				exit(-1); //TODO: gérer les erreurs et la fermeture des threads
+			}
+			arguments->buf_arg=buf;
+			arguments->bufout_arg=bufout;
+			pthread_create(&(cons[i]), NULL, (void*) &consumer, (void*) arguments);
+		}
+	}
+	if(!optionD){
+		//TODO: ne pas oublier les free
+		struct arg* arguments=(struct arg*) malloc(sizeof(struct arg));
+		if(arg==NULL){
+			exit(-1); //TODO: gérer les erreurs et la fermeture des threads
+		}
+		arguments->optionD=optionD;
+		arguments->bufout_arg=bufout;
+		pthread_create(&(writ[0], NULL, (void*) &writer, (void*) arguments);
+	}
+	else{
+		int i;
+		for(i=0;i<(argc-2-optionsCount);i++){
+			//TODO: ne pas oublier les free
+			struct arg* arguments=(struct arg*) malloc(sizeof(struct arg));
+			if(arg==NULL){
+				exit(-1); //TODO: gérer les erreurs et la fermeture des threads
+			}
+			arguments->optionD=optionD;
+			arguments->bufout_arg=bufout;
+			pthread_create(&(writ[i], NULL, (void*) &writer, (void*) bufout);
+		}
+	}
 	
-	//TODO: gérer la destuction des threads
+	//TODO: gérer la destuction des threads et des buffers
 	//pthread_exit(NULL);
 }
