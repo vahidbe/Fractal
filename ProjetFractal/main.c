@@ -107,14 +107,14 @@ void *producer(void* arguments){
 	double* buf4 = (double*) malloc(sizeof(double));
 	double* buf5 = (double*) malloc(sizeof(double));
 	char bufName[64];
-	if((buff==NULL)|(buff==NULL)|(buff==NULL)|(buff==NULL)|(buff==NULL))
+	if((buf1==NULL)|(buf2==NULL)|(buf3==NULL)|(buf4==NULL)|(buf5==NULL))
 	{
 		if(close(fdi)!=0)
 			exit(-1);		
 		//TODO: gérer les erreurs/la sortie
 		exit(-1);
 	}
-	size_t x=0;
+	ssize_t x=0;
 	int i;
 	int j;
 	x=read(fdi,buf1,sizeof(char));
@@ -141,7 +141,7 @@ void *producer(void* arguments){
 		{
 			bufName[0]=*buf1;
 			j=1;
-			for(x=read(fdi,buf1,sizeof(char));*buf1!=' ');x=read(fdi,buf1,sizeof(char)))
+			for(x=read(fdi,buf1,sizeof(char));(*buf1)!=' ';x=read(fdi,buf1,sizeof(char)))
 			{
 				if(x==-1)
 				{
