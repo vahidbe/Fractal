@@ -107,7 +107,6 @@ void *producer(void* arguments){
 void *consumer(void* arguments){
 	int done=0;
 	struct args* argument=(struct args*) arguments;
-	char* fileName=argument->charP_arg;
 	struct sbuf* buf=argument->buf_arg;
 	struct sbuf* bufout=argument->bufout_arg;
 	free(args);
@@ -152,14 +151,14 @@ void *writer(void* arguments){
 			struct fractal* f = (struct fractal*) sbuf_remove(buf);
 			//TODO: où écrire le bitmap? quel nom?
 			//TODO: besoin de semaphore? les writers peuvent-ils ecrire en meme temps?
-			write_bitmap_sdl(f,fileOutName);	
+			write_bitmap_sdl(f,fractal_get_name(f));	
 		}			
 }
 
 int main(int argc, char *argv[])
 {	
 	//TODO: gérer la lecture des options -d et --maxthreads
-	int numberThreads=argc-2-optionsCount;
+	int numberThreads=0;
 	int count;
 	int optionsCount=0;
 	int optionD=0;
@@ -181,10 +180,11 @@ int main(int argc, char *argv[])
 			optionsCount++;
 		}
 	}	
-	
+	if(numberThreads==0){
+		numberThreads=argc-2-optionsCount;
+	}
 	sbuf_init(buf, (numberThreads));
 	sbuf_init(bufout, (numberThreads));
-	count=optionsCount;
 	pthread_t prod[argc-2-optionsCount];
 	pthread_t cons[numberThreads];
 	pthread_t writ[argc-2-optionsCount];
@@ -192,7 +192,7 @@ int main(int argc, char *argv[])
 		numberThreads=0;
 	}
 	
-	for(count=optionsCount;count<argc-1-optionsCount){
+	for(count=optionsCount;count<argc-1;count++){
 		if(((*argv[count])=='-')&(count!=(argc-1)){
 			//TODO: gérer l'entrée standard
 		}
