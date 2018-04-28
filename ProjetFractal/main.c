@@ -211,7 +211,7 @@ int main(int argc, char *argv[])
 		}
 	}
 	int i;
-	if(!optionD){
+	for(i=0;(i<numberThreads);i++){
 		//TODO: ne pas oublier les free
 		struct arg* arguments=(struct arg*) malloc(sizeof(struct arg));
 		if(arg==NULL){
@@ -219,19 +219,7 @@ int main(int argc, char *argv[])
 		}
 		arguments->buf_arg=buf;
 		arguments->bufout_arg=bufout;
-		pthread_create(&(cons[0]), NULL, (void*) &consumer, (void*) arguments);
-	}
-	else{
-		for(i=0;(i<numberThreads);i++){
-			//TODO: ne pas oublier les free
-			struct arg* arguments=(struct arg*) malloc(sizeof(struct arg));
-			if(arg==NULL){
-				exit(-1); //TODO: gérer les erreurs et la fermeture des threads
-			}
-			arguments->buf_arg=buf;
-			arguments->bufout_arg=bufout;
-			pthread_create(&(cons[i]), NULL, (void*) &consumer, (void*) arguments);
-		}
+		pthread_create(&(cons[i]), NULL, (void*) &consumer, (void*) arguments);
 	}
 	if(!optionD){
 		//TODO: ne pas oublier les free
