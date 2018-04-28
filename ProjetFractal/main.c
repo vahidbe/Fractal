@@ -188,9 +188,6 @@ int main(int argc, char *argv[])
 	pthread_t prod[argc-2-optionsCount];
 	pthread_t cons[numberThreads];
 	pthread_t writ[argc-2-optionsCount];
-	if(numberThreads==argc-2-optionsCount){
-		numberThreads=0;
-	}
 	
 	for(count=optionsCount;count<argc-1;count++){
 		if(((*argv[count])=='-')&(count!=(argc-1)){
@@ -209,12 +206,12 @@ int main(int argc, char *argv[])
 			}
 			else{
 				//TODO: gérer sortie
-				fileOutName=agrv[count];
+				fileOutName=argv[count];
 			}	
 		}
 	}
 	int i;
-	if(numberThreads==0){
+	if(!optionD){
 		//TODO: ne pas oublier les free
 		struct arg* arguments=(struct arg*) malloc(sizeof(struct arg));
 		if(arg==NULL){
