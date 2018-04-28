@@ -9,7 +9,7 @@
 #include <sys/sem.h>
 #include <pthread.h>
 #include <semaphore.h>
-
+#include <stddef.h>
 #define BUFSIZE 10
 
 #define MUTEX 0
