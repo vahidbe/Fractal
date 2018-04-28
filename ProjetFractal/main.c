@@ -220,7 +220,8 @@ int main(int argc, char *argv[])
 		arguments->buf_arg=buf;
 		arguments->bufout_arg=bufout;
 		pthread_create(&(cons[i]), NULL, (void*) &consumer, (void*) arguments);
-	}
+	
+	//TODO: faire plein de writers qui comparent avec sémaphore la fractale la plus haute
 	if(!optionD){
 		//TODO: ne pas oublier les free
 		struct arg* arguments=(struct arg*) malloc(sizeof(struct arg));

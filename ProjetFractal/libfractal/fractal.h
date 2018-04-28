@@ -104,6 +104,16 @@ double fractal_get_b(const struct fractal *f);
 int fractal_compute_value(struct fractal *f, int x, int y);
 
 /*
+ * fractal_compute_average
+ * 
+ * Calcule la moyenne des valeurs de la fractale.
+ *
+ * @f: fractale
+ * @return: la moyenne de la fractale
+ */
+ double fractal_compute_average(const struct fractal *f);
+
+/*
  * write_bitmap_sdl
  *
  * Transforme une fractale en un fichier bitmap (BMP)
