@@ -113,8 +113,7 @@ void *producer(void* arguments){
 			exit(-1);		
 		//TODO: gérer les erreurs/la sortie
 		exit(-1);
-	}	
-	int val=0;
+	}
 	size_t x=0;
 	int i;
 	int j;
