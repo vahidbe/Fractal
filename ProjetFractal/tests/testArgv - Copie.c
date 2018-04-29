@@ -9,14 +9,14 @@
 #include <stddef.h>
 
 int main(int argc, char *argv[]){	
-	FILE* file;
+	int fdi=0;
 	int done=0;
 	char* fileName=argv[1];
 	printf("%s\n",fileName);
-	file=fopen(fileName,r);
+	fdi=open(fileName,O_RDONLY);
 	if(fdi<0)
 	{
-		printf("Erreur fopen\n");
+		printf("Erreur open\n");
 		return -1;
 	}
 	char* buf1 = (char*) malloc(sizeof(char));
@@ -35,17 +35,17 @@ int main(int argc, char *argv[]){
 		}
 		return -1;
 	}	
-	int x;
+	ssize_t x=0;
 	int i;
 	int j;
-	printf("About to fscanf\n");
-	x=fscanf(file,"%64s",buf1);
-	printf("First fscanf\n");
+	printf("About to read\n");
+	x=read(fdi,buf1,sizeof(char));
+	printf("First read\n");
 	for(i=0;(!done);i++){
-		if(x==EOF)
+		if(x!=sizeof(char))
 		{
 			printf("End of file\n");
-			if(fclose(file)!=0)
+			if(close(fdi)!=0)
 			{
 				printf("Erreur close\n");
 				free(buf1);
@@ -65,13 +65,39 @@ int main(int argc, char *argv[]){
 		}
 		else
 		{
+			bufName[0]=*buf1;
 			j=1;
-			char* name=buf1;
-			x=fscanf(file,"%d",buf2);
+			for(x=read(fdi,buf1,sizeof(char));((*buf1)!=' ');x=read(fdi,buf1,sizeof(char)))
+			{
+				if(x==-1)
+				{
+					printf("Erreur read char*\n");
+					if(close(fdi)!=0)
+					{
+						printf("Erreur close\n");
+						return (-1);
+					}
+					free(buf1);
+					free(buf2);
+					free(buf3);
+					free(buf4);
+					free(buf5);
+					return (-1);
+				}
+				bufName[j]=*buf1;
+				j++;
+			}
+			char name[j];
+			int k;
+			for(k=0;k<j;k++)
+			{
+				name[k]=bufName[k];
+			}
+			x=read(fdi,buf2,sizeof(int));
 			if(x==-1)
 			{
 				//TODO: gérer les erreurs/la sortie
-				if(fclose(file)!=0)
+				if(close(fdi)!=0)
 					return (-1);
 				free(buf1);
 				free(buf2);
@@ -80,11 +106,11 @@ int main(int argc, char *argv[]){
 				free(buf5);
 				return (-1);
 			}
-			x=fscanf(file,"%d",buf3);
+			x=read(fdi,buf3,sizeof(int));
 			if(x==-1)
 			{
 				//TODO: gérer les erreurs/la sortie
-				if(fclose(file)!=0)
+				if(close(fdi)!=0)
 					return (-1);
 				free(buf1);
 				free(buf2);
@@ -93,11 +119,11 @@ int main(int argc, char *argv[]){
 				free(buf5);
 				return (-1);
 			}
-			x=fscanf(file,"%lf",buf4);
+			x=read(fdi,buf4,sizeof(double));
 			if(x==-1)
 			{
 				//TODO: gérer les erreurs/la sortie
-				if(fclose(file)!=0)
+				if(close(fdi)!=0)
 					return (-1);
 				free(buf1);
 				free(buf2);
@@ -106,11 +132,11 @@ int main(int argc, char *argv[]){
 				free(buf5);
 				return (-1);
 			}
-			x=fscanf(file,"%lf",buf5);
+			x=read(fdi,buf5,sizeof(double));
 			if(x==-1)
 			{
 				//TODO: gérer les erreurs/la sortie
-				if(fclose(file)!=0)
+				if(close(fdi)!=0)
 					return (-1);
 				free(buf1);
 				free(buf2);
@@ -119,7 +145,7 @@ int main(int argc, char *argv[]){
 				free(buf5);
 				return (-1);
 			}
-			printf("%s %i %i %lf %lf\n",name,*buf2,*buf3,*buf4,*buf5);
+			printf("%s %i %i\n",name,*buf2,*buf3);
 		}
 	}
 	return 0;
