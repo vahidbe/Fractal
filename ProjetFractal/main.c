@@ -285,17 +285,17 @@ int main(int argc, char *argv[])
 	struct sbuf* buf;
 	struct sbuf* bufout;
 
-	if((*argv[0]=='-')&(*(argv[0]+1)=='d'){
+	if((*argv[1]=='-')&(*(argv[1]+1)=='d'){
 		optionD=1;
 		optionsCount++;
-		if((*argv[1]=='-')&(*(argv[1]+1)=='-'){
-			numberThreads = *(argv[1]+2);
+		if((*argv[2]=='-')&(*(argv[2]+1)=='-'){
+			numberThreads = *(argv[2]+2);
 			optionsCount++;
 		}
 	}
 	else{
-		if(*argv[0]=='-')&(*(argv[0]+1)=='-'){
-			numberThreads = *(argv[0]+2);
+		if(*argv[1]=='-')&(*(argv[1]+1)=='-'){
+			numberThreads = *(argv[1]+2);
 			optionsCount++;
 		}
 	}	
@@ -308,16 +308,16 @@ int main(int argc, char *argv[])
 	pthread_t cons[numberThreads];
 	pthread_t writ[argc-2-optionsCount];
 	
-	for(count=optionsCount;count<argc-1;count++){
-		if(((*argv[count])=='-')&(count!=(argc-1)){
+	for(count=optionsCount+1;count<argc;count++){
+		if(((*argv[count])=='-')&(count!=(argc)){
 			//TODO: gérer l'entrée standard
 		}
 		else{
-			if(count!=(argc-1)){
+			if(count!=(argc)){
 				//TODO: ne pas oublier les free
 				struct arg* arguments=(struct arg*) malloc(sizeof(struct arg));
 				if(arg==NULL){
-					exit(-1); //TODO: gérer les erreurs et la fermeture des threads
+					return (-1); //TODO: gérer les erreurs et la fermeture des threads
 				}
 				arguments->buf_arg=buf;
 				arguments->charP_arg=argv[count];
