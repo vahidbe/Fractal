@@ -94,134 +94,125 @@ struct fractal* sbuf_remove(struct sbuf *sp)
 }
 
 void *producer(void* arguments){	
-	int fdi=0;
-	int done = 0;
 	struct args* argument=(struct args*) arguments;
 	char* fileName=argument->charP_arg;
 	struct sbuf* buf=argument->buf_arg;
 	free(args);
-	fdi=open(fileName,O_RDONLY);
-	if(fdi<0)
-		exit(-1);
-		//TODO: gérer les erreurs/la sortie
-	char* buf1 = (char*) malloc(sizeof(char));
-	int* buf2 = (int*) malloc(sizeof(int));
-	int* buf3 = (int*) malloc(sizeof(int));
-	double* buf4 = (double*) malloc(sizeof(double));
-	double* buf5 = (double*) malloc(sizeof(double));
-	char bufName[64];
-	if((buf1==NULL)|(buf2==NULL)|(buf3==NULL)|(buf4==NULL)|(buf5==NULL))
+ FILE* file;
+  int x;
+  int done=0;
+  file=fopen(fileName,"r");
+  if(file==NULL)
+    {
+		pthread_exit(-1);
+    }
+  char* buf1 = (char*) malloc(sizeof(char));
+  int* buf2 = (int*) malloc(sizeof(int));
+  int* buf3 = (int*) malloc(sizeof(int));
+  double* buf4 = (double*) malloc(sizeof(double));
+  double* buf5 = (double*) malloc(sizeof(double));
+  char bufName[64];
+  if((buf1==NULL)|(buf2==NULL)|(buf3==NULL)|(buf4==NULL)|(buf5==NULL))
+    {
+      printf("Erreur malloc\n");
+      if(fclose(file)!=0)
 	{
-		if(close(fdi)!=0)
-			exit(-1);		
+	  printf("Erreur close\n");
+		pthread_exit(-1);
+	}
+	pthread_exit(-1);
+    }	
+  int i;
+  x=fscanf(file,"%64s",buf1);
+  for(i=0;(!done);i++){
+    if(x==EOF)
+      {
+	if(fclose(file)!=0)
+	  {
+	    free(buf1);
+	    free(buf2);
+	    free(buf3);
+	    free(buf4);
+	    free(buf5);
+		pthread_exit(-1);
+	  }
+	free(buf1);
+	free(buf2);
+	free(buf3);
+	free(buf4);
+	free(buf5);
+	done=1;
+      }
+    else
+      {
+	if(buf1[0]=='#')
+	  {
+	    char trash[1024];
+	    fgets(trash,1024,file);
+	    x=fscanf(file,"%64s",buf1);
+	  }
+	else
+	  {
+	    char* name=buf1;
+	    x=fscanf(file,"%d",buf2);
+	    if(x==EOF)
+	      {
 		//TODO: gérer les erreurs/la sortie
-		exit(-1);
-	}
-	ssize_t x=0;
-	int i;
-	int j;
-	x=read(fdi,buf1,sizeof(char));
-	for(i=0;!done;i++){
-		if(x!=sizeof(char))
-		{
-			if(close(fdi)!=0)
-			{
-				free(buf1);
-				free(buf2);
-				free(buf3);
-				free(buf4);
-				free(buf5);
-				exit(-1);
-			}
-			free(buf1);
-			free(buf2);
-			free(buf3);
-			free(buf4);
-			free(buf5);
-			done=1;
-		}
-		else
-		{
-			bufName[0]=*buf1;
-			j=1;
-			for(x=read(fdi,buf1,sizeof(char));(*buf1)!=' ';x=read(fdi,buf1,sizeof(char)))
-			{
-				if(x==-1)
-				{
-					//TODO: gérer les erreurs/la sortie
-					if(close(fdi)!=0)
-						exit(-1);
-					free(buf1);
-					free(buf2);
-					free(buf3);
-					free(buf4);
-					free(buf5);
-					exit(-1);
-				}
-				bufName[j]=*buf1;
-				j++;
-			}
-			char name[j];
-			int k;
-			for(k=0;k<j;k++)
-			{
-				name[k]=bufName[k];
-			}
-			x=read(fdi,buf2,sizeof(int));
-			if(x==-1)
-			{
-				//TODO: gérer les erreurs/la sortie
-				if(close(fdi)!=0)
-					exit(-1);
-				free(buf1);
-				free(buf2);
-				free(buf3);
-				free(buf4);
-				free(buf5);
-				exit(-1);
-			}
-			x=read(fdi,buf3,sizeof(int));
-			if(x==-1)
-			{
-				//TODO: gérer les erreurs/la sortie
-				if(close(fdi)!=0)
-					exit(-1);
-				free(buf1);
-				free(buf2);
-				free(buf3);
-				free(buf4);
-				free(buf5);
-				exit(-1);
-			}
-			x=read(fdi,buf4,sizeof(double));
-			if(x==-1)
-			{
-				//TODO: gérer les erreurs/la sortie
-				if(close(fdi)!=0)
-					exit(-1);
-				free(buf1);
-				free(buf2);
-				free(buf3);
-				free(buf4);
-				free(buf5);
-				exit(-1);
-			}
-			x=read(fdi,buf5,sizeof(double));
-			if(x==-1)
-			{
-				//TODO: gérer les erreurs/la sortie
-				if(close(fdi)!=0)
-					exit(-1);
-				free(buf1);
-				free(buf2);
-				free(buf3);
-				free(buf4);
-				free(buf5);
-				exit(-1);
-			}
-			sbuf_insert(buf,fractal_new(name,*buf2,*buf3,*buf4,*buf5));
-		}
-	}
+	    if(fclose(file)!=0)
+			pthread_exit(-1);
+	    free(buf1);
+	    free(buf2);
+	    free(buf3);
+	    free(buf4);
+	    free(buf5);
+		pthread_exit(-1);
+	      }
+	    x=fscanf(file,"%d",buf3);
+	if(x==EOF)
+	  {
+	    //TODO: gérer les erreurs/la sortie
+	    if(fclose(file)!=0)
+			pthread_exit(-1);
+	    free(buf1);
+	    free(buf2);
+	    free(buf3);
+	    free(buf4);
+	    free(buf5);
+		pthread_exit(-1);
+	  }
+	x=fscanf(file,"%lf",buf4);
+	if(x==EOF)
+	  {
+	    //TODO: gérer les erreurs/la sortie
+	    if(fclose(file)!=0)
+			pthread_exit(-1);
+	    free(buf1);
+	    free(buf2);
+	    free(buf3);
+	    free(buf4);
+	    free(buf5);
+		pthread_exit(-1);
+	  }
+	x=fscanf(file,"%lf",buf5);
+	if(x==EOF)
+	  {
+	    //TODO: gérer les erreurs/la sortie
+	    if(fclose(file)!=0)
+			pthread_exit(-1);
+	    free(buf1);
+	    free(buf2);
+	    free(buf3);
+	    free(buf4);
+	    free(buf5);
+		pthread_exit(-1);
+	  }
+	sbuf_insert(buf,fractal_new(name,*buf2,*buf3,*buf4,*buf5));
+	x=fscanf(file,"%64s",buf1);
+	  }
+      }
+  }
+  printf("End of file");
+  pthread_exit(0);
 		//TODO: gérer quand lecture terminée
 	//TODO: exit? thread_exit? buf_free? etc
 }
@@ -342,7 +333,7 @@ int main(int argc, char *argv[])
 		arguments->buf_arg=buf;
 		arguments->bufout_arg=bufout;
 		pthread_create(&(cons[i]), NULL, (void*) &consumer, (void*) arguments);
-	
+	}
 	//TODO: faire plein de writers qui comparent avec sémaphore la fractale la plus haute
 	if(!optionD){
 		//TODO: ne pas oublier les free
@@ -367,7 +358,7 @@ int main(int argc, char *argv[])
 			pthread_create(&(writ[i], NULL, (void*) &writer, (void*) bufout);
 		}
 	}
-	
+
 	//TODO: gérer la destuction des threads et des buffers
 	//pthread_exit(NULL);
 }
