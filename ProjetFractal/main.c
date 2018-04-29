@@ -11,6 +11,8 @@
 #include <semaphore.h>
 #include <stddef.h>
 #include <pthread.h>
+#include <sys/stat.h>
+#include <fcntl.h>
 
 #define MUTEX 0
 #define FULL 1
@@ -98,7 +100,8 @@ void *producer(void* arguments){
 	char* fileName=argument->charP_arg;
 	struct sbuf* buf=argument->buf_arg;
 	free(args);
-	if(open(fileName,fdi)<0)
+	fdi=open(fileName,O_RDONLY);
+	if(fdi<0)
 		exit(-1);
 		//TODO: gérer les erreurs/la sortie
 	char* buf1 = (char*) malloc(sizeof(char));
