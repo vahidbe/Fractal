@@ -8,11 +8,13 @@
 
 int main(int argc, char *argv[]){	
 	int fdi=0;
+	int done=0;
 	char* fileName=argv[1];
 	printf("%s\n",fileName);
-	if(open(fileName,fdi)<0)
+	fdi=open(fileName);
+	if(fdi<0)
 	{
-		printf("Erreur open");
+		printf("Erreur open\n");
 		return -1;
 	}
 	char* buf1 = (char*) malloc(sizeof(char));
@@ -23,10 +25,10 @@ int main(int argc, char *argv[]){
 	char bufName[64];
 	if((buf1==NULL)|(buf2==NULL)|(buf3==NULL)|(buf4==NULL)|(buf5==NULL))
 	{
-		printf("Erreur malloc");
+		printf("Erreur malloc\n");
 		if(close(fdi)!=0)
 		{
-			printf("Erreur close");
+			printf("Erreur close\n");
 			return -1;
 		}
 		return -1;
@@ -34,16 +36,16 @@ int main(int argc, char *argv[]){
 	ssize_t x=0;
 	int i;
 	int j;
-	printf("About to read");
+	printf("About to read\n");
 	x=read(fdi,buf1,sizeof(char));
-	printf("First read");
-	for(i=0;!done;i++){
+	printf("First read\n");
+	for(i=0;(!done);i++){
 		if(x!=sizeof(char))
 		{
-			printf("End of file");
+			printf("End of file\n");
 			if(close(fdi)!=0)
 			{
-				printf("Erreur close");
+				printf("Erreur close\n");
 				free(buf1);
 				free(buf2);
 				free(buf3);
@@ -56,22 +58,22 @@ int main(int argc, char *argv[]){
 			free(buf3);
 			free(buf4);
 			free(buf5);
-			printf("About to set done to 1");
+			printf("About to set done to 1\n");
 			done=1;
-			printf("Done=1");
+			printf("Done=1\n");
 		}
 		else
 		{
 			bufName[0]=*buf1;
 			j=1;
-			for(x=read(fdi,buf1,sizeof(char));(*buf1)!=' ';x=read(fdi,buf1,sizeof(char)))
+			for(x=read(fdi,buf1,sizeof(char));((*buf1)!=' ');x=read(fdi,buf1,sizeof(char)))
 			{
 				if(x==-1)
 				{
-					printf("Erreur read char*");
+					printf("Erreur read char*\n");
 					if(close(fdi)!=0)
 					{
-						printf("Erreur close");
+						printf("Erreur close\n");
 						return (-1);
 					}
 					free(buf1);
