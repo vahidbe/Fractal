@@ -72,10 +72,10 @@ double fractal_compute_average(const struct fractal *f)
 	int i;
 	int j;
 	double res=0;
-	for(i=0;i<width;i++){
-		for(j=0;i<heigth;j++){
+	for(i=0;i<(f->width);i++){
+		for(j=0;i<(f->height);j++){
 			res=res+f->values[i][j];
 		}
 	}
-	return (res/(height*width));
+	return (res/((f->height)*(f->width)));
 }

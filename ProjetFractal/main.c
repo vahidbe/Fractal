@@ -46,7 +46,7 @@ struct sbuf{
 void sbuf_init(struct sbuf *sp, int n)
 {
     sp->buf =(struct fractal*) calloc(n, sizeof(struct fractal));
-	if((buf==NULL)){
+	if(((sp->buf)==NULL)){
 		exit(-1); //TODO: gérer erreurs
 	}
     sp->n = n;                       /* Buffer content les entiers */
@@ -97,14 +97,14 @@ void *producer(void* arguments){
 	struct args* argument=(struct args*) arguments;
 	char* fileName=argument->charP_arg;
 	struct sbuf* buf=argument->buf_arg;
-	free(args);
+	free(argument);
  FILE* file;
   int x;
   int done=0;
   file=fopen(fileName,"r");
   if(file==NULL)
     {
-		pthread_exit(-1);
+		pthread_exit(NULL);
     }
   char* buf1 = (char*) malloc(sizeof(char));
   int* buf2 = (int*) malloc(sizeof(int));
@@ -118,9 +118,9 @@ void *producer(void* arguments){
       if(fclose(file)!=0)
 	{
 	  printf("Erreur close\n");
-		pthread_exit(-1);
+		pthread_exit(NULL);
 	}
-	pthread_exit(-1);
+	pthread_exit(NULL);
     }	
   int i;
   x=fscanf(file,"%64s",buf1);
@@ -134,7 +134,7 @@ void *producer(void* arguments){
 	    free(buf3);
 	    free(buf4);
 	    free(buf5);
-		pthread_exit(-1);
+		pthread_exit(NULL);
 	  }
 	free(buf1);
 	free(buf2);
@@ -159,52 +159,52 @@ void *producer(void* arguments){
 	      {
 		//TODO: gérer les erreurs/la sortie
 	    if(fclose(file)!=0)
-			pthread_exit(-1);
+			pthread_exit(NULL);
 	    free(buf1);
 	    free(buf2);
 	    free(buf3);
 	    free(buf4);
 	    free(buf5);
-		pthread_exit(-1);
+		pthread_exit(NULL);
 	      }
 	    x=fscanf(file,"%d",buf3);
 	if(x==EOF)
 	  {
 	    //TODO: gérer les erreurs/la sortie
 	    if(fclose(file)!=0)
-			pthread_exit(-1);
+			pthread_exit(NULL);
 	    free(buf1);
 	    free(buf2);
 	    free(buf3);
 	    free(buf4);
 	    free(buf5);
-		pthread_exit(-1);
+		pthread_exit(NULL);
 	  }
 	x=fscanf(file,"%lf",buf4);
 	if(x==EOF)
 	  {
 	    //TODO: gérer les erreurs/la sortie
 	    if(fclose(file)!=0)
-			pthread_exit(-1);
+			pthread_exit(NULL);
 	    free(buf1);
 	    free(buf2);
 	    free(buf3);
 	    free(buf4);
 	    free(buf5);
-		pthread_exit(-1);
+		pthread_exit(NULL);
 	  }
 	x=fscanf(file,"%lf",buf5);
 	if(x==EOF)
 	  {
 	    //TODO: gérer les erreurs/la sortie
 	    if(fclose(file)!=0)
-			pthread_exit(-1);
+			pthread_exit(NULL);
 	    free(buf1);
 	    free(buf2);
 	    free(buf3);
 	    free(buf4);
 	    free(buf5);
-		pthread_exit(-1);
+		pthread_exit(NULL);
 	  }
 	sbuf_insert(buf,fractal_new(name,*buf2,*buf3,*buf4,*buf5));
 	x=fscanf(file,"%64s",buf1);
@@ -222,7 +222,7 @@ void *consumer(void* arguments){
 	struct args* argument=(struct args*) arguments;
 	struct sbuf* buf=argument->buf_arg;
 	struct sbuf* bufout=argument->bufout_arg;
-	free(args);
+	free(argument);
 	while(!done){
 		struct fractal* f=sbuf_remove(buf);
 		int i;
@@ -250,7 +250,7 @@ void *writer(void* arguments){
 	if(!optionD){
 		while(!isEmpty){
 			struct fractal* f = (struct fractal*) sbuf_remove(buf);
-			double newAverage = compute_average(f->values);
+			double newAverage = fractal_compute_average(f);
 			if(newAverage>average){
 				average=newAverage;
 				highestF=f;
@@ -265,7 +265,8 @@ void *writer(void* arguments){
 			//TODO: où écrire le bitmap? quel nom?
 			//TODO: besoin de semaphore? les writers peuvent-ils ecrire en meme temps?
 			write_bitmap_sdl(f,fractal_get_name(f));	
-		}			
+		}
+	}
 }
 
 int main(int argc, char *argv[])
@@ -279,16 +280,16 @@ int main(int argc, char *argv[])
 	struct sbuf* buf;
 	struct sbuf* bufout;
 
-	if((*argv[1]=='-')&(*(argv[1]+1)=='d'){
+	if((*argv[1]=='-')&(*(argv[1]+1)=='d')){
 		optionD=1;
 		optionsCount++;
-		if((*argv[2]=='-')&(*(argv[2]+1)=='-'){
+		if((*argv[2]=='-')&(*(argv[2]+1)=='-')){
 			numberThreads = *(argv[2]+2);
 			optionsCount++;
 		}
 	}
 	else{
-		if(*argv[1]=='-')&(*(argv[1]+1)=='-'){
+		if((*argv[1]=='-')&(*(argv[1]+1)=='-')){
 			numberThreads = *(argv[1]+2);
 			optionsCount++;
 		}
@@ -303,14 +304,14 @@ int main(int argc, char *argv[])
 	pthread_t writ[argc-2-optionsCount];
 	
 	for(count=optionsCount+1;count<argc;count++){
-		if(((*argv[count])=='-')&(count!=(argc)){
+		if(((*argv[count])=='-')&(count!=(argc))){
 			//TODO: gérer l'entrée standard
 		}
 		else{
 			if(count!=(argc)){
 				//TODO: ne pas oublier les free
-				struct arg* arguments=(struct arg*) malloc(sizeof(struct arg));
-				if(arg==NULL){
+				struct args* arguments=(struct args*) malloc(sizeof(struct args));
+				if(arguments==NULL){
 					return (-1); //TODO: gérer les erreurs et la fermeture des threads
 				}
 				arguments->buf_arg=buf;
@@ -326,8 +327,8 @@ int main(int argc, char *argv[])
 	int i;
 	for(i=0;(i<numberThreads);i++){
 		//TODO: ne pas oublier les free
-		struct arg* arguments=(struct arg*) malloc(sizeof(struct arg));
-		if(arg==NULL){
+		struct args* arguments=(struct args*) malloc(sizeof(struct args));
+		if(arguments==NULL){
 			exit(-1); //TODO: gérer les erreurs et la fermeture des threads
 		}
 		arguments->buf_arg=buf;
@@ -337,25 +338,25 @@ int main(int argc, char *argv[])
 	//TODO: faire plein de writers qui comparent avec sémaphore la fractale la plus haute
 	if(!optionD){
 		//TODO: ne pas oublier les free
-		struct arg* arguments=(struct arg*) malloc(sizeof(struct arg));
-		if(arg==NULL){
+		struct args* arguments=(struct args*) malloc(sizeof(struct args));
+		if(arguments==NULL){
 			exit(-1); //TODO: gérer les erreurs et la fermeture des threads
 		}
 		arguments->optionD=optionD;
 		arguments->bufout_arg=bufout;
-		pthread_create(&(writ[0], NULL, (void*) &writer, (void*) arguments);
+		pthread_create(&(writ[0]), NULL, (void*) &writer, (void*) arguments);
 	}
 	else{
 		int i;
 		for(i=0;i<(argc-2-optionsCount);i++){
 			//TODO: ne pas oublier les free
-			struct arg* arguments=(struct arg*) malloc(sizeof(struct arg));
-			if(arg==NULL){
+			struct args* arguments=(struct args*) malloc(sizeof(struct args));
+			if(arguments==NULL){
 				exit(-1); //TODO: gérer les erreurs et la fermeture des threads
 			}
 			arguments->optionD=optionD;
 			arguments->bufout_arg=bufout;
-			pthread_create(&(writ[i], NULL, (void*) &writer, (void*) bufout);
+			pthread_create(&(writ[i]), NULL, (void*) &writer, (void*) bufout);
 		}
 	}
 
