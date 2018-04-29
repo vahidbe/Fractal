@@ -10,7 +10,7 @@
 #include <pthread.h>
 #include <semaphore.h>
 #include <stddef.h>
-#define BUFSIZE 10
+#include <pthread.h>
 
 #define MUTEX 0
 #define FULL 1
