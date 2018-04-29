@@ -13,8 +13,8 @@ int main(int argc, char *argv[]){
 	int done=0;
 	char* fileName=argv[1];
 	printf("%s\n",fileName);
-	file=fopen(fileName,r);
-	if(fdi<0)
+	file=fopen(fileName,"r");
+	if(file==NULL)
 	{
 		printf("Erreur fopen\n");
 		return -1;
@@ -28,7 +28,7 @@ int main(int argc, char *argv[]){
 	if((buf1==NULL)|(buf2==NULL)|(buf3==NULL)|(buf4==NULL)|(buf5==NULL))
 	{
 		printf("Erreur malloc\n");
-		if(close(fdi)!=0)
+		if(fclose(file)!=0)
 		{
 			printf("Erreur close\n");
 			return -1;
