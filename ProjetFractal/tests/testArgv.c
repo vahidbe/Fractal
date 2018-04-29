@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
 #include <sys/ipc.h>
 #include <sys/sem.h>
 #include <stddef.h>
@@ -11,7 +13,7 @@ int main(int argc, char *argv[]){
 	int done=0;
 	char* fileName=argv[1];
 	printf("%s\n",fileName);
-	fdi=open(fileName);
+	fdi=open(fileName,O_RDONLY);
 	if(fdi<0)
 	{
 		printf("Erreur open\n");
@@ -93,6 +95,7 @@ int main(int argc, char *argv[]){
 				name[k]=bufName[k];
 			}
 			x=read(fdi,buf2,sizeof(int));
+			printf("%d/n",*buf2);
 			if(x==-1)
 			{
 				//TODO: gérer les erreurs/la sortie
