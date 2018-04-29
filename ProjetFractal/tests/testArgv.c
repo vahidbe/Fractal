@@ -60,9 +60,8 @@ int main(int argc, char *argv[]){
 			free(buf3);
 			free(buf4);
 			free(buf5);
-			printf("About to set done to 1\n");
 			done=1;
-			printf("Done=1\n");
+			printf("Done\n");
 		}
 		else
 		{
@@ -95,7 +94,6 @@ int main(int argc, char *argv[]){
 				name[k]=bufName[k];
 			}
 			x=read(fdi,buf2,sizeof(int));
-			printf("%d/n",*buf2);
 			if(x==-1)
 			{
 				//TODO: gérer les erreurs/la sortie
