@@ -21,12 +21,19 @@
 //TODO: redemander l'architecture à suivre
 //TODO: gérer l'exit des threads (faut-il une variable qui vérifie si les étapes sont terminées?)
 
+int flagConst;
+int flagOutConst;
+int doneFlagConst;
+
 struct args{
 	char* charP_arg;
 	struct sbuf* buf_arg;
 	struct sbuf* bufout_arg;
 	int optionD;
 	char* fileOutName;
+	int* flag;
+	int* flagOut;
+	int* doneFlag;
 };	
 
 struct sbuf{
@@ -97,14 +104,17 @@ void *producer(void* arguments){
 	struct args* argument=(struct args*) arguments;
 	char* fileName=argument->charP_arg;
 	struct sbuf* buf=argument->buf_arg;
+	int* flag=argument->flag;
+	int* doneFlag=argument->doneFlag;
 	free(argument);
- FILE* file;
+  FILE* file;
   int x;
   int done=0;
   file=fopen(fileName,"r");
   if(file==NULL)
     {
-		pthread_exit(NULL);
+		(*doneFlag)--;(*flag)--;
+		return (NULL);
     }
   char* buf1 = (char*) malloc(sizeof(char));
   int* buf2 = (int*) malloc(sizeof(int));
@@ -118,9 +128,11 @@ void *producer(void* arguments){
       if(fclose(file)!=0)
 	{
 	  printf("Erreur close\n");
-		pthread_exit(NULL);
+	  (*doneFlag)--;(*flag)--;
+		return (NULL);
 	}
-	pthread_exit(NULL);
+	(*doneFlag)--;(*flag)--;
+	return (NULL);
     }	
   int i;
   x=fscanf(file,"%64s",buf1);
@@ -134,7 +146,8 @@ void *producer(void* arguments){
 	    free(buf3);
 	    free(buf4);
 	    free(buf5);
-		pthread_exit(NULL);
+		(*doneFlag)--;(*flag)--;
+		return (NULL);
 	  }
 	free(buf1);
 	free(buf2);
@@ -159,52 +172,59 @@ void *producer(void* arguments){
 	      {
 		//TODO: gérer les erreurs/la sortie
 	    if(fclose(file)!=0)
-			pthread_exit(NULL);
+			(*doneFlag)--;(*flag)--;
+			return (NULL);
 	    free(buf1);
 	    free(buf2);
 	    free(buf3);
 	    free(buf4);
 	    free(buf5);
-		pthread_exit(NULL);
+		(*doneFlag)--;(*flag)--;
+		return (NULL);
 	      }
 	    x=fscanf(file,"%d",buf3);
 	if(x==EOF)
 	  {
 	    //TODO: gérer les erreurs/la sortie
 	    if(fclose(file)!=0)
-			pthread_exit(NULL);
+			(*doneFlag)--;(*flag)--;
+			return (NULL);
 	    free(buf1);
 	    free(buf2);
 	    free(buf3);
 	    free(buf4);
 	    free(buf5);
-		pthread_exit(NULL);
+		(*doneFlag)--;(*flag)--;
+		return (NULL);
 	  }
 	x=fscanf(file,"%lf",buf4);
 	if(x==EOF)
 	  {
 	    //TODO: gérer les erreurs/la sortie
 	    if(fclose(file)!=0)
-			pthread_exit(NULL);
+			(*doneFlag)--;(*flag)--;
+			return (NULL);
 	    free(buf1);
 	    free(buf2);
 	    free(buf3);
 	    free(buf4);
 	    free(buf5);
-		pthread_exit(NULL);
+		(*doneFlag)--;(*flag)--;
+		return (NULL);
 	  }
 	x=fscanf(file,"%lf",buf5);
 	if(x==EOF)
 	  {
-	    //TODO: gérer les erreurs/la sortie
 	    if(fclose(file)!=0)
-			pthread_exit(NULL);
+			(*doneFlag)--;(*flag)--;
+			return (NULL);
 	    free(buf1);
 	    free(buf2);
 	    free(buf3);
 	    free(buf4);
 	    free(buf5);
-		pthread_exit(NULL);
+		(*doneFlag)--;(*flag)--;
+		return (NULL);
 	  }
 	sbuf_insert(buf,fractal_new(name,*buf2,*buf3,*buf4,*buf5));
 	x=fscanf(file,"%64s",buf1);
@@ -212,9 +232,9 @@ void *producer(void* arguments){
       }
   }
   printf("End of file");
-  pthread_exit(0);
-		//TODO: gérer quand lecture terminée
-	//TODO: exit? thread_exit? buf_free? etc
+  (*doneFlag)--;
+  (*flag)--;
+  return NULL;
 }
 
 void *consumer(void* arguments){
@@ -222,6 +242,9 @@ void *consumer(void* arguments){
 	struct args* argument=(struct args*) arguments;
 	struct sbuf* buf=argument->buf_arg;
 	struct sbuf* bufout=argument->bufout_arg;
+	int* flag=argument->flag;
+	int* flagOut=argument->flagOut;
+	int* doneFlag=argument->doneFlag;
 	free(argument);
 	while(!done){
 		struct fractal* f=sbuf_remove(buf);
@@ -233,9 +256,14 @@ void *consumer(void* arguments){
 			}
 		}
 		sbuf_insert(bufout,f);		
-		//TODO: gérer quand lecture terminée
+		if(((*flag)<=0)&((buf->items)==0))
+		{
+			done=1;
+		}
 	}
-	//TODO: exit? thread_exit? buf_free? etc
+	(*flagOut)--;
+	(*doneFlag)--;
+	return NULL;
 }
 
 void *writer(void* arguments){
@@ -246,6 +274,8 @@ void *writer(void* arguments){
 	char* fileOutName=argument->fileOutName;
 	double average;
 	struct fractal* highestF;
+	int* flagOut=argument->flagOut;
+	int* doneFlag=argument->doneFlag;
 	free(argument);
 	if(!optionD){
 		while(!isEmpty){
@@ -256,22 +286,26 @@ void *writer(void* arguments){
 				highestF=f;
 			}
 		}
+		if(((*flagOut)<=0)&((buf->items)==0){
+			isEmpty=1;
+		}
 		write_bitmap_sdl(highestF,fileOutName);
-		//TODO: exit? thread_exit? buf_free? etc
 	}
 	else{
 		while(!isEmpty){
 			struct fractal* f = (struct fractal*) sbuf_remove(buf);
-			//TODO: où écrire le bitmap? quel nom?
-			//TODO: besoin de semaphore? les writers peuvent-ils ecrire en meme temps?
 			write_bitmap_sdl(f,fractal_get_name(f));	
+			if(((*flagOut)<=0)&((buf->items)==0){
+				isEmpty=1;
+			}
 		}
 	}
+	(*doneFlag)--;
+	return NULL;
 }
 
 int main(int argc, char *argv[])
-{	
-	//TODO: gérer la lecture des options -d et --maxthreads
+{
 	int numberThreads=0;
 	int count;
 	int optionsCount=0;
@@ -279,6 +313,9 @@ int main(int argc, char *argv[])
 	char* fileOutName;	
 	struct sbuf* buf;
 	struct sbuf* bufout;
+	int* flag=(int*) malloc(sizeof(int));
+	int* flagOut=(int*) malloc(sizeof(int));
+	int* doneFlag=(int*) malloc(sizeof(int));
 
 	if((*argv[1]=='-')&(*(argv[1]+1)=='d')){
 		optionD=1;
@@ -295,7 +332,7 @@ int main(int argc, char *argv[])
 		}
 	}	
 	if(numberThreads==0){
-	        numberThreads=argc-2-optionsCount;  //Vraiment utile de retirer optionsCount ? Il sera d'office nul
+	        numberThreads=argc-2-optionsCount;  //Vraiment utile de retirer optionsCount ? Il sera d'office nul --> il est pas d'office nul, regarde le if juste au dessus
 	}
 	sbuf_init(buf, (numberThreads));            
 	sbuf_init(bufout, (numberThreads));       
@@ -303,18 +340,25 @@ int main(int argc, char *argv[])
 	pthread_t cons[numberThreads];
 	pthread_t writ[argc-2-optionsCount];
 	
+	flagConst=argc-2-optionsCount;
+	flagOutConst=numberThreads;
+	if(optionD){
+		doneFlagConst=2*(argc-2-optionsCount)+numberThreads;
+	}
+	else{
+		doneFlagConst=(argc-2-optionsCount)+numberThreads+1;
+	}
+	
 	for(count=optionsCount+1;count<argc;count++){
 	  if(((*argv[count])=='-')&(count!=(argc))){      
-
-
-                                                                                                              //Entree standard
-	                char* chaine;
+	  //Entree standard
+	  char* chaine;
 			fgets(chaine, sizeof(chaine), stdin);
 			FILE* file;
 			file = fopen("FractalEntree.txt",r+);
 			if(file==NULL)
 			  {
-			    return NULL;
+			    sbuf_clean(buf);sbuf_clean(bufOut);thread_kill(flag,flagOut);goto end;
 			  }
 			fputs(file,chaine);
 			fclose(file);
@@ -322,9 +366,10 @@ int main(int argc, char *argv[])
 				//TODO: ne pas oublier les free
 				struct args* arguments=(struct args*) malloc(sizeof(struct args));
 				if(arguments==NULL){
-					return (-1); //TODO: gérer les erreurs et la fermeture des threads
+					sbuf_clean(buf);sbuf_clean(bufOut);thread_kill(flag,flagOut);goto end;
 				}
 				arguments->buf_arg=buf;
+				//ATTENTION GERER LES FLAGS ATTENTION
 				arguments->charP_arg="FractalEntree.txt";
 				pthread_create(&(prod[count-optionsCount]), NULL, (void*) &producer, (void*) arguments);
 			}
@@ -343,14 +388,17 @@ int main(int argc, char *argv[])
 				//TODO: ne pas oublier les free
 				struct args* arguments=(struct args*) malloc(sizeof(struct args));
 				if(arguments==NULL){
-					return (-1); //TODO: gérer les erreurs et la fermeture des threads
+					sbuf_clean(buf);sbuf_clean(bufOut);thread_kill(flag,flagOut);goto end;
 				}
 				arguments->buf_arg=buf;
+				arguments->flag=flag;
+				arguments->doneFlag=doneFlag;
+				*(arguments->doneFlag)=doneFlagConst;
+				*(arguments->flag)=flagConst;
 				arguments->charP_arg=argv[count];
 				pthread_create(&(prod[count-optionsCount]), NULL, (void*) &producer, (void*) arguments);
 			}
 			else{
-				//TODO: gérer sortie
 				fileOutName=argv[count];
 			}	
 		}
@@ -360,8 +408,14 @@ int main(int argc, char *argv[])
 		//TODO: ne pas oublier les free
 		struct args* arguments=(struct args*) malloc(sizeof(struct args));
 		if(arguments==NULL){
-			exit(-1); //TODO: gérer les erreurs et la fermeture des threads
+			sbuf_clean(buf);sbuf_clean(bufOut);thread_kill(flag,flagOut);goto end;
 		}
+		arguments->flag=flag;
+		*(arguments->flag)=flagConst;
+		arguments->doneFlag=doneFlag;
+		*(arguments->doneFlag)=doneFlagConst;
+		arguments->flagOut=flagOut;
+		*(arguments->flagOut)=flagOutConst;
 		arguments->buf_arg=buf;
 		arguments->bufout_arg=bufout;
 		pthread_create(&(cons[i]), NULL, (void*) &consumer, (void*) arguments);
@@ -371,8 +425,12 @@ int main(int argc, char *argv[])
 		//TODO: ne pas oublier les free
 		struct args* arguments=(struct args*) malloc(sizeof(struct args));
 		if(arguments==NULL){
-			exit(-1); //TODO: gérer les erreurs et la fermeture des threads
+			sbuf_clean(buf);sbuf_clean(bufOut);thread_kill(flag,flagOut);goto end;
 		}
+		arguments->doneFlag=doneFlag;
+		*(arguments->doneFlag)=doneFlagConst;
+		arguments->flagOut=flagOut;
+		*(arguments->flagOut)=flagOutConst;
 		arguments->optionD=optionD;
 		arguments->bufout_arg=bufout;
 		pthread_create(&(writ[0]), NULL, (void*) &writer, (void*) arguments);
@@ -383,14 +441,31 @@ int main(int argc, char *argv[])
 			//TODO: ne pas oublier les free
 			struct args* arguments=(struct args*) malloc(sizeof(struct args));
 			if(arguments==NULL){
-				exit(-1); //TODO: gérer les erreurs et la fermeture des threads
+				sbuf_clean(buf);sbuf_clean(bufOut);thread_kill(flag,flagOut);goto end;
 			}
+			arguments->doneFlag=doneFlag;
+			*(arguments->doneFlag)=doneFlagConst;
+			arguments->flagOut=flagOut;
+			*(arguments->flagOut)=flagOutConst;
 			arguments->optionD=optionD;
 			arguments->bufout_arg=bufout;
 			pthread_create(&(writ[i]), NULL, (void*) &writer, (void*) bufout);
 		}
 	}
+	end : 
+	while((*doneFlag)!=0)
+	{}
+	sbuf_clean(buf);
+	sbuf_clean(bufOut);
+	free(flag);
+	free(flagOut);
+	free(doneFlag);
+	return 0;
+}
 
-	//TODO: gérer la destuction des threads et des buffers
-	//pthread_exit(NULL);
+void thread_kill(int* flag, int* flagOut)
+{
+	*flag=0;
+	*flagOut=0;
+	return NULL;
 }
