@@ -295,19 +295,50 @@ int main(int argc, char *argv[])
 		}
 	}	
 	if(numberThreads==0){
-		numberThreads=argc-2-optionsCount;
+	        numberThreads=argc-2-optionsCount;  //Vraiment utile de retirer optionsCount ? Il sera d'office nul
 	}
-	sbuf_init(buf, (numberThreads));
-	sbuf_init(bufout, (numberThreads));
+	sbuf_init(buf, (numberThreads));            
+	sbuf_init(bufout, (numberThreads));       
 	pthread_t prod[argc-2-optionsCount];
 	pthread_t cons[numberThreads];
 	pthread_t writ[argc-2-optionsCount];
 	
 	for(count=optionsCount+1;count<argc;count++){
-		if(((*argv[count])=='-')&(count!=(argc))){
-			//TODO: gérer l'entrée standard
+	  if(((*argv[count])=='-')&(count!=(argc))){      
+
+
+                                                                                                              //Entree standard
+	                char* chaine;
+			fgets(chaine, sizeof(chaine), stdin);
+			FILE* file;
+			file = fopen("FractalEntree.txt",r+);
+			if(file==NULL)
+			  {
+			    return NULL;
+			  }
+			fputs(file,chaine);
+			fclose(file);
+			if(count!=(argc)){
+				//TODO: ne pas oublier les free
+				struct args* arguments=(struct args*) malloc(sizeof(struct args));
+				if(arguments==NULL){
+					return (-1); //TODO: gérer les erreurs et la fermeture des threads
+				}
+				arguments->buf_arg=buf;
+				arguments->charP_arg="FractalEntree.txt";
+				pthread_create(&(prod[count-optionsCount]), NULL, (void*) &producer, (void*) arguments);
+			}
+			else{
+				//TODO: gérer sortie
+				fileOutName="FractalEntree.txt";
+			}	
+			
 		}
-		else{
+
+
+
+
+	  else{
 			if(count!=(argc)){
 				//TODO: ne pas oublier les free
 				struct args* arguments=(struct args*) malloc(sizeof(struct args));
