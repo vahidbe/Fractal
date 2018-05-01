@@ -276,7 +276,7 @@ void *consumer(void* arguments){
 		/**/printf("FLAG=%d\n",flagB1);
 		/**/fflush(stdout);
 		//if(((flagB1)<=0)&(ic==0))
-			if(((flagB1<=0))){
+			if(((flagB1<=0)))
 		{
 			/**/printf("=====DONE=1=====\n");
 			/**/fflush(stdout);
@@ -379,7 +379,7 @@ void *writer(void* arguments){
 			int ic=0;
 			//sem_getvalue(&(buf->items),&ic);
 			//if(((flagB2)<=0)&(ic==0))
-				if(flagB2<=0){
+				if(flagB2<=0)
 			{
 				isEmpty=1;
 			}
