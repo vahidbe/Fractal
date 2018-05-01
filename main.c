@@ -307,12 +307,11 @@ void *writer(void* arguments){
 	if(!optionD){
 		printf("===OPTIOND-0===\n");
 		while(!isEmpty){
-			//int* ic;
-			//printf("va lire sem_getvalue du writer\n");
-			//sem_getvalue(&(buf->items),ic);
+			int* ic;
+			printf("va lire sem_getvalue du writer\n");
+			sem_getvalue(&(buf->items),ic);
 			printf("\n FLAGOUT=%d\n\n",*flagOut);
-			//if(((*flagOut)<=0)&(*ic==0)){
-			if(((*flagOut)<=0)&(fractCount<=0)){
+			if(((*flagOut)<=0)&(*ic==0)){
 				isEmpty=1;
 			}
 			else{
@@ -324,7 +323,7 @@ void *writer(void* arguments){
 					average=newAverage;
 					highestF=f;
 				}
-				fractCount--;
+				printf("average=%lf\n",average);
 			}
 			
 		}
