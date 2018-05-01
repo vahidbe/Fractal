@@ -79,6 +79,9 @@ void sbuf_clean(struct sbuf *sp)
  */
 void sbuf_insert(struct sbuf *sp, struct fractal* item)
 {
+	/**/int ic=0;
+	/**/sem_getvalue(&(sp->items),&ic);
+	/**/printf("ITEMS = %d\n",ic);
 	sem_wait(&(sp->slots));
 	sem_wait(&(sp->mutex));
 	sp->rear=((sp->rear)+1*sizeof(struct fractal*))%(sp->n);
@@ -91,7 +94,10 @@ void sbuf_insert(struct sbuf *sp, struct fractal* item)
  * @post retire le dernier item du buffer partagé
  */
 struct fractal* sbuf_remove(struct sbuf *sp)
-{
+{	
+	/**/int ic=0;
+	/**/sem_getvalue(&(sp->items),&ic);
+	/**/printf("ITEMS = %d\n",ic);
 	sem_wait(&(sp->items));
 	sem_wait(&(sp->mutex));
 	sp->front=((sp->front)+1)%(sp->n);
@@ -271,9 +277,9 @@ void *consumer(void* arguments){
 	/**/fflush(stdout);
 	while(!done)
 	{		
-		int ic=0;
 		/**/printf("va lire sem_getvalue du consommateur\n");
 		/**/fflush(stdout);
+		int ic=0;
 		sem_getvalue(&(buf->items),&ic);
 		/**/printf("FLAG=%d\n",*flag);
 		/**/fflush(stdout);
