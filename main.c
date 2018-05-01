@@ -97,15 +97,10 @@ struct fractal sbuf_remove(struct sbuf *sp)
 	///**/int ic=0;
 	///**/sem_getvalue(&(sp->items),&ic);
 	///**/printf("ITEMS = %d\n",ic);
-	/**/printf("Remove starting\n");
 	sem_wait(&(sp->items));
-	/**/printf("wait item\n");
 	sem_wait(&(sp->mutex));
-	/**/printf("wait mutex\n");
 	sp->front=((sp->front)+1)%(sp->n);
-	/**/printf("removing\n");
 	struct fractal res=sp->buf[sp->front];
-	/**/printf("removed\n");
 	sem_post(&(sp->mutex));
 	sem_post(&(sp->slots));
 	///**/ic=0;
