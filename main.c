@@ -246,7 +246,10 @@ void *producer(void* arguments){
 			/**/printf("*INSERT DU PRODUCTEUR*\n");
 			/**/fflush(stdout);
 			struct fractal* new = fractal_new(name,*buf2,*buf3,*buf4,*buf5);
-			/**/sbuf_insert(buf,*new);
+			struct fractal f=*new;
+			/**/printf("P=== Fractale lue : %s===\n",fractal_get_name(&(f)));
+			/**/fflush(stdout);
+			/**/sbuf_insert(buf,f);
 			lengthI++;
 			/**/printf("*INSERT DU PRODUCTEUR TERMINE*\n");
 			/**/fflush(stdout);
@@ -293,6 +296,8 @@ void *consumer(void* arguments){
 		struct fractal f=sbuf_remove(buf);
 		lengthI--;
 		/**/printf("*REMOVE DU CONSOMMATEUR TERMINE*\n");
+		/**/fflush(stdout);
+		/**/printf("C=== Fractale lue : %s===\n",fractal_get_name(&(f)));
 		/**/fflush(stdout);
 		int i;
 		int j;
