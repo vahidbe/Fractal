@@ -305,6 +305,7 @@ void *writer(void* arguments){
 		while(!isEmpty){
 			int* ic;
 			sem_getvalue(&(buf->items),ic);
+			printf("\n FLAGOUT=%d\n\n",*flagOut);
 			if(((*flagOut)<=0)&(*ic==0)){
 				isEmpty=1;
 			}
