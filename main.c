@@ -114,7 +114,6 @@ void *producer(void* arguments){
 	/**/fflush(stdout);
 	struct args* argument=(struct args*) arguments;
 	char* fileName=argument->charP_arg;
-	struct sbuf* buf=bufIn;
 	free(argument);
 	FILE* file;
 	int x;
@@ -249,7 +248,7 @@ void *producer(void* arguments){
 			struct fractal f=*new;
 			/**/printf("P=== Fractale lue : %s===\n",fractal_get_name(&(f)));
 			/**/fflush(stdout);
-			/**/sbuf_insert(buf,f);
+			/**/sbuf_insert(bufIn,f);
 			lengthI++;
 			/**/printf("*INSERT DU PRODUCTEUR TERMINE*\n");
 			/**/fflush(stdout);
@@ -270,8 +269,6 @@ void *consumer(void* arguments){
 	/**/printf("--- DEBUT CONSOMMATEUR ---\n");
 	/**/fflush(stdout);
 	int done=0;
-	struct sbuf* buf=bufIn;
-	struct sbuf* bufout=bufOut;
 	/**/printf("--- Debut calcul consommateur ---\n");
 	/**/fflush(stdout);
 	while(!done)
@@ -293,7 +290,7 @@ void *consumer(void* arguments){
 		{
 		/**/printf("*REMOVE DU CONSOMMATEUR*\n");
 		/**/fflush(stdout);
-		struct fractal f=sbuf_remove(buf);
+		struct fractal f=sbuf_remove(bufIn);
 		lengthI--;
 		/**/printf("*REMOVE DU CONSOMMATEUR TERMINE*\n");
 		/**/fflush(stdout);
@@ -311,7 +308,7 @@ void *consumer(void* arguments){
 		}
 		/**/printf("*INSERT DU CONSOMMATEUR*\n");
 		/**/fflush(stdout);
-		sbuf_insert(bufout,f);	
+		sbuf_insert(bufOut,f);	
 		lengthO++;
 		/**/printf("*INSERT DU CONSOMMATEUR TERMINE*\n");	
 		/**/fflush(stdout);
@@ -328,7 +325,6 @@ void *writer(void* arguments){
 	/**/printf("--- DEBUT WRITER ---\n");
 	/**/fflush(stdout);
 	int isEmpty=0;
-	struct sbuf* buf=bufOut;
 	double average;
 	struct fractal highestF;
 	/**/printf("--- Debut ecriture writer ---\n");
@@ -353,7 +349,7 @@ void *writer(void* arguments){
 			else{
 				/**/printf("*REMOVE DU WRITER*\n");
 				/**/fflush(stdout);
-				struct fractal f = sbuf_remove(buf);
+				struct fractal f = sbuf_remove(bufOut);
 				lengthO--;
 				/**/printf("*REMOVE DU WRITER TERMINE*\n");
 				/**/fflush(stdout);
@@ -410,8 +406,8 @@ int main(int argc, char *argv[])
 	int count;
 	int optionsCount=0;
 	optionD=0;
-	bufIn=*(malloc(sizeof(struct sbuf)));
-	bufOut=*(malloc(sizeof(struct sbuf)));
+	bufIn=(malloc(sizeof(struct sbuf)));
+	bufOut=(malloc(sizeof(struct sbuf)));
 	/**/printf("%s","--- Initialisation des variables terminée ---\n");
 	/**/fflush(stdout);
 
