@@ -18,10 +18,9 @@
 #define FULL 1
 #define EMPTY 2
 
-int flagConst;
-int flagOutConst;
-int doneFlagConst;
-int fractCount=0;
+int flagB1;
+int flagB2;
+int flagDone;
 
 struct args{
 	char* charP_arg;
@@ -29,9 +28,6 @@ struct args{
 	struct sbuf* bufout_arg;
 	int optionD;
 	char* fileOutName;
-	int* flag;
-	int* flagOut;
-	int* doneFlag;
 };	
 
 struct sbuf{
@@ -113,8 +109,6 @@ void *producer(void* arguments){
 	struct args* argument=(struct args*) arguments;
 	char* fileName=argument->charP_arg;
 	struct sbuf* buf=argument->buf_arg;
-	int* flag=argument->flag;
-	int* doneFlag=argument->doneFlag;
 	free(argument);
 	FILE* file;
 	int x;
@@ -122,7 +116,7 @@ void *producer(void* arguments){
 	file=fopen(fileName,"r");
 	if(file==NULL)
     {
-		(*doneFlag)--;(*flag)--;
+		(flagDone)--;(flagB1)--;
 		return (NULL);
     }
 	char* buf1 = (char*) malloc(sizeof(char));
@@ -133,12 +127,12 @@ void *producer(void* arguments){
 	char bufName[64];
 	if((buf1==NULL)|(buf2==NULL)|(buf3==NULL)|(buf4==NULL)|(buf5==NULL))
     {
-      if(fclose(file)!=0)
+		if(fclose(file)!=0)
 	{
-	  (*doneFlag)--;(*flag)--;
+		(flagDone)--;(flagB1)--;
 		return (NULL);
 	}
-	(*doneFlag)--;(*flag)--;
+	(flagDone)--;(flagB1)--;
 	return (NULL);
     }	
 	/**/printf("--- Fin malloc producteur ---\n");
@@ -155,7 +149,7 @@ void *producer(void* arguments){
 			free(buf3);
 			free(buf4);
 			free(buf5);
-			(*doneFlag)--;(*flag)--;
+			(flagDone)--;(flagB1)--;
 			return (NULL);
 		}
 		free(buf1);
@@ -181,14 +175,14 @@ void *producer(void* arguments){
 			{
 				//TODO: gérer les erreurs/la sortie
 				if(fclose(file)!=0)
-				(*doneFlag)--;(*flag)--;
+				(flagDone)--;(flagB1)--;
 				return (NULL);
 				free(buf1);
 				free(buf2);
 				free(buf3);
 				free(buf4);
 				free(buf5);
-				(*doneFlag)--;(*flag)--;
+				(flagDone)--;(flagB1)--;
 				return (NULL);
 			}
 			x=fscanf(file,"%d",buf3);
@@ -197,7 +191,7 @@ void *producer(void* arguments){
 				//TODO: gérer les erreurs/la sortie
 				if(fclose(file)!=0)
 				{
-					(*doneFlag)--;(*flag)--;
+					(flagDone)--;(flagB1)--;
 					return (NULL);
 				}
 				free(buf1);
@@ -205,7 +199,7 @@ void *producer(void* arguments){
 				free(buf3);
 				free(buf4);
 				free(buf5);
-				(*doneFlag)--;(*flag)--;
+				(flagDone)--;(flagB1)--;
 				return (NULL);
 			}
 			x=fscanf(file,"%lf",buf4);
@@ -214,7 +208,7 @@ void *producer(void* arguments){
 				//TODO: gérer les erreurs/la sortie
 				if(fclose(file)!=0)
 				{
-					(*doneFlag)--;(*flag)--;
+					(flagDone)--;(flagB1)--;
 					return (NULL);
 				}
 				free(buf1);
@@ -222,7 +216,7 @@ void *producer(void* arguments){
 				free(buf3);
 				free(buf4);
 				free(buf5);
-				(*doneFlag)--;(*flag)--;
+				(flagDone)--;(flagB1)--;
 				return (NULL);
 			}
 			x=fscanf(file,"%lf",buf5);
@@ -230,7 +224,7 @@ void *producer(void* arguments){
 			{
 				if(fclose(file)!=0)
 				{
-					(*doneFlag)--;(*flag)--;
+					(flagDone)--;(flagB1)--;
 					return (NULL);
 				}
 				free(buf1);
@@ -238,7 +232,7 @@ void *producer(void* arguments){
 				free(buf3);
 				free(buf4);
 				free(buf5);
-				(*doneFlag)--;(*flag)--;
+				(flagDone)--;(flagB1)--;
 				return (NULL);
 			}
 			/**/printf("=== Fractale lue : %s %d %d %lf %lf ===\n",name,*buf2,*buf3,*buf4,*buf5);
@@ -246,7 +240,6 @@ void *producer(void* arguments){
 			/**/printf("*INSERT DU PRODUCTEUR*\n");
 			/**/fflush(stdout);
 			/**/sbuf_insert(buf,fractal_new(name,*buf2,*buf3,*buf4,*buf5));
-			fractCount++;
 			/**/printf("*INSERT DU PRODUCTEUR TERMINE*\n");
 			/**/fflush(stdout);
 			x=fscanf(file,"%64s",buf1);
@@ -255,9 +248,9 @@ void *producer(void* arguments){
 	}
 	/**/printf("--- Fin producteur ---\n");
 	/**/fflush(stdout);
-	(*doneFlag)--;
-	(*flag)--;
-	/**/printf("\nPRODFLAG=%d\n\n",*flag);
+	(flagDone)--;
+	(flagB1)--;
+	/**/printf("\nPRODFLAG=%d\n\n",flagB1);
 	/**/fflush(stdout);
 	return NULL;
 }
@@ -269,9 +262,6 @@ void *consumer(void* arguments){
 	struct args* argument=(struct args*) arguments;
 	struct sbuf* buf=argument->buf_arg;
 	struct sbuf* bufout=argument->bufout_arg;
-	int* flag=argument->flag;
-	int* flagOut=argument->flagOut;
-	int* doneFlag=argument->doneFlag;
 	free(argument);
 	/**/printf("--- Debut calcul consommateur ---\n");
 	/**/fflush(stdout);
@@ -281,9 +271,9 @@ void *consumer(void* arguments){
 		/**/fflush(stdout);
 		int ic=0;
 		sem_getvalue(&(buf->items),&ic);
-		/**/printf("FLAG=%d\n",*flag);
+		/**/printf("FLAG=%d\n",flagB1);
 		/**/fflush(stdout);
-		if(((*flag)<=0)&(ic==0))
+		if(((flagB1)<=0)&(ic==0))
 		{
 			/**/printf("=====DONE=1=====\n");
 			/**/fflush(stdout);
@@ -316,8 +306,8 @@ void *consumer(void* arguments){
 	}
 	/**/printf("--- Fin consommateur ---\n");
 	/**/fflush(stdout);
-	(*flagOut)--;
-	(*doneFlag)--;
+	(flagB2)--;
+	(flagDone)--;
 	return NULL;
 }
 
@@ -331,8 +321,6 @@ void *writer(void* arguments){
 	char* fileOutName=argument->fileOutName;
 	double average;
 	struct fractal* highestF;
-	int* flagOut=argument->flagOut;
-	int* doneFlag=argument->doneFlag;
 	free(argument);
 	/**/printf("--- Debut ecriture writer ---\n");
 	/**/fflush(stdout);
@@ -344,9 +332,9 @@ void *writer(void* arguments){
 			/**/printf("va lire sem_getvalue du writer\n");
 			/**/fflush(stdout);
 			sem_getvalue(&(buf->items),&ic);
-			/**/printf("\n FLAGOUT=%d\n\n",*flagOut);
+			/**/printf("\n FLAGOUT=%d\n\n",flagB2);
 			/**/fflush(stdout);
-			if(((*flagOut)<=0)&(ic==0)){
+			if(((flagB2)<=0)&(ic==0)){
 				/**/printf("===DONE=1===\n");
 				/**/fflush(stdout);
 				isEmpty=1;
@@ -386,7 +374,7 @@ void *writer(void* arguments){
 			/**/fflush(stdout);
 			int ic=0;
 			sem_getvalue(&(buf->items),&ic);
-			if(((*flagOut)<=0)&(ic==0))
+			if(((flagB2)<=0)&(ic==0))
 			{
 				isEmpty=1;
 			}
@@ -412,9 +400,6 @@ int main(int argc, char *argv[])
 	char* fileOutName;	
 	struct sbuf* buf=malloc(sizeof(struct sbuf));
 	struct sbuf* bufout=malloc(sizeof(struct sbuf));
-	int* flag=(int*) malloc(sizeof(int));
-	int* flagOut=(int*) malloc(sizeof(int));
-	int* doneFlag=(int*) malloc(sizeof(int));
 	/**/printf("%s","--- Initialisation des variables terminée ---\n");
 	/**/fflush(stdout);
 
@@ -434,7 +419,7 @@ int main(int argc, char *argv[])
 		}
 	}	
 	if(numberThreads==0){
-	        numberThreads=argc-2-optionsCount;  //Vraiment utile de retirer optionsCount ? Il sera d'office nul --> il est pas d'office nul, regarde le if juste au dessus
+		numberThreads=argc-2-optionsCount; 
 	}
 	
 	/**/printf("--- Lecture des options terminée ---\n");
@@ -442,8 +427,8 @@ int main(int argc, char *argv[])
 	/**/printf("\n Nombre de threads qui vont être utilisés : %d \n \n",numberThreads);
 	/**/fflush(stdout);
 	
-	sbuf_init(buf, (numberThreads+100));            
-	sbuf_init(bufout, (numberThreads+100));    
+	sbuf_init(buf, (numberThreads+10));            
+	sbuf_init(bufout, (numberThreads+10));    
 
 	/**/printf("--- Initialisation des buffers terminée ---\n");
 	/**/fflush(stdout);
@@ -455,19 +440,16 @@ int main(int argc, char *argv[])
 	/**/printf("--- Initialisation des tableaux de pthread_t terminée ---\n");
 	/**/fflush(stdout);
 	
-	flagConst=argc-2-optionsCount;
-	flagOutConst=numberThreads;
+	flagB1=argc-2-optionsCount;
+	flagB2=numberThreads;
 	if(optionD)
 	{
-		doneFlagConst=2*(argc-2-optionsCount)+numberThreads;
+		flagDone=2*(argc-2-optionsCount)+numberThreads;
 	}
 	else
 	{
-		doneFlagConst=(argc-2-optionsCount)+numberThreads+1;
+		flagDone=(argc-2-optionsCount)+numberThreads+1;
 	}
-	*doneFlag=doneFlagConst;
-	*flag=flagConst;
-	*flagOut=flagOutConst;
 	/**/printf("--- Initialisation des constantes terminée ---\n");
 	/**/fflush(stdout);
 	
@@ -516,8 +498,6 @@ int main(int argc, char *argv[])
 					goto end;
 				}
 				arguments->buf_arg=buf;
-				arguments->flag=flag;
-				arguments->doneFlag=doneFlag;
 				arguments->charP_arg=argv[count];
 				/**/printf("---CREATION D'UN PRODUCTEUR---\n");
 				/**/fflush(stdout);
@@ -541,9 +521,6 @@ int main(int argc, char *argv[])
 		{
 			goto end;
 		}
-		arguments->flag=flag;
-		arguments->doneFlag=doneFlag;
-		arguments->flagOut=flagOut;
 		arguments->buf_arg=buf;
 		arguments->bufout_arg=bufout;
 		/**/printf("---CREATION D'UN CONSOMMATEUR---\n");
@@ -562,8 +539,6 @@ int main(int argc, char *argv[])
 		{
 			goto end;
 		}
-		arguments->doneFlag=doneFlag;
-		arguments->flagOut=flagOut;
 		arguments->optionD=optionD;
 		arguments->bufout_arg=bufout;
 		/**/printf("---CREATION D'UN WRITER---\n");
@@ -580,8 +555,6 @@ int main(int argc, char *argv[])
 			{
 				goto end;
 			}
-			arguments->doneFlag=doneFlag;
-			arguments->flagOut=flagOut;
 			arguments->optionD=optionD;
 			arguments->bufout_arg=bufout;
 			/**/printf("---CREATION D'UN WRITER---\n");
@@ -592,7 +565,7 @@ int main(int argc, char *argv[])
 	/**/printf("--- Initialisation des writers terminée ---\n");
 	/**/fflush(stdout);
 	
-	/**/printf("\n doneFlag = %d \n\n",*doneFlag);
+	/**/printf("\n doneFlag = %d \n\n",flagDone);
 	/**/fflush(stdout);
 	
 	while((*doneFlag)>0)
@@ -612,12 +585,6 @@ int main(int argc, char *argv[])
 	/**/printf("--- Buffers clean ---\n");
 	/**/fflush(stdout);
 	
-	free(flag);
-	free(flagOut);
-	free(doneFlag);
-	
-	/**/printf("--- Flags free ---\n");
-	/**/fflush(stdout);
 	
 	/**/printf("--- Fin du programme ---\n");
 	/**/fflush(stdout);
