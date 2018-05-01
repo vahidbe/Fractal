@@ -50,7 +50,7 @@ void sbuf_init(struct sbuf *sp, int n)
 	{
 		printf("--- EXIT ---\n");
 		fflush(stdout);
-		goto end;
+		exit(-1);
 	}
     sp->buf = calloc(n, sizeof(struct fractal*));
     sp->n = n;                       /* Buffer content les entiers */
