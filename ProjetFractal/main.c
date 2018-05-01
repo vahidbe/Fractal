@@ -477,12 +477,17 @@ int main(int argc, char *argv[])
 	
 	while((*doneFlag)>0){}
 	
-	end : 
+	printf("--- Fin des threads ---\n");
+	
+	end :
+	
 	sbuf_clean(buf);
 	sbuf_clean(bufout);
+	printf("--- Buffers clean ---\n");
 	free(flag);
 	free(flagOut);
 	free(doneFlag);
+	printf("--- Flags free ---\n");
 	
 	printf("--- Fin du programme ---\n");
 	
