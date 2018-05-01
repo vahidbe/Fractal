@@ -54,7 +54,7 @@ void sbuf_init(struct sbuf *sp, int n)
 {
 	printf("--- Debut de l'initialisation du buffer ---\n");
     struct fractal** newf = malloc(n*sizeof(struct fractal*));
-	if((newf)==NULL)){
+	if((newf)==NULL){
 		printf("--- EXIT ---\n");
 		exit(-1); //TODO: gérer erreurs
 	}
