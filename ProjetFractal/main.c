@@ -253,7 +253,9 @@ void *consumer(void* arguments){
 			}
 		}
 		sbuf_insert(bufout,f);		
-		if(((*flag)<=0)&((buf->items)==0))
+		int* ic;
+		sem_getvalue(buf->items,ic);
+		if(((*flag)<=0)&(*ic==0))
 		{
 			done=1;
 		}
@@ -283,7 +285,9 @@ void *writer(void* arguments){
 				highestF=f;
 			}
 		}
-		if(((*flagOut)<=0)&((buf->items)==0){
+		int* ic;
+		sem_getvalue(buf->items,ic);
+		if(((*flagOut)<=0)&(*ic==0)){
 			isEmpty=1;
 		}
 		write_bitmap_sdl(highestF,fileOutName);
@@ -291,7 +295,9 @@ void *writer(void* arguments){
 	else{
 		while(!isEmpty){
 			struct fractal* f = (struct fractal*) sbuf_remove(buf);
-			write_bitmap_sdl(f,fractal_get_name(f));	
+			write_bitmap_sdl(f,fractal_get_name(f));
+			int* ic;
+			sem_getvalue(buf->items,ic);			
 			if(((*flagOut)<=0)&((buf->items)==0){
 				isEmpty=1;
 			}
