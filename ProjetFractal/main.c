@@ -422,6 +422,7 @@ int main(int argc, char *argv[])
 				arguments->flag=flag;
 				arguments->doneFlag=doneFlag;
 				arguments->charP_arg=argv[count];
+				printf("---CREATION D'UN PRODUCTEUR---\n");
 				pthread_create(&(prod[count-optionsCount]), NULL, (void*) &producer, (void*) arguments);
 			}
 			else{
