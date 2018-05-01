@@ -106,6 +106,7 @@ struct fractal* sbuf_remove(struct sbuf *sp)
 }
 
 void *producer(void* arguments){	
+	printf("--- DEBUT PRODUCTEUR ---\n");
 	struct args* argument=(struct args*) arguments;
 	char* fileName=argument->charP_arg;
 	struct sbuf* buf=argument->buf_arg;
@@ -241,6 +242,7 @@ void *producer(void* arguments){
 }
 
 void *consumer(void* arguments){
+	printf("--- DEBUT CONSOMMATEUR ---\n");
 	int done=0;
 	struct args* argument=(struct args*) arguments;
 	struct sbuf* buf=argument->buf_arg;
@@ -273,6 +275,7 @@ void *consumer(void* arguments){
 }
 
 void *writer(void* arguments){
+	printf("--- DEBUT WRITER ---\n");
 	int isEmpty=0;
 	struct args* argument=(struct args*) arguments;
 	struct sbuf* buf=argument->bufout_arg;
