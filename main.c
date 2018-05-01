@@ -387,7 +387,7 @@ void *writer(void* arguments){
 	}
 	/**/printf("--- Fin writer ---\n");
 	/**/fflush(stdout);
-	(*doneFlag)--;
+	(flagDone)--;
 	return NULL;
 }
 
@@ -569,7 +569,7 @@ int main(int argc, char *argv[])
 	/**/printf("\n doneFlag = %d \n\n",flagDone);
 	/**/fflush(stdout);
 	
-	while((*doneFlag)>0)
+	while((flagDone)>0)
 	{
 		///**/printf("\n DONEFLAG=%d \n\n",*doneFlag);
 		///**/fflush(stdout);
