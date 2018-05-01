@@ -388,8 +388,8 @@ int main(int argc, char *argv[])
 	printf("--- Lecture des options terminée ---\n");
 	printf("\n Nombre de threads qui vont être utilisés : %d \n \n",numberThreads);
 	
-	sbuf_init(buf, (numberThreads+3));            
-	sbuf_init(bufout, (numberThreads+3));    
+	sbuf_init(buf, (numberThreads+100));            
+	sbuf_init(bufout, (numberThreads+100));    
 
 	printf("--- Initialisation des buffers terminée ---\n");
 	
