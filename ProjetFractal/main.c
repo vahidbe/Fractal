@@ -408,7 +408,6 @@ int main(int argc, char *argv[])
 
 	  else{
 			if(count!=(argc)){
-				//TODO: ne pas oublier les free
 				struct args* arguments=(struct args*) malloc(sizeof(struct args));
 				if(arguments==NULL){
 					goto end;
@@ -429,7 +428,6 @@ int main(int argc, char *argv[])
 	
 	int i;
 	for(i=0;(i<numberThreads);i++){
-		//TODO: ne pas oublier les free
 		struct args* arguments=(struct args*) malloc(sizeof(struct args));
 		if(arguments==NULL){
 			goto end;
@@ -446,7 +444,6 @@ int main(int argc, char *argv[])
 	
 	//TODO: faire plein de writers qui comparent avec sémaphore la fractale la plus haute
 	if(!optionD){
-		//TODO: ne pas oublier les free
 		struct args* arguments=(struct args*) malloc(sizeof(struct args));
 		if(arguments==NULL){
 			goto end;
@@ -460,7 +457,6 @@ int main(int argc, char *argv[])
 	else{
 		int i;
 		for(i=0;i<(argc-2-optionsCount);i++){
-			//TODO: ne pas oublier les free
 			struct args* arguments=(struct args*) malloc(sizeof(struct args));
 			if(arguments==NULL){
 				goto end;
@@ -475,6 +471,7 @@ int main(int argc, char *argv[])
 	
 	printf("--- Initialisation des writers terminée ---\n");
 	
+	printf("\n doneFlag = %d \n\n",*doneFlag);
 	while((*doneFlag)>0){}
 	
 	printf("--- Fin des threads ---\n");
