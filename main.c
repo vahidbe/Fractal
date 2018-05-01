@@ -63,7 +63,7 @@ void sbuf_init(struct sbuf *sp, int n)
 	printf("--- Malloc d'initialisation de buffer terminé ---\n");
     sp->n = n;                       /* Buffer content les entiers */
     sp->front = sp->rear = 0;        /* Buffer vide si front == rear */
-    pthread_mutex_init(&sp->mutex);      /* Exclusion mutuelle */
+    pthread_mutex_init(&sp->mutex,NULL);      /* Exclusion mutuelle */
     sem_init(&sp->slots, 0, n);      /* Au début, n slots vides */
     sem_init(&sp->items, 0, 0);      /* Au début, rien à consommer */
 	printf("--- Initialisation du buffer terminée ---\n");
