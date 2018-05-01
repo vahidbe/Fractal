@@ -53,14 +53,13 @@ struct sbuf{
 void sbuf_init(struct sbuf *sp, int n)
 {
 	printf("--- Debut de l'initialisation du buffer ---\n");
-	if(((sp->buf)==NULL)){
-		printf("--- buf is NULL ---\n");
-	}
-    sp->buf =(struct fractal**) malloc(n*sizeof(struct fractal*));
-	if(((sp->buf)==NULL)){
+    struct fractal** newf = malloc(n*sizeof(struct fractal*));
+	if((newf)==NULL)){
 		printf("--- EXIT ---\n");
 		exit(-1); //TODO: gérer erreurs
 	}
+	printf("--- Malloc terminé ---\n");
+	sp->buf=newf;
 	printf("--- Calloc d'initialisation de buffer terminé ---\n");
     sp->n = n;                       /* Buffer content les entiers */
     sp->front = sp->rear = 0;        /* Buffer vide si front == rear */
