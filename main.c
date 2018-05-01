@@ -304,9 +304,6 @@ void *consumer(void* arguments){
 			for(j=0;j<f.height;j++)
 			{
 				fractal_set_value(&f,i,j,fractal_compute_value(&f,i,j));
-				printf("value=%d\n",fractal_compute_value(&f,i,j));
-				fflush(stdout);
-				printf("valueSet=%d\n",fractal_get_value(&f,i,j));
 			}
 			fflush(stdout);
 		}
@@ -359,7 +356,7 @@ void *writer(void* arguments){
 				/**/fflush(stdout);
 				/**/printf("about to compute average\n");
 				/**/fflush(stdout);
-				double newAverage = fractal_compute_average(&f);
+				double newAverage = fractal_compute_average(f);
 				/**/printf("average computed\n");
 				/**/fflush(stdout);
 				if(newAverage>average)

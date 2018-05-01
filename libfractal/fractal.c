@@ -67,15 +67,15 @@ double fractal_get_b(const struct fractal *f)
     return (f->b);
 }
 
-double fractal_compute_average(const struct fractal *f)
+double fractal_compute_average(const struct fractal f)
 {
 	int i;
 	int j;
 	double res=0;
-	for(i=0;i<(f->width);i++){
-		for(j=0;i<(f->height);j++){
-			res=res+f->values[i][j];
+	for(i=0;i<(fractal_get_width(&f));i++){
+		for(j=0;i<(fractal_get_height(&f));j++){
+			res=res+fractal_get_value(&f,i,j);
 		}
 	}
-	return (res/((f->height)*(f->width)));
+	return (res/((fractal_get_width(&f))*(fractal_get_height(&f))));
 }
