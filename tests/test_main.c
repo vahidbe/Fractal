@@ -145,8 +145,8 @@ int main(int argc, char *argv[])
 	/**/printf("%s","--- Initialisation des variables terminée ---\n");
 	/**/fflush(stdout);
 	
-	sbuf_init(buf, (10));            
-	sbuf_init(bufout, (10));    
+	sbuf_init(bufIn, (10));            
+	sbuf_init(bufOut, (10));    
 
 	/**/printf("--- Initialisation des buffers terminée ---\n");
 	/**/fflush(stdout);
@@ -175,7 +175,7 @@ int main(int argc, char *argv[])
 	/**/fflush(stdout);
 	/**/printf("---CREATION D'UN WRITER---\n");
 	/**/fflush(stdout);
-	pthread_create(&(writ[0]), NULL, (void*) &writer, (void*) arguments);
+	pthread_create(&(writ[0]), NULL, (void*) &writer, NULL);
 	/**/printf("--- Initialisation des writers terminée ---\n");
 	/**/fflush(stdout);
 	
@@ -193,8 +193,8 @@ int main(int argc, char *argv[])
 	
 	end:
 	
-	sbuf_clean(buf);
-	sbuf_clean(bufout);
+	sbuf_clean(bufIn);
+	sbuf_clean(bufOut);
 	
 	/**/printf("--- Buffers clean ---\n");
 	/**/fflush(stdout);
