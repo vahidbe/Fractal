@@ -350,7 +350,7 @@ void *writer(void* arguments){
 				/**/printf("*REMOVE DU WRITER*\n");
 				/**/fflush(stdout);
 				struct fractal f = sbuf_remove(buf);
-				lengthO--:
+				lengthO--;
 				/**/printf("*REMOVE DU WRITER TERMINE*\n");
 				/**/fflush(stdout);
 				/**/printf("about to compute average\n");
