@@ -124,10 +124,8 @@ void *producer(void* arguments){
   char bufName[64];
   if((buf1==NULL)|(buf2==NULL)|(buf3==NULL)|(buf4==NULL)|(buf5==NULL))
     {
-      printf("Erreur malloc\n");
       if(fclose(file)!=0)
 	{
-	  printf("Erreur close\n");
 	  (*doneFlag)--;(*flag)--;
 		return (NULL);
 	}
@@ -231,7 +229,6 @@ void *producer(void* arguments){
 	  }
       }
   }
-  printf("End of file");
   (*doneFlag)--;
   (*flag)--;
   return NULL;
