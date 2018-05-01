@@ -482,6 +482,8 @@ int main(int argc, char *argv[])
 	
 	printf("--- Initialisation des writers terminée ---\n");
 	
+	while(*doneFlag>0){}
+	
 	end : 
 	sbuf_clean(buf);
 	sbuf_clean(bufout);
