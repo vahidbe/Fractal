@@ -355,7 +355,7 @@ fflush(stdout);
 		
 		printf("=== ECRITURE ===\n");
 fflush(stdout);
-		write_bitmap_sdl(highestF,fileOutName);
+		//write_bitmap_sdl(highestF,fileOutName);
 		printf("=== FIN ECRITURE ===\n");
 fflush(stdout);
 	}
@@ -509,7 +509,7 @@ fflush(stdout);
 fflush(stdout);
 	
 	//TODO: faire plein de writers qui comparent avec sémaphore la fractale la plus haute
-	if(!optionD){
+	/*if(!optionD){
 		struct args* arguments=(struct args*) malloc(sizeof(struct args));
 		if(arguments==NULL){
 			goto end;
@@ -541,7 +541,7 @@ fflush(stdout);
 	
 	printf("--- Initialisation des writers terminée ---\n");
 fflush(stdout);
-	
+	*/
 	printf("\n doneFlag = %d \n\n",*doneFlag);
 fflush(stdout);
 	
