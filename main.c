@@ -411,8 +411,8 @@ int main(int argc, char *argv[])
 	int count;
 	int optionsCount=0;
 	optionD=0;
-	struct sbuf* bufIn=malloc(sizeof(struct sbuf));
-	struct sbuf* bufOut=malloc(sizeof(struct sbuf));
+	bufIn=malloc(sizeof(struct sbuf));
+	bufOut=malloc(sizeof(struct sbuf));
 	/**/printf("%s","--- Initialisation des variables terminée ---\n");
 	/**/fflush(stdout);
 
