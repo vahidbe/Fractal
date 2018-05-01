@@ -120,7 +120,7 @@ fflush(stdout);
   int* tab=malloc(sizeof(int));
   for(i=0;i<15;i++)
   {
-	  *tab=i
+	  *tab=i;
 	  sbuf_insert(buf,tab);
   }
   printf("--- Fin producteur ---\n");
@@ -224,7 +224,7 @@ fflush(stdout);
 		
 		printf("=== ECRITURE ===\n");
 fflush(stdout);
-		printf("FINALEMENT ON A ECRIT %d",*f);
+		printf("FINALEMENT ON A ECRIT %d",*highestF);
 		printf("=== FIN ECRITURE ===\n");
 fflush(stdout);
 	printf("--- Fin writer ---\n");
@@ -343,7 +343,6 @@ fflush(stdout);
 	
 	printf("--- Initialisation des writers terminée ---\n");
 fflush(stdout);
-	*/
 	printf("\n doneFlag = %d \n\n",*doneFlag);
 fflush(stdout);
 	
