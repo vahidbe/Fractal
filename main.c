@@ -323,7 +323,7 @@ void *writer(void* arguments){
 				printf("*REMOVE DU WRITER TERMINE*\n");
 				printf("about to compute average\n");
 				double newAverage = fractal_compute_average(f);
-				printf("average computed
+				printf("average computed\n");
 				if(newAverage>average){
 					average=newAverage;
 					highestF=f;
