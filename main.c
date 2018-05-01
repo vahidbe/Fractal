@@ -27,7 +27,7 @@ struct args{
 };	
 
 struct sbuf{
-    struct fractal** buf;           /* Buffer partagé */
+    struct fractal buf;           /* Buffer partagé */
     int n;             				/* Nombre de slots dans le buffer */
     int front;        				/* buf[(front+1)%n] est le premier élément */
     int rear;          				/* buf[rear%n] est le dernier */
@@ -48,7 +48,7 @@ void sbuf_init(struct sbuf *sp, int n)
 		fflush(stdout);
 		exit(-1);
 	}
-    sp->buf = calloc(n, sizeof(struct fractal*));
+    sp->buf = calloc(n, sizeof(struct fractal));
     sp->n = n;                       /* Buffer content les entiers */
     sp->front = sp->rear = 0;        /* Buffer vide si front == rear */
     sem_init(&sp->mutex, 0, 1);      /* Exclusion mutuelle */
@@ -69,14 +69,14 @@ void sbuf_clean(struct sbuf *sp)
  * @post ajoute item à la fin du buffer partagé. Ce buffer est géré
  *       comme une queue FIFO
  */
-void sbuf_insert(struct sbuf *sp, struct fractal* item)
+void sbuf_insert(struct sbuf *sp, struct fractal item)
 {
 	///**/int ic=0;
 	///**/sem_getvalue(&(sp->items),&ic);
 	///**/printf("ITEMS = %d sur %d\n",ic,sp->n);
 	sem_wait(&(sp->slots));
 	sem_wait(&(sp->mutex));
-	sp->rear=((sp->rear)+1*sizeof(struct fractal*))%(sp->n);
+	sp->rear=((sp->rear)+1*sizeof(struct fractal))%(sp->n);
 	sp->buf[sp->rear]=item;
 	sem_post(&(sp->mutex));
 	sem_post(&(sp->items));
@@ -88,7 +88,7 @@ void sbuf_insert(struct sbuf *sp, struct fractal* item)
 /* @pre sbuf!=NULL
  * @post retire le dernier item du buffer partagé
  */
-struct fractal* sbuf_remove(struct sbuf *sp)
+struct fractal sbuf_remove(struct sbuf *sp)
 {	
 	///**/int ic=0;
 	///**/sem_getvalue(&(sp->items),&ic);
@@ -96,7 +96,7 @@ struct fractal* sbuf_remove(struct sbuf *sp)
 	sem_wait(&(sp->items));
 	sem_wait(&(sp->mutex));
 	sp->front=((sp->front)+1)%(sp->n);
-	struct fractal* res=sp->buf[sp->front];
+	struct fractal res=sp->buf[sp->front];
 	sem_post(&(sp->mutex));
 	sem_post(&(sp->slots));
 	///**/ic=0;
@@ -241,7 +241,8 @@ void *producer(void* arguments){
 			/**/fflush(stdout);
 			/**/printf("*INSERT DU PRODUCTEUR*\n");
 			/**/fflush(stdout);
-			/**/sbuf_insert(buf,fractal_new(name,*buf2,*buf3,*buf4,*buf5));
+			struct fractal* new = fractal_new(name,*buf2,*buf3,*buf4,*buf5);
+			/**/sbuf_insert(buf,*new);
 			/**/printf("*INSERT DU PRODUCTEUR TERMINE*\n");
 			/**/fflush(stdout);
 			x=fscanf(file,"%64s",buf1);
@@ -271,11 +272,11 @@ void *consumer(void* arguments){
 	{		
 		/**/printf("va lire sem_getvalue du consommateur\n");
 		/**/fflush(stdout);
-		//int ic=0;
-		//sem_getvalue(&(buf->items),&ic);
+		int ic=0;
+		sem_getvalue(&(buf->items),&ic);
 		/**/printf("FLAG=%d\n",flagB1);
 		/**/fflush(stdout);
-		//if(((flagB1)<=0)&(ic==0))
+		if(((flagB1)<=0)&(ic==0))
 			if(((flagB1<=0)))
 		{
 			/**/printf("=====DONE=1=====\n");
@@ -286,16 +287,16 @@ void *consumer(void* arguments){
 		{
 		/**/printf("*REMOVE DU CONSOMMATEUR*\n");
 		/**/fflush(stdout);
-		struct fractal* f=sbuf_remove(buf);
+		struct fractal f=sbuf_remove(buf);
 		/**/printf("*REMOVE DU CONSOMMATEUR TERMINE*\n");
 		/**/fflush(stdout);
 		int i;
 		int j;
-		for(i=0;i<f->width;i++){
-			for(j=0;j<f->height;j++){
+		for(i=0;i<f.width;i++){
+			for(j=0;j<f.height;j++){
 				/**/printf("about to compute value\n");
 				/**/fflush(stdout);
-				fractal_set_value(f,i,j,fractal_compute_value(f,i,j));
+				fractal_set_value(&f,i,j,fractal_compute_value(&f,i,j));
 				/**/printf("value computed\n");
 				/**/fflush(stdout);
 			}
@@ -323,7 +324,7 @@ void *writer(void* arguments){
 	int optionD=argument->optionD;
 	char* fileOutName=argument->fileOutName;
 	double average;
-	struct fractal* highestF;
+	struct fractal highestF;
 	free(argument);
 	/**/printf("--- Debut ecriture writer ---\n");
 	/**/fflush(stdout);
@@ -346,12 +347,12 @@ void *writer(void* arguments){
 			else{
 				/**/printf("*REMOVE DU WRITER*\n");
 				/**/fflush(stdout);
-				struct fractal* f = sbuf_remove(buf);
+				struct fractal f = sbuf_remove(buf);
 				/**/printf("*REMOVE DU WRITER TERMINE*\n");
 				/**/fflush(stdout);
 				/**/printf("about to compute average\n");
 				/**/fflush(stdout);
-				double newAverage = fractal_compute_average(f);
+				double newAverage = fractal_compute_average(&f);
 				/**/printf("average computed\n");
 				/**/fflush(stdout);
 				if(newAverage>average)
@@ -366,7 +367,7 @@ void *writer(void* arguments){
 		}
 		/**/printf("=== ECRITURE ===\n");
 		/**/fflush(stdout);
-		write_bitmap_sdl(highestF,fileOutName);
+		write_bitmap_sdl(&highestF,fileOutName);
 		/**/printf("=== FIN ECRITURE ===\n");
 		/**/fflush(stdout);
 	}
@@ -385,8 +386,8 @@ void *writer(void* arguments){
 			}
 			else
 			{
-				struct fractal* f = (struct fractal*) sbuf_remove(buf);
-				write_bitmap_sdl(f,fractal_get_name(f));
+				struct fractal f = (struct fractal) sbuf_remove(buf);
+				write_bitmap_sdl(&f,fractal_get_name(&f));
 			}
 		}
 	}
