@@ -42,7 +42,7 @@ struct sbuf{
     int n;             /* Nombre de slots dans le buffer */
     int front;         /* buf[(front+1)%n] est le premier élément */
     int rear;          /* buf[rear%n] est le dernier */
-    pthread_mutex_t mutex;       /* Protège l'accès au buffer */
+    sem_t mutex;       /* Protège l'accès au buffer */
     sem_t slots;       /* Nombre de places libres */
     sem_t items;       /* Nombre d'items dans le buffer */
 };
@@ -63,7 +63,7 @@ void sbuf_init(struct sbuf *sp, int n)
 	printf("--- Malloc d'initialisation de buffer terminé ---\n");
     sp->n = n;                       /* Buffer content les entiers */
     sp->front = sp->rear = 0;        /* Buffer vide si front == rear */
-    pthread_mutex_init(&sp->mutex,NULL);      /* Exclusion mutuelle */
+    sem_init(&sp->mutex, 0, 1);      /* Exclusion mutuelle */
     sem_init(&sp->slots, 0, n);      /* Au début, n slots vides */
     sem_init(&sp->items, 0, 0);      /* Au début, rien à consommer */
 	printf("--- Initialisation du buffer terminée ---\n");
@@ -85,10 +85,10 @@ void sbuf_clean(struct sbuf *sp)
 void sbuf_insert(struct sbuf *sp, struct fractal* item)
 {
 	sem_wait(&(sp->slots));
-	pthread_mutex_lock(&(sp->mutex));
+	sem_wait(&(sp->mutex));
 	sp->rear=((sp->rear)+1*sizeof(struct fractal*))%(sp->n);
 	sp->buf[sp->rear]=item;
-	pthread_mutex_unlock(&(sp->mutex));
+	sem_post(&(sp->mutex));
 	sem_post(&(sp->items));
 }
 
@@ -98,10 +98,10 @@ void sbuf_insert(struct sbuf *sp, struct fractal* item)
 struct fractal* sbuf_remove(struct sbuf *sp)
 {
 	sem_wait(&(sp->items));
-	pthread_mutex_lock(&(sp->mutex));
+	sem_wait(&(sp->mutex));
 	sp->front=((sp->front)+1)%(sp->n);
 	struct fractal* res=sp->buf[sp->front];
-	pthread_mutex_unlock(&(sp->mutex));
+	sem_post(&(sp->mutex));
 	sem_post(&(sp->slots));
 	return res;
 }
@@ -323,7 +323,7 @@ void *writer(void* arguments){
 				printf("*REMOVE DU WRITER TERMINE*\n");
 				printf("about to compute average\n");
 				double newAverage = fractal_compute_average(f);
-				printf("average computed\n");
+				printf("average computed
 				if(newAverage>average){
 					average=newAverage;
 					highestF=f;
@@ -393,7 +393,7 @@ int main(int argc, char *argv[])
 	printf("\n Nombre de threads qui vont être utilisés : %d \n \n",numberThreads);
 	
 	sbuf_init(buf, (numberThreads+3));            
-	sbuf_init(bufout, (numberThreads+15));    
+	sbuf_init(bufout, (numberThreads+3));    
 
 	printf("--- Initialisation des buffers terminée ---\n");
 	
@@ -516,9 +516,9 @@ int main(int argc, char *argv[])
 			pthread_create(&(writ[i]), NULL, (void*) &writer, (void*) bufout);
 		}
 	}
-	*/
-	printf("--- Initialisation des writers terminée ---\n");
 	
+	printf("--- Initialisation des writers terminée ---\n");
+	*/
 	printf("\n doneFlag = %d \n\n",*doneFlag);
 	
 	while((*doneFlag)>0){
