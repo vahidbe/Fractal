@@ -257,7 +257,16 @@ void *consumer(void* arguments){
 	int* doneFlag=argument->doneFlag;
 	free(argument);
 	printf("--- Debut calcul consommateur ---\n");
-	while(!done){
+	while(!done){		
+		int* ic;
+		sem_getvalue(&(buf->items),ic);
+		printf("FLAG=%d\n",*flag);
+		if(((*flag)<=0)&(*ic==0))
+		{
+			printf("=====DONE=1=====\n");
+			done=1;
+		}
+		else{
 		printf("*REMOVE DU CONSOMMATEUR*\n");
 		struct fractal* f=sbuf_remove(buf);
 		printf("*REMOVE DU CONSOMMATEUR TERMINE*\n");
@@ -271,12 +280,6 @@ void *consumer(void* arguments){
 		/*printf("*INSERT DU CONSOMMATEUR*\n");
 		sbuf_insert(bufout,f);	
 		printf("*INSERT DU CONSOMMATEUR TERMINE*\n");		*/
-		int* ic;
-		sem_getvalue(&(buf->items),ic);
-		printf("FLAG=%d\n",*flag);
-		if(((*flag)<=0)&(*ic==0))
-		{
-			done=1;
 		}
 	}
 	printf("--- Fin consommateur ---\n");
