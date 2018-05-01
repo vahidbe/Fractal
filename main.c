@@ -26,10 +26,6 @@ struct sbuf* bufOut;
 
 struct args{
 	char* charP_arg;
-	struct sbuf* buf_arg;
-	struct sbuf* bufout_arg;
-	int optionD;
-	char* fileOutName;
 };	
 
 struct sbuf{
@@ -116,7 +112,7 @@ void *producer(void* arguments){
 	/**/fflush(stdout);
 	struct args* argument=(struct args*) arguments;
 	char* fileName=argument->charP_arg;
-	struct sbuf* buf=argument->buf_arg;
+	struct sbuf* buf=bufIn;
 	free(argument);
 	FILE* file;
 	int x;
@@ -268,9 +264,8 @@ void *consumer(void* arguments){
 	/**/printf("--- DEBUT CONSOMMATEUR ---\n");
 	/**/fflush(stdout);
 	int done=0;
-	struct sbuf* bufIn=buf_arg;
-	struct sbuf* bufOut=argument->bufout_arg;
-	free(argument);
+	struct sbuf* buf=bufIn;
+	struct sbuf* bufout=bufOut;
 	/**/printf("--- Debut calcul consommateur ---\n");
 	/**/fflush(stdout);
 	while(!done)
@@ -324,10 +319,9 @@ void *writer(void* arguments){
 	/**/printf("--- DEBUT WRITER ---\n");
 	/**/fflush(stdout);
 	int isEmpty=0;
-	struct sbuf* buf=bufout_arg;
+	struct sbuf* buf=bufOut;
 	double average;
 	struct fractal highestF;
-	free(argument);
 	/**/printf("--- Debut ecriture writer ---\n");
 	/**/fflush(stdout);
 	if(!optionD){
@@ -405,7 +399,6 @@ int main(int argc, char *argv[])
 	int count;
 	int optionsCount=0;
 	optionD=0;
-	char* fileOutName;	
 	struct sbuf* bufIn=malloc(sizeof(struct sbuf));
 	struct sbuf* bufOut=malloc(sizeof(struct sbuf));
 	/**/printf("%s","--- Initialisation des variables terminée ---\n");
@@ -501,6 +494,7 @@ int main(int argc, char *argv[])
 		{
 			if(count!=(argc-1))
 			{
+				struct args* arguments=malloc(sizeof(struct args));
 				if(arguments==NULL)
 				{
 					goto end;
@@ -508,7 +502,7 @@ int main(int argc, char *argv[])
 				arguments->charP_arg=argv[count];
 				/**/printf("---CREATION D'UN PRODUCTEUR---\n");
 				/**/fflush(stdout);
-				pthread_create(&(prod[count-optionsCount]), NULL, (void*) &producer, argv[count]);
+				pthread_create(&(prod[count-optionsCount]), NULL, (void*) &producer, arguments);
 			}
 			else
 			{
