@@ -277,7 +277,7 @@ void *consumer(void* arguments){
 		/**/fflush(stdout);
 		int ic=0;
 		//sem_getvalue(&(buf->items),&ic);
-		///**/printf("FLAG=%d\n",flagB1);
+		/**/printf("FLAGB1=%d\n",flagB1);
 		/**/fflush(stdout);
 		//if(((flagB1)<=0)&(ic==0))
 		if((lengthI==0)&(flagB1<=0))
@@ -360,7 +360,7 @@ void *writer(void* arguments){
 					average=newAverage;
 					highestF=f;
 				}
-				/**/printf("average=%lf\n",average);
+				/**/printf("highestF=%s\n",fractal_get_name(&highestF));
 				/**/fflush(stdout);
 			}
 			
