@@ -35,9 +35,9 @@ struct sbuf{
     int n;             				/* Nombre de slots dans le buffer */
     int front;        				/* buf[(front+1)%n] est le premier élément */
     int rear;          				/* buf[rear%n] est le dernier */
-    sem_t mutex;       				/* Protège l'accès au buffer */
-    sem_t slots;       				/* Nombre de places libres */
-    sem_t items;       				/* Nombre d'items dans le buffer */
+    sem_t* mutex;       				/* Protège l'accès au buffer */
+    sem_t* slots;       				/* Nombre de places libres */
+    sem_t* items;       				/* Nombre d'items dans le buffer */
 };
 
 /*
@@ -55,9 +55,9 @@ void sbuf_init(struct sbuf *sp, int n)
     sp->buf = calloc(n, sizeof(struct fractal));
     sp->n = n;                       /* Buffer content les entiers */
     sp->front = sp->rear = 0;        /* Buffer vide si front == rear */
-    sem_init(&sp->mutex, 0, 1);      /* Exclusion mutuelle */
-    sem_init(&sp->slots, 0, n);      /* Au début, n slots vides */
-    sem_init(&sp->items, 0, 0);      /* Au début, rien à consommer */
+    sem_init(sp->mutex, 0, 1);      /* Exclusion mutuelle */
+    sem_init(sp->slots, 0, n);      /* Au début, n slots vides */
+    sem_init(sp->items, 0, 0);      /* Au début, rien à consommer */
 }
 
 /*
@@ -78,12 +78,12 @@ void sbuf_insert(struct sbuf *sp, struct fractal item)
 	///**/int ic=0;
 	///**/sem_getvalue(&(sp->items),&ic);
 	///**/printf("ITEMS = %d sur %d\n",ic,sp->n);
-	sem_wait(&(sp->slots));
-	sem_wait(&(sp->mutex));
+	sem_wait((sp->slots));
+	sem_wait((sp->mutex));
 	sp->rear=((sp->rear)+1*sizeof(struct fractal))%(sp->n);
 	sp->buf[sp->rear]=item;
-	sem_post(&(sp->mutex));
-	sem_post(&(sp->items));
+	sem_post((sp->mutex));
+	sem_post((sp->items));
 	///**/ic=0;
 	///**/sem_getvalue(&(sp->items),&ic);
 	///**/printf("ITEMS = %d\n",ic);
@@ -98,16 +98,16 @@ struct fractal sbuf_remove(struct sbuf *sp)
 	///**/sem_getvalue(&(sp->items),&ic);
 	///**/printf("ITEMS = %d\n",ic);
 	/**/printf("Remove starting\n");
-	sem_wait(&(sp->items));
+	sem_wait((sp->items));
 	/**/printf("wait item\n");
-	sem_wait(&(sp->mutex));
+	sem_wait((sp->mutex));
 	/**/printf("wait mutex\n");
 	sp->front=((sp->front)+1)%(sp->n);
 	/**/printf("removing\n");
 	struct fractal res=sp->buf[sp->front];
 	/**/printf("removed\n");
-	sem_post(&(sp->mutex));
-	sem_post(&(sp->slots));
+	sem_post((sp->mutex));
+	sem_post((sp->slots));
 	///**/ic=0;
 	///**/sem_getvalue(&(sp->items),&ic);
 	///**/printf("ITEMS = %d\n",ic);
