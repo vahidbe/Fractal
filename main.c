@@ -86,7 +86,7 @@ void sbuf_insert(struct sbuf *sp, struct fractal* item)
 {
 	sem_wait(&(sp->slots));
 	sem_wait(&(sp->mutex));
-	sp->rear=((sp->rear)+1)%(sp->n);
+	sp->rear=((sp->rear)+1*sizeof(struct fractal*))%(sp->n);
 	sp->buf[sp->rear]=item;
 	sem_post(&(sp->mutex));
 	sem_post(&(sp->items));
@@ -277,7 +277,9 @@ void *consumer(void* arguments){
 		int j;
 		for(i=0;i<f->width;i++){
 			for(j=0;j<f->height;j++){
+				printf("about to compute value\n");
 				fractal_set_value(f,i,j,fractal_compute_value(f,i,j));
+				printf("value computed\n");
 			}
 		}
 		printf("*INSERT DU CONSOMMATEUR*\n");
@@ -317,9 +319,11 @@ void *writer(void* arguments){
 			}
 			else{
 				printf("*REMOVE DU WRITER*\n");
-				struct fractal* f = (struct fractal*) sbuf_remove(buf);
+				struct fractal* f = sbuf_remove(buf);
 				printf("*REMOVE DU WRITER TERMINE*\n");
+				printf("about to compute average\n");
 				double newAverage = fractal_compute_average(f);
+				printf("average computed
 				if(newAverage>average){
 					average=newAverage;
 					highestF=f;
@@ -388,8 +392,8 @@ int main(int argc, char *argv[])
 	printf("--- Lecture des options terminée ---\n");
 	printf("\n Nombre de threads qui vont être utilisés : %d \n \n",numberThreads);
 	
-	sbuf_init(buf, (numberThreads));            
-	sbuf_init(bufout, (numberThreads));    
+	sbuf_init(buf, (numberThreads+3));            
+	sbuf_init(bufout, (numberThreads+3));    
 
 	printf("--- Initialisation des buffers terminée ---\n");
 	
