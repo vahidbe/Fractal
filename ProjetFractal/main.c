@@ -319,8 +319,8 @@ int main(int argc, char *argv[])
 	int optionsCount=0;
 	int optionD=0;
 	char* fileOutName;	
-	struct sbuf* buf=malloc(sizeof(sbuf));
-	struct sbuf* bufout=malloc(sizeof(sbuf));
+	struct sbuf* buf=malloc(sizeof(struct sbuf));
+	struct sbuf* bufout=malloc(sizeof(struct sbuf));
 	int* flag=(int*) malloc(sizeof(int));
 	int* flagOut=(int*) malloc(sizeof(int));
 	int* doneFlag=(int*) malloc(sizeof(int));
