@@ -97,10 +97,15 @@ struct fractal sbuf_remove(struct sbuf *sp)
 	///**/int ic=0;
 	///**/sem_getvalue(&(sp->items),&ic);
 	///**/printf("ITEMS = %d\n",ic);
+	/**/printf("Remove starting\n");
 	sem_wait(&(sp->items));
+	/**/printf("wait item\n");
 	sem_wait(&(sp->mutex));
+	/**/printf("wait mutex\n");
 	sp->front=((sp->front)+1)%(sp->n);
+	/**/printf("removing\n");
 	struct fractal res=sp->buf[sp->front];
+	/**/printf("removed\n");
 	sem_post(&(sp->mutex));
 	sem_post(&(sp->slots));
 	///**/ic=0;
@@ -333,11 +338,11 @@ void *writer(void* arguments){
 		/**/printf("===OPTIOND-0===\n");
 		/**/fflush(stdout);
 		while(!isEmpty){
-			int ic;
-			/**/printf("va lire sem_getvalue du writer\n");
-			/**/fflush(stdout);
+			//int ic;
+			///**/printf("va lire sem_getvalue du writer\n");
+			///**/fflush(stdout);
 			//sem_getvalue(&(buf->items),&ic);
-			/**/printf("\n FLAGOUT=%d\n\n",flagB2);
+			/**/printf("\n FLAGB2=%d\n\n",flagB2);
 			/**/fflush(stdout);
 			//if(((flagB2)<=0)&(ic==0))
 			if((lengthO==0)&(flagB2<=0))
