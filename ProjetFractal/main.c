@@ -71,10 +71,11 @@ void **calloc2(size_t nmemb, size_t size) {
 void sbuf_init(struct sbuf *sp, int n)
 {
 	printf("--- Debut de l'initialisation du buffer ---\n");
-    sp->buf =(struct fractal**) calloc2(n, sizeof(struct fractal*));
-	/*if(((sp->buf)==NULL)){
+    sp->buf =(struct fractal**) calloc(n, sizeof *(sp->buf));
+	if(((sp->buf)==NULL)){
+		printf("--- EXIT ---\n");
 		exit(-1); //TODO: gérer erreurs
-	}*/
+	}
 	printf("--- Calloc d'initialisation de buffer terminé ---\n");
     sp->n = n;                       /* Buffer content les entiers */
     sp->front = sp->rear = 0;        /* Buffer vide si front == rear */
