@@ -234,6 +234,7 @@ void *producer(void* arguments){
 	  }
       }
   }
+  printf("--- Fin producteur ---\n");
   (*doneFlag)--;
   (*flag)--;
   return NULL;
@@ -265,6 +266,7 @@ void *consumer(void* arguments){
 			done=1;
 		}
 	}
+	printf("--- Fin consommateur ---\n");
 	(*flagOut)--;
 	(*doneFlag)--;
 	return NULL;
@@ -308,6 +310,7 @@ void *writer(void* arguments){
 			}
 		}
 	}
+	printf("--- Fin writer ---\n");
 	(*doneFlag)--;
 	return NULL;
 }
@@ -472,6 +475,7 @@ int main(int argc, char *argv[])
 	printf("--- Initialisation des writers terminée ---\n");
 	
 	printf("\n doneFlag = %d \n\n",*doneFlag);
+	
 	while((*doneFlag)>0){}
 	
 	printf("--- Fin des threads ---\n");
