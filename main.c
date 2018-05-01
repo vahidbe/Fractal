@@ -502,7 +502,9 @@ int main(int argc, char *argv[])
 	*/
 	printf("\n doneFlag = %d \n\n",*doneFlag);
 	
-	while((*doneFlag)>0){}
+	while((*doneFlag)>0){
+		printf("\n DONEFLAG=%d \n\n",*doneFlag);
+	}
 	
 	printf("--- Fin des threads ---\n");
 	
