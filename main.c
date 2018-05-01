@@ -389,7 +389,7 @@ void *writer(void* arguments){
 			}
 			else
 			{
-				struct fractal f = (struct fractal) sbuf_remove(buf);
+				struct fractal f = (struct fractal) sbuf_remove(bufOut);
 				write_bitmap_sdl(&f,fractal_get_name(&f));
 			}
 		}
