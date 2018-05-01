@@ -283,14 +283,14 @@ fflush(stdout);
 fflush(stdout);
 	
 	
-				struct args* arguments=(struct args*) malloc(sizeof(struct args));
-				if(arguments==NULL){
+				struct args* arguments1=(struct args*) malloc(sizeof(struct args));
+				if(arguments1==NULL){
 					goto end;
 				}
-				arguments->buf_arg=buf;
-				arguments->flag=flag;
-				arguments->doneFlag=doneFlag;
-				pthread_create(&(prod[count-optionsCount]), NULL, (void*) &producer, (void*) arguments);
+				arguments1->buf_arg=buf;
+				arguments1->flag=flag;
+				arguments1->doneFlag=doneFlag;
+				pthread_create(&(prod[count-optionsCount]), NULL, (void*) &producer, (void*) arguments1);
 			
 	
 	
