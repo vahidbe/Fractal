@@ -312,6 +312,7 @@ void *writer(void* arguments){
 			sem_getvalue(&(buf->items),ic);
 			printf("\n FLAGOUT=%d\n\n",*flagOut);
 			if(((*flagOut)<=0)&(*ic==0)){
+				printf("===DONE=1===\n");
 				isEmpty=1;
 			}
 			else{
@@ -335,9 +336,9 @@ void *writer(void* arguments){
 	else{
 		while(!isEmpty){
 			printf("===OPTIOND-1===\n");
-			int* ic;
-			sem_getvalue(&(buf->items),ic);
-			if(((*flagOut)<=0)&(*ic==0)){
+			int ic=0;
+			sem_getvalue(&(buf->items),&ic);
+			if(((*flagOut)<=0)&(ic==0)){
 				isEmpty=1;
 			}
 			else{
