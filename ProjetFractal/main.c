@@ -254,7 +254,7 @@ void *consumer(void* arguments){
 		}
 		sbuf_insert(bufout,f);		
 		int* ic;
-		sem_getvalue((buf->items),ic);
+		sem_getvalue(&(buf->items),ic);
 		if(((*flag)<=0)&(*ic==0))
 		{
 			done=1;
@@ -286,7 +286,7 @@ void *writer(void* arguments){
 			}
 		}
 		int* ic;
-		sem_getvalue((buf->items),ic);
+		sem_getvalue(&(buf->items),ic);
 		if(((*flagOut)<=0)&(*ic==0)){
 			isEmpty=1;
 		}
@@ -297,8 +297,8 @@ void *writer(void* arguments){
 			struct fractal* f = (struct fractal*) sbuf_remove(buf);
 			write_bitmap_sdl(f,fractal_get_name(f));
 			int* ic;
-			sem_getvalue((buf->items),ic);
-			if(((*flagOut)<=0)&(*ic==0){
+			sem_getvalue(&(buf->items),ic);
+			if(((*flagOut)<=0)&(*ic==0)){
 				isEmpty=1;
 			}
 		}
@@ -368,7 +368,7 @@ int main(int argc, char *argv[])
 			file = fopen("FractalEntree.txt","r");
 			if(file==NULL)
 			  {
-			    sbuf_clean(buf);sbuf_clean(bufOut);goto end;
+			    goto end;
 			  }
 			fputs(file,chaine);
 			fclose(file);
@@ -376,7 +376,7 @@ int main(int argc, char *argv[])
 				//TODO: ne pas oublier les free
 				struct args* arguments=(struct args*) malloc(sizeof(struct args));
 				if(arguments==NULL){
-					sbuf_clean(buf);sbuf_clean(bufOut);goto end;
+					goto end;
 				}
 				arguments->buf_arg=buf;
 				//ATTENTION GERER LES FLAGS ATTENTION
@@ -398,7 +398,7 @@ int main(int argc, char *argv[])
 				//TODO: ne pas oublier les free
 				struct args* arguments=(struct args*) malloc(sizeof(struct args));
 				if(arguments==NULL){
-					sbuf_clean(buf);sbuf_clean(bufOut);goto end;
+					goto end;
 				}
 				arguments->buf_arg=buf;
 				arguments->flag=flag;
@@ -421,7 +421,7 @@ int main(int argc, char *argv[])
 		//TODO: ne pas oublier les free
 		struct args* arguments=(struct args*) malloc(sizeof(struct args));
 		if(arguments==NULL){
-			sbuf_clean(buf);sbuf_clean(bufOut);goto end;
+			goto end;
 		}
 		arguments->flag=flag;
 		*(arguments->flag)=flagConst;
@@ -441,7 +441,7 @@ int main(int argc, char *argv[])
 		//TODO: ne pas oublier les free
 		struct args* arguments=(struct args*) malloc(sizeof(struct args));
 		if(arguments==NULL){
-			sbuf_clean(buf);sbuf_clean(bufOut);goto end;
+			goto end;
 		}
 		arguments->doneFlag=doneFlag;
 		*(arguments->doneFlag)=doneFlagConst;
@@ -457,7 +457,7 @@ int main(int argc, char *argv[])
 			//TODO: ne pas oublier les free
 			struct args* arguments=(struct args*) malloc(sizeof(struct args));
 			if(arguments==NULL){
-				sbuf_clean(buf);sbuf_clean(bufOut);goto end;
+				goto end;
 			}
 			arguments->doneFlag=doneFlag;
 			*(arguments->doneFlag)=doneFlagConst;
@@ -473,7 +473,7 @@ int main(int argc, char *argv[])
 	
 	end : 
 	sbuf_clean(buf);
-	sbuf_clean(bufOut);
+	sbuf_clean(bufout);
 	free(flag);
 	free(flagOut);
 	free(doneFlag);
