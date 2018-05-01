@@ -46,6 +46,24 @@ struct sbuf{
     sem_t items;       /* Nombre d'items dans le buffer */
 };
 
+void **calloc2(size_t nmemb, size_t size) {
+	int** p=NULL;
+	if(nmemb!=0)
+	{
+		p=(int **) malloc(size*(nmemb));
+		if(p!=NULL)
+		{           
+			size_t n=nmemb*size;
+			char** d=(char**) p;
+			while(n--)
+			{
+				*(d+n)=0;
+			}
+		}
+	}
+	return (void **) p;
+}
+
 /*
  * @pre sp!=NULL, n>0
  * @post a construit un buffer partagé contenant n slots
@@ -53,7 +71,7 @@ struct sbuf{
 void sbuf_init(struct sbuf *sp, int n)
 {
 	printf("--- Debut de l'initialisation du buffer ---\n");
-    sp->buf =(struct fractal**) calloc(n, sizeof(struct fractal*));
+    sp->buf =(struct fractal**) calloc2(n, sizeof(struct fractal*));
 	/*if(((sp->buf)==NULL)){
 		exit(-1); //TODO: gérer erreurs
 	}*/
