@@ -302,8 +302,10 @@ void *writer(void* arguments){
 	free(argument);
 	printf("--- Debut ecriture writer ---\n");
 	if(!optionD){
+		printf("===OPTIOND-0===\n");
 		while(!isEmpty){
 			int* ic;
+			printf("va lire sem_getvalue\n");
 			sem_getvalue(&(buf->items),ic);
 			printf("\n FLAGOUT=%d\n\n",*flagOut);
 			if(((*flagOut)<=0)&(*ic==0)){
@@ -328,6 +330,7 @@ void *writer(void* arguments){
 	}
 	else{
 		while(!isEmpty){
+			printf("===OPTIOND-1===\n");
 			int* ic;
 			sem_getvalue(&(buf->items),ic);
 			if(((*flagOut)<=0)&(*ic==0)){
