@@ -368,6 +368,8 @@ int main(int argc, char *argv[])
 		doneFlagConst=(argc-2-optionsCount)+numberThreads+1;
 	}
 	*doneFlag=doneFlagConst;
+	*flag=flagConst;
+	*flagOut=flagOutConst;
 	printf("--- Initialisation des constantes terminée ---\n");
 	
 	for(count=optionsCount+1;count<argc;count++){
@@ -414,7 +416,6 @@ int main(int argc, char *argv[])
 				arguments->buf_arg=buf;
 				arguments->flag=flag;
 				arguments->doneFlag=doneFlag;
-				*(arguments->flag)=flagConst;
 				arguments->charP_arg=argv[count];
 				pthread_create(&(prod[count-optionsCount]), NULL, (void*) &producer, (void*) arguments);
 			}
@@ -434,10 +435,8 @@ int main(int argc, char *argv[])
 			goto end;
 		}
 		arguments->flag=flag;
-		*(arguments->flag)=flagConst;
 		arguments->doneFlag=doneFlag;
 		arguments->flagOut=flagOut;
-		*(arguments->flagOut)=flagOutConst;
 		arguments->buf_arg=buf;
 		arguments->bufout_arg=bufout;
 		pthread_create(&(cons[i]), NULL, (void*) &consumer, (void*) arguments);
@@ -454,7 +453,6 @@ int main(int argc, char *argv[])
 		}
 		arguments->doneFlag=doneFlag;
 		arguments->flagOut=flagOut;
-		*(arguments->flagOut)=flagOutConst;
 		arguments->optionD=optionD;
 		arguments->bufout_arg=bufout;
 		pthread_create(&(writ[0]), NULL, (void*) &writer, (void*) arguments);
@@ -469,7 +467,6 @@ int main(int argc, char *argv[])
 			}
 			arguments->doneFlag=doneFlag;
 			arguments->flagOut=flagOut;
-			*(arguments->flagOut)=flagOutConst;
 			arguments->optionD=optionD;
 			arguments->bufout_arg=bufout;
 			pthread_create(&(writ[i]), NULL, (void*) &writer, (void*) bufout);
@@ -486,7 +483,6 @@ int main(int argc, char *argv[])
 	free(flag);
 	free(flagOut);
 	free(doneFlag);
-	exit(-1);
 	
 	printf("--- Fin du programme ---\n");
 	
