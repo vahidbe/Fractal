@@ -106,7 +106,11 @@ void *producer(void* arguments){
 	/**/fflush(stdout);
 	int i=5;
 	int* id=&i;
+	/**/printf("--- INSERT PROD ---\n");
+	/**/fflush(stdout);
 	sbuf_insert(bufIn,id);
+	/**/printf("--- FIN INSERT PROD ---\n");
+	/**/fflush(stdout);
 	/**/printf("--- FIN PRODUCTEUR ---\n");
 	/**/fflush(stdout);
 	flagB1--;
@@ -116,8 +120,16 @@ void *producer(void* arguments){
 void *consumer(void* arguments){
 	/**/printf("--- DEBUT CONSOMMATEUR ---\n");
 	/**/fflush(stdout);
+	/**/printf("--- REMOVE CONS ---\n");
+	/**/fflush(stdout);
 	int* id=sbuf_remove(bufIn);
+	/**/printf("--- FIN REMOVE CONS ---\n");
+	/**/fflush(stdout);
+	/**/printf("--- INSERT CONS ---\n");
+	/**/fflush(stdout);
 	sbuf_insert(bufOut,id);
+	/**/printf("--- FIN INSERT CONS ---\n");
+	/**/fflush(stdout);
 	/**/printf("--- FIN CONSOMMATEUR ---\n");
 	/**/fflush(stdout);
 	while(flagB1>0){}
@@ -128,7 +140,11 @@ void *consumer(void* arguments){
 void *writer(void* arguments){
 	/**/printf("--- DEBUT WRITER ---\n");
 	/**/fflush(stdout);
+	/**/printf("--- REMOVE WRIT ---\n");
+	/**/fflush(stdout);
 	int* id=sbuf_remove(bufOut);
+	/**/printf("--- FIN REMOVE WRIT ---\n");
+	/**/fflush(stdout);
 	/**/printf("ID=%d\n",*id);
 	/**/fflush(stdout);
 	/**/printf("--- FIN WRITER ---\n");
