@@ -270,11 +270,11 @@ void *consumer(void* arguments){
 	/**/fflush(stdout);
 	while(!done)
 	{		
-		/**/printf("va lire sem_getvalue du consommateur\n");
+		///**/printf("va lire sem_getvalue du consommateur\n");
 		/**/fflush(stdout);
 		int ic=0;
 		sem_getvalue(&(buf->items),&ic);
-		/**/printf("FLAG=%d\n",flagB1);
+		///**/printf("FLAG=%d\n",flagB1);
 		/**/fflush(stdout);
 		if(((flagB1)<=0)&(ic==0))
 			if(((flagB1<=0)))
