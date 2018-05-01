@@ -260,9 +260,9 @@ void *consumer(void* arguments){
 	free(argument);
 	printf("--- Debut calcul consommateur ---\n");
 	while(!done){		
-		int* ic;
+		int ic=0;
 		printf("va lire sem_getvalue du consommateur\n");
-		sem_getvalue(&(buf->items),ic);
+		sem_getvalue(&(buf->items),&ic);
 		printf("FLAG=%d\n",*flag);
 		if(((*flag)<=0)&(*ic==0))
 		{
