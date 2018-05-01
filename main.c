@@ -20,6 +20,8 @@ int flagDone;
 
 int optionD;
 char* fileOutName;
+int lengthI=0;
+int lengthO=0;
 
 struct sbuf* bufIn;
 struct sbuf* bufOut;
@@ -73,18 +75,18 @@ void sbuf_clean(struct sbuf *sp)
  */
 void sbuf_insert(struct sbuf *sp, struct fractal item)
 {
-	///**/int ic=0;
-	///**/sem_getvalue(&(sp->items),&ic);
-	///**/printf("ITEMS = %d sur %d\n",ic,sp->n);
+	/**/int ic=0;
+	/**/sem_getvalue(&(sp->items),&ic);
+	/**/printf("ITEMS = %d sur %d\n",ic,sp->n);
 	sem_wait(&(sp->slots));
 	sem_wait(&(sp->mutex));
 	sp->rear=((sp->rear)+1*sizeof(struct fractal))%(sp->n);
 	sp->buf[sp->rear]=item;
 	sem_post(&(sp->mutex));
 	sem_post(&(sp->items));
-	///**/ic=0;
-	///**/sem_getvalue(&(sp->items),&ic);
-	///**/printf("ITEMS = %d\n",ic);
+	/**/ic=0;
+	/**/sem_getvalue(&(sp->items),&ic);
+	/**/printf("ITEMS = %d\n",ic);
 }
 
 /* @pre sbuf!=NULL
@@ -92,18 +94,18 @@ void sbuf_insert(struct sbuf *sp, struct fractal item)
  */
 struct fractal sbuf_remove(struct sbuf *sp)
 {	
-	///**/int ic=0;
-	///**/sem_getvalue(&(sp->items),&ic);
-	///**/printf("ITEMS = %d\n",ic);
+	/**/int ic=0;
+	/**/sem_getvalue(&(sp->items),&ic);
+	/**/printf("ITEMS = %d\n",ic);
 	sem_wait(&(sp->items));
 	sem_wait(&(sp->mutex));
 	sp->front=((sp->front)+1)%(sp->n);
 	struct fractal res=sp->buf[sp->front];
 	sem_post(&(sp->mutex));
 	sem_post(&(sp->slots));
-	///**/ic=0;
-	///**/sem_getvalue(&(sp->items),&ic);
-	///**/printf("ITEMS = %d\n",ic);
+	/**/ic=0;
+	/**/sem_getvalue(&(sp->items),&ic);
+	/**/printf("ITEMS = %d\n",ic);
 	return res;
 }
 
@@ -245,6 +247,7 @@ void *producer(void* arguments){
 			/**/fflush(stdout);
 			struct fractal* new = fractal_new(name,*buf2,*buf3,*buf4,*buf5);
 			/**/sbuf_insert(buf,*new);
+			lengthI++;
 			/**/printf("*INSERT DU PRODUCTEUR TERMINE*\n");
 			/**/fflush(stdout);
 			x=fscanf(file,"%64s",buf1);
@@ -273,10 +276,11 @@ void *consumer(void* arguments){
 		///**/printf("va lire sem_getvalue du consommateur\n");
 		/**/fflush(stdout);
 		int ic=0;
-		sem_getvalue(&(buf->items),&ic);
+		//sem_getvalue(&(buf->items),&ic);
 		///**/printf("FLAG=%d\n",flagB1);
 		/**/fflush(stdout);
-		if(((flagB1)<=0)&(ic==0))
+		//if(((flagB1)<=0)&(ic==0))
+		if((lengthI==0)&(flagB1<=0))
 		{
 			/**/printf("=====DONE=1=====\n");
 			/**/fflush(stdout);
@@ -287,6 +291,7 @@ void *consumer(void* arguments){
 		/**/printf("*REMOVE DU CONSOMMATEUR*\n");
 		/**/fflush(stdout);
 		struct fractal f=sbuf_remove(buf);
+		lengthI--;
 		/**/printf("*REMOVE DU CONSOMMATEUR TERMINE*\n");
 		/**/fflush(stdout);
 		int i;
@@ -303,6 +308,7 @@ void *consumer(void* arguments){
 		/**/printf("*INSERT DU CONSOMMATEUR*\n");
 		/**/fflush(stdout);
 		sbuf_insert(bufout,f);	
+		lengthO++;
 		/**/printf("*INSERT DU CONSOMMATEUR TERMINE*\n");	
 		/**/fflush(stdout);
 		}
@@ -330,10 +336,12 @@ void *writer(void* arguments){
 			int ic;
 			/**/printf("va lire sem_getvalue du writer\n");
 			/**/fflush(stdout);
-			sem_getvalue(&(buf->items),&ic);
+			//sem_getvalue(&(buf->items),&ic);
 			/**/printf("\n FLAGOUT=%d\n\n",flagB2);
 			/**/fflush(stdout);
-			if(((flagB2)<=0)&(ic==0)){
+			//if(((flagB2)<=0)&(ic==0))
+			if((lengthO==0)&(flagB2<=0))
+			{
 				/**/printf("===DONE=1===\n");
 				/**/fflush(stdout);
 				isEmpty=1;
@@ -342,6 +350,7 @@ void *writer(void* arguments){
 				/**/printf("*REMOVE DU WRITER*\n");
 				/**/fflush(stdout);
 				struct fractal f = sbuf_remove(buf);
+				lengthO--:
 				/**/printf("*REMOVE DU WRITER TERMINE*\n");
 				/**/fflush(stdout);
 				/**/printf("about to compute average\n");
