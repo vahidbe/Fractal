@@ -72,7 +72,7 @@ void sbuf_insert(struct sbuf *sp, int item)
 	///**/printf("ITEMS = %d sur %d\n",ic,sp->n);
 	sem_wait(&(sp->slots));
 	sem_wait(&(sp->mutex));
-	sp->rear=((sp->rear)+1*sizeof(int))%(sp->n);
+	sp->rear=((sp->rear)+1)%(sp->n);
 	sp->buf[sp->rear]=item;
 	sem_post(&(sp->mutex));
 	sem_post(&(sp->items));
@@ -92,7 +92,7 @@ int sbuf_remove(struct sbuf *sp)
 	sem_wait(&(sp->items));
 	sem_wait(&(sp->mutex));
 	sp->front=((sp->front)+1)%(sp->n);
-	struct fractal* res=sp->buf[sp->front];
+	int res=sp->buf[sp->front];
 	sem_post(&(sp->mutex));
 	sem_post(&(sp->slots));
 	///**/ic=0;
