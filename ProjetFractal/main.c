@@ -316,6 +316,7 @@ int main(int argc, char *argv[])
 	int* flag=(int*) malloc(sizeof(int));
 	int* flagOut=(int*) malloc(sizeof(int));
 	int* doneFlag=(int*) malloc(sizeof(int));
+	printf("--- Initialisation des variables terminée ---");
 
 	if((*argv[1]=='-')&(*(argv[1]+1)=='d')){
 		optionD=1;
@@ -335,6 +336,9 @@ int main(int argc, char *argv[])
 	if(numberThreads==0){
 	        numberThreads=argc-2-optionsCount;  //Vraiment utile de retirer optionsCount ? Il sera d'office nul --> il est pas d'office nul, regarde le if juste au dessus
 	}
+	
+	printf("--- Lecture des options terminée ---");
+	
 	sbuf_init(buf, (numberThreads));            
 	sbuf_init(bufout, (numberThreads));       
 	pthread_t prod[argc-2-optionsCount];
@@ -349,6 +353,8 @@ int main(int argc, char *argv[])
 	else{
 		doneFlagConst=(argc-2-optionsCount)+numberThreads+1;
 	}
+	
+	printf("--- Initialisation des constantes terminée ---");
 	
 	for(count=optionsCount+1;count<argc;count++){
 	  if(((*argv[count])=='-')&(count!=(argc))){      
@@ -404,6 +410,9 @@ int main(int argc, char *argv[])
 			}	
 		}
 	}
+	
+	printf("--- Initialisation des producteurs terminée ---");
+	
 	int i;
 	for(i=0;(i<numberThreads);i++){
 		//TODO: ne pas oublier les free
@@ -421,6 +430,9 @@ int main(int argc, char *argv[])
 		arguments->bufout_arg=bufout;
 		pthread_create(&(cons[i]), NULL, (void*) &consumer, (void*) arguments);
 	}
+	
+	printf("--- Initialisation des consommateurs terminée ---");
+	
 	//TODO: faire plein de writers qui comparent avec sémaphore la fractale la plus haute
 	if(!optionD){
 		//TODO: ne pas oublier les free
@@ -453,6 +465,9 @@ int main(int argc, char *argv[])
 			pthread_create(&(writ[i]), NULL, (void*) &writer, (void*) bufout);
 		}
 	}
+	
+	printf("--- Initialisation des writers terminée ---");
+	
 	end : 
 	while((*doneFlag)!=0)
 	{}
@@ -461,6 +476,9 @@ int main(int argc, char *argv[])
 	free(flag);
 	free(flagOut);
 	free(doneFlag);
+	
+	printf("--- Fin du programme ---");
+	
 	return 0;
 }
 
