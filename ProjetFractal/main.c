@@ -365,7 +365,7 @@ int main(int argc, char *argv[])
 	  char* chaine;
 			fgets(chaine, sizeof(chaine), stdin);
 			FILE* file;
-			file = fopen("FractalEntree.txt",r+);
+			file = fopen("FractalEntree.txt","r");
 			if(file==NULL)
 			  {
 			    sbuf_clean(buf);sbuf_clean(bufOut);thread_kill(flag,flagOut);goto end;
