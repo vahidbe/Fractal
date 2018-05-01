@@ -124,6 +124,8 @@ void *consumer(void* arguments){
 	int id=sbuf_remove(bufIn);
 	/**/printf("--- FIN REMOVE CONS ---\n");
 	/**/fflush(stdout);
+	/**/printf("ID=%d\n",id);
+	/**/fflush(stdout);
 	/**/printf("--- INSERT CONS ---\n");
 	/**/fflush(stdout);
 	sbuf_insert(bufOut,id);
