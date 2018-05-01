@@ -242,6 +242,7 @@ void *producer(void* arguments){
   printf("--- Fin producteur ---\n");
   (*doneFlag)--;
   (*flag)--;
+  printf("\nPRODFLAG=%d\n\n",*flag);
   return NULL;
 }
 
