@@ -272,6 +272,7 @@ void *consumer(void* arguments){
 		printf("*INSERT DU CONSOMMATEUR TERMINE*\n");		*/
 		int* ic;
 		sem_getvalue(&(buf->items),ic);
+		printf("FLAG=%d\n",*flag);
 		if(((*flag)<=0)&(*ic==0))
 		{
 			done=1;
