@@ -92,7 +92,7 @@ void sbuf_insert(struct sbuf *sp, struct fractal item)
 /* @pre sbuf!=NULL
  * @post retire le dernier item du buffer partagé
  */
-struct fractal* sbuf_remove(struct sbuf *sp)
+struct fractal sbuf_remove(struct sbuf *sp)
 {	
 	///**/int ic=0;
 	///**/sem_getvalue(&(sp->items),&ic);
@@ -102,7 +102,7 @@ struct fractal* sbuf_remove(struct sbuf *sp)
 	sp->front=((sp->front)+1)%(sp->n);
 	printf("Fractale to remove : %s\n",fractal_get_name(&(sp->buf[sp->front])));
 	fflush(stdout);
-	struct fractal* res=&(sp->buf[sp->front]);
+	struct fractal res=(sp->buf[sp->front]);
 	sem_post(&(sp->mutex));
 	sem_post(&(sp->slots));
 	///**/ic=0;
@@ -292,7 +292,7 @@ void *consumer(void* arguments){
 		{
 		/**/printf("*REMOVE DU CONSOMMATEUR*\n");
 		/**/fflush(stdout);
-		struct fractal f=*(sbuf_remove(bufIn));
+		struct fractal f=(sbuf_remove(bufIn));
 		lengthI--;
 		/**/printf("*REMOVE DU CONSOMMATEUR TERMINE*\n");
 		/**/fflush(stdout);
@@ -350,7 +350,7 @@ void *writer(void* arguments){
 			else{
 				/**/printf("*REMOVE DU WRITER*\n");
 				/**/fflush(stdout);
-				struct fractal f = *(sbuf_remove(bufOut));
+				struct fractal f = (sbuf_remove(bufOut));
 				lengthO--;
 				/**/printf("*REMOVE DU WRITER TERMINE*\n");
 				/**/fflush(stdout);
@@ -390,7 +390,7 @@ void *writer(void* arguments){
 			}
 			else
 			{
-				struct fractal f = *(sbuf_remove(bufOut));
+				struct fractal f = (sbuf_remove(bufOut));
 				write_bitmap_sdl(&f,fractal_get_name(&f));
 			}
 		}
