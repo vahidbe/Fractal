@@ -305,6 +305,8 @@ void *consumer(void* arguments){
 			{
 				fractal_set_value(&f,i,j,fractal_compute_value(&f,i,j));
 				printf("value=%d\n",fractal_compute_value(&f,i,j));
+				fflush(stdout);
+				printf("valueSet=%d\n",fractal_get_value(&f,i,j));
 			}
 			fflush(stdout);
 		}
