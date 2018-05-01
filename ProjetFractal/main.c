@@ -138,6 +138,7 @@ void *producer(void* arguments){
 	(*doneFlag)--;(*flag)--;
 	return (NULL);
     }	
+	printf("--- Fin malloc producteur ---\n");
   int i;
   x=fscanf(file,"%64s",buf1);
   for(i=0;(!done);i++){
@@ -230,6 +231,7 @@ void *producer(void* arguments){
 		(*doneFlag)--;(*flag)--;
 		return (NULL);
 	  }
+	  printf("=== Fractale lue : %s %d %d %lf %lf ===\n",name,*buf2,*buf3,*buf4,*buf5);
 	sbuf_insert(buf,fractal_new(name,*buf2,*buf3,*buf4,*buf5));
 	x=fscanf(file,"%64s",buf1);
 	  }
@@ -251,6 +253,7 @@ void *consumer(void* arguments){
 	int* flagOut=argument->flagOut;
 	int* doneFlag=argument->doneFlag;
 	free(argument);
+	printf("--- Debut calcul consommateur ---\n");
 	while(!done){
 		struct fractal* f=sbuf_remove(buf);
 		int i;
@@ -286,6 +289,7 @@ void *writer(void* arguments){
 	int* flagOut=argument->flagOut;
 	int* doneFlag=argument->doneFlag;
 	free(argument);
+	printf("--- Debut ecriture writer ---\n");
 	if(!optionD){
 		while(!isEmpty){
 			struct fractal* f = (struct fractal*) sbuf_remove(buf);
@@ -444,6 +448,7 @@ int main(int argc, char *argv[])
 		arguments->flagOut=flagOut;
 		arguments->buf_arg=buf;
 		arguments->bufout_arg=bufout;
+		printf("---CREATION D'UN CONSOMMATEUR---\n");
 		pthread_create(&(cons[i]), NULL, (void*) &consumer, (void*) arguments);
 	}
 	
@@ -459,6 +464,7 @@ int main(int argc, char *argv[])
 		arguments->flagOut=flagOut;
 		arguments->optionD=optionD;
 		arguments->bufout_arg=bufout;
+		printf("---CREATION D'UN WRITER---\n");
 		pthread_create(&(writ[0]), NULL, (void*) &writer, (void*) arguments);
 	}
 	else{
@@ -472,6 +478,7 @@ int main(int argc, char *argv[])
 			arguments->flagOut=flagOut;
 			arguments->optionD=optionD;
 			arguments->bufout_arg=bufout;
+			printf("---CREATION D'UN WRITER---\n");
 			pthread_create(&(writ[i]), NULL, (void*) &writer, (void*) bufout);
 		}
 	}
