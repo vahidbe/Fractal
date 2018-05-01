@@ -111,7 +111,7 @@ int fractal_compute_value(struct fractal *f, int x, int y);
  * @f: fractale
  * @return: la moyenne de la fractale
  */
- double fractal_compute_average(const struct fractal *f);
+ double fractal_compute_average(const struct fractal f);
 
 /*
  * write_bitmap_sdl
