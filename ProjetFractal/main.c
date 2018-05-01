@@ -83,12 +83,14 @@ void sbuf_clean(struct sbuf *sp)
  */
 void sbuf_insert(struct sbuf *sp, struct fractal* item)
 {
+	printf("*UTILISATION DE LA FONCTION INSERT*\n");
 	sem_wait(&(sp->slots));
 	sem_wait(&(sp->mutex));
 	sp->rear=((sp->rear)+1)%(sp->n);
 	sp->buf[sp->rear]=item;
 	sem_post(&(sp->mutex));
 	sem_post(&(sp->items));
+	printf("*FIN DE LA FONCTION INSERT*\n");
 }
 
 /* @pre sbuf!=NULL
@@ -96,12 +98,14 @@ void sbuf_insert(struct sbuf *sp, struct fractal* item)
  */
 struct fractal* sbuf_remove(struct sbuf *sp)
 {
+	printf("*UTILISATION DE LA FONCTION REMOVE*\n");
 	sem_wait(&(sp->items));
 	sem_wait(&(sp->mutex));
 	sp->front=((sp->front)+1)%(sp->n);
 	struct fractal* res=sp->buf[sp->front];
 	sem_post(&(sp->mutex));
 	sem_post(&(sp->slots));
+	printf("*FIN DE LA FONCTION REMOVE*\n");
 	return res;
 }
 
