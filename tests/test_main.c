@@ -110,7 +110,6 @@ void *producer(void* arguments){
 	printf("--- DEBUT PRODUCTEUR ---\n");
 fflush(stdout);
 	struct args* argument=(struct args*) arguments;
-	char* fileName=argument->charP_arg;
 	struct sbuf* buf=argument->buf_arg;
 	int* flag=argument->flag;
 	int* doneFlag=argument->doneFlag;
@@ -283,11 +282,7 @@ fflush(stdout);
 	printf("--- Initialisation des constantes terminée ---\n");
 fflush(stdout);
 	
-	for(count=optionsCount+1;count<argc;count++){
-	  if(((*argv[count])=='-')&(count!=(argc))){      
-	  }
-	  else{
-			if(count!=(argc-1)){
+	
 				struct args* arguments=(struct args*) malloc(sizeof(struct args));
 				if(arguments==NULL){
 					goto end;
@@ -295,16 +290,9 @@ fflush(stdout);
 				arguments->buf_arg=buf;
 				arguments->flag=flag;
 				arguments->doneFlag=doneFlag;
-				arguments->charP_arg=argv[count];
-				printf("---CREATION D'UN PRODUCTEUR---\n");
-fflush(stdout);
 				pthread_create(&(prod[count-optionsCount]), NULL, (void*) &producer, (void*) arguments);
-			}
-			else{
-				fileOutName=argv[count];
-			}	
-		}
-	}
+			
+	
 	
 	printf("--- Initialisation des producteurs terminée ---\n");
 fflush(stdout);
