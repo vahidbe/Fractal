@@ -84,6 +84,9 @@ void sbuf_insert(struct sbuf *sp, struct fractal* item)
 	sp->buf[sp->rear]=item;
 	sem_post(&(sp->mutex));
 	sem_post(&(sp->items));
+	/**/ic=0;
+	/**/sem_getvalue(&(sp->items),&ic);
+	/**/printf("ITEMS = %d\n",ic);
 }
 
 /* @pre sbuf!=NULL
@@ -100,6 +103,9 @@ struct fractal* sbuf_remove(struct sbuf *sp)
 	struct fractal* res=sp->buf[sp->front];
 	sem_post(&(sp->mutex));
 	sem_post(&(sp->slots));
+	/**/ic=0;
+	/**/sem_getvalue(&(sp->items),&ic);
+	/**/printf("ITEMS = %d\n",ic);
 	return res;
 }
 
