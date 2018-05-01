@@ -18,6 +18,12 @@ int flagB1;
 int flagB2;
 int flagDone;
 
+int optionD;
+char* fileOutName;
+
+struct sbuf* bufIn;
+struct sbuf* bufOut;
+
 struct args{
 	char* charP_arg;
 	struct sbuf* buf_arg;
@@ -404,8 +410,8 @@ int main(int argc, char *argv[])
 	int optionsCount=0;
 	int optionD=0;
 	char* fileOutName;	
-	struct sbuf* buf=malloc(sizeof(struct sbuf));
-	struct sbuf* bufout=malloc(sizeof(struct sbuf));
+	struct sbuf* bufIn=malloc(sizeof(struct sbuf));
+	struct sbuf* bufOut=malloc(sizeof(struct sbuf));
 	/**/printf("%s","--- Initialisation des variables terminée ---\n");
 	/**/fflush(stdout);
 
@@ -433,8 +439,8 @@ int main(int argc, char *argv[])
 	/**/printf("\n Nombre de threads qui vont être utilisés : %d \n \n",numberThreads);
 	/**/fflush(stdout);
 	
-	sbuf_init(buf, (numberThreads+10));            
-	sbuf_init(bufout, (numberThreads+10));    
+	sbuf_init(bufIn, (numberThreads+10));            
+	sbuf_init(bufOut, (numberThreads+10));    
 
 	/**/printf("--- Initialisation des buffers terminée ---\n");
 	/**/fflush(stdout);
@@ -504,15 +510,15 @@ int main(int argc, char *argv[])
 				{
 					goto end;
 				}
-				arguments->buf_arg=buf;
+				arguments->buf_arg=bufIn;
 				arguments->charP_arg=argv[count];
 				/**/printf("---CREATION D'UN PRODUCTEUR---\n");
 				/**/fflush(stdout);
-				pthread_create(&(prod[count-optionsCount]), NULL, (void*) &producer, (void*) arguments);
+				pthread_create(&(prod[count-optionsCount]), NULL, (void*) &producer, NULL);
 			}
 			else
 			{
-				fileOutName=argv[count];
+				fileOutName=argv[count];  //Demande verification, faut pas une etoile ?
 			}	
 		}
 	}
@@ -528,11 +534,11 @@ int main(int argc, char *argv[])
 		{
 			goto end;
 		}
-		arguments->buf_arg=buf;
-		arguments->bufout_arg=bufout;
+		arguments->buf_arg=bufIn;
+		arguments->bufout_arg=bufOut;
 		/**/printf("---CREATION D'UN CONSOMMATEUR---\n");
 		/**/fflush(stdout);
-		pthread_create(&(cons[i]), NULL, (void*) &consumer, (void*) arguments);
+		pthread_create(&(cons[i]), NULL, (void*) &consumer, NULL);
 	}
 	
 	/**/printf("--- Initialisation des consommateurs terminée ---\n");
@@ -547,10 +553,10 @@ int main(int argc, char *argv[])
 			goto end;
 		}
 		arguments->optionD=optionD;
-		arguments->bufout_arg=bufout;
+		arguments->bufout_arg=bufOut;
 		/**/printf("---CREATION D'UN WRITER---\n");
 		/**/fflush(stdout);
-		pthread_create(&(writ[0]), NULL, (void*) &writer, (void*) arguments);
+		pthread_create(&(writ[0]), NULL, (void*) &writer, NULL);
 	}
 	else
 	{
@@ -563,10 +569,10 @@ int main(int argc, char *argv[])
 				goto end;
 			}
 			arguments->optionD=optionD;
-			arguments->bufout_arg=bufout;
+			arguments->bufout_arg=bufOut;
 			/**/printf("---CREATION D'UN WRITER---\n");
 			/**/fflush(stdout);
-			pthread_create(&(writ[i]), NULL, (void*) &writer, (void*) bufout);
+			pthread_create(&(writ[i]), NULL, (void*) &writer, (void*) bufOut);   //Ici je fais quoi ?
 		}
 	}	
 	/**/printf("--- Initialisation des writers terminée ---\n");
@@ -586,8 +592,8 @@ int main(int argc, char *argv[])
 	
 	end:
 	
-	sbuf_clean(buf);
-	sbuf_clean(bufout);
+	sbuf_clean(bufIn);
+	sbuf_clean(bufOut);
 	
 	/**/printf("--- Buffers clean ---\n");
 	/**/fflush(stdout);
