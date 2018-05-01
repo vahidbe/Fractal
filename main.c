@@ -283,7 +283,7 @@ void *consumer(void* arguments){
 			}
 		}
 		printf("*INSERT DU CONSOMMATEUR*\n");
-		sbuf_insert(bufout,f);	
+		//sbuf_insert(bufout,f);	
 		printf("*INSERT DU CONSOMMATEUR TERMINE*\n");	
 		}
 	}
