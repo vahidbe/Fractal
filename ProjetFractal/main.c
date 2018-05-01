@@ -71,7 +71,7 @@ void **calloc2(size_t nmemb, size_t size) {
 void sbuf_init(struct sbuf *sp, int n)
 {
 	printf("--- Debut de l'initialisation du buffer ---\n");
-    sp->buf =(struct fractal**) calloc((size_t) n, sizeof(*(sp->buf)));
+    sp->buf =(struct fractal**) malloc(n*sizeof(struct fract*));
 	if(((sp->buf)==NULL)){
 		printf("--- EXIT ---\n");
 		exit(-1); //TODO: gérer erreurs
