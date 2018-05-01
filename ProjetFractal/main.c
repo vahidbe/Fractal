@@ -52,7 +52,7 @@ struct sbuf{
  */
 void sbuf_init(struct sbuf *sp, int n)
 {
-	if(sbuf==NULL)
+	if(sp==NULL)
 	{
 		printf("--- EXIT ---\n");
 		exit(-1); //TODO: gérer erreurs
