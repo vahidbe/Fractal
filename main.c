@@ -302,6 +302,7 @@ void *consumer(void* arguments){
 				fractal_set_value(&f,i,j,fractal_compute_value(&f,i,j));
 			}
 			printf("value=%d\n",fractal_get_value(&f,700,450));
+			fflush(stdout);
 		}
 		/**/printf("*INSERT DU CONSOMMATEUR*\n");
 		/**/fflush(stdout);
