@@ -319,7 +319,7 @@ int main(int argc, char *argv[])
 	int* flag=(int*) malloc(sizeof(int));
 	int* flagOut=(int*) malloc(sizeof(int));
 	int* doneFlag=(int*) malloc(sizeof(int));
-	printf("--- Initialisation des variables terminée ---");
+	printf("%s","--- Initialisation des variables terminée ---");
 
 	if((*argv[1]=='-')&(*(argv[1]+1)=='d')){
 		optionD=1;
