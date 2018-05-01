@@ -433,8 +433,8 @@ fflush(stdout);
 	printf("\n Nombre de threads qui vont être utilisés : %d \n \n",numberThreads);
 fflush(stdout);
 	
-	sbuf_init(buf, (numberThreads+3));            
-	sbuf_init(bufout, (numberThreads+3));    
+	sbuf_init(buf, (numberThreads+100));            
+	sbuf_init(bufout, (numberThreads+100));    
 
 	printf("--- Initialisation des buffers terminée ---\n");
 fflush(stdout);
