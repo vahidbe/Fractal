@@ -262,7 +262,7 @@ void *consumer(void* arguments){
 	while(!done){		
 		int ic=0;
 		printf("va lire sem_getvalue du consommateur\n");
-		sem_getvalue(&(&buf->items),&ic);
+		sem_getvalue(&(buf->items),&ic);
 		printf("FLAG=%d\n",*flag);
 		if(((*flag)<=0)&(ic==0))
 		{
@@ -311,7 +311,7 @@ void *writer(void* arguments){
 		while(!isEmpty){
 			int ic;
 			printf("va lire sem_getvalue du writer\n");
-			sem_getvalue(&(&buf->items),&ic);
+			sem_getvalue(&(buf->items),&ic);
 			printf("\n FLAGOUT=%d\n\n",*flagOut);
 			if(((*flagOut)<=0)&(ic==0)){
 				printf("===DONE=1===\n");
