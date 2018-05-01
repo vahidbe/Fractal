@@ -104,6 +104,7 @@ int* sbuf_remove(struct sbuf *sp)
 void *producer(void* arguments){	
 	/**/printf("--- DEBUT PRODUCTEUR ---\n");
 	/**/fflush(stdout);
+	int i=5;
 	int* id=malloc(sizeof(int));
 	*id=i;
 	/**/printf("--- INSERT PROD ---\n");
