@@ -319,7 +319,7 @@ int main(int argc, char *argv[])
 	int* flag=(int*) malloc(sizeof(int));
 	int* flagOut=(int*) malloc(sizeof(int));
 	int* doneFlag=(int*) malloc(sizeof(int));
-	printf("%s","--- Initialisation des variables terminée ---");
+	printf("%s","--- Initialisation des variables terminée ---\n");
 
 	if((*argv[1]=='-')&(*(argv[1]+1)=='d')){
 		optionD=1;
@@ -340,7 +340,7 @@ int main(int argc, char *argv[])
 	        numberThreads=argc-2-optionsCount;  //Vraiment utile de retirer optionsCount ? Il sera d'office nul --> il est pas d'office nul, regarde le if juste au dessus
 	}
 	
-	printf("--- Lecture des options terminée ---");
+	printf("--- Lecture des options terminée ---\n");
 	
 	sbuf_init(buf, (numberThreads));            
 	sbuf_init(bufout, (numberThreads));       
@@ -357,7 +357,7 @@ int main(int argc, char *argv[])
 		doneFlagConst=(argc-2-optionsCount)+numberThreads+1;
 	}
 	
-	printf("--- Initialisation des constantes terminée ---");
+	printf("--- Initialisation des constantes terminée ---\n");
 	
 	for(count=optionsCount+1;count<argc;count++){
 	  if(((*argv[count])=='-')&(count!=(argc))){      
@@ -414,7 +414,7 @@ int main(int argc, char *argv[])
 		}
 	}
 	
-	printf("--- Initialisation des producteurs terminée ---");
+	printf("--- Initialisation des producteurs terminée ---\n");
 	
 	int i;
 	for(i=0;(i<numberThreads);i++){
@@ -434,7 +434,7 @@ int main(int argc, char *argv[])
 		pthread_create(&(cons[i]), NULL, (void*) &consumer, (void*) arguments);
 	}
 	
-	printf("--- Initialisation des consommateurs terminée ---");
+	printf("--- Initialisation des consommateurs terminée ---\n");
 	
 	//TODO: faire plein de writers qui comparent avec sémaphore la fractale la plus haute
 	if(!optionD){
@@ -469,7 +469,7 @@ int main(int argc, char *argv[])
 		}
 	}
 	
-	printf("--- Initialisation des writers terminée ---");
+	printf("--- Initialisation des writers terminée ---\n");
 	
 	end : 
 	sbuf_clean(buf);
@@ -479,7 +479,7 @@ int main(int argc, char *argv[])
 	free(doneFlag);
 	exit(-1);
 	
-	printf("--- Fin du programme ---");
+	printf("--- Fin du programme ---\n");
 	
 	return 0;
 }
