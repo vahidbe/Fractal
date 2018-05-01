@@ -83,14 +83,12 @@ void sbuf_clean(struct sbuf *sp)
  */
 void sbuf_insert(struct sbuf *sp, struct fractal* item)
 {
-	printf("*UTILISATION DE LA FONCTION INSERT*\n");
 	sem_wait(&(sp->slots));
 	sem_wait(&(sp->mutex));
 	sp->rear=((sp->rear)+1)%(sp->n);
 	sp->buf[sp->rear]=item;
 	sem_post(&(sp->mutex));
 	sem_post(&(sp->items));
-	printf("*FIN DE LA FONCTION INSERT*\n");
 }
 
 /* @pre sbuf!=NULL
@@ -98,14 +96,12 @@ void sbuf_insert(struct sbuf *sp, struct fractal* item)
  */
 struct fractal* sbuf_remove(struct sbuf *sp)
 {
-	printf("*UTILISATION DE LA FONCTION REMOVE*\n");
 	sem_wait(&(sp->items));
 	sem_wait(&(sp->mutex));
 	sp->front=((sp->front)+1)%(sp->n);
 	struct fractal* res=sp->buf[sp->front];
 	sem_post(&(sp->mutex));
 	sem_post(&(sp->slots));
-	printf("*FIN DE LA FONCTION REMOVE*\n");
 	return res;
 }
 
@@ -236,7 +232,9 @@ void *producer(void* arguments){
 		return (NULL);
 	  }
 	  printf("=== Fractale lue : %s %d %d %lf %lf ===\n",name,*buf2,*buf3,*buf4,*buf5);
+	  printf("*INSERT DU PRODUCTEUR*\n");
 	sbuf_insert(buf,fractal_new(name,*buf2,*buf3,*buf4,*buf5));
+	printf("*INSERT DU PRODUCTEUR TERMINE*\n");
 	x=fscanf(file,"%64s",buf1);
 	  }
       }
@@ -259,7 +257,9 @@ void *consumer(void* arguments){
 	free(argument);
 	printf("--- Debut calcul consommateur ---\n");
 	while(!done){
+		printf("*REMOVE DU CONSOMMATEUR*\n");
 		struct fractal* f=sbuf_remove(buf);
+		printf("*REMOVE DU CONSOMMATEUR TERMINE*\n");
 		int i;
 		int j;
 		for(i=0;i<f->width;i++){
@@ -267,7 +267,9 @@ void *consumer(void* arguments){
 				fractal_set_value(f,i,j,fractal_compute_value(f,i,j));
 			}
 		}
-		sbuf_insert(bufout,f);		
+		printf("*INSERT DU CONSOMMATEUR*\n");
+		sbuf_insert(bufout,f);	
+		printf("*INSERT DU CONSOMMATEUR TERMINE*\n");		
 		int* ic;
 		sem_getvalue(&(buf->items),ic);
 		if(((*flag)<=0)&(*ic==0))
@@ -296,7 +298,9 @@ void *writer(void* arguments){
 	printf("--- Debut ecriture writer ---\n");
 	if(!optionD){
 		while(!isEmpty){
+			printf("*REMOVE DU WRITER*\n");
 			struct fractal* f = (struct fractal*) sbuf_remove(buf);
+			printf("*REMOVE DU WRITER TERMINE*\n");
 			double newAverage = fractal_compute_average(f);
 			if(newAverage>average){
 				average=newAverage;
