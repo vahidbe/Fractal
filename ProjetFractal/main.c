@@ -304,7 +304,9 @@ void *writer(void* arguments){
 		if(((*flagOut)<=0)&(*ic==0)){
 			isEmpty=1;
 		}
+		printf("=== ECRITURE ===\n");
 		write_bitmap_sdl(highestF,fileOutName);
+		printf("=== FIN ECRITURE ===\n");
 	}
 	else{
 		while(!isEmpty){
