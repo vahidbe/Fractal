@@ -52,7 +52,7 @@ struct sbuf{
  */
 void sbuf_init(struct sbuf *sp, int n)
 {
-    sp->buf =(struct fractal**) calloc(n, sizeof(struct fractal));
+    sp->buf =(struct fractal**) calloc(n, sizeof(struct fractal*));
 	if(((sp->buf)==NULL)){
 		exit(-1); //TODO: gérer erreurs
 	}
