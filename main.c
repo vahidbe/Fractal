@@ -24,6 +24,7 @@
 int flagConst;
 int flagOutConst;
 int doneFlagConst;
+int fractCount=0;
 
 struct args{
 	char* charP_arg;
@@ -234,6 +235,7 @@ void *producer(void* arguments){
 	  printf("=== Fractale lue : %s %d %d %lf %lf ===\n",name,*buf2,*buf3,*buf4,*buf5);
 	  printf("*INSERT DU PRODUCTEUR*\n");
 	sbuf_insert(buf,fractal_new(name,*buf2,*buf3,*buf4,*buf5));
+	fractCount++;
 	printf("*INSERT DU PRODUCTEUR TERMINE*\n");
 	x=fscanf(file,"%64s",buf1);
 	  }
@@ -278,9 +280,9 @@ void *consumer(void* arguments){
 				fractal_set_value(f,i,j,fractal_compute_value(f,i,j));
 			}
 		}
-		/*printf("*INSERT DU CONSOMMATEUR*\n");
+		printf("*INSERT DU CONSOMMATEUR*\n");
 		sbuf_insert(bufout,f);	
-		printf("*INSERT DU CONSOMMATEUR TERMINE*\n");*/		
+		printf("*INSERT DU CONSOMMATEUR TERMINE*\n");	
 		}
 	}
 	printf("--- Fin consommateur ---\n");
@@ -305,11 +307,12 @@ void *writer(void* arguments){
 	if(!optionD){
 		printf("===OPTIOND-0===\n");
 		while(!isEmpty){
-			int* ic;
-			printf("va lire sem_getvalue du writer\n");
-			sem_getvalue(&(buf->items),ic);
+			//int* ic;
+			//printf("va lire sem_getvalue du writer\n");
+			//sem_getvalue(&(buf->items),ic);
 			printf("\n FLAGOUT=%d\n\n",*flagOut);
-			if(((*flagOut)<=0)&(*ic==0)){
+			//if(((*flagOut)<=0)&(*ic==0)){
+			if(((*flagOut)<=0)&(fractCount<=0)){
 				isEmpty=1;
 			}
 			else{
@@ -321,6 +324,7 @@ void *writer(void* arguments){
 					average=newAverage;
 					highestF=f;
 				}
+				fractCount--;
 			}
 			
 		}
@@ -479,7 +483,7 @@ int main(int argc, char *argv[])
 	}
 	
 	printf("--- Initialisation des consommateurs terminée ---\n");
-	/*
+	
 	//TODO: faire plein de writers qui comparent avec sémaphore la fractale la plus haute
 	if(!optionD){
 		struct args* arguments=(struct args*) malloc(sizeof(struct args));
@@ -508,7 +512,7 @@ int main(int argc, char *argv[])
 			pthread_create(&(writ[i]), NULL, (void*) &writer, (void*) bufout);
 		}
 	}
-	*/
+	
 	printf("--- Initialisation des writers terminée ---\n");
 	
 	printf("\n doneFlag = %d \n\n",*doneFlag);
