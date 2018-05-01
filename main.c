@@ -56,21 +56,21 @@ void sbuf_init(struct sbuf *sp, int n)
 	if(sp==NULL)
 	{
 		printf("--- EXIT ---\n");
-		fflush(stdout);
+		ffluch(stdout);
 		exit(-1); //TODO: gérer erreurs
 	}
 	printf("--- Debut de l'initialisation du buffer ---\n");
-fflush(stdout);
-    sp->buf = calloc(n, sizeof(struct fractal*));
+ffluch(stdout);
+    sp->buf = malloc(n*sizeof(struct fractal*));
 	printf("--- Malloc d'initialisation de buffer terminé ---\n");
-fflush(stdout);
+ffluch(stdout);
     sp->n = n;                       /* Buffer content les entiers */
     sp->front = sp->rear = 0;        /* Buffer vide si front == rear */
     sem_init(&sp->mutex, 0, 1);      /* Exclusion mutuelle */
     sem_init(&sp->slots, 0, n);      /* Au début, n slots vides */
     sem_init(&sp->items, 0, 0);      /* Au début, rien à consommer */
 	printf("--- Initialisation du buffer terminée ---\n");
-fflush(stdout);
+ffluch(stdout);
 }
 
 /*
@@ -112,7 +112,7 @@ struct fractal* sbuf_remove(struct sbuf *sp)
 
 void *producer(void* arguments){	
 	printf("--- DEBUT PRODUCTEUR ---\n");
-fflush(stdout);
+ffluch(stdout);
 	struct args* argument=(struct args*) arguments;
 	char* fileName=argument->charP_arg;
 	struct sbuf* buf=argument->buf_arg;
@@ -145,7 +145,7 @@ fflush(stdout);
 	return (NULL);
     }	
 	printf("--- Fin malloc producteur ---\n");
-fflush(stdout);
+ffluch(stdout);
   int i;
   x=fscanf(file,"%64s",buf1);
   for(i=0;(!done);i++){
@@ -239,29 +239,29 @@ fflush(stdout);
 		return (NULL);
 	  }
 	  printf("=== Fractale lue : %s %d %d %lf %lf ===\n",name,*buf2,*buf3,*buf4,*buf5);
-fflush(stdout);
+ffluch(stdout);
 	  printf("*INSERT DU PRODUCTEUR*\n");
-fflush(stdout);
+ffluch(stdout);
 	sbuf_insert(buf,fractal_new(name,*buf2,*buf3,*buf4,*buf5));
 	fractCount++;
 	printf("*INSERT DU PRODUCTEUR TERMINE*\n");
-fflush(stdout);
+ffluch(stdout);
 	x=fscanf(file,"%64s",buf1);
 	  }
       }
   }
   printf("--- Fin producteur ---\n");
-fflush(stdout);
+ffluch(stdout);
   (*doneFlag)--;
   (*flag)--;
   printf("\nPRODFLAG=%d\n\n",*flag);
-fflush(stdout);
+ffluch(stdout);
   return NULL;
 }
 
 void *consumer(void* arguments){
 	printf("--- DEBUT CONSOMMATEUR ---\n");
-fflush(stdout);
+ffluch(stdout);
 	int done=0;
 	struct args* argument=(struct args*) arguments;
 	struct sbuf* buf=argument->buf_arg;
@@ -271,46 +271,46 @@ fflush(stdout);
 	int* doneFlag=argument->doneFlag;
 	free(argument);
 	printf("--- Debut calcul consommateur ---\n");
-fflush(stdout);
+ffluch(stdout);
 	while(!done){		
 		int ic=0;
 		printf("va lire sem_getvalue du consommateur\n");
-fflush(stdout);
+ffluch(stdout);
 		sem_getvalue(&(buf->items),&ic);
 		printf("FLAG=%d\n",*flag);
-fflush(stdout);
+ffluch(stdout);
 		if(((*flag)<=0)&(ic==0))
 		{
 			printf("=====DONE=1=====\n");
-fflush(stdout);
+ffluch(stdout);
 			done=1;
 		}
 		else{
 		printf("*REMOVE DU CONSOMMATEUR*\n");
-fflush(stdout);
+ffluch(stdout);
 		struct fractal* f=sbuf_remove(buf);
 		printf("*REMOVE DU CONSOMMATEUR TERMINE*\n");
-fflush(stdout);
+ffluch(stdout);
 		int i;
 		int j;
 		for(i=0;i<f->width;i++){
 			for(j=0;j<f->height;j++){
 				printf("about to compute value\n");
-fflush(stdout);
+ffluch(stdout);
 				fractal_set_value(f,i,j,fractal_compute_value(f,i,j));
 				printf("value computed\n");
-fflush(stdout);
+ffluch(stdout);
 			}
 		}
 		printf("*INSERT DU CONSOMMATEUR*\n");
-fflush(stdout);
+ffluch(stdout);
 		//sbuf_insert(bufout,f);	
 		printf("*INSERT DU CONSOMMATEUR TERMINE*\n");	
-fflush(stdout);
+ffluch(stdout);
 		}
 	}
 	printf("--- Fin consommateur ---\n");
-fflush(stdout);
+ffluch(stdout);
 	(*flagOut)--;
 	(*doneFlag)--;
 	return NULL;
@@ -318,7 +318,7 @@ fflush(stdout);
 
 void *writer(void* arguments){
 	printf("--- DEBUT WRITER ---\n");
-fflush(stdout);
+ffluch(stdout);
 	int isEmpty=0;
 	struct args* argument=(struct args*) arguments;
 	struct sbuf* buf=argument->bufout_arg;
@@ -330,53 +330,53 @@ fflush(stdout);
 	int* doneFlag=argument->doneFlag;
 	free(argument);
 	printf("--- Debut ecriture writer ---\n");
-fflush(stdout);
+ffluch(stdout);
 	if(!optionD){
 		printf("===OPTIOND-0===\n");
-fflush(stdout);
+ffluch(stdout);
 		while(!isEmpty){
 			int ic;
 			printf("va lire sem_getvalue du writer\n");
-fflush(stdout);
+ffluch(stdout);
 			sem_getvalue(&(buf->items),&ic);
 			printf("\n FLAGOUT=%d\n\n",*flagOut);
-fflush(stdout);
+ffluch(stdout);
 			if(((*flagOut)<=0)&(ic==0)){
 				printf("===DONE=1===\n");
-fflush(stdout);
+ffluch(stdout);
 				isEmpty=1;
 			}
 			else{
 				printf("*REMOVE DU WRITER*\n");
-fflush(stdout);
+ffluch(stdout);
 				struct fractal* f = sbuf_remove(buf);
 				printf("*REMOVE DU WRITER TERMINE*\n");
-fflush(stdout);
+ffluch(stdout);
 				printf("about to compute average\n");
-fflush(stdout);
+ffluch(stdout);
 				double newAverage = fractal_compute_average(f);
 				printf("average computed\n");
-fflush(stdout);
+ffluch(stdout);
 				if(newAverage>average){
 					average=newAverage;
 					highestF=f;
 				}
 				printf("average=%lf\n",average);
-fflush(stdout);
+ffluch(stdout);
 			}
 			
 		}
 		
 		printf("=== ECRITURE ===\n");
-fflush(stdout);
+ffluch(stdout);
 		write_bitmap_sdl(highestF,fileOutName);
 		printf("=== FIN ECRITURE ===\n");
-fflush(stdout);
+ffluch(stdout);
 	}
 	else{
 		while(!isEmpty){
 			printf("===OPTIOND-1===\n");
-fflush(stdout);
+ffluch(stdout);
 			int ic=0;
 			sem_getvalue(&(buf->items),&ic);
 			if(((*flagOut)<=0)&(ic==0)){
@@ -389,7 +389,7 @@ fflush(stdout);
 		}
 	}
 	printf("--- Fin writer ---\n");
-fflush(stdout);
+ffluch(stdout);
 	(*doneFlag)--;
 	return NULL;
 }
@@ -407,7 +407,7 @@ int main(int argc, char *argv[])
 	int* flagOut=(int*) malloc(sizeof(int));
 	int* doneFlag=(int*) malloc(sizeof(int));
 	printf("%s","--- Initialisation des variables terminée ---\n");
-fflush(stdout);
+ffluch(stdout);
 
 	if((*argv[1]=='-')&(*(argv[1]+1)=='d')){
 		optionD=1;
@@ -429,22 +429,22 @@ fflush(stdout);
 	}
 	
 	printf("--- Lecture des options terminée ---\n");
-fflush(stdout);
+ffluch(stdout);
 	printf("\n Nombre de threads qui vont être utilisés : %d \n \n",numberThreads);
-fflush(stdout);
+ffluch(stdout);
 	
 	sbuf_init(buf, (numberThreads+100));            
 	sbuf_init(bufout, (numberThreads+100));    
 
 	printf("--- Initialisation des buffers terminée ---\n");
-fflush(stdout);
+ffluch(stdout);
 	
 	pthread_t prod[argc-2-optionsCount];
 	pthread_t cons[numberThreads];
 	pthread_t writ[argc-2-optionsCount];
 	
 	printf("--- Initialisation des tableaux de pthread_t terminée ---\n");
-fflush(stdout);
+ffluch(stdout);
 	
 	flagConst=argc-2-optionsCount;
 	flagOutConst=numberThreads;
@@ -458,7 +458,7 @@ fflush(stdout);
 	*flag=flagConst;
 	*flagOut=flagOutConst;
 	printf("--- Initialisation des constantes terminée ---\n");
-fflush(stdout);
+ffluch(stdout);
 	
 	for(count=optionsCount+1;count<argc;count++){
 	  if(((*argv[count])=='-')&(count!=(argc))){      
@@ -505,7 +505,7 @@ fflush(stdout);
 				arguments->doneFlag=doneFlag;
 				arguments->charP_arg=argv[count];
 				printf("---CREATION D'UN PRODUCTEUR---\n");
-fflush(stdout);
+ffluch(stdout);
 				pthread_create(&(prod[count-optionsCount]), NULL, (void*) &producer, (void*) arguments);
 			}
 			else{
@@ -515,7 +515,7 @@ fflush(stdout);
 	}
 	
 	printf("--- Initialisation des producteurs terminée ---\n");
-fflush(stdout);
+ffluch(stdout);
 	
 	int i;
 	for(i=0;(i<numberThreads);i++){
@@ -529,12 +529,12 @@ fflush(stdout);
 		arguments->buf_arg=buf;
 		arguments->bufout_arg=bufout;
 		printf("---CREATION D'UN CONSOMMATEUR---\n");
-fflush(stdout);
+ffluch(stdout);
 		pthread_create(&(cons[i]), NULL, (void*) &consumer, (void*) arguments);
 	}
 	
 	printf("--- Initialisation des consommateurs terminée ---\n");
-fflush(stdout);
+ffluch(stdout);
 	/*
 	//TODO: faire plein de writers qui comparent avec sémaphore la fractale la plus haute
 	if(!optionD){
@@ -547,7 +547,7 @@ fflush(stdout);
 		arguments->optionD=optionD;
 		arguments->bufout_arg=bufout;
 		printf("---CREATION D'UN WRITER---\n");
-fflush(stdout);
+ffluch(stdout);
 		pthread_create(&(writ[0]), NULL, (void*) &writer, (void*) arguments);
 	}
 	else{
@@ -562,39 +562,39 @@ fflush(stdout);
 			arguments->optionD=optionD;
 			arguments->bufout_arg=bufout;
 			printf("---CREATION D'UN WRITER---\n");
-fflush(stdout);
+ffluch(stdout);
 			pthread_create(&(writ[i]), NULL, (void*) &writer, (void*) bufout);
 		}
 	}
 	
 	printf("--- Initialisation des writers terminée ---\n");
-fflush(stdout);
+ffluch(stdout);
 	*/
 	printf("\n doneFlag = %d \n\n",*doneFlag);
-fflush(stdout);
+ffluch(stdout);
 	
 	while((*doneFlag)>0){
 		//printf("\n DONEFLAG=%d \n\n",*doneFlag);
-//fflush(stdout);
+//ffluch(stdout);
 	}
 	
 	printf("--- Fin des threads ---\n");
-fflush(stdout);
+ffluch(stdout);
 	
 	end :
 	
 	sbuf_clean(buf);
 	sbuf_clean(bufout);
 	printf("--- Buffers clean ---\n");
-fflush(stdout);
+ffluch(stdout);
 	free(flag);
 	free(flagOut);
 	free(doneFlag);
 	printf("--- Flags free ---\n");
-fflush(stdout);
+ffluch(stdout);
 	
 	printf("--- Fin du programme ---\n");
-fflush(stdout);
+ffluch(stdout);
 	
 	return 0;
 }
