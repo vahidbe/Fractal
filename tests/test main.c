@@ -239,7 +239,6 @@ fflush(stdout);
 	  printf("*INSERT DU PRODUCTEUR*\n");
 fflush(stdout);
 	sbuf_insert(buf,*buf2);
-	fractCount++;
 	printf("*INSERT DU PRODUCTEUR TERMINE*\n");
 fflush(stdout);
 	x=fscanf(file,"%64s",buf1);
