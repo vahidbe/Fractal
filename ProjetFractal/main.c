@@ -391,7 +391,7 @@ int main(int argc, char *argv[])
 			  }
 			fputs(file,chaine);
 			fclose(file);
-			if(count!=(argc)){
+			if(count!=(argc-1)){
 				//TODO: ne pas oublier les free
 				struct args* arguments=(struct args*) malloc(sizeof(struct args));
 				if(arguments==NULL){
@@ -413,7 +413,7 @@ int main(int argc, char *argv[])
 
 
 	  else{
-			if(count!=(argc)){
+			if(count!=(argc-1)){
 				struct args* arguments=(struct args*) malloc(sizeof(struct args));
 				if(arguments==NULL){
 					goto end;
