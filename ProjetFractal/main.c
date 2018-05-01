@@ -56,6 +56,7 @@ void sbuf_init(struct sbuf *sp, int n)
 	if(((sp->buf)==NULL)){
 		exit(-1); //TODO: gérer erreurs
 	}
+	printf("--- Calloc d'initialisation de buffer terminé ---\n");
     sp->n = n;                       /* Buffer content les entiers */
     sp->front = sp->rear = 0;        /* Buffer vide si front == rear */
     sem_init(&sp->mutex, 0, 1);      /* Exclusion mutuelle */
