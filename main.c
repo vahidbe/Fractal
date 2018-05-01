@@ -264,7 +264,7 @@ void *consumer(void* arguments){
 		printf("va lire sem_getvalue du consommateur\n");
 		sem_getvalue(&(buf->items),&ic);
 		printf("FLAG=%d\n",*flag);
-		if(((*flag)<=0)&(*ic==0))
+		if(((*flag)<=0)&(ic==0))
 		{
 			printf("=====DONE=1=====\n");
 			done=1;
