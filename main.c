@@ -268,9 +268,8 @@ void *consumer(void* arguments){
 	/**/printf("--- DEBUT CONSOMMATEUR ---\n");
 	/**/fflush(stdout);
 	int done=0;
-	struct args* argument=(struct args*) arguments;
-	struct sbuf* buf=argument->buf_arg;
-	struct sbuf* bufout=argument->bufout_arg;
+	struct sbuf* bufIn=buf_arg;
+	struct sbuf* bufOut=argument->bufout_arg;
 	free(argument);
 	/**/printf("--- Debut calcul consommateur ---\n");
 	/**/fflush(stdout);
@@ -325,10 +324,7 @@ void *writer(void* arguments){
 	/**/printf("--- DEBUT WRITER ---\n");
 	/**/fflush(stdout);
 	int isEmpty=0;
-	struct args* argument=(struct args*) arguments;
-	struct sbuf* buf=argument->bufout_arg;
-	int optionD=argument->optionD;
-	char* fileOutName=argument->fileOutName;
+	struct sbuf* buf=bufout_arg;
 	double average;
 	struct fractal highestF;
 	free(argument);
@@ -408,7 +404,7 @@ int main(int argc, char *argv[])
 	int numberThreads=0;
 	int count;
 	int optionsCount=0;
-	int optionD=0;
+	optionD=0;
 	char* fileOutName;	
 	struct sbuf* bufIn=malloc(sizeof(struct sbuf));
 	struct sbuf* bufOut=malloc(sizeof(struct sbuf));
@@ -505,16 +501,14 @@ int main(int argc, char *argv[])
 		{
 			if(count!=(argc-1))
 			{
-				struct args* arguments=(struct args*) malloc(sizeof(struct args));
 				if(arguments==NULL)
 				{
 					goto end;
 				}
-				arguments->buf_arg=bufIn;
 				arguments->charP_arg=argv[count];
 				/**/printf("---CREATION D'UN PRODUCTEUR---\n");
 				/**/fflush(stdout);
-				pthread_create(&(prod[count-optionsCount]), NULL, (void*) &producer, NULL);
+				pthread_create(&(prod[count-optionsCount]), NULL, (void*) &producer, argv[count]);
 			}
 			else
 			{
@@ -529,13 +523,6 @@ int main(int argc, char *argv[])
 	int i;
 	for(i=0;(i<numberThreads);i++)
 	{
-		struct args* arguments=(struct args*) malloc(sizeof(struct args));
-		if(arguments==NULL)
-		{
-			goto end;
-		}
-		arguments->buf_arg=bufIn;
-		arguments->bufout_arg=bufOut;
 		/**/printf("---CREATION D'UN CONSOMMATEUR---\n");
 		/**/fflush(stdout);
 		pthread_create(&(cons[i]), NULL, (void*) &consumer, NULL);
@@ -547,13 +534,6 @@ int main(int argc, char *argv[])
 	//TODO: faire plein de writers qui comparent avec sémaphore la fractale la plus haute
 	if(!optionD)
 	{
-		struct args* arguments=(struct args*) malloc(sizeof(struct args));
-		if(arguments==NULL)
-		{
-			goto end;
-		}
-		arguments->optionD=optionD;
-		arguments->bufout_arg=bufOut;
 		/**/printf("---CREATION D'UN WRITER---\n");
 		/**/fflush(stdout);
 		pthread_create(&(writ[0]), NULL, (void*) &writer, NULL);
@@ -563,16 +543,9 @@ int main(int argc, char *argv[])
 		int i;
 		for(i=0;i<(argc-2-optionsCount);i++)
 		{
-			struct args* arguments=(struct args*) malloc(sizeof(struct args));
-			if(arguments==NULL)
-			{
-				goto end;
-			}
-			arguments->optionD=optionD;
-			arguments->bufout_arg=bufOut;
 			/**/printf("---CREATION D'UN WRITER---\n");
 			/**/fflush(stdout);
-			pthread_create(&(writ[i]), NULL, (void*) &writer, (void*) bufOut);   //Ici je fais quoi ?
+			pthread_create(&(writ[i]), NULL, (void*) &writer, NULL);
 		}
 	}	
 	/**/printf("--- Initialisation des writers terminée ---\n");
