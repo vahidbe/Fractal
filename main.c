@@ -80,7 +80,7 @@ void sbuf_insert(struct sbuf *sp, struct fractal item)
 	///**/printf("ITEMS = %d sur %d\n",ic,sp->n);
 	sem_wait(&(sp->slots));
 	sem_wait(&(sp->mutex));
-	sp->rear=((sp->rear)+1*sizeof(struct fractal))%(sp->n);
+	sp->rear=((sp->rear)+1)%(sp->n);
 	sp->buf[sp->rear]=item;
 	sem_post(&(sp->mutex));
 	sem_post(&(sp->items));
