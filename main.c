@@ -267,9 +267,9 @@ void *consumer(void* arguments){
 				fractal_set_value(f,i,j,fractal_compute_value(f,i,j));
 			}
 		}
-		printf("*INSERT DU CONSOMMATEUR*\n");
+		/*printf("*INSERT DU CONSOMMATEUR*\n");
 		sbuf_insert(bufout,f);	
-		printf("*INSERT DU CONSOMMATEUR TERMINE*\n");		
+		printf("*INSERT DU CONSOMMATEUR TERMINE*\n");		*/
 		int* ic;
 		sem_getvalue(&(buf->items),ic);
 		if(((*flag)<=0)&(*ic==0))
@@ -368,8 +368,8 @@ int main(int argc, char *argv[])
 	printf("--- Lecture des options terminée ---\n");
 	printf("\n Nombre de threads qui vont être utilisés : %d \n \n",numberThreads);
 	
-	sbuf_init(buf, (numberThreads+10));            
-	sbuf_init(bufout, (numberThreads+10));    
+	sbuf_init(buf, (numberThreads+3));            
+	sbuf_init(bufout, (numberThreads+3));    
 
 	printf("--- Initialisation des buffers terminée ---\n");
 	
@@ -461,7 +461,7 @@ int main(int argc, char *argv[])
 		printf("---CREATION D'UN CONSOMMATEUR---\n");
 		pthread_create(&(cons[i]), NULL, (void*) &consumer, (void*) arguments);
 	}
-	
+	/*
 	printf("--- Initialisation des consommateurs terminée ---\n");
 	
 	//TODO: faire plein de writers qui comparent avec sémaphore la fractale la plus haute
@@ -494,7 +494,7 @@ int main(int argc, char *argv[])
 	}
 	
 	printf("--- Initialisation des writers terminée ---\n");
-	
+	*/
 	printf("\n doneFlag = %d \n\n",*doneFlag);
 	
 	while((*doneFlag)>0){}
