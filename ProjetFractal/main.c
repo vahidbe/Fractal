@@ -37,7 +37,7 @@ struct args{
 };	
 
 struct sbuf{
-    struct fractal* *buf;          /* Buffer partagé */
+    struct fractal** buf;          /* Buffer partagé */
     int n;             /* Nombre de slots dans le buffer */
     int front;         /* buf[(front+1)%n] est le premier élément */
     int rear;          /* buf[rear%n] est le dernier */
@@ -52,10 +52,10 @@ struct sbuf{
  */
 void sbuf_init(struct sbuf *sp, int n)
 {
-    sp->buf =(struct fractal**) calloc(n, sizeof(struct fractal*));
-	if(((sp->buf)==NULL)){
+    sp->buf =(struct fractal**) calloc(n, sizeof(struct fractal));
+	/*if(((sp->buf)==NULL)){
 		exit(-1); //TODO: gérer erreurs
-	}
+	}*/
 	printf("--- Calloc d'initialisation de buffer terminé ---\n");
     sp->n = n;                       /* Buffer content les entiers */
     sp->front = sp->rear = 0;        /* Buffer vide si front == rear */
