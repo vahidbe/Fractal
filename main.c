@@ -278,9 +278,9 @@ void *consumer(void* arguments){
 				fractal_set_value(f,i,j,fractal_compute_value(f,i,j));
 			}
 		}
-		printf("*INSERT DU CONSOMMATEUR*\n");
+		/*printf("*INSERT DU CONSOMMATEUR*\n");
 		sbuf_insert(bufout,f);	
-		printf("*INSERT DU CONSOMMATEUR TERMINE*\n");		
+		printf("*INSERT DU CONSOMMATEUR TERMINE*\n");*/		
 		}
 	}
 	printf("--- Fin consommateur ---\n");
@@ -479,7 +479,7 @@ int main(int argc, char *argv[])
 	}
 	
 	printf("--- Initialisation des consommateurs terminée ---\n");
-	
+	/*
 	//TODO: faire plein de writers qui comparent avec sémaphore la fractale la plus haute
 	if(!optionD){
 		struct args* arguments=(struct args*) malloc(sizeof(struct args));
@@ -508,7 +508,7 @@ int main(int argc, char *argv[])
 			pthread_create(&(writ[i]), NULL, (void*) &writer, (void*) bufout);
 		}
 	}
-	
+	*/
 	printf("--- Initialisation des writers terminée ---\n");
 	
 	printf("\n doneFlag = %d \n\n",*doneFlag);
