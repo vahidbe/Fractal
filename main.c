@@ -302,12 +302,9 @@ void *consumer(void* arguments){
 		int i;
 		int j;
 		for(i=0;i<f.width;i++){
-			for(j=0;j<f.height;j++){
-				/**/printf("about to compute value\n");
-				/**/fflush(stdout);
+			for(j=0;j<f.height;j++)
+			{
 				fractal_set_value(&f,i,j,fractal_compute_value(&f,i,j));
-				/**/printf("value computed\n");
-				/**/fflush(stdout);
 			}
 		}
 		/**/printf("*INSERT DU CONSOMMATEUR*\n");
