@@ -235,6 +235,7 @@ fflush(stdout);
 
 int main(int argc, char *argv[])
 {
+	argc=3;
 	int numberThreads=0;
 	int count;
 	int optionsCount=0;
