@@ -303,32 +303,38 @@ void *writer(void* arguments){
 	printf("--- Debut ecriture writer ---\n");
 	if(!optionD){
 		while(!isEmpty){
-			printf("*REMOVE DU WRITER*\n");
-			struct fractal* f = (struct fractal*) sbuf_remove(buf);
-			printf("*REMOVE DU WRITER TERMINE*\n");
-			double newAverage = fractal_compute_average(f);
-			if(newAverage>average){
-				average=newAverage;
-				highestF=f;
+			int* ic;
+			sem_getvalue(&(buf->items),ic);
+			if(((*flagOut)<=0)&(*ic==0)){
+				isEmpty=1;
 			}
+			else{
+				printf("*REMOVE DU WRITER*\n");
+				struct fractal* f = (struct fractal*) sbuf_remove(buf);
+				printf("*REMOVE DU WRITER TERMINE*\n");
+				double newAverage = fractal_compute_average(f);
+				if(newAverage>average){
+					average=newAverage;
+					highestF=f;
+				}
+			}
+			
 		}
-		int* ic;
-		sem_getvalue(&(buf->items),ic);
-		if(((*flagOut)<=0)&(*ic==0)){
-			isEmpty=1;
-		}
+		
 		printf("=== ECRITURE ===\n");
 		write_bitmap_sdl(highestF,fileOutName);
 		printf("=== FIN ECRITURE ===\n");
 	}
 	else{
 		while(!isEmpty){
-			struct fractal* f = (struct fractal*) sbuf_remove(buf);
-			write_bitmap_sdl(f,fractal_get_name(f));
 			int* ic;
 			sem_getvalue(&(buf->items),ic);
 			if(((*flagOut)<=0)&(*ic==0)){
 				isEmpty=1;
+			}
+			else{
+				struct fractal* f = (struct fractal*) sbuf_remove(buf);
+				write_bitmap_sdl(f,fractal_get_name(f));
 			}
 		}
 	}
