@@ -393,7 +393,7 @@ int main(int argc, char *argv[])
 	printf("\n Nombre de threads qui vont être utilisés : %d \n \n",numberThreads);
 	
 	sbuf_init(buf, (numberThreads+3));            
-	sbuf_init(bufout, (numberThreads+3));    
+	sbuf_init(bufout, (numberThreads+15));    
 
 	printf("--- Initialisation des buffers terminée ---\n");
 	
@@ -487,7 +487,7 @@ int main(int argc, char *argv[])
 	}
 	
 	printf("--- Initialisation des consommateurs terminée ---\n");
-	
+	/*
 	//TODO: faire plein de writers qui comparent avec sémaphore la fractale la plus haute
 	if(!optionD){
 		struct args* arguments=(struct args*) malloc(sizeof(struct args));
@@ -516,7 +516,7 @@ int main(int argc, char *argv[])
 			pthread_create(&(writ[i]), NULL, (void*) &writer, (void*) bufout);
 		}
 	}
-	
+	*/
 	printf("--- Initialisation des writers terminée ---\n");
 	
 	printf("\n doneFlag = %d \n\n",*doneFlag);
