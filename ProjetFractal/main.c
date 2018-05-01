@@ -343,10 +343,15 @@ int main(int argc, char *argv[])
 	printf("--- Lecture des options terminée ---\n");
 	
 	sbuf_init(buf, (numberThreads));            
-	sbuf_init(bufout, (numberThreads));       
+	sbuf_init(bufout, (numberThreads));    
+
+	printf("--- Initialisation des buffers terminée ---\n");
+	
 	pthread_t prod[argc-2-optionsCount];
 	pthread_t cons[numberThreads];
 	pthread_t writ[argc-2-optionsCount];
+	
+	printf("--- Initialisation des tableaux de pthread_t terminée ---\n");
 	
 	flagConst=argc-2-optionsCount;
 	flagOutConst=numberThreads;
