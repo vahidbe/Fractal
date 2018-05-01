@@ -27,7 +27,7 @@ struct args{
 };	
 
 struct sbuf{
-    struct fractal buf;           /* Buffer partagé */
+    struct fractal* buf;           /* Buffer partagé */
     int n;             				/* Nombre de slots dans le buffer */
     int front;        				/* buf[(front+1)%n] est le premier élément */
     int rear;          				/* buf[rear%n] est le dernier */
