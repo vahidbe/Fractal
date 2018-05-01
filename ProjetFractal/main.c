@@ -52,20 +52,20 @@ struct sbuf{
  */
 void sbuf_init(struct sbuf *sp, int n)
 {
-	printf("--- Debut de l'initialisation du buffer ---\n");
-    struct fractal** newf = malloc(n*sizeof(struct fractal*));
-	if((newf)==NULL){
+	if(sbuf==NULL)
+	{
 		printf("--- EXIT ---\n");
 		exit(-1); //TODO: gérer erreurs
 	}
-	printf("--- Malloc terminé ---\n");
-	sp->buf=newf;
-	printf("--- Calloc d'initialisation de buffer terminé ---\n");
+	printf("--- Debut de l'initialisation du buffer ---\n");
+    sp->buf = malloc(n*sizeof(struct fractal*));
+	printf("--- Malloc d'initialisation de buffer terminé ---\n");
     sp->n = n;                       /* Buffer content les entiers */
     sp->front = sp->rear = 0;        /* Buffer vide si front == rear */
     sem_init(&sp->mutex, 0, 1);      /* Exclusion mutuelle */
     sem_init(&sp->slots, 0, n);      /* Au début, n slots vides */
     sem_init(&sp->items, 0, 0);      /* Au début, rien à consommer */
+	printf("--- Initialisation du buffer terminée ---\n");
 }
 
 /*
@@ -319,8 +319,8 @@ int main(int argc, char *argv[])
 	int optionsCount=0;
 	int optionD=0;
 	char* fileOutName;	
-	struct sbuf* buf;
-	struct sbuf* bufout;
+	struct sbuf* buf=malloc(sizeof(sbuf));
+	struct sbuf* bufout=malloc(sizeof(sbuf));
 	int* flag=(int*) malloc(sizeof(int));
 	int* flagOut=(int*) malloc(sizeof(int));
 	int* doneFlag=(int*) malloc(sizeof(int));
