@@ -260,7 +260,6 @@ void *producer(void* arguments){
 }
 
 void *consumer(void* arguments){	
-	printf("lock cons\n");
 	pthread_mutex_lock(&mutexCons);
 	int done=0;
 	int ic=0;
@@ -271,11 +270,9 @@ void *consumer(void* arguments){
 		done=1;
 	}
 	pthread_mutex_unlock(&mutexCons);
-	printf("unlock cons\n");
 	while(!done)
 	{		
 		pthread_mutex_lock(&mutexCons);
-		printf("lock cons\n");
 		int ic=0;
 		sem_getvalue(&(bufIn->items),&ic);
 		printf("%d ",ic);
@@ -288,7 +285,6 @@ void *consumer(void* arguments){
 		{
 			struct fractal* f=(sbuf_remove(bufIn));
 			pthread_mutex_unlock(&mutexCons);
-			printf("unlock cons\n");
 			int i;
 			int j;
 			for(i=0;i<f->width;i++){
@@ -305,7 +301,7 @@ void *consumer(void* arguments){
 	(flagB2)--;
 	(flagDone)--;
 	pthread_mutex_unlock(&mutexCons);
-	printf("unlock cons FIN\n");
+	printf("cons FIN\n");
 	return NULL;
 }
 
@@ -347,7 +343,6 @@ void *writer(void* arguments){
 		while(!isEmpty)
 		{
 			pthread_mutex_lock(&mutexWrit);
-			printf("lock writer\n");
 			int ic=0;
 			sem_getvalue(&(bufOut->items),&ic);			
 			printf("W%d ",ic);
@@ -361,7 +356,6 @@ void *writer(void* arguments){
 				printf("Debut remove writer\n");
 				struct fractal* f = (sbuf_remove(bufOut));
 				printf("Fin remove writer\n");
-				printf("unlock writer\n");
 				pthread_mutex_unlock(&mutexWrit);
 				char* fileOut=strcat(fractal_get_name(f),".bmp");
 				write_bitmap_sdl(f,fileOut);
@@ -380,7 +374,7 @@ void *writer(void* arguments){
 	}	
 	free(highestF);
 	(flagDone)--;
-	printf("unlock writer FIN\n");
+	printf("writer FIN\n");
 	pthread_mutex_unlock(&mutexWrit);
 	return NULL;
 }
