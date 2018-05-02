@@ -309,7 +309,7 @@ void *consumer(void* arguments){
 			for(j=0;j<f->height;j++)
 			{
 				fractal_set_value(f,i,j,fractal_compute_value(f,i,j));
-				printf("%d\n",fractal_compute_value(f,i,j));
+				printf("%d\n",fractal_get_value(f,i,j));
 				fflush(stdout);
 			}
 			fflush(stdout);
