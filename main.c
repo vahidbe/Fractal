@@ -288,6 +288,8 @@ void *consumer(void* arguments){
 		/**/printf("C - FLAGB1=%d\n",flagB1);
 		/**/fflush(stdout);
 		//if(((flagB1)<=0)&(ic==0))
+		/**/printf("C - LENGTHI=%d\n",lengthI);
+		/**/fflush(stdout);	
 		if(((lengthI)<=0)&(flagB1<=0))
 		{
 			/**/printf("C - =====DONE=1=====\n");
@@ -346,6 +348,8 @@ void *writer(void* arguments){
 			///**/printf("va lire sem_getvalue du writer\n");
 			///**/fflush(stdout);
 			//sem_getvalue(&(buf->items),&ic);
+			/**/printf("W - lengthO=%d\n",lengthO);
+			/**/fflush(stdout);
 			/**/printf("\nW - FLAGB2=%d\n\n",flagB2);
 			/**/fflush(stdout);
 			//if(((flagB2)<=0)&(ic==0))
