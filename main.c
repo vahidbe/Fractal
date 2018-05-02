@@ -261,6 +261,12 @@ void *producer(void* arguments){
 
 void *consumer(void* arguments){
 	int done=0;
+	pthread_mutex_lock(&mutexCons);
+	if(((flagB1)<=0)&(ic==0))
+	{
+		done=1;
+	}
+	pthread_mutex_unlock(&mutexCons);
 	while(!done)
 	{		
 		pthread_mutex_lock(&mutexCons);
