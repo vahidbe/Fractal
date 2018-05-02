@@ -254,10 +254,7 @@ void *producer(void* arguments){
 			/**/fflush(stdout);
 			/**/printf("*INSERT DU PRODUCTEUR*\n");
 			/**/fflush(stdout);
-			struct fractal* f = fractal_new(name,*buf2,*buf3,*buf4,*buf5);
-			/**/printf("P=== Fractale lue : %s===\n",fractal_get_name((f)));
-			/**/fflush(stdout);
-			/**/sbuf_insert(bufIn,f);
+			/**/sbuf_insert(bufIn,fractal_new(name,*buf2,*buf3,*buf4,*buf5));
 			lengthI++;
 			/**/printf("*INSERT DU PRODUCTEUR TERMINE*\n");
 			/**/fflush(stdout);
