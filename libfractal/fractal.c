@@ -7,20 +7,20 @@ struct fractal *fractal_new(char* name, int width, int height, double a, double 
 {
 	struct fractal* f = (struct fractal*) malloc(sizeof(struct fractal));
 	if(f==NULL){
-		exit(1);
+		exit(-1);
 	}
 	else {
 		double** values= (double**) malloc(width*sizeof(double*));
 		if (values==NULL)
-			exit(1);
+			exit(-1);
                 int i;
 		for(i=0;i<width;i++){
 			values[i]= (double*) malloc(height*sizeof(double));
 			if (values[i]==NULL)
-				exit(1);
+				exit(-1);
 		}
 		f->values=values;
-		strcpy(name,f->name);
+		strcpy(f->name,name);
 		f->width=width;
 		f->height=height;
 		f->a=a;
@@ -36,8 +36,8 @@ void fractal_free(struct fractal *f)
 
 char* fractal_get_name(const struct fractal *f)
 {
-			/**/printf("F - ### Fractale recue par get name : %s, %d, %d, %f, %f ###\n",f->name,fractal_get_width(f),fractal_get_height(f), fractal_get_a(f), fractal_get_b(f));
-			/**/fflush(stdout);
+	/**/printf("F - ### Fractale recue par get name : %s, %d, %d, %f, %f ###\n",f->name,fractal_get_width(f),fractal_get_height(f), fractal_get_a(f), fractal_get_b(f));
+	/**/fflush(stdout);
   return  (f->name);
 }
 
