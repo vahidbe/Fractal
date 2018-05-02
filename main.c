@@ -260,6 +260,7 @@ void *producer(void* arguments){
 }
 
 void *consumer(void* arguments){	
+	printf("lock cons\n");
 	pthread_mutex_lock(&mutexCons);
 	int done=0;
 	int ic=0;
@@ -270,9 +271,11 @@ void *consumer(void* arguments){
 		done=1;
 	}
 	pthread_mutex_unlock(&mutexCons);
+	printf("unlock cons\n");
 	while(!done)
 	{		
 		pthread_mutex_lock(&mutexCons);
+		printf("lock cons\n");
 		int ic=0;
 		sem_getvalue(&(bufIn->items),&ic);
 		printf("%d ",ic);
@@ -285,6 +288,7 @@ void *consumer(void* arguments){
 		{
 			struct fractal* f=(sbuf_remove(bufIn));
 			pthread_mutex_unlock(&mutexCons);
+			printf("unlock cons\n");
 			int i;
 			int j;
 			for(i=0;i<f->width;i++){
@@ -293,12 +297,15 @@ void *consumer(void* arguments){
 					fractal_set_value(f,i,j,fractal_compute_value(f,i,j));
 				}
 			}
+			printf("debut insert cons\n");
 			sbuf_insert(bufOut,f);	
+			printf("fin insert cons\n");
 		}
 	}
 	(flagB2)--;
 	(flagDone)--;
 	pthread_mutex_unlock(&mutexCons);
+	printf("unlock cons\n");
 	return NULL;
 }
 
