@@ -19,7 +19,7 @@ struct fractal *fractal_new(char* name, int width, int height, double a, double 
 				exit(1);
 		}
 		f->values=values;
-		f->name=name;
+		strcpy(name,f->name);
 		f->width=width;
 		f->height=height;
 		f->a=a;
