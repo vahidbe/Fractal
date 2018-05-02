@@ -329,9 +329,6 @@ void *writer(void* arguments){
 			
 		}
 		write_bitmap_sdl(highestF,fileOutName);
-		free(highestF);
-		pthread_mutex_unlock(&mutexWrit);
-		return NULL;
 	}
 	else
 	{
@@ -352,7 +349,8 @@ void *writer(void* arguments){
 				fractal_free(f);
 			}
 		}
-	}
+	}	
+	free(highestF);
 	(flagDone)--;
 	pthread_mutex_unlock(&mutexWrit);
 	return NULL;
