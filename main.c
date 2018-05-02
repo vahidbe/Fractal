@@ -275,8 +275,8 @@ void *consumer(void* arguments){
 		pthread_mutex_lock(&mutexCons);
 		int ic=0;
 		sem_getvalue(&(bufIn->items),&ic);
-		printf("\n%d\n",ic);
-		printf("%d\n\n",flagB1);
+		printf("%d ",ic);
+		printf("%d\n",flagB1);
 		if(((flagB1)<=0)&(ic==0))
 		{
 			done=1;
