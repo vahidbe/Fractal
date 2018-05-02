@@ -286,14 +286,14 @@ void *consumer(void* arguments){
 	while(!done)
 	{		
 		///**/printf("va lire sem_getvalue du consommateur\n");
-		/**/fflush(stdout);
+		/**/fflush(stdout);		
+		pthread_mutex_lock(&mutexCons);
 		int ic=0;
 		sem_getvalue(&(bufIn->items),&ic);
 		/**/printf("C - FLAGB1=%d\n",flagB1);
 		/**/fflush(stdout);		
 		/**/printf("C - LENGTHI=%d\n",ic);
 		/**/fflush(stdout);	
-		pthread_mutex_lock(&mutexCons);
 		if(((flagB1)<=0)&(ic==0))
 		//if(((lengthI)<=0)&(flagB1<=0))
 		{
@@ -309,7 +309,9 @@ void *consumer(void* arguments){
 		struct fractal* f=(sbuf_remove(bufIn));
 		//lengthI--;		
 		pthread_mutex_unlock(&mutexCons);
-		/**/printf("C - *REMOVE DU CONSOMMATEUR TERMINE*\n");
+		int ic=0;
+		sem_getvalue(&(bufIn->items),&ic);
+		/**/printf("C - *REMOVE DU CONSOMMATEUR TERMINE* === LENGTHI : %d\n",ic);
 		/**/fflush(stdout);
 		/**/printf("C - === Fractale lue : %s, %d, %d, %f, %f ===\n",fractal_get_name(f),fractal_get_width(f),fractal_get_height(f), fractal_get_a(f), fractal_get_b(f));
 		/**/fflush(stdout);
