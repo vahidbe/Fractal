@@ -25,6 +25,7 @@ int lengthI=0;
 int lengthO=0;
 
 pthread_mutex_t mutexCons;
+pthread_mutex_t mutexCons2;
 
 struct sbuf* bufIn;
 struct sbuf* bufOut;
@@ -428,6 +429,7 @@ void *writer(void* arguments){
 int main(int argc, char *argv[])
 {
 	pthread_mutex_init(&mutexCons,NULL);
+	pthread_mutex_init(&mutexCons2,NULL);
 	numberThreads=0;
 	int count;
 	int optionsCount=0;
