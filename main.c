@@ -331,6 +331,7 @@ void *consumer(void* arguments){
 		/**/printf("C - *INSERT DU CONSOMMATEUR TERMINE*\n");	
 		/**/fflush(stdout);
 		}
+		pthread_mutex_lock(&mutexCons);
 		if(((flagB1)<=0)&(ic==0))
 		//if(((lengthI)<=0)&(flagB1<=0))
 		{
@@ -338,6 +339,7 @@ void *consumer(void* arguments){
 			/**/fflush(stdout);
 			done=1;
 		}
+		pthread_mutex_unlock(&mutexCons);
 	}
 	(flagB2)--;
 	(flagDone)--;
