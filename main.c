@@ -259,17 +259,19 @@ void *producer(void* arguments){
 	return NULL;
 }
 
-void *consumer(void* arguments){
-	int done=0;
-	int id=0;
-	sem_getvalue(&(bufIn->items),&id);
+void *consumer(void* arguments){	
 	pthread_mutex_lock(&mutexCons);
-	if(((flagB1)<=0)&(id==0))
+	int done=0;
+	int ic=0;
+	sem_getvalue(&(bufIn->items),&ic);
+	if(((flagB1)<=0)&(ic==0))
 	{
 		done=1;
 	}
+	pthread_mutex_unlock(&mutexCons);
 	while(!done)
 	{		
+		pthread_mutex_lock(&mutexCons);
 		int ic=0;
 		sem_getvalue(&(bufIn->items),&ic);
 		if(((flagB1)<=0)&(ic==0))
@@ -289,7 +291,6 @@ void *consumer(void* arguments){
 				}
 			}
 			sbuf_insert(bufOut,f);	
-			pthread_mutex_lock(&mutexCons);
 		}
 	}
 	(flagB2)--;
