@@ -531,13 +531,14 @@ int main(int argc, char *argv[])
 	/**/fflush(stdout);
 	/**/printf("=== Initialisation terminée ===\n");
 	/**/fflush(stdout);
-	
+	/*
 	while((flagDone)>0)
 	{
-		///**/printf("\n DONEFLAG=%d \n\n",*doneFlag);
-		///**/fflush(stdout);
 	}
-	
+	*/
+	while((flagB1>0)&(flagB2>0)){
+		printf("flag1 %d\n flag2 %d\n",flagB1,flagB2);
+	}
 	/**/printf("--- Fin des threads ---\n");
 	/**/fflush(stdout);
 	
