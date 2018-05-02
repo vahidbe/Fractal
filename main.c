@@ -280,7 +280,7 @@ void *consumer(void* arguments){
 		sem_getvalue(&(bufIn->items),&ic);
 		printf("%d ",ic);
 		printf("%d\n",flagB1);
-		if(((flagB1)<=0)&(ic==0))
+		if(((flagB1-1)<=0)&(ic==0))
 		{
 			printf("done=1\n");
 			done=1;
@@ -317,7 +317,7 @@ void *writer(void* arguments){
 			pthread_mutex_lock(&mutexWrit);
 			int ic;
 			sem_getvalue(&(bufOut->items),&ic);
-			if(((flagB2)<=0)&(ic==0))
+			if(((flagB2-1)<=0)&(ic==0))
 			{
 				isEmpty=1;
 			}
@@ -346,7 +346,7 @@ void *writer(void* arguments){
 			sem_getvalue(&(bufOut->items),&ic);			
 			printf("W%d ",ic);
 			printf("W%d\n",flagB2);
-			if(((flagB2)<=0)&(ic==0))
+			if(((flagB2-1)<=0)&(ic==0))
 			{
 				isEmpty=1;
 			}
