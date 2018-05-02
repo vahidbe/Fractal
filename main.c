@@ -394,8 +394,8 @@ int main(int argc, char *argv[])
 	/**/printf("--- Nombre de threads qui vont être utilisés : %d ---\n",numberThreads);
 	/**/fflush(stdout);
 	
-	sbuf_init(bufIn, (numberThreads));            
-	sbuf_init(bufOut, (numberThreads));    
+	sbuf_init(bufIn, (numberThreads+5));            
+	sbuf_init(bufOut, (numberThreads+5));    
 	
 	numberProd=argc-2-optionsCount;
 	pthread_t prod[argc-2-optionsCount];
