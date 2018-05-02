@@ -16,6 +16,7 @@
 
 int flagB1;
 int flagB2;
+int flagB3=0;
 int flagDone;
 
 int numberProd;
@@ -253,6 +254,7 @@ void *producer(void* arguments){
 			struct fractal* f = (struct fractal*)malloc(sizeof(struct fractal));
 			f = fractal_new(name,*buf2,*buf3,*buf4,*buf5);
 			sbuf_insert(bufIn,f);
+			flagB3=1;
 			x=fscanf(file,"%64s",buf1);
 			}
 		}
@@ -539,7 +541,7 @@ int main(int argc, char *argv[])
 	
 		int ic=0;
 		int id=0;
-	while((flagB1>0)|(ic>0)|(id>0)){
+	while((flagB1>0)|(ic>0)|(id>0)|(flagB3!=1)){
 		sem_getvalue(&(bufIn->items),&ic);
 		sem_getvalue(&(bufOut->items),&id);
 		printf("bufIn %d\nbufOut %d\n\n",ic,id);
