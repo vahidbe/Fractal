@@ -536,9 +536,10 @@ int main(int argc, char *argv[])
 	{
 	}
 	*/
-	while((flagB1>0)|(ic>0)|(id>0)){
+	
 		int ic=0;
 		int id=0;
+	while((flagB1>0)|(ic>0)|(id>0)){
 		sem_getvalue(&(bufIn->items),&ic);
 		sem_getvalue(&(bufOut->items),&id);
 		printf("bufIn %d\nbufOut %d\n\n",ic,id);
