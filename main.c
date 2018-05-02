@@ -327,9 +327,9 @@ void *writer(void* arguments){
 				fractal_free(f);		
 				//pthread_mutex_unlock(&mutexWrit);
 			}
-			
+			fileOutName=fileOutName+".bmp";
 		}
-		write_bitmap_sdl(highestF,fileOutName+".bmp");
+		write_bitmap_sdl(highestF,fileOutName);
 	}
 	else
 	{
@@ -346,7 +346,8 @@ void *writer(void* arguments){
 			{
 				struct fractal* f = (sbuf_remove(bufOut));
 				pthread_mutex_unlock(&mutexWrit);
-				write_bitmap_sdl(f,fractal_get_name(f)+".bmp");
+				fileOutName=fractal_get_name(f)+".bmp";
+				write_bitmap_sdl(f,fileOutName);
 				fractal_free(f);
 			}
 		}
