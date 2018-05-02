@@ -484,7 +484,7 @@ int main(int argc, char *argv[])
 	{
 		if(((*argv[count])=='-')&(count!=(argc)))
 		{ 
-	
+/*	
 			//Entree standard
 			char* chaine;
 			fgets(chaine, sizeof(chaine), stdin);
@@ -514,7 +514,7 @@ int main(int argc, char *argv[])
 				//TODO: gérer sortie
 				fileOutName="FractalEntree.txt";
 			}	
-			
+*/			
 		}
 		else
 		{
