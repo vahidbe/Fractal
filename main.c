@@ -268,10 +268,8 @@ void *consumer(void* arguments){
 	{
 		done=1;
 	}
-	pthread_mutex_unlock(&mutexCons);
 	while(!done)
 	{		
-		pthread_mutex_lock(&mutexCons);
 		int ic=0;
 		sem_getvalue(&(bufIn->items),&ic);
 		if(((flagB1)<=0)&(ic==0))
@@ -291,6 +289,7 @@ void *consumer(void* arguments){
 				}
 			}
 			sbuf_insert(bufOut,f);	
+			pthread_mutex_lock(&mutexCons);
 		}
 	}
 	(flagB2)--;
