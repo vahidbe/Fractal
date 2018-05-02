@@ -315,7 +315,6 @@ void *writer(void* arguments){
 	struct fractal* highestF=malloc(sizeof(struct fractal));
 	if(!optionD){
 		while(!isEmpty){			
-			pthread_mutex_lock(&mutexWrit);
 			int ic;
 			sem_getvalue(&(bufOut->items),&ic);
 			if(((flagB2)<=0)&(ic==0))
@@ -324,7 +323,6 @@ void *writer(void* arguments){
 			}
 			else{
 				struct fractal* f = (sbuf_remove(bufOut));
-				pthread_mutex_unlock(&mutexWrit);
 				double newAverage = fractal_compute_average(f);
 				if(newAverage>average)
 				{
@@ -342,7 +340,6 @@ void *writer(void* arguments){
 	{
 		while(!isEmpty)
 		{
-			pthread_mutex_lock(&mutexWrit);
 			int ic=0;
 			sem_getvalue(&(bufOut->items),&ic);			
 			printf("W%d ",ic);
@@ -357,7 +354,6 @@ void *writer(void* arguments){
 				printf("Debut remove writer\n");
 				struct fractal* f = (sbuf_remove(bufOut));
 				printf("Fin remove writer\n");
-				pthread_mutex_unlock(&mutexWrit);
 				char* fileOut=strcat(fractal_get_name(f),".bmp");
 				write_bitmap_sdl(f,fileOut);
 				fractal_free(f);
@@ -368,7 +364,6 @@ void *writer(void* arguments){
 	(flagDone)--;
 	printf("flagDone = %d \n",flagDone);
 	printf("writer FIN\n");
-	pthread_mutex_unlock(&mutexWrit);
 	return NULL;
 }
 
