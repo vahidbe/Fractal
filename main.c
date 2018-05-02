@@ -178,9 +178,8 @@ void *producer(void* arguments){
 		done=1;
 	}
     else
-    {
-		
-		pthread_mutex_lock(&mutexProd);
+    {		
+		pthread_mutex_unlock(&mutexProd);
 		if(buf1[0]=='#')
 		{
 			char trash[1024];
@@ -276,7 +275,7 @@ void *producer(void* arguments){
 	/**/fflush(stdout);
 	(flagDone)--;
 	(flagB1)--;	
-	pthread_mutex_lock(&mutexProd);
+	pthread_mutex_unlock(&mutexProd);
 	/**/printf("\nP - PRODFLAG=%d\n\n",flagB1);
 	/**/fflush(stdout);
 	return NULL;
