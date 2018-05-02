@@ -263,8 +263,6 @@ void *consumer(void* arguments){
 	while(!done)
 	{		
 		pthread_mutex_lock(&mutexCons);
-		///**/printf("va lire sem_getvalue du consommateur\n");
-		/**/fflush(stdout);		
 		int ic=0;
 		sem_getvalue(&(bufIn->items),&ic);
 		if(((flagB1)<=0)&(ic==0))
@@ -274,6 +272,7 @@ void *consumer(void* arguments){
 		else
 		{
 		struct fractal* f=(sbuf_remove(bufIn));
+		pthread_mutex_unlock(&mutexCons);
 		int ic=0;
 		sem_getvalue(&(bufIn->items),&ic);
 		int i;
@@ -293,7 +292,7 @@ void *consumer(void* arguments){
 		}
 		else
 		{
-			pthread_mutex_unlock(&mutexCons);
+			//pthread_mutex_unlock(&mutexCons);
 		}
 	}
 	(flagB2)--;
