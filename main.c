@@ -291,6 +291,7 @@ void *consumer(void* arguments){
 	{		
 		///**/printf("va lire sem_getvalue du consommateur\n");
 		/**/fflush(stdout);		
+		pthread_mutex_lock(&mutexProd);
 		pthread_mutex_lock(&mutexCons);
 		int ic=0;
 		sem_getvalue(&(bufIn->items),&ic);
@@ -304,7 +305,8 @@ void *consumer(void* arguments){
 			/**/printf("C - =====DONE=1=====\n");
 			/**/fflush(stdout);
 			done=1;
-			pthread_mutex_unlock(&mutexCons);
+			pthread_mutex_unlock(&mutexCons);			
+			pthread_mutex_unlock(&mutexProd);
 		}
 		else
 		{
@@ -313,6 +315,7 @@ void *consumer(void* arguments){
 		struct fractal* f=(sbuf_remove(bufIn));
 		//lengthI--;		
 		pthread_mutex_unlock(&mutexCons);
+		pthread_mutex_unlock(&mutexProd);
 		int ic=0;
 		sem_getvalue(&(bufIn->items),&ic);
 		/**/printf("C - *REMOVE DU CONSOMMATEUR TERMINE* === LENGTHI : %d\n",ic);
@@ -337,6 +340,7 @@ void *consumer(void* arguments){
 		/**/printf("C - *INSERT DU CONSOMMATEUR TERMINE*\n");	
 		/**/fflush(stdout);
 		}
+		pthread_mutex_lock(&mutexProd);
 		pthread_mutex_lock(&mutexCons);
 		if(((flagB1)<=0)&(ic==0))
 		//if(((lengthI)<=0)&(flagB1<=0))
@@ -346,6 +350,7 @@ void *consumer(void* arguments){
 			done=1;
 		}
 		pthread_mutex_unlock(&mutexCons);
+		pthread_mutex_unlock(&mutexProd);
 	}
 	(flagB2)--;
 	(flagDone)--;
