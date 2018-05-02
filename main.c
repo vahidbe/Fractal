@@ -355,9 +355,14 @@ void *writer(void* arguments){
 				write_bitmap_sdl(f,fileOut);
 				fractal_free(f);
 			}
+			pthread_mutex_lock(&mutexWrit);
 			if(((flagB2)<=0)&(ic==0))
 			{
 				isEmpty=1;
+			}
+			else
+			{
+				pthread_mutex_unlock(&mutexWrit);
 			}
 		}
 	}	
@@ -415,8 +420,8 @@ int main(int argc, char *argv[])
 	/**/printf("--- Nombre de threads qui vont être utilisés : %d ---\n",numberThreads);
 	/**/fflush(stdout);
 	
-	sbuf_init(bufIn, (numberThreads+10));            
-	sbuf_init(bufOut, (numberThreads+10));    
+	sbuf_init(bufIn, (10));            
+	sbuf_init(bufOut, (10));    
 	
 	numberProd=argc-2-optionsCount;
 	printf("argc = %d\n",argc);
