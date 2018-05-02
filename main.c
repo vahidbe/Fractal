@@ -287,13 +287,14 @@ void *consumer(void* arguments){
 		}
 		sbuf_insert(bufOut,f);	
 		}
+		pthread_mutex_lock(&mutexCons);
 		if(((flagB1)<=0)&(ic==0))
 		{
 			done=1;
 		}
 		else
 		{
-			//pthread_mutex_unlock(&mutexCons);
+			pthread_mutex_unlock(&mutexCons);
 		}
 	}
 	(flagB2)--;
