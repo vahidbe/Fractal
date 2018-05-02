@@ -143,6 +143,7 @@ void *producer(void* arguments){
 		else
 		{
 			fprintf(stderr, "%s", "One of your files does not exist!\n");
+			exit(-1);
 		}
 		(flagDone)--;(flagB1)--;
 		return (NULL);
@@ -438,6 +439,7 @@ void *writer(void* arguments){
 		}
 	}
 	/**/printf("W - --- Fin writer ---\n");
+	/**/prinf("doneflag=%d",flagDone);
 	/**/fflush(stdout);
 	(flagDone)--;
 	return NULL;
@@ -490,6 +492,11 @@ int main(int argc, char *argv[])
 	/**/fflush(stdout);
 	
 	numberProd=argc-2-optionsCount;
+	if(numberProd==0)
+	{
+		fprintf(stderr,"You did not enter a file!\n");
+		exit(-1);
+	}
 	pthread_t prod[argc-2-optionsCount];
 	pthread_t cons[numberThreads];
 	pthread_t writ[argc-2-optionsCount];
