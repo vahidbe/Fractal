@@ -427,7 +427,7 @@ void *writer(void* arguments){
 
 int main(int argc, char *argv[])
 {
-	mutex_init(&mutexCons);
+	pthread_mutex_init(&mutexCons);
 	numberThreads=0;
 	int count;
 	int optionsCount=0;
