@@ -257,6 +257,7 @@ void *producer(void* arguments){
 			}
 		}
 	}
+	printf("fin producteur\n");
 	(flagDone)--;
 	(flagB1)--;	
 	return NULL;
