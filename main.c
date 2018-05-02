@@ -296,14 +296,11 @@ void *consumer(void* arguments){
 			/**/printf("C - =====DONE=1=====\n");
 			/**/fflush(stdout);
 			done=1;
-<<<<<<< HEAD
 			int i;
 			for(i=0;i<numberThreads;i++)
 			{
 				sem_post(&mutexCons);
 			}
-=======
->>>>>>> parent of ad82e78... mutexCons
 		}
 		else
 		{
