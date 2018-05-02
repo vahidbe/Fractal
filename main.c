@@ -327,6 +327,10 @@ void *writer(void* arguments){
 				fractal_free(f);		
 				//pthread_mutex_unlock(&mutexWrit);
 			}
+			if(((flagB2)<=0)&(ic==0))
+			{
+				isEmpty=1;
+			}
 		}
 		char* fileOut=strcat(fileOutName,".bmp");
 		write_bitmap_sdl(highestF,fileOut);
@@ -349,6 +353,10 @@ void *writer(void* arguments){
 				char* fileOut=strcat(fractal_get_name(f),".bmp");
 				write_bitmap_sdl(f,fileOut);
 				fractal_free(f);
+			}
+			if(((flagB2)<=0)&(ic==0))
+			{
+				isEmpty=1;
 			}
 		}
 	}	
