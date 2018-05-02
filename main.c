@@ -261,6 +261,7 @@ void *producer(void* arguments){
 
 void *consumer(void* arguments){
 	int done=0;
+	printf("ON\n");
 	while(!done)
 	{		
 		pthread_mutex_lock(&mutexCons);
@@ -296,6 +297,7 @@ void *consumer(void* arguments){
 			//pthread_mutex_unlock(&mutexCons);
 		}
 	}
+	printf("OFF\n");
 	(flagB2)--;
 	(flagDone)--;
 	pthread_mutex_unlock(&mutexCons);
