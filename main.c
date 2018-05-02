@@ -25,7 +25,7 @@ int lengthI=0;
 int lengthO=0;
 
 pthread_mutex_t mutexCons;
-pthread_mutex_t mutexCons2;
+pthread_mutex_t mutexWrit;
 
 struct sbuf* bufIn;
 struct sbuf* bufOut;
@@ -261,7 +261,7 @@ void *producer(void* arguments){
 			/**/printf("P - *INSERT DU PRODUCTEUR*\n");
 			/**/fflush(stdout);
 			/**/sbuf_insert(bufIn,f);
-			lengthI++;
+			//lengthI++;
 			/**/printf("P - *INSERT DU PRODUCTEUR TERMINE*\n");
 			/**/fflush(stdout);
 			x=fscanf(file,"%64s",buf1);
@@ -359,18 +359,21 @@ void *writer(void* arguments){
 			/**/fflush(stdout);
 			/**/printf("\nW - FLAGB2=%d\n\n",flagB2);
 			/**/fflush(stdout);
+			pthread_mutex_lock(&mutexWrit);
 			if(((flagB2)<=0)&(ic==0))
 			//if(((lengthO)<=0)&(flagB2<=0))
 			{
 				/**/printf("W - ===DONE=1===\n");
 				/**/fflush(stdout);
 				isEmpty=1;
+				pthread_mutex_unlock(&mutexWrit);
 			}
 			else{
 				/**/printf("W - *REMOVE DU WRITER*\n");
 				/**/fflush(stdout);
 				struct fractal* f = (sbuf_remove(bufOut));
-				lengthO--;
+				pthread_mutex_unlock(&mutexWrit);
+				//lengthO--;
 				/**/printf("W - *REMOVE DU WRITER TERMINE*\n");
 				/**/fflush(stdout);
 				/**/printf("W - === Fractale lue : %s, %d, %d, %f, %f ===\n",f->name,fractal_get_width(f),fractal_get_height(f), fractal_get_a(f), fractal_get_b(f));
@@ -407,14 +410,17 @@ void *writer(void* arguments){
 			sem_getvalue(&(bufOut->items),&ic);
 			/**/printf("\nlengthO=%d\n\n",ic);
 			/**/fflush(stdout);
+			pthread_mutex_lock(&mutexWrit);
 			if(((flagB2)<=0)&(ic==0))
 			//if((flagB2<=0)&(lengthO<=0))
 			{
 				isEmpty=1;
+				pthread_mutex_unlock(&mutexWrit);
 			}
 			else
 			{
 				struct fractal* f = (sbuf_remove(bufOut));
+				pthread_mutex_unlock(&mutexWrit);
 				write_bitmap_sdl(f,fractal_get_name(f));
 				fractal_free(f);
 			}
@@ -429,7 +435,7 @@ void *writer(void* arguments){
 int main(int argc, char *argv[])
 {
 	pthread_mutex_init(&mutexCons,NULL);
-	pthread_mutex_init(&mutexCons2,NULL);
+	pthread_mutex_init(&mutexWrit,NULL);
 	numberThreads=0;
 	int count;
 	int optionsCount=0;
