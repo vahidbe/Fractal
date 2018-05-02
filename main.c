@@ -404,20 +404,25 @@ int main(int argc, char *argv[])
 	sbuf_init(bufOut, (numberThreads+10));    
 	
 	numberProd=argc-2-optionsCount;
-	printf("%d\n",numberProd);
-	pthread_t prod[argc-2-optionsCount];
+	if(numberProd==0)
+	{
+		fprintf(stderr, "%s", "You did not enter a file!\n");
+		exit(-1);
+	}
+	
+	pthread_t prod[numberProd];
 	pthread_t cons[numberThreads];
-	pthread_t writ[argc-2-optionsCount];
+	pthread_t writ[numberProd];
 	
 	flagB1=argc-2-optionsCount;
 	flagB2=numberThreads;
 	if(optionD)
 	{
-		flagDone=2*(argc-2-optionsCount)+numberThreads;
+		flagDone=2*(numberProd)+numberThreads;
 	}
 	else
 	{
-		flagDone=(argc-2-optionsCount)+numberThreads+1;
+		flagDone=(numberProd)+numberThreads+1;
 	}
 	/**/printf("--- Initialisation du main terminée ---\n");
 	/**/fflush(stdout);
