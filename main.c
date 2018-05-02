@@ -404,9 +404,6 @@ int main(int argc, char *argv[])
 	sbuf_init(bufOut, (numberThreads+10));    
 	
 	numberProd=argc-2-optionsCount;
-	printf("%d\n",argc);	
-	printf("%d\n",optionsCount);
-	printf("%d\n",numberProd);
 	if(numberProd==0)
 	{
 		fprintf(stderr, "%s", "You did not enter a file!\n");
