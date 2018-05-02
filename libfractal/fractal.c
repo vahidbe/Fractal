@@ -19,6 +19,7 @@ struct fractal *fractal_new(char* name, int width, int height, double a, double 
 			if (values[i]==NULL)
 				exit(-1);
 		}
+		f->name=(char*) malloc(sizeof(char)*64);
 		f->values=values;
 		strcpy(f->name,name);
 		f->width=width;
