@@ -528,13 +528,11 @@ int main(int argc, char *argv[])
 	/**/fflush(stdout);
 	/**/printf("=== Initialisation terminée ===\n");
 	/**/fflush(stdout);
-	/*
+	
 	while((flagDone)>0)
 	{
 		
 	}
-	*/
-	while((flagB2>numberThreads-fractCount)){}
 	/**/printf("--- Fin des threads ---\n");
 	/**/fflush(stdout);
 	
