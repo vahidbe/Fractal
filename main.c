@@ -340,6 +340,7 @@ void *writer(void* arguments){
 		while(!isEmpty)
 		{
 			pthread_mutex_lock(&mutexWrit);
+			printf("lock writer");
 			int ic=0;
 			sem_getvalue(&(bufOut->items),&ic);			
 			printf("W%d ",ic);
@@ -350,7 +351,10 @@ void *writer(void* arguments){
 			}
 			else
 			{
+				printf("Debut remove writer");
 				struct fractal* f = (sbuf_remove(bufOut));
+				printf("Fin remove writer");
+				printf("unlock writer");
 				pthread_mutex_unlock(&mutexWrit);
 				char* fileOut=strcat(fractal_get_name(f),".bmp");
 				write_bitmap_sdl(f,fileOut);
@@ -360,6 +364,7 @@ void *writer(void* arguments){
 	}	
 	free(highestF);
 	(flagDone)--;
+	printf("unlock writer");
 	pthread_mutex_unlock(&mutexWrit);
 	return NULL;
 }
