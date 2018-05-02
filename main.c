@@ -443,6 +443,7 @@ void *writer(void* arguments){
 	/**/fflush(stdout);
 	(flagDone)--;
 	/**/printf("doneflag=%d",flagDone);
+	/**/fflush(stdout);
 	return NULL;
 }
 
