@@ -331,7 +331,6 @@ void *consumer(void* arguments){
 		/**/fflush(stdout);
 		}
 	}
-	pthread_mutex_unlock(&mutexCons);
 	/**/printf("C - --- Fin consommateur ---\n");
 	/**/fflush(stdout);
 	(flagB2)--;
