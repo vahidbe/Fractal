@@ -137,7 +137,12 @@ void *producer(void* arguments){
     {
 		if(numberProd==1)
 		{
+			fprintf(stderr, "%s", "This file does not exist!\n");
 			exit(-1);
+		}
+		else
+		{
+			fprintf(stderr, "%s", "One of your files does not exist!\n");
 		}
 		(flagDone)--;(flagB1)--;
 		return (NULL);
