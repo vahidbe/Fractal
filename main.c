@@ -26,6 +26,7 @@ int optionM=1;
 char* fileOutName;
 int lengthI=0;
 int lengthO=0;
+int fractCount=0;
 
 int isEmpty=0;
 int done=0;
@@ -253,7 +254,10 @@ void *producer(void* arguments){
 			}
 			struct fractal* f = (struct fractal*)malloc(sizeof(struct fractal));
 			f = fractal_new(name,*buf2,*buf3,*buf4,*buf5);
+			pthread_mutex_lock(&mutexProd);
+			fractCount++;
 			sbuf_insert(bufIn,f);
+			pthread_mutex_unlock(&mutexProd);
 			flagB3=1;
 			x=fscanf(file,"%64s",buf1);
 			}
@@ -343,7 +347,8 @@ void *writer(void* arguments){
 			sem_getvalue(&(bufOut->items),&ic);			
 			printf("W%d ",ic);
 			printf("W%d\n",flagB2);
-			if(((flagB2)<=0)&(ic==0))
+			//if(((flagB2)<=0)&(ic==0))
+			if(numberThreads-fractCount<=0)
 			{
 				isEmpty=1;
 			}
