@@ -123,7 +123,7 @@ void *consumer(void* arguments){
 	/**/fflush(stdout);
 	/**/printf("--- REMOVE CONS ---\n");
 	/**/fflush(stdout);
-	int id=sbuf_remove(bufIn);
+	int* id=sbuf_remove(bufIn);
 	/**/printf("--- FIN REMOVE CONS ---\n");
 	/**/fflush(stdout);
 	/**/printf("ID=%d\n",*id);
@@ -145,7 +145,7 @@ void *writer(void* arguments){
 	/**/fflush(stdout);
 	/**/printf("--- REMOVE WRIT ---\n");
 	/**/fflush(stdout);
-	int id=sbuf_remove(bufOut);
+	int* id=sbuf_remove(bufOut);
 	/**/printf("--- FIN REMOVE WRIT ---\n");
 	/**/fflush(stdout);
 	/**/printf("ID=%d\n",*id);
