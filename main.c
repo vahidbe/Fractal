@@ -52,7 +52,7 @@ void sbuf_init(struct sbuf *sp, int n)
 		fflush(stdout);
 		exit(-1);
 	}
-    sp->buf = calloc(n, sizeof(struct fractal*));
+    sp->buf = (struct fractal**) calloc(n, sizeof(struct fractal*));
     sp->n = n;                       /* Buffer content les entiers */
     sp->front = sp->rear = 0;        /* Buffer vide si front == rear */
     sem_init(&sp->mutex, 0, 1);      /* Exclusion mutuelle */
