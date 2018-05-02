@@ -289,6 +289,7 @@ void *consumer(void* arguments){
 	/**/fflush(stdout);
 	while(!done)
 	{		
+		pthread_mutex_lock(&mutexCons);
 		///**/printf("va lire sem_getvalue du consommateur\n");
 		/**/fflush(stdout);		
 		//pthread_mutex_lock(&mutexProd);
@@ -348,11 +349,16 @@ void *consumer(void* arguments){
 			/**/fflush(stdout);
 			done=1;
 		}
+		else
+		{
+			pthread_mutex_unlock(&mutexCons);
+		}
 		//pthread_mutex_unlock(&mutexCons);
 		//pthread_mutex_unlock(&mutexProd);
 	}
 	(flagB2)--;
 	(flagDone)--;
+	pthread_mutex_unlock(&mutexCons);
 	/**/printf("C - --- Fin consommateur ---\n");
 	/**/fflush(stdout);
 	return NULL;
@@ -369,7 +375,8 @@ void *writer(void* arguments){
 	if(!optionD){
 		/**/printf("W - ===OPTIOND-0===\n");
 		/**/fflush(stdout);
-		while(!isEmpty){
+		while(!isEmpty){			
+			pthread_mutex_lock(&mutexWrit);
 			int ic;
 			///**/printf("va lire sem_getvalue du writer\n");
 			///**/fflush(stdout);
@@ -409,7 +416,8 @@ void *writer(void* arguments){
 				}				
 				fractal_free(f);
 				/**/printf("W - HighestF=%s\n",fractal_get_name(highestF));
-				/**/fflush(stdout);
+				/**/fflush(stdout);				
+				pthread_mutex_unlock(&mutexWrit);
 			}
 			
 		}
@@ -418,6 +426,7 @@ void *writer(void* arguments){
 		write_bitmap_sdl(highestF,fileOutName);
 		/**/printf("W - === FIN ECRITURE ===\n");
 		/**/fflush(stdout);
+		pthread_mutex_unlock(&mutexWrit);
 	}
 	else
 	{
@@ -453,9 +462,9 @@ void *writer(void* arguments){
 
 int main(int argc, char *argv[])
 {
-	//pthread_mutex_init(&mutexProd,NULL);
-	//pthread_mutex_init(&mutexCons,NULL);
-	//pthread_mutex_init(&mutexWrit,NULL);
+	pthread_mutex_init(&mutexProd,NULL);
+	pthread_mutex_init(&mutexCons,NULL);
+	pthread_mutex_init(&mutexWrit,NULL);
 	numberThreads=0;
 	int count;
 	int optionsCount=0;
