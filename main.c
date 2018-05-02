@@ -297,7 +297,11 @@ void *consumer(void* arguments){
 			/**/printf("C - =====DONE=1=====\n");
 			/**/fflush(stdout);
 			done=1;
-			sem_post(&mutexCons);
+			int i;
+			for(i=0;i<numberThreads;i++)
+			{
+				sem_post(&mutexCons);
+			}
 		}
 		else
 		{
