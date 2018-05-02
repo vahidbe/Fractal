@@ -435,13 +435,13 @@ int main(int argc, char *argv[])
 		optionsCount++;
 		if(argc>2){
 		if((*argv[2]=='-')&(*(argv[2]+1)=='-')){
-			numberThreads = *(argv[2]+2);
+			numberThreads = atoi(argv[2]+2);
 			optionsCount++;
 		}}
 	}
 	else{
 		if((*argv[1]=='-')&(*(argv[1]+1)=='-')){
-			numberThreads = *(argv[1]+2);
+			numberThreads = atoi(argv[1]+2);
 			optionsCount++;
 		}
 	}	
