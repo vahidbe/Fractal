@@ -408,6 +408,7 @@ int main(int argc, char *argv[])
 	sbuf_init(bufOut, (numberThreads+10));    
 	
 	numberProd=argc-2-optionsCount;
+	printf("argc = %d\n",argc);
 	printf("OptionCout = %d\n",optionsCount);
 	if(numberProd==0)
 	{
