@@ -105,7 +105,7 @@ void *producer(void* arguments){
 	/**/printf("--- DEBUT PRODUCTEUR ---\n");
 	/**/fflush(stdout);
 	int i=5;
-	int* id;
+	int* id=malloc(sizeof(int));
 	*id=i;
 	/**/printf("--- INSERT PROD ---\n");
 	/**/fflush(stdout);
