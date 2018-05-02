@@ -25,6 +25,9 @@ int optionM=1;
 char* fileOutName;
 int lengthI=0;
 int lengthO=0;
+int fractCount=0;
+int fcc=0;
+int fwc=0;
 
 int isEmpty=0;
 int done=0;
@@ -252,14 +255,19 @@ void *producer(void* arguments){
 			}
 			struct fractal* f = (struct fractal*)malloc(sizeof(struct fractal));
 			f = fractal_new(name,*buf2,*buf3,*buf4,*buf5);
+			pthread_mutex_lock(&mutexProd);
 			sbuf_insert(bufIn,f);
+			fractCount++;		
+			pthread_mutex_unlock(&mutexProd);			
 			x=fscanf(file,"%64s",buf1);
 			}
 		}
 	}
 	printf("fin producteur\n");
+	pthread_mutex_lock(&mutexProd);
 	(flagDone)--;
 	(flagB1)--;	
+	pthread_mutex_unlock(&mutexProd);			
 	return NULL;
 }
 
@@ -280,6 +288,12 @@ void *consumer(void* arguments){
 		sem_getvalue(&(bufIn->items),&ic);
 		printf("%d ",ic);
 		printf("%d\n",flagB1);
+		if(fcc==fractCount)
+		{
+			done=1;
+			break;
+		}
+		else{
 		if(((flagB1)<=0)&(ic==0))
 		{
 			printf("done=1\n");
@@ -288,6 +302,8 @@ void *consumer(void* arguments){
 		else
 		{
 			struct fractal* f=(sbuf_remove(bufIn));
+			fcc++;
+			printf("%d\n",fcc);
 			pthread_mutex_unlock(&mutexCons);
 			int i;
 			int j;
@@ -300,7 +316,7 @@ void *consumer(void* arguments){
 			printf("debut insert cons\n");
 			sbuf_insert(bufOut,f);	
 			printf("fin insert cons\n");
-		}
+		}}
 	}
 	(flagB2)--;
 	(flagDone)--;
