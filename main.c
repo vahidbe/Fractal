@@ -266,7 +266,6 @@ void *producer(void* arguments){
 }
 
 void *consumer(void* arguments){	
-	pthread_mutex_lock(&mutexCons);
 	int ic=0;
 	sem_getvalue(&(bufIn->items),&ic);
 	
@@ -274,10 +273,8 @@ void *consumer(void* arguments){
 	{
 		done=1;
 	}
-	pthread_mutex_unlock(&mutexCons);
 	while(!done)
 	{		
-		pthread_mutex_lock(&mutexCons);
 		int ic=0;
 		sem_getvalue(&(bufIn->items),&ic);
 		printf("%d ",ic);
@@ -290,7 +287,6 @@ void *consumer(void* arguments){
 		else
 		{
 			struct fractal* f=(sbuf_remove(bufIn));
-			pthread_mutex_unlock(&mutexCons);
 			int i;
 			int j;
 			for(i=0;i<f->width;i++){
@@ -306,7 +302,6 @@ void *consumer(void* arguments){
 	}
 	(flagB2)--;
 	(flagDone)--;
-	pthread_mutex_unlock(&mutexCons);
 	printf("cons FIN\n");
 	return NULL;
 }
