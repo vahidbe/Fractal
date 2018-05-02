@@ -80,13 +80,10 @@ void sbuf_insert(struct sbuf *sp, struct fractal* item)
 	///**/printf("ITEMS = %d sur %d\n",ic,sp->n);
 	sem_wait(&(sp->slots));
 	sem_wait(&(sp->mutex));
-	struct fractal* newf= malloc(sizeof(struct fractal));
-	*newf=*item;
-	free(item);
-	printf("Fractale to insert : %s\n",fractal_get_name((newf)));
+	printf("Fractale to insert : %s\n",fractal_get_name((item)));
 	fflush(stdout);
 	sp->rear=((sp->rear)+1)%(sp->n);
-	sp->buf[sp->rear]=newf;	
+	sp->buf[sp->rear]=item;	
 	printf("Number : %d\n",sp->rear);
 	fflush(stdout);
 	sem_post(&(sp->mutex));
