@@ -23,7 +23,7 @@ struct sbuf* bufOut;
 
 
 struct sbuf{
-    int* buf;           /* Buffer partagé */
+    int** buf;           /* Buffer partagé */
     int n;             				/* Nombre de slots dans le buffer */
     int front;        				/* buf[(front+1)%n] est le premier élément */
     int rear;          				/* buf[rear%n] est le dernier */
@@ -44,7 +44,7 @@ void sbuf_init(struct sbuf *sp, int n)
 		fflush(stdout);
 		exit(-1);
 	}
-    sp->buf = calloc(n, sizeof(int));
+    sp->buf = calloc(n, sizeof(int*));
     sp->n = n;                       /* Buffer content les entiers */
     sp->front = sp->rear = 0;        /* Buffer vide si front == rear */
     sem_init(&sp->mutex, 0, 1);      /* Exclusion mutuelle */
@@ -65,7 +65,7 @@ void sbuf_clean(struct sbuf *sp)
  * @post ajoute item à la fin du buffer partagé. Ce buffer est géré
  *       comme une queue FIFO
  */
-void sbuf_insert(struct sbuf *sp, int item)
+void sbuf_insert(struct sbuf *sp, int* item)
 {
 	///**/int ic=0;
 	///**/sem_getvalue(&(sp->items),&ic);
@@ -84,7 +84,7 @@ void sbuf_insert(struct sbuf *sp, int item)
 /* @pre sbuf!=NULL
  * @post retire le dernier item du buffer partagé
  */
-int sbuf_remove(struct sbuf *sp)
+int* sbuf_remove(struct sbuf *sp)
 {	
 	///**/int ic=0;
 	///**/sem_getvalue(&(sp->items),&ic);
@@ -92,7 +92,7 @@ int sbuf_remove(struct sbuf *sp)
 	sem_wait(&(sp->items));
 	sem_wait(&(sp->mutex));
 	sp->front=((sp->front)+1)%(sp->n);
-	int res=sp->buf[sp->front];
+	int* res=sp->buf[sp->front];
 	sem_post(&(sp->mutex));
 	sem_post(&(sp->slots));
 	///**/ic=0;
@@ -104,7 +104,9 @@ int sbuf_remove(struct sbuf *sp)
 void *producer(void* arguments){	
 	/**/printf("--- DEBUT PRODUCTEUR ---\n");
 	/**/fflush(stdout);
-	int id=5;
+	int i=5;
+	int* id=malloc(sizeof(int));
+	*id=i;
 	/**/printf("--- INSERT PROD ---\n");
 	/**/fflush(stdout);
 	sbuf_insert(bufIn,id);
@@ -124,7 +126,7 @@ void *consumer(void* arguments){
 	int id=sbuf_remove(bufIn);
 	/**/printf("--- FIN REMOVE CONS ---\n");
 	/**/fflush(stdout);
-	/**/printf("ID=%d\n",id);
+	/**/printf("ID=%d\n",*id);
 	/**/fflush(stdout);
 	/**/printf("--- INSERT CONS ---\n");
 	/**/fflush(stdout);
@@ -146,7 +148,7 @@ void *writer(void* arguments){
 	int id=sbuf_remove(bufOut);
 	/**/printf("--- FIN REMOVE WRIT ---\n");
 	/**/fflush(stdout);
-	/**/printf("ID=%d\n",id);
+	/**/printf("ID=%d\n",*id);
 	/**/fflush(stdout);
 	/**/printf("--- FIN WRITER ---\n");
 	/**/fflush(stdout);
