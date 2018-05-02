@@ -18,6 +18,7 @@ int flagB1;
 int flagB2;
 int flagDone;
 
+int numberProd;
 int numberThreads;
 int optionD;
 char* fileOutName;
@@ -134,6 +135,10 @@ void *producer(void* arguments){
 	file=fopen(fileName,"r");
 	if(file==NULL)
     {
+		if(numberProd==1)
+		{
+			exit(-1);
+		}
 		(flagDone)--;(flagB1)--;
 		return (NULL);
     }
@@ -479,6 +484,7 @@ int main(int argc, char *argv[])
 	/**/printf("M - --- Initialisation des buffers terminée ---\n");
 	/**/fflush(stdout);
 	
+	numberProd=argc-2-optionsCount;
 	pthread_t prod[argc-2-optionsCount];
 	pthread_t cons[numberThreads];
 	pthread_t writ[argc-2-optionsCount];
