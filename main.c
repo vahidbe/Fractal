@@ -282,6 +282,7 @@ void *consumer(void* arguments){
 		printf("%d\n",flagB1);
 		if(((flagB1)<=0)&(ic==0))
 		{
+			printf("done=1\n");
 			done=1;
 		}
 		else
