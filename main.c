@@ -254,7 +254,6 @@ void *producer(void* arguments){
 			}
 		}
 	}
-	printf("PRODOFF\n");
 	(flagDone)--;
 	(flagB1)--;	
 	return NULL;
@@ -262,14 +261,12 @@ void *producer(void* arguments){
 
 void *consumer(void* arguments){
 	int done=0;
-	printf("ON\n");
 	while(!done)
 	{		
 		pthread_mutex_lock(&mutexCons);
 		int ic=0;
 		sem_getvalue(&(bufIn->items),&ic);
-		printf("FlagB1 = %d\n",flagB1);
-		if(((flagB1)<=0)&(ic<=0))
+		if(((flagB1)<=0)&(ic==0))
 		{
 			done=1;
 		}
@@ -299,7 +296,6 @@ void *consumer(void* arguments){
 			//pthread_mutex_unlock(&mutexCons);
 		}
 	}
-	printf("OFF\n");
 	(flagB2)--;
 	(flagDone)--;
 	pthread_mutex_unlock(&mutexCons);
@@ -315,7 +311,7 @@ void *writer(void* arguments){
 			pthread_mutex_lock(&mutexWrit);
 			int ic;
 			sem_getvalue(&(bufOut->items),&ic);
-			if(((flagB2)<=0)&(ic<=0))
+			if(((flagB2)<=0)&(ic==0))
 			{
 				isEmpty=1;
 			}
@@ -342,8 +338,7 @@ void *writer(void* arguments){
 			pthread_mutex_lock(&mutexWrit);
 			int ic=0;
 			sem_getvalue(&(bufOut->items),&ic);
-			printf("flagB2 %d\n",flagB2);
-			if(((flagB2)<=0)&(ic<=0))
+			if(((flagB2)<=0)&(ic==0))
 			{
 				isEmpty=1;
 			}
@@ -427,7 +422,7 @@ int main(int argc, char *argv[])
 	pthread_t cons[numberThreads];
 	pthread_t writ[numberProd];
 	
-	flagB1=numberProd;
+	flagB1=argc-2-optionsCount;
 	flagB2=numberThreads;
 	if(optionD)
 	{
