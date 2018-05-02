@@ -54,7 +54,7 @@ void sbuf_init(struct sbuf *sp, int n)
 {
 	if(sp==NULL)
 	{
-		printf("Ini - --- EXIT ---\n");
+		printf("--- EXIT ---\n");
 		fflush(stdout);
 		exit(-1);
 	}
@@ -404,6 +404,7 @@ int main(int argc, char *argv[])
 	sbuf_init(bufOut, (numberThreads+10));    
 	
 	numberProd=argc-2-optionsCount;
+	printf("%d\n",numberProd);
 	pthread_t prod[argc-2-optionsCount];
 	pthread_t cons[numberThreads];
 	pthread_t writ[argc-2-optionsCount];
