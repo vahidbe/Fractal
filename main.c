@@ -307,6 +307,7 @@ void *writer(void* arguments){
 	double average;
 	struct fractal* highestF=malloc(sizeof(struct fractal));
 	if(!optionD){
+		printf("pas optionD");
 		while(!isEmpty){			
 			pthread_mutex_lock(&mutexWrit);
 			int ic;
@@ -335,6 +336,7 @@ void *writer(void* arguments){
 	{
 		while(!isEmpty)
 		{
+			printf("optionD");
 			pthread_mutex_lock(&mutexWrit);
 			int ic=0;
 			sem_getvalue(&(bufOut->items),&ic);
