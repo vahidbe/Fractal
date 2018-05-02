@@ -127,12 +127,8 @@ void *producer(void* arguments){
 		else
 		{
 			fprintf(stderr, "%s", "One of your files does not exist!\n");
-		}
-		
-		(flagDone)--;
-		(flagB1)--;
-		
-		printf("flagDone = %d\n",flagDone);
+			exit(-1);
+		}		
 		return (NULL);
     }
 	char* buf1 = (char*) malloc(sizeof(char));
