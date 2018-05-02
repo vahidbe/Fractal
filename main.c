@@ -374,6 +374,7 @@ void *writer(void* arguments){
 	}	
 	free(highestF);
 	(flagDone)--;
+	printf("flagDone = %d \n",flagDone);
 	printf("writer FIN\n");
 	pthread_mutex_unlock(&mutexWrit);
 	return NULL;
