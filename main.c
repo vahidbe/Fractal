@@ -413,7 +413,7 @@ int main(int argc, char *argv[])
 		flagDone=(argc-2-optionsCount)+numberThreads+1;
 	}
 	
-	/**/printf("M - --- Initialisation du main terminée ---\n");
+	/**/printf("--- Initialisation du main terminée ---\n");
 	/**/fflush(stdout);
 	
 	for(count=optionsCount+1;count<argc;count++)
