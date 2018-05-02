@@ -24,6 +24,7 @@ char* fileOutName;
 int lengthI=0;
 int lengthO=0;
 
+pthread_mutex_t mutexProd;
 pthread_mutex_t mutexCons;
 pthread_mutex_t mutexWrit;
 
@@ -178,6 +179,8 @@ void *producer(void* arguments){
 	}
     else
     {
+		
+		pthread_mutex_lock(&mutexProd);
 		if(buf1[0]=='#')
 		{
 			char trash[1024];
@@ -260,6 +263,7 @@ void *producer(void* arguments){
 			/**/fflush(stdout);
 			/**/printf("P - *INSERT DU PRODUCTEUR*\n");
 			/**/fflush(stdout);
+			pthread_mutex_lock(&mutexProd);
 			/**/sbuf_insert(bufIn,f);
 			//lengthI++;
 			/**/printf("P - *INSERT DU PRODUCTEUR TERMINE*\n");
@@ -271,7 +275,8 @@ void *producer(void* arguments){
 	/**/printf("P - --- Fin producteur ---\n");
 	/**/fflush(stdout);
 	(flagDone)--;
-	(flagB1)--;
+	(flagB1)--;	
+	pthread_mutex_lock(&mutexProd);
 	/**/printf("\nP - PRODFLAG=%d\n\n",flagB1);
 	/**/fflush(stdout);
 	return NULL;
@@ -445,6 +450,7 @@ void *writer(void* arguments){
 
 int main(int argc, char *argv[])
 {
+	pthread_mutex_init(&mutexProd,NULL);
 	pthread_mutex_init(&mutexCons,NULL);
 	pthread_mutex_init(&mutexWrit,NULL);
 	numberThreads=0;
