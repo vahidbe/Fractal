@@ -272,29 +272,17 @@ void *consumer(void* arguments){
 		}
 		else
 		{
-		struct fractal* f=(sbuf_remove(bufIn));
-		pthread_mutex_unlock(&mutexCons);
-		int ic=0;
-		sem_getvalue(&(bufIn->items),&ic);
-		int i;
-		int j;
-		for(i=0;i<f->width;i++){
-			for(j=0;j<f->height;j++)
-			{
-				fractal_set_value(f,i,j,fractal_compute_value(f,i,j));
-			}
-			fflush(stdout);
-		}
-		sbuf_insert(bufOut,f);	
-		}
-		pthread_mutex_lock(&mutexCons);
-		if(((flagB1)<=0)&(ic==0))
-		{
-			done=1;
-		}
-		else
-		{
+			struct fractal* f=(sbuf_remove(bufIn));
 			pthread_mutex_unlock(&mutexCons);
+			int i;
+			int j;
+			for(i=0;i<f->width;i++){
+				for(j=0;j<f->height;j++)
+				{
+					fractal_set_value(f,i,j,fractal_compute_value(f,i,j));
+				}
+			}
+			sbuf_insert(bufOut,f);	
 		}
 	}
 	(flagB2)--;
@@ -354,16 +342,7 @@ void *writer(void* arguments){
 				char* fileOut=strcat(fractal_get_name(f),".bmp");
 				write_bitmap_sdl(f,fileOut);
 				fractal_free(f);
-			}
-			pthread_mutex_lock(&mutexWrit);
-			if(((flagB2)<=0)&(ic==0))
-			{
-				isEmpty=1;
-			}
-			else
-			{
-				pthread_mutex_unlock(&mutexWrit);
-			}
+			}			
 		}
 	}	
 	free(highestF);
