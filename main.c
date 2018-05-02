@@ -26,6 +26,9 @@ char* fileOutName;
 int lengthI=0;
 int lengthO=0;
 
+int isEmpty=0;
+int done=0;
+
 pthread_mutex_t mutexProd;
 pthread_mutex_t mutexCons;
 pthread_mutex_t mutexWrit;
@@ -261,7 +264,6 @@ void *producer(void* arguments){
 
 void *consumer(void* arguments){	
 	pthread_mutex_lock(&mutexCons);
-	int done=0;
 	int ic=0;
 	sem_getvalue(&(bufIn->items),&ic);
 	
@@ -306,7 +308,6 @@ void *consumer(void* arguments){
 }
 
 void *writer(void* arguments){
-	int isEmpty=0;
 	double average;
 	struct fractal* highestF=malloc(sizeof(struct fractal));
 	if(!optionD){
@@ -329,10 +330,6 @@ void *writer(void* arguments){
 				}				
 				fractal_free(f);		
 				//pthread_mutex_unlock(&mutexWrit);
-			}
-			if(((flagB2)<=0)&(ic==0))
-			{
-				isEmpty=1;
 			}
 		}
 		char* fileOut=strcat(fileOutName,".bmp");
@@ -361,22 +358,12 @@ void *writer(void* arguments){
 				write_bitmap_sdl(f,fileOut);
 				fractal_free(f);
 			}	
-			pthread_mutex_lock(&mutexWrit);
-			if(((flagB2)<=0)&(ic==0))
-			{
-				isEmpty=1;
-			}	
-			else
-			{
-				pthread_mutex_unlock(&mutexWrit);
-			}
 		}
 	}	
 	free(highestF);
 	(flagDone)--;
 	printf("flagDone = %d \n",flagDone);
 	printf("writer FIN\n");
-	pthread_mutex_unlock(&mutexWrit);
 	pthread_mutex_unlock(&mutexWrit);
 	return NULL;
 }
