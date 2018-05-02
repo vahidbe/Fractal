@@ -331,9 +331,7 @@ void *writer(void* arguments){
 					average=newAverage;
 					*highestF=*f;
 				}				
-				fractal_free(f);
-				/**/printf("- Highest Fractal=%s\n",fractal_get_name(highestF));
-				/**/fflush(stdout);				
+				fractal_free(f);		
 				pthread_mutex_unlock(&mutexWrit);
 			}
 			
