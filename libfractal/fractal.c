@@ -1,7 +1,8 @@
 #include <stdlib.h>
+#include <stdio.h>
 #include "fractal.h"
 
-struct fractal *fractal_new(const char *name, int width, int height, double a, double b)
+struct fractal *fractal_new(char* name, int width, int height, double a, double b)
 {
 	struct fractal* f = (struct fractal*) malloc(sizeof(struct fractal));
 	if(f==NULL){
@@ -32,14 +33,16 @@ void fractal_free(struct fractal *f)
 	free((void*) f);
 }
 
-const char *fractal_get_name(const struct fractal *f)
+char* fractal_get_name(const struct fractal *f)
 {
-  return  f->name;
+			/**/printf("F - ### Fractale recue par get name : %s, %d, %d, %f, %f ###\n",f->name,fractal_get_width(f),fractal_get_height(f), fractal_get_a(f), fractal_get_b(f));
+			/**/fflush(stdout);
+  return  (f->name);
 }
 
 int fractal_get_value(const struct fractal *f, int x, int y)
 {
-    return f->values[x][y];
+    return (f->values[x][y]);
 }
 
 void fractal_set_value(struct fractal *f, int x, int y, int val)
@@ -71,11 +74,14 @@ double fractal_compute_average(const struct fractal* f)
 {
 	int i;
 	int j;
-	double res=0;
+	double res=0.0;
+	/**/fflush(stdout);
 	for(i=0;i<(fractal_get_width(f));i++){
-		for(j=0;i<(fractal_get_height(f));j++){
+		for(j=0;j<(fractal_get_height(f));j++){
+
 			res=res+fractal_get_value(f,i,j);
+
 		}
 	}
-	return (res/((fractal_get_width(f))*(fractal_get_height(f))));
+	return (res/((double)((fractal_get_width(f))*(fractal_get_height(f)))));
 }
