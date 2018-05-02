@@ -276,6 +276,7 @@ void *consumer(void* arguments){
 		int ic=0;
 		sem_getvalue(&(bufIn->items),&ic);
 		printf("%d\n",ic);
+		printf("%d\n",flagB1);
 		if(((flagB1)<=0)&(ic==0))
 		{
 			done=1;
