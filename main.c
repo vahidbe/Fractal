@@ -21,6 +21,7 @@ int flagDone;
 int numberProd;
 int numberThreads;
 int optionD;
+int optionM=1;
 char* fileOutName;
 int lengthI=0;
 int lengthO=0;
@@ -127,7 +128,10 @@ void *producer(void* arguments){
 		{
 			fprintf(stderr, "%s", "One of your files does not exist!\n");
 		}
-		(flagDone)=(flagDone-3);(flagB1)--;
+		
+		(flagDone)--;
+		(flagB1)--;
+		
 		printf("flagDone = %d\n",flagDone);
 		return (NULL);
     }
@@ -388,6 +392,7 @@ int main(int argc, char *argv[])
 	}	
 	if(numberThreads==0){
 		numberThreads=argc-2-optionsCount; 
+		optionM=0;
 	}
 	
 	char* optionDs;
