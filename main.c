@@ -341,7 +341,9 @@ void *writer(void* arguments){
 		{
 			pthread_mutex_lock(&mutexWrit);
 			int ic=0;
-			sem_getvalue(&(bufOut->items),&ic);
+			sem_getvalue(&(bufOut->items),&ic);			
+			printf("W%d ",ic);
+			printf("W%d\n",flagB1);
 			if(((flagB2)<=0)&(ic==0))
 			{
 				isEmpty=1;
