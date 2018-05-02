@@ -123,7 +123,7 @@ void *producer(void* arguments){
     {
 		if(numberProd==0)
 		{
-			fprintf(stderr, "%s", "You did not enter a file!"\n");
+			fprintf(stderr, "%s", "You did not enter a file!\n");
 			exit(-1);
 		}
 		if(numberProd==1)
