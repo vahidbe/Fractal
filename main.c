@@ -284,13 +284,13 @@ void *consumer(void* arguments){
 		///**/printf("va lire sem_getvalue du consommateur\n");
 		/**/fflush(stdout);
 		int ic=0;
-		//sem_getvalue(&(buf->items),&ic);
+		sem_getvalue(&(buf->items),&ic);
 		/**/printf("C - FLAGB1=%d\n",flagB1);
-		/**/fflush(stdout);
-		//if(((flagB1)<=0)&(ic==0))
-		/**/printf("C - LENGTHI=%d\n",lengthI);
+		/**/fflush(stdout);		
+		/**/printf("C - LENGTHI=%d\n",ic);
 		/**/fflush(stdout);	
-		if(((lengthI)<=0)&(flagB1<=0))
+		if(((flagB1)<=0)&(ic==0))
+		//if(((lengthI)<=0)&(flagB1<=0))
 		{
 			/**/printf("C - =====DONE=1=====\n");
 			/**/fflush(stdout);
@@ -344,16 +344,16 @@ void *writer(void* arguments){
 		/**/printf("W - ===OPTIOND-0===\n");
 		/**/fflush(stdout);
 		while(!isEmpty){
-			//int ic;
+			int ic;
 			///**/printf("va lire sem_getvalue du writer\n");
 			///**/fflush(stdout);
-			//sem_getvalue(&(buf->items),&ic);
-			/**/printf("W - lengthO=%d\n",lengthO);
+			sem_getvalue(&(buf->items),&ic);
+			/**/printf("\nlengthO=%d\n\n",ic);
 			/**/fflush(stdout);
 			/**/printf("\nW - FLAGB2=%d\n\n",flagB2);
 			/**/fflush(stdout);
-			//if(((flagB2)<=0)&(ic==0))
-			if(((lengthO)<=0)&(flagB2<=0))
+			if(((flagB2)<=0)&(ic==0))
+			//if(((lengthO)<=0)&(flagB2<=0))
 			{
 				/**/printf("W - ===DONE=1===\n");
 				/**/fflush(stdout);
@@ -397,9 +397,11 @@ void *writer(void* arguments){
 			/**/printf("W - ===OPTIOND-1===\n");
 			/**/fflush(stdout);
 			int ic=0;
-			//sem_getvalue(&(buf->items),&ic);
-			//if(((flagB2)<=0)&(ic==0))
-				if((flagB2<=0)&(lengthO<=0))
+			sem_getvalue(&(buf->items),&ic);
+			/**/printf("\nlengthO=%d\n\n",ic);
+			/**/fflush(stdout);
+			if(((flagB2)<=0)&(ic==0))
+			//if((flagB2<=0)&(lengthO<=0))
 			{
 				isEmpty=1;
 			}
