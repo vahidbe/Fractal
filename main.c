@@ -188,8 +188,10 @@ void *producer(void* arguments){
 			{
 				//TODO: gérer les erreurs/la sortie
 				if(fclose(file)!=0)
-				(flagDone)--;(flagB1)--;
-				return (NULL);
+				{
+					(flagDone)--;(flagB1)--;
+					return (NULL);
+				}
 				free(buf1);
 				free(buf2);
 				free(buf3);
