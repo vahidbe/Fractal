@@ -400,6 +400,10 @@ int main(int argc, char *argv[])
 		numberThreads=argc-2-optionsCount; 
 		optionM=0;
 	}
+	if(numberThreads==numberThreads%2)
+	{
+		numberThreads--;
+	}
 	
 	char* optionDs;
 	if(optionD)
@@ -419,8 +423,6 @@ int main(int argc, char *argv[])
 	sbuf_init(bufOut, (numberThreads+10));    
 	
 	numberProd=argc-2-optionsCount;
-	printf("argc = %d\n",argc);
-	printf("OptionCout = %d\n",optionsCount);
 	if(numberProd==0)
 	{
 		fprintf(stderr, "%s", "You did not enter a file!\n");
