@@ -316,6 +316,7 @@ void *writer(void* arguments){
 			}
 			else{
 				struct fractal* f = (sbuf_remove(bufOut));
+				pthread_mutex_unlock(&mutexWrit)
 				double newAverage = fractal_compute_average(f);
 				if(newAverage>average)
 				{
@@ -323,17 +324,20 @@ void *writer(void* arguments){
 					*highestF=*f;
 				}				
 				fractal_free(f);		
-				pthread_mutex_unlock(&mutexWrit);
+				//pthread_mutex_unlock(&mutexWrit);
 			}
 			
 		}
 		write_bitmap_sdl(highestF,fileOutName);
+		free(highestF);
 		pthread_mutex_unlock(&mutexWrit);
+		return NULL;
 	}
 	else
 	{
 		while(!isEmpty)
 		{
+			pthread_mutex_lock(&mutexWrit);
 			int ic=0;
 			sem_getvalue(&(bufOut->items),&ic);
 			if(((flagB2)<=0)&(ic==0))
@@ -343,12 +347,14 @@ void *writer(void* arguments){
 			else
 			{
 				struct fractal* f = (sbuf_remove(bufOut));
+				pthread_mutex_unlock(&mutexWrit);
 				write_bitmap_sdl(f,fractal_get_name(f));
 				fractal_free(f);
 			}
 		}
 	}
 	(flagDone)--;
+	pthread_mutex_unlock(&mutexWrit);
 	return NULL;
 }
 
