@@ -316,7 +316,7 @@ void *writer(void* arguments){
 			}
 			else{
 				struct fractal* f = (sbuf_remove(bufOut));
-				pthread_mutex_unlock(&mutexWrit)
+				pthread_mutex_unlock(&mutexWrit);
 				double newAverage = fractal_compute_average(f);
 				if(newAverage>average)
 				{
