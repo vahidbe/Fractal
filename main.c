@@ -439,7 +439,7 @@ void *writer(void* arguments){
 		}
 	}
 	/**/printf("W - --- Fin writer ---\n");
-	/**/prinf("doneflag=%d",flagDone);
+	/**/printf("doneflag=%d",flagDone);
 	/**/fflush(stdout);
 	(flagDone)--;
 	return NULL;
