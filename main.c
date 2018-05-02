@@ -127,7 +127,7 @@ void *producer(void* arguments){
 		{
 			fprintf(stderr, "%s", "One of your files does not exist!\n");
 		}
-		(flagDone)--;(flagB1)--;
+		(flagDone)=(flagDone-3);(flagB1)--;
 		printf("flagDone = %d\n",flagDone);
 		return (NULL);
     }
