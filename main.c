@@ -26,7 +26,6 @@ int lengthO=0;
 
 struct sbuf* bufIn;
 struct sbuf* bufOut;
-sem_t mutexCons;
 
 struct args{
 	char* charP_arg;
@@ -291,18 +290,20 @@ void *consumer(void* arguments){
 		/**/fflush(stdout);		
 		/**/printf("C - LENGTHI=%d\n",ic);
 		/**/fflush(stdout);	
-		sem_wait(&mutexCons);
 		if(((flagB1)<=0)&(ic==0))
 		//if(((lengthI)<=0)&(flagB1<=0))
 		{
 			/**/printf("C - =====DONE=1=====\n");
 			/**/fflush(stdout);
 			done=1;
+<<<<<<< HEAD
 			int i;
 			for(i=0;i<numberThreads;i++)
 			{
 				sem_post(&mutexCons);
 			}
+=======
+>>>>>>> parent of ad82e78... mutexCons
 		}
 		else
 		{
@@ -310,7 +311,6 @@ void *consumer(void* arguments){
 		/**/fflush(stdout);
 		struct fractal* f=(sbuf_remove(bufIn));
 		lengthI--;
-		sem_post(&mutexCons);
 		/**/printf("C - *REMOVE DU CONSOMMATEUR TERMINE*\n");
 		/**/fflush(stdout);
 		/**/printf("C - === Fractale lue : %s, %d, %d, %f, %f ===\n",fractal_get_name(f),fractal_get_width(f),fractal_get_height(f), fractal_get_a(f), fractal_get_b(f));
@@ -467,7 +467,6 @@ int main(int argc, char *argv[])
 	
 	sbuf_init(bufIn, (numberThreads+10));            
 	sbuf_init(bufOut, (numberThreads+10));    
-	sem_init(&mutexCons,0,1);
 
 	/**/printf("M - --- Initialisation des buffers terminée ---\n");
 	/**/fflush(stdout);
