@@ -331,6 +331,13 @@ void *consumer(void* arguments){
 		/**/printf("C - *INSERT DU CONSOMMATEUR TERMINE*\n");	
 		/**/fflush(stdout);
 		}
+		if(((flagB1)<=0)&(ic==0))
+		//if(((lengthI)<=0)&(flagB1<=0))
+		{
+			/**/printf("C - =====DONE=1=====\n");
+			/**/fflush(stdout);
+			done=1;
+		}
 	}
 	(flagB2)--;
 	(flagDone)--;
