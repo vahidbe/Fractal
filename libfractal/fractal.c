@@ -37,8 +37,6 @@ void fractal_free(struct fractal *f)
 
 char* fractal_get_name(const struct fractal *f)
 {
-	/**/printf("F - ### Fractale recue par get name : %s, %d, %d, %f, %f ###\n",f->name,fractal_get_width(f),fractal_get_height(f), fractal_get_a(f), fractal_get_b(f));
-	/**/fflush(stdout);
   return  (f->name);
 }
 
