@@ -18,7 +18,6 @@ int flagB1;
 int flagB2;
 int flagDone;
 
-int numberThreads;
 int optionD;
 char* fileOutName;
 int lengthI=0;
@@ -430,7 +429,7 @@ void *writer(void* arguments){
 
 int main(int argc, char *argv[])
 {
-	numberThreads=0;
+	int numberThreads=0;
 	int count;
 	int optionsCount=0;
 	optionD=0;
