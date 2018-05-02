@@ -305,7 +305,7 @@ void *consumer(void* arguments){
 	(flagB2)--;
 	(flagDone)--;
 	pthread_mutex_unlock(&mutexCons);
-	printf("unlock cons\n");
+	printf("unlock cons FIN\n");
 	return NULL;
 }
 
@@ -367,15 +367,20 @@ void *writer(void* arguments){
 				write_bitmap_sdl(f,fileOut);
 				fractal_free(f);
 			}	
+			pthread_mutex_lock(&mutexWrit);
 			if(((flagB2)<=0)&(ic==0))
 			{
 				isEmpty=1;
-			}			
+			}	
+			else
+			{
+				pthread_mutex_unlock(&mutexWrit);
+			}
 		}
 	}	
 	free(highestF);
 	(flagDone)--;
-	printf("unlock writer\n");
+	printf("unlock writer FIN\n");
 	pthread_mutex_unlock(&mutexWrit);
 	return NULL;
 }
