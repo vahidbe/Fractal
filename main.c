@@ -347,7 +347,7 @@ void *writer(void* arguments){
 			sem_getvalue(&(bufOut->items),&ic);			
 			printf("W%d ",ic);
 			printf("W%d\n",flagB2);
-			if(((flagB2)<=0)&(ic==0))
+			if(((flagB2)<=0))//&(ic==0))
 			{
 				isEmpty=1;
 			}
