@@ -395,7 +395,7 @@ void *writer(void* arguments){
 			int ic=0;
 			//sem_getvalue(&(buf->items),&ic);
 			//if(((flagB2)<=0)&(ic==0))
-				if(flagB2<=0)
+				if((flagB2<=0)&(lengthO<=0))
 			{
 				isEmpty=1;
 			}
@@ -478,7 +478,7 @@ int main(int argc, char *argv[])
 	{
 		if(((*argv[count])=='-')&(count!=(argc)))
 		{ 
-/*	
+	
 			//Entree standard
 			char* chaine;
 			fgets(chaine, sizeof(chaine), stdin);
@@ -508,7 +508,7 @@ int main(int argc, char *argv[])
 				//TODO: gérer sortie
 				fileOutName="FractalEntree.txt";
 			}	
-*/			
+			
 		}
 		else
 		{
