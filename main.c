@@ -104,11 +104,11 @@ struct fractal* sbuf_remove(struct sbuf *sp)
 	sem_wait(&(sp->items));
 	sem_wait(&(sp->mutex));
 	sp->front=((sp->front)+1)%(sp->n);
-	printf("Fractale to remove : %s\n",(sp->buf[sp->front])->name);
-	fflush(stdout);
 	printf("Number : %d\n",sp->front);
 	fflush(stdout);
-	struct fractal* res=(sp->buf[sp->front]);
+	struct fractal* res=(sp->buf[sp->front]);	
+	printf("Fractale to remove : %s\n",fractal_get_name(res);
+	fflush(stdout);
 	sem_post(&(sp->mutex));
 	sem_post(&(sp->slots));
 	///**/ic=0;
