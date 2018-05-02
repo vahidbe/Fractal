@@ -425,6 +425,7 @@ void *writer(void* arguments){
 			int ic=0;
 			sem_getvalue(&(bufOut->items),&ic);
 			/**/printf("\nlengthO=%d\n\n",ic);
+			/**/printf("\nflagB2=%d\n\n",flagB2);
 			/**/fflush(stdout);
 			if(((flagB2)<=0)&(ic==0))
 			{
@@ -439,9 +440,9 @@ void *writer(void* arguments){
 		}
 	}
 	/**/printf("W - --- Fin writer ---\n");
-	/**/printf("doneflag=%d",flagDone);
 	/**/fflush(stdout);
 	(flagDone)--;
+	/**/printf("doneflag=%d",flagDone);
 	return NULL;
 }
 
