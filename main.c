@@ -288,7 +288,7 @@ void *consumer(void* arguments){
 		sem_getvalue(&(bufIn->items),&ic);
 		printf("%d ",ic);
 		printf("%d\n",flagB1);
-		if(fcc==fractCount)
+		if((fcc==fractCount)&(fcc!=0))
 		{
 			done=1;
 			break;
