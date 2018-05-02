@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include <stdio.h>
+#include <string.h>
 #include "fractal.h"
 
 struct fractal *fractal_new(char* name, int width, int height, double a, double b)
