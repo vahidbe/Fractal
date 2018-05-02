@@ -293,14 +293,12 @@ void *consumer(void* arguments){
 		/**/fflush(stdout);		
 		/**/printf("C - LENGTHI=%d\n",ic);
 		/**/fflush(stdout);	
-		pthread_mutex_lock(&mutexCons);
 		if(((flagB1)<=0)&(ic==0))
 		//if(((lengthI)<=0)&(flagB1<=0))
 		{
 			/**/printf("C - =====DONE=1=====\n");
 			/**/fflush(stdout);
 			done=1;
-			pthread_mutex_unlock(&mutexCons);
 	(flagB2)--;
 	(flagDone)--;
 		}
@@ -310,7 +308,6 @@ void *consumer(void* arguments){
 		/**/fflush(stdout);
 		struct fractal* f=(sbuf_remove(bufIn));
 		//lengthI--;		
-		pthread_mutex_unlock(&mutexCons);
 		/**/printf("C - *REMOVE DU CONSOMMATEUR TERMINE*\n");
 		/**/fflush(stdout);
 		/**/printf("C - === Fractale lue : %s, %d, %d, %f, %f ===\n",fractal_get_name(f),fractal_get_width(f),fractal_get_height(f), fractal_get_a(f), fractal_get_b(f));
@@ -359,20 +356,17 @@ void *writer(void* arguments){
 			/**/fflush(stdout);
 			/**/printf("\nW - FLAGB2=%d\n\n",flagB2);
 			/**/fflush(stdout);
-			pthread_mutex_lock(&mutexWrit);
 			if(((flagB2)<=0)&(ic==0))
 			//if(((lengthO)<=0)&(flagB2<=0))
 			{
 				/**/printf("W - ===DONE=1===\n");
 				/**/fflush(stdout);
 				isEmpty=1;
-				pthread_mutex_unlock(&mutexWrit);
 			}
 			else{
 				/**/printf("W - *REMOVE DU WRITER*\n");
 				/**/fflush(stdout);
 				struct fractal* f = (sbuf_remove(bufOut));
-				pthread_mutex_unlock(&mutexWrit);
 				//lengthO--;
 				/**/printf("W - *REMOVE DU WRITER TERMINE*\n");
 				/**/fflush(stdout);
@@ -410,17 +404,14 @@ void *writer(void* arguments){
 			sem_getvalue(&(bufOut->items),&ic);
 			/**/printf("\nlengthO=%d\n\n",ic);
 			/**/fflush(stdout);
-			pthread_mutex_lock(&mutexWrit);
 			if(((flagB2)<=0)&(ic==0))
 			//if((flagB2<=0)&(lengthO<=0))
 			{
 				isEmpty=1;
-				pthread_mutex_unlock(&mutexWrit);
 			}
 			else
 			{
 				struct fractal* f = (sbuf_remove(bufOut));
-				pthread_mutex_unlock(&mutexWrit);
 				write_bitmap_sdl(f,fractal_get_name(f));
 				fractal_free(f);
 			}
