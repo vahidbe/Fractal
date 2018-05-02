@@ -366,6 +366,10 @@ void *writer(void* arguments){
 				char* fileOut=strcat(fractal_get_name(f),".bmp");
 				write_bitmap_sdl(f,fileOut);
 				fractal_free(f);
+			}	
+			if(((flagB2)<=0)&(ic==0))
+			{
+				isEmpty=1;
 			}			
 		}
 	}	
