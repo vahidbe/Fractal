@@ -284,7 +284,7 @@ void *consumer(void* arguments){
 		///**/printf("va lire sem_getvalue du consommateur\n");
 		/**/fflush(stdout);
 		int ic=0;
-		sem_getvalue(&(buf->items),&ic);
+		sem_getvalue(&(bufIn->items),&ic);
 		/**/printf("C - FLAGB1=%d\n",flagB1);
 		/**/fflush(stdout);		
 		/**/printf("C - LENGTHI=%d\n",ic);
@@ -347,7 +347,7 @@ void *writer(void* arguments){
 			int ic;
 			///**/printf("va lire sem_getvalue du writer\n");
 			///**/fflush(stdout);
-			sem_getvalue(&(buf->items),&ic);
+			sem_getvalue(&(bufOut->items),&ic);
 			/**/printf("\nlengthO=%d\n\n",ic);
 			/**/fflush(stdout);
 			/**/printf("\nW - FLAGB2=%d\n\n",flagB2);
@@ -397,7 +397,7 @@ void *writer(void* arguments){
 			/**/printf("W - ===OPTIOND-1===\n");
 			/**/fflush(stdout);
 			int ic=0;
-			sem_getvalue(&(buf->items),&ic);
+			sem_getvalue(&(bufOut->items),&ic);
 			/**/printf("\nlengthO=%d\n\n",ic);
 			/**/fflush(stdout);
 			if(((flagB2)<=0)&(ic==0))
