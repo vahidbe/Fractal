@@ -327,8 +327,8 @@ void *writer(void* arguments){
 				fractal_free(f);		
 				//pthread_mutex_unlock(&mutexWrit);
 			}
-			char* fileOut=strcat(fileOutName,".bmp");
 		}
+		char* fileOut=strcat(fileOutName,".bmp");
 		write_bitmap_sdl(highestF,fileOut);
 	}
 	else
