@@ -23,8 +23,8 @@ char* fileOutName;
 int lengthI=0;
 int lengthO=0;
 
-struct sbuf* bufIn;
-struct sbuf* bufOut;
+struct sbuf* bufIn=(malloc(sizeof(struct sbuf)));
+struct sbuf* bufOut=(malloc(sizeof(struct sbuf)));
 
 struct args{
 	char* charP_arg;
@@ -104,7 +104,7 @@ struct fractal* sbuf_remove(struct sbuf *sp)
 	sem_wait(&(sp->items));
 	sem_wait(&(sp->mutex));
 	sp->front=((sp->front)+1)%(sp->n);
-	printf("Fractale to remove : %s\n",fractal_get_name((sp->buf[sp->front])));
+	printf("Fractale to remove : %s\n",(sp->buf[sp->front])->name);
 	fflush(stdout);
 	printf("Number : %d\n",sp->front);
 	fflush(stdout);
@@ -301,7 +301,7 @@ void *consumer(void* arguments){
 		lengthI--;
 		/**/printf("*REMOVE DU CONSOMMATEUR TERMINE*\n");
 		/**/fflush(stdout);
-		/**/printf("C=== Fractale lue : %s===\n",fractal_get_name((f)));
+		/**/printf("C=== Fractale lue : %s===\n",(f)->name);
 		/**/fflush(stdout);
 		int i;
 		int j;
@@ -309,8 +309,8 @@ void *consumer(void* arguments){
 			for(j=0;j<f->height;j++)
 			{
 				fractal_set_value(f,i,j,fractal_compute_value(f,i,j));
-				printf("%d\n",fractal_get_value(f,i,j));
-				fflush(stdout);
+				///**/printf("%d\n",fractal_get_value(f,i,j));
+				///**/fflush(stdout);
 			}
 			fflush(stdout);
 		}
@@ -416,8 +416,6 @@ int main(int argc, char *argv[])
 	int count;
 	int optionsCount=0;
 	optionD=0;
-	bufIn=(malloc(sizeof(struct sbuf)));
-	bufOut=(malloc(sizeof(struct sbuf)));
 	/**/printf("%s","--- Initialisation des variables terminée ---\n");
 	/**/fflush(stdout);
 
