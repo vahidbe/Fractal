@@ -17,14 +17,12 @@ struct fractal *fractal_new(const char *name, int width, int height, double a, d
 			if (values[i]==NULL)
 				exit(1);
 		}
-		struct fractal ff;
-		ff.values=values;
-		ff.name=name;
-		ff.width=width;
-		ff.height=height;
-		ff.a=a;
-		ff.b=b;
-		*f=ff;
+		f->values=values;
+		f->name=name;
+		f->width=width;
+		f->height=height;
+		f->a=a;
+		f->b=b;
 		return f;
 	}
 }
