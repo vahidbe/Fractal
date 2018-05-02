@@ -31,7 +31,7 @@ struct args{
 };	
 
 struct sbuf{
-    struct fractal* buf;           /* Buffer partagé */
+    struct fractal** buf;           /* Buffer partagé */
     int n;             				/* Nombre de slots dans le buffer */
     int front;        				/* buf[(front+1)%n] est le premier élément */
     int rear;          				/* buf[rear%n] est le dernier */
@@ -52,7 +52,7 @@ void sbuf_init(struct sbuf *sp, int n)
 		fflush(stdout);
 		exit(-1);
 	}
-    sp->buf = calloc(n, sizeof(struct fractal));
+    sp->buf = calloc(n, sizeof(struct fractal*));
     sp->n = n;                       /* Buffer content les entiers */
     sp->front = sp->rear = 0;        /* Buffer vide si front == rear */
     sem_init(&sp->mutex, 0, 1);      /* Exclusion mutuelle */
@@ -83,7 +83,7 @@ void sbuf_insert(struct sbuf *sp, struct fractal* item)
 	printf("Fractale to insert : %s\n",fractal_get_name((item)));
 	fflush(stdout);
 	sp->rear=((sp->rear)+1)%(sp->n);
-	sp->buf[sp->rear]=*item;	
+	sp->buf[sp->rear]=item;	
 	printf("Number : %d\n",sp->rear);
 	fflush(stdout);
 	sem_post(&(sp->mutex));
@@ -104,11 +104,11 @@ struct fractal* sbuf_remove(struct sbuf *sp)
 	sem_wait(&(sp->items));
 	sem_wait(&(sp->mutex));
 	sp->front=((sp->front)+1)%(sp->n);
-	printf("Fractale to remove : %s\n",fractal_get_name(&(sp->buf[sp->front])));
+	printf("Fractale to remove : %s\n",fractal_get_name((sp->buf[sp->front])));
 	fflush(stdout);
 	printf("Number : %d\n",sp->front);
 	fflush(stdout);
-	struct fractal* res=&(sp->buf[sp->front]);
+	struct fractal* res=(sp->buf[sp->front]);
 	sem_post(&(sp->mutex));
 	sem_post(&(sp->slots));
 	///**/ic=0;
