@@ -308,7 +308,7 @@ void *writer(void* arguments){
 	struct fractal* highestF=malloc(sizeof(struct fractal));
 	if(!optionD){
 		while(!isEmpty){			
-			pthread_mutex_lock(&mutexWrit);
+			//pthread_mutex_lock(&mutexWrit);
 			int ic;
 			sem_getvalue(&(bufOut->items),&ic);
 			if(((flagB2)<=0)&(ic==0))
@@ -324,12 +324,12 @@ void *writer(void* arguments){
 					*highestF=*f;
 				}				
 				fractal_free(f);		
-				pthread_mutex_unlock(&mutexWrit);
+				//pthread_mutex_unlock(&mutexWrit);
 			}
 			
 		}
 		write_bitmap_sdl(highestF,fileOutName);
-		pthread_mutex_unlock(&mutexWrit);
+		//pthread_mutex_unlock(&mutexWrit);
 	}
 	else
 	{
