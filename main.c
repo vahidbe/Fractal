@@ -73,17 +73,17 @@ void sbuf_clean(struct sbuf *sp)
  * @post ajoute item à la fin du buffer partagé. Ce buffer est géré
  *       comme une queue FIFO
  */
-void sbuf_insert(struct sbuf *sp, struct fractal* item)
+void sbuf_insert(struct sbuf *sp, struct fractal** item)
 {
 	///**/int ic=0;
 	///**/sem_getvalue(&(sp->items),&ic);
 	///**/printf("ITEMS = %d sur %d\n",ic,sp->n);
 	sem_wait(&(sp->slots));
 	sem_wait(&(sp->mutex));
-	printf("Fractale to insert : %s\n",fractal_get_name((item)));
+	printf("Fractale to insert : %s\n",fractal_get_name((*item)));
 	fflush(stdout);
 	sp->rear=((sp->rear)+1)%(sp->n);
-	sp->buf[sp->rear]=item;	
+	sp->buf[sp->rear]=*item;	
 	printf("Number : %d\n",sp->rear);
 	fflush(stdout);
 	sem_post(&(sp->mutex));
@@ -255,7 +255,7 @@ void *producer(void* arguments){
 			struct fractal* f = fractal_new(name,*buf2,*buf3,*buf4,*buf5);
 			/**/printf("P=== Fractale lue : %s===\n",fractal_get_name((f)));
 			/**/fflush(stdout);
-			/**/sbuf_insert(bufIn,f);
+			/**/sbuf_insert(bufIn,&f);
 			lengthI++;
 			/**/printf("*INSERT DU PRODUCTEUR TERMINE*\n");
 			/**/fflush(stdout);
@@ -316,7 +316,7 @@ void *consumer(void* arguments){
 		}
 		/**/printf("*INSERT DU CONSOMMATEUR*\n");
 		/**/fflush(stdout);
-		sbuf_insert(bufOut,f);	
+		sbuf_insert(bufOut,&f);	
 		lengthO++;
 		/**/printf("*INSERT DU CONSOMMATEUR TERMINE*\n");	
 		/**/fflush(stdout);
