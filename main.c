@@ -536,7 +536,7 @@ int main(int argc, char *argv[])
 	{
 	}
 	*/
-	while((flagB1>0)&(flagB2>0)){
+	while((flagB1>0)|(flagB2>0)){
 		printf("flag1 %d\n flag2 %d\n",flagB1,flagB2);
 	}
 	/**/printf("--- Fin des threads ---\n");
