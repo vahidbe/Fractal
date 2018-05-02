@@ -83,7 +83,9 @@ void sbuf_insert(struct sbuf *sp, struct fractal item)
 	printf("Fractale to insert : %s\n",fractal_get_name(&(item)));
 	fflush(stdout);
 	sp->rear=((sp->rear)+1)%(sp->n);
-	sp->buf[sp->rear]=item;
+	sp->buf[sp->rear]=item;	
+	printf("Number : %d\n",sp->rear);
+	fflush(stdout);
 	sem_post(&(sp->mutex));
 	sem_post(&(sp->items));
 	///**/ic=0;
@@ -103,6 +105,8 @@ struct fractal sbuf_remove(struct sbuf *sp)
 	sem_wait(&(sp->mutex));
 	sp->front=((sp->front)+1)%(sp->n);
 	printf("Fractale to remove : %s\n",fractal_get_name(&(sp->buf[sp->front])));
+	fflush(stdout);
+	printf("Number : %d\n",sp->front);
 	fflush(stdout);
 	struct fractal res=(sp->buf[sp->front]);
 	sem_post(&(sp->mutex));
