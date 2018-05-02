@@ -534,7 +534,7 @@ int main(int argc, char *argv[])
 		
 	}
 	*/
-	while((flagB2>numberThreads-fractCount){}
+	while((flagB2>numberThreads-fractCount)){}
 	/**/printf("--- Fin des threads ---\n");
 	/**/fflush(stdout);
 	
