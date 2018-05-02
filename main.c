@@ -261,8 +261,10 @@ void *producer(void* arguments){
 
 void *consumer(void* arguments){
 	int done=0;
+	int id=0;
+	sem_getvalue(&(bufIn->items),&id);
 	pthread_mutex_lock(&mutexCons);
-	if(((flagB1)<=0)&(ic==0))
+	if(((flagB1)<=0)&(id==0))
 	{
 		done=1;
 	}
