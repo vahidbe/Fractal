@@ -286,7 +286,7 @@ void *consumer(void* arguments){
 		{
 			printf("1 PROD RESTANT\n");
 			fflush(stdout);
-			sleep(0);
+			sleep(1);
 		}
 		if((countProd==numberProd)&(bufIn->front==bufIn->rear))
 		{
