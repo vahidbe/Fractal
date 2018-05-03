@@ -23,9 +23,6 @@ int numberCons;
 int optionD;
 char* fileOutName;
 int sortie=0;
-int fractCountP=0;
-int fractCountC=0;
-int fractCountW=0;
 
 sem_t directeur;
 pthread_mutex_t tuteur1;
@@ -259,9 +256,6 @@ void *producer(void* arguments){
 			/**/printf("P - *INSERT DU PRODUCTEUR*\n");
 			/**/fflush(stdout);
 			/**/sbuf_insert(bufIn,f);
-			pthread_mutex_lock(&gardien);
-			fractCountP++;
-			pthread_mutex_unlock(&gardien);
 			x=fscanf(file,"%64s",buf1);
 			sleep(0);
 			}
@@ -292,7 +286,7 @@ void *consumer(void* arguments){
 			fflush(stdout);
 			sleep(1);
 		}
-		if(((countProd==numberProd)&(bufIn->front==bufIn->rear))|((fractCountW==fractCountP)&(fractCountP!=0)))
+		if((countProd==numberProd)&(bufIn->front==bufIn->rear))
 		{
 			/**/printf("C - =====DONE=C=====\n");
 			/**/fflush(stdout);
@@ -302,9 +296,6 @@ void *consumer(void* arguments){
 		{
 			/**/printf("C - *REMOVE DU CONSOMMATEUR*\n");
 			/**/fflush(stdout);
-			pthread_mutex_lock(&gardien);
-			fractCountC++;
-			pthread_mutex_unlock(&gardien);
 			struct fractal* f=(sbuf_remove(bufIn));
 			pthread_mutex_unlock(&tuteur1);
 			int i;
@@ -344,9 +335,15 @@ void *writer(void* arguments){
 		/**/fflush(stdout);
 		while(!done2){			
 			pthread_mutex_lock(&tuteur2);
+			if((numberThreads-countCons)==1)
+			{
+				printf("1 CONS RESTANT\n");
+				fflush(stdout);
+				sleep(2);				
+			}
 			printf("countCons : %d, numberThreads : %d\n",countCons, numberThreads);
 			fflush(stdout);
-			if(((countCons==numberThreads)&(bufOut->front==bufOut->rear))|((fractCountW==fractCountP)&(fractCountP!=0)))
+			if((countCons==numberThreads)&(bufOut->front==bufOut->rear))
 			{
 				/**/printf("W - ===DONE=W===\n");
 				/**/fflush(stdout);
@@ -358,9 +355,6 @@ void *writer(void* arguments){
 			else{
 				/**/printf("W - *REMOVE DU WRITER*\n");
 				/**/fflush(stdout);
-				pthread_mutex_lock(&gardien);
-				fractCountW++;
-				pthread_mutex_unlock(&gardien);
 				struct fractal* f = (sbuf_remove(bufOut));
 				pthread_mutex_unlock(&tuteur2);
 				/**/printf("W - === Fractale lue : %s, %d, %d, %f, %f ===\n",f->name,fractal_get_width(f),fractal_get_height(f), fractal_get_a(f), fractal_get_b(f));
@@ -403,27 +397,26 @@ void *writer(void* arguments){
 	{
 		while(!done2)
 		{
-			pthread_mutex_lock(&tuteur2);
 			/**/printf("W - ===OPTIOND-1===\n");
 			/**/fflush(stdout);
-			
-			if(((countCons==numberThreads)&(bufOut->front==bufOut->rear))|((fractCountW==fractCountP)&(fractCountP!=0)))
+			if((numberThreads-countCons)==1)
+			{
+				printf("1 CONS RESTANT\n");
+				fflush(stdout);
+				sleep(2);
+			}
+			if((countCons==numberThreads)&(bufOut->front==bufOut->rear))
 			{
 				done2=1;
 			}
 			else
 			{
-				pthread_mutex_lock(&gardien);
-				fractCountW++;
-				pthread_mutex_unlock(&gardien);
 				struct fractal* f = (sbuf_remove(bufOut));
 				printf("Writing down\n");
 				fflush(stdout);
 				write_bitmap_sdl(f,fractal_get_name(f));
 				fractal_free(f);
-				pthread_mutex_unlock(&tuteur2);
 			}
-			pthread_mutex_unlock(&tuteur2);
 			sleep(0);
 		}
 	}
