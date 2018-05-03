@@ -263,6 +263,7 @@ void *consumer(void* arguments){
 	{
 		pthread_mutex_lock(&tuteur1);
 		if(bufIn->front==bufIn->rear){
+			sleep(0);
 		if(((countProd==numberProd)&(bufIn->front==bufIn->rear))|((fractCountC==fractCountP)&(fractCountP!=0)))
 		{
 			done=1;
@@ -284,7 +285,6 @@ void *consumer(void* arguments){
 				}
 			}
 			sbuf_insert(bufOut,f);
-			sleep(0);
 		}
 	}
 	pthread_mutex_unlock(&tuteur1);
@@ -301,6 +301,7 @@ void *writer(void* arguments){
 		while(!done2){			
 			pthread_mutex_lock(&tuteur2);
 			if(bufOut->front==bufOut->rear){
+				sleep(0);
 			if(((countCons==numberThreads)&(bufOut->front==bufOut->rear))|((fractCountW==fractCountP)&(fractCountP!=0)))
 			{
 				pthread_mutex_lock(&professor);
@@ -348,6 +349,7 @@ void *writer(void* arguments){
 		{
 			pthread_mutex_lock(&tuteur2);
 			if(bufOut->front==bufOut->rear){
+				sleep(0);
 			if(((countCons==numberThreads)&(bufOut->front==bufOut->rear))|((fractCountW==fractCountP)&(fractCountP!=0)))
 			{
 				done2=1;
