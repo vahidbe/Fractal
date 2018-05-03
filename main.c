@@ -190,7 +190,7 @@ void *producer(void* arguments){
 		{
 			char* name=buf1;
 			x=fscanf(file,"%d",buf2);
-			if(x==EOF)
+			if(x!=sizeof(int))
 			{
 				fclose(file);				
 				free(buf1);
@@ -202,7 +202,7 @@ void *producer(void* arguments){
 				exit(-1);
 			}
 			x=fscanf(file,"%d",buf3);
-			if(x==EOF)
+			if(x!=sizeof(int))
 			{
 				fclose(file);				
 				free(buf1);
@@ -214,7 +214,7 @@ void *producer(void* arguments){
 				exit(-1);
 			}
 			x=fscanf(file,"%lf",buf4);
-			if(x==EOF)
+			if(x!=sizeof(double))
 			{
 				fclose(file);				
 				free(buf1);
@@ -226,7 +226,7 @@ void *producer(void* arguments){
 				exit(-1);
 			}
 			x=fscanf(file,"%lf",buf5);
-			if(x==EOF)
+			if(x!=sizeof(double))
 			{
 				fclose(file);			
 				free(buf1);
