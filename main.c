@@ -273,6 +273,8 @@ void *consumer(void* arguments){
 	while(!done)
 	{		
 		pthread_mutex_lock(&tuteur1);
+		printf("countProd : %d, numberProd : %d\nfront=rear : %d\n",countProd,numberProd,(bufIn->front==bufIn->rear));
+		fflush(stdout);
 		if((countProd==numberProd)&(bufIn->front==bufIn->rear))
 		{
 			/**/printf("C - =====DONE=C=====\n");
