@@ -396,6 +396,12 @@ void *writer(void* arguments){
 		{
 			/**/printf("W - ===OPTIOND-1===\n");
 			/**/fflush(stdout);
+			if((numberThreads-countCons)==1)
+			{
+				printf("1 CONS RESTANT\n");
+				fflush(stdout);
+				sleep(0);
+			}
 			if((countCons==numberThreads)&(bufOut->front==bufOut->rear))
 			{
 				done2=1;
