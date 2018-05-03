@@ -523,7 +523,7 @@ int main(int argc, char *argv[])
 	sbuf_clean(bufIn);
 	sbuf_clean(bufOut);	
 	
-	/**/printf("\n\n=== Fin du programme ===\n\n");
+	/**/printf("\n=== Fin du programme ===\n\n");
 	/**/fflush(stdout);
 	
 	return 0;
