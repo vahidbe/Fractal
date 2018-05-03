@@ -251,6 +251,7 @@ void *producer(void* arguments){
 			fractCountP++;
 			pthread_mutex_unlock(&gardien);
 			x=fscanf(file,"%64s",buf1);
+			sleep(0);
 			}
 		}
 	}
@@ -266,7 +267,6 @@ void *consumer(void* arguments){
 	int done=0;
 	while(!done)
 	{
-		pthread_mutex_lock(&gardien);
 		pthread_mutex_lock(&tuteur1);
 		printf("countProd = %d, numberProd = %d, fractCountC = %d, fractCountP = %d\n",countProd,numberProd,fractCountC,fractCountP);
 		if(((countProd==numberProd)&(bufIn->front==bufIn->rear))|((fractCountC==fractCountP)&(fractCountP!=0)))
@@ -275,6 +275,7 @@ void *consumer(void* arguments){
 		}
 		else
 		{
+			pthread_mutex_lock(&gardien);
 			fractCountC++;
 			pthread_mutex_unlock(&gardien);
 			/**/printf("C - *REMOVE DU CONSOMMATEUR*\n");
@@ -300,6 +301,7 @@ void *consumer(void* arguments){
 		}
 	}
 	pthread_mutex_unlock(&tuteur1);
+	pthread_mutex_lock(&gardien);
 	countCons++;
 	pthread_mutex_unlock(&gardien);
 	sem_post(&directeur);
