@@ -442,7 +442,7 @@ int main(int argc, char *argv[])
 	/**/fflush(stdout);
 	/**/printf("\nM - Nombre de threads qui vont être utilisés : %d \n \n",numberThreads);
 	/**/fflush(stdout);
-	sem_init(&directeur, 0 ,numberThreads);
+	sem_init(&directeur, 0 ,numberThreads-1);
 	sbuf_init(bufIn, 100);        						//TODO : Si pas assez de place (trop de fractales), code peut planter (pas de consommateur)    
 	sbuf_init(bufOut, 100);    
 
