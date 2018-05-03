@@ -369,13 +369,13 @@ void *writer(void* arguments){
 	}
 	else
 	{
-		while(!done)
+		while(!done2)
 		{
 			/**/printf("W - ===OPTIOND-1===\n");
 			/**/fflush(stdout);
 			if((countCons==numberThreads)&(bufOut->front==bufOut->rear))
 			{
-				done=1;
+				done2=1;
 			}
 			else
 			{
