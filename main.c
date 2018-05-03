@@ -274,7 +274,7 @@ void *consumer(void* arguments){
 	{		
 		pthread_mutex_lock(&gardien);
 		pthread_mutex_lock(&tuteur1);
-		printf("countProd : %d, numberProd : %d\nfront=rear : %d\n",countProd,numberProd,);
+		printf("countProd : %d, numberProd : %d\nfront=rear : %d\n",countProd,numberProd);
 		fflush(stdout);
 		if((countProd==numberProd)&(bufIn->front==bufIn->rear))
 		{
