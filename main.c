@@ -402,6 +402,8 @@ int main(int argc, char *argv[])
 	countWrit = 0;
 	countEleves = 0;
 	average = 0.0;
+	pthread_mutex_init(&tuteur1,NULL);
+	pthread_mutex_init(&tuteur2,NULL);
 	pthread_mutex_init(&professor,NULL);
 	pthread_mutex_init(&gardien,NULL);
 	int count;
