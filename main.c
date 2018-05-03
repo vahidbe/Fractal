@@ -480,9 +480,9 @@ int main(int argc, char *argv[])
 					goto end;
 				}
 				arguments->charP_arg=argv[count];
+				sem_wait(&directeur);
 				/**/printf("M - ---CREATION D'UN PRODUCTEUR---\n");
 				/**/fflush(stdout);
-				sem_wait(&directeur);
 				pthread_create(&(prod[count-optionsCount]), NULL, (void*) &producer, arguments);
 			}
 			else
@@ -506,9 +506,9 @@ int main(int argc, char *argv[])
 	}*/
 	for(i=0;(i<numberThreads);i++)
 	{
+		sem_wait(&directeur);
 		/**/printf("M - ---CREATION D'UN CONSOMMATEUR---\n");
 		/**/fflush(stdout);
-		sem_wait(&directeur);
 		pthread_create(&(cons[i]), NULL, (void*) &consumer, NULL);
 	}
 	
@@ -517,9 +517,9 @@ int main(int argc, char *argv[])
 
 	for(i=0;i<numberThreads;i++)
 	{
+		sem_wait(&directeur);
 		/**/printf("M - ---CREATION D'UN WRITER---\n");
 		/**/fflush(stdout);
-		sem_wait(&directeur);
 		pthread_create(&(writ[i]), NULL, (void*) &writer, NULL);
 	}	
 	/**/printf("M - --- Initialisation des writers terminée ---\n");
