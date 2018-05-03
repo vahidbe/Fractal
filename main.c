@@ -286,13 +286,9 @@ void *consumer(void* arguments){
 		pthread_mutex_lock(&tuteur1);
 		printf("countProd : %d, numberProd : %d\nfront=rear : %d\n",countProd,numberProd,(bufIn->front==bufIn->rear));
 		fflush(stdout);
-		if((numberProd-countProd)==1)
-		{
-			printf("1 PROD RESTANT\n");
-			fflush(stdout);
-			sleep(1);
-		}
-		if(((countProd==numberProd)&(bufIn->front==bufIn->rear))|((fractCountW==fractCountP)&(fractCountP!=0)))
+		printf("fractCountC : %d, fractCountP : %d\n",fractCountC,fractCountP);
+		fflush(stdout);
+		if(((countProd==numberProd)&(bufIn->front==bufIn->rear))|((fractCountC==fractCountP)&(fractCountP!=0)))
 		{
 			/**/printf("C - =====DONE=C=====\n");
 			/**/fflush(stdout);
@@ -345,6 +341,8 @@ void *writer(void* arguments){
 		while(!done2){			
 			pthread_mutex_lock(&tuteur2);
 			printf("countCons : %d, numberThreads : %d\n",countCons, numberThreads);
+			fflush(stdout);
+			printf("fractCountW : %d, fractCountP : %d\n",fractCountW,fractCountP);
 			fflush(stdout);
 			if(((countCons==numberThreads)&(bufOut->front==bufOut->rear))|((fractCountW==fractCountP)&(fractCountP!=0)))
 			{
@@ -406,7 +404,8 @@ void *writer(void* arguments){
 			pthread_mutex_lock(&tuteur2);
 			/**/printf("W - ===OPTIOND-1===\n");
 			/**/fflush(stdout);
-			
+			printf("fractCountW : %d, fractCountP : %d\n",fractCountW,fractCountP);
+			fflush(stdout);
 			if(((countCons==numberThreads)&(bufOut->front==bufOut->rear))|((fractCountW==fractCountP)&(fractCountP!=0)))
 			{
 				done2=1;
