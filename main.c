@@ -32,8 +32,6 @@ pthread_mutex_t tuteur1;
 pthread_mutex_t tuteur2;
 pthread_mutex_t professor;
 pthread_mutex_t gardien;
-pthread_mutex_t glob;
-
 int countEleves;
 struct sbuf* bufIn;
 struct sbuf* bufOut;
@@ -157,7 +155,7 @@ void *producer(void* arguments){
 			exit(-1);
     	}	
 
-	pthread_mutex_lock(&glob);
+
 	x=fscanf(file,"%64s",buf1);
 	while(!done){
     	if(x==EOF)
@@ -190,7 +188,6 @@ void *producer(void* arguments){
 		}
 		else
 		{
-			pthread_mutex_unlock(&glob);
 			char* name=buf1;
 			x=fscanf(file,"%d",buf2);
 			if(x==EOF)
@@ -245,7 +242,6 @@ void *producer(void* arguments){
 			f = fractal_new(name,*buf2,*buf3,*buf4,*buf5);
 			//**/printf("P - === Fractale lue : %s, %d, %d, %f, %f ===\n",f->name,fractal_get_width(f),fractal_get_height(f), fractal_get_a(f), fractal_get_b(f));
 			//**/fflush(stdout);
-			pthread_mutex_lock(&glob);
 			sbuf_insert(bufIn,f);
 			pthread_mutex_lock(&gardien);
 			fractCountP++;
@@ -258,7 +254,6 @@ void *producer(void* arguments){
 	countProd++;
 	sem_post(&directeur);	
 	pthread_mutex_unlock(&gardien);
-	pthread_mutex_unlock(&glob);
 	return NULL;
 }
 
@@ -266,7 +261,6 @@ void *consumer(void* arguments){
 	int done=0;
 	while(!done)
 	{
-		pthread_mutex_lock(&glob);
 		sleep(0);
 		pthread_mutex_lock(&tuteur1);
 		if(bufIn->front==bufIn->rear){
@@ -282,7 +276,6 @@ void *consumer(void* arguments){
 			pthread_mutex_unlock(&gardien);
 			struct fractal* f=(sbuf_remove(bufIn));
 			pthread_mutex_unlock(&tuteur1);
-			pthread_mutex_unlock(&glob);
 			int i;
 			int j;
 			for(i=0;i<f->width;i++)
@@ -398,7 +391,6 @@ int main(int argc, char *argv[])
 	pthread_mutex_init(&tuteur2,NULL);
 	pthread_mutex_init(&professor,NULL);
 	pthread_mutex_init(&gardien,NULL);
-	pthread_mutex_init(&glob,NULL);
 	int count;
 	int optionsCount=0;
 	optionD=0;
