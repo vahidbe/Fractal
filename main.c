@@ -172,7 +172,7 @@ void *producer(void* arguments){
 			free(buf3);
 			free(buf4);
 			free(buf5);
-			fprinf(stderr,"Error closing your file!\n");
+			fprintf(stderr,"Error closing your file!\n");
 			exit(-1);
 		}
 		free(buf1);
@@ -196,49 +196,49 @@ void *producer(void* arguments){
 			x=fscanf(file,"%d",buf2);
 			if(x==EOF)
 			{
-				fclose(file)				
+				fclose(file);				
 				free(buf1);
 				free(buf2);
 				free(buf3);
 				free(buf4);
 				free(buf5);
-				fprinf(stderr,"Error in you file, you don't respect the structure of input!\n");
+				fprintf(stderr,"Error in you file, you don't respect the structure of input!\n");
 				exit(-1);
 			}
 			x=fscanf(file,"%d",buf3);
 			if(x==EOF)
 			{
-				fclose(file)				
+				fclose(file);				
 				free(buf1);
 				free(buf2);
 				free(buf3);
 				free(buf4);
 				free(buf5);
-				fprinf(stderr,"Error in you file, you don't respect the structure of input!\n");
+				fprintf(stderr,"Error in you file, you don't respect the structure of input!\n");
 				exit(-1);
 			}
 			x=fscanf(file,"%lf",buf4);
 			if(x==EOF)
 			{
-				fclose(file)				
+				fclose(file);				
 				free(buf1);
 				free(buf2);
 				free(buf3);
 				free(buf4);
 				free(buf5);
-				fprinf(stderr,"Error in you file, you don't respect the structure of input!\n");
+				fprintf(stderr,"Error in you file, you don't respect the structure of input!\n");
 				exit(-1);
 			}
 			x=fscanf(file,"%lf",buf5);
 			if(x==EOF)
 			{
-				fclose(file)				
+				fclose(file);			
 				free(buf1);
 				free(buf2);
 				free(buf3);
 				free(buf4);
 				free(buf5);
-				fprinf(stderr,"Error in you file, you don't respect the structure of input!\n");
+				fprintf(stderr,"Error in you file, you don't respect the structure of input!\n");
 				exit(-1);
 			}
 
