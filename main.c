@@ -156,9 +156,9 @@ void *producer(void* arguments){
     	}	
 
 
-	pthread_mutex_lock(&gardien);	
-			printf("lock");
-			fflush(stdout);
+	//pthread_mutex_lock(&gardien);	
+	//		printf("lock");
+	//		fflush(stdout);
 	x=fscanf(file,"%64s",buf1);
 	while(!done){
     	if(x==EOF)
@@ -183,9 +183,9 @@ void *producer(void* arguments){
 	}
     	else
     	{		
-		pthread_mutex_unlock(&gardien);	
-			printf("unlock");
-			fflush(stdout);
+		//pthread_mutex_unlock(&gardien);	
+		//	printf("unlock");
+		//	fflush(stdout);
 		if(buf1[0]=='#')
 		{
 			char trash[1024];
@@ -252,17 +252,18 @@ void *producer(void* arguments){
 			fflush(stdout);
 			sbuf_insert(bufIn,f);
 			fractCountP++;			
-			printf("unlock");
-			fflush(stdout);
-			pthread_mutex_unlock(&gardien);
+			//printf("unlock");
+			//fflush(stdout);
+			//pthread_mutex_unlock(&gardien);
 			sleep(0);
-			pthread_mutex_lock(&gardien);	
-			printf("lock");
-			fflush(stdout);
+			//pthread_mutex_lock(&gardien);	
+			//printf("lock");
+			//fflush(stdout);
 			x=fscanf(file,"%64s",buf1);
 			}
 		}
 	}
+	pthread_mutex_lock(&gardien);
 	countProd++;
 	sem_post(&directeur);	
 	pthread_mutex_unlock(&gardien);
