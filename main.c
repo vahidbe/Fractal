@@ -22,8 +22,6 @@ int numberProd;
 int optionD;
 char* fileOutName;
 int sortie=0;
-int done=0;
-int done2=0;
 
 sem_t directeur;
 pthread_mutex_t tuteur1;
@@ -268,6 +266,7 @@ void *producer(void* arguments){
 }
 
 void *consumer(void* arguments){
+	int done=0;
 	/**/printf("C - --- DEBUT CONSOMMATEUR ---\n");
 	/**/fflush(stdout);
 	while(!done)
@@ -310,6 +309,7 @@ void *consumer(void* arguments){
 }
 
 void *writer(void* arguments){
+	int done2=0;
 	/**/printf("W - --- DEBUT WRITER ---\n");
 	/**/fflush(stdout);
 	printf("optionD = %d",optionD);
