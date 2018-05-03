@@ -156,11 +156,12 @@ void *producer(void* arguments){
     	}	
 
 
+	pthread_mutex_lock(&gardien);
 	x=fscanf(file,"%64s",buf1);
 	while(!done){
     	if(x==EOF)
 	{		
-		pthread_mutex_lock(&gardien);
+
 		if(fclose(file)!=0)
 		{				
 			free(buf1);
@@ -180,6 +181,7 @@ void *producer(void* arguments){
 	}
     	else
     	{		
+		pthread_mutex_unlock(&gardien);
 		if(buf1[0]=='#')
 		{
 			char trash[1024];
@@ -243,11 +245,11 @@ void *producer(void* arguments){
 			//**/printf("P - === Fractale lue : %s, %d, %d, %f, %f ===\n",f->name,fractal_get_width(f),fractal_get_height(f), fractal_get_a(f), fractal_get_b(f));
 			//**/fflush(stdout);
 			sbuf_insert(bufIn,f);
-			pthread_mutex_lock(&gardien);
 			fractCountP++;
 			pthread_mutex_unlock(&gardien);
-			x=fscanf(file,"%64s",buf1);
 			sleep(0);
+			pthread_mutex_lock(&gardien);
+			x=fscanf(file,"%64s",buf1);
 			}
 		}
 	}
