@@ -283,7 +283,7 @@ void *consumer(void* arguments){
 		{
 			printf("1 PROD RESTANT\n");
 			fflush(stdout);
-			sleep(0);
+			sleep(1);
 		}
 		if((countProd==numberProd)&(bufIn->front==bufIn->rear))
 		{
@@ -337,7 +337,7 @@ void *writer(void* arguments){
 			{
 				printf("1 CONS RESTANT\n");
 				fflush(stdout);
-				sleep(0);
+				sleep(1);
 			}
 			printf("countCons : %d, numberThreads : %d\n",countCons, numberThreads);
 			fflush(stdout);
@@ -400,7 +400,7 @@ void *writer(void* arguments){
 			{
 				printf("1 CONS RESTANT\n");
 				fflush(stdout);
-				sleep(0);
+				sleep(1);
 			}
 			if((countCons==numberThreads)&(bufOut->front==bufOut->rear))
 			{
