@@ -261,6 +261,7 @@ void *consumer(void* arguments){
 	int done=0;
 	while(!done)
 	{
+		sleep(0);
 		pthread_mutex_lock(&tuteur1);
 		if(bufIn->front==bufIn->rear){
 			sleep(0);
@@ -300,6 +301,7 @@ void *writer(void* arguments){
 	if(!optionD){
 		while(!done2){			
 			pthread_mutex_lock(&tuteur2);
+			sleep(0);
 			if(bufOut->front==bufOut->rear){
 				sleep(0);
 			if(((countCons==numberThreads)&(bufOut->front==bufOut->rear))|((fractCountW==fractCountP)&(fractCountP!=0)))
@@ -347,7 +349,8 @@ void *writer(void* arguments){
 	{
 		while(!done2)
 		{
-			pthread_mutex_lock(&tuteur2);
+			pthread_mutex_lock(&tuteur2);			
+			sleep(0);
 			if(bufOut->front==bufOut->rear){
 				sleep(0);
 			if(((countCons==numberThreads)&(bufOut->front==bufOut->rear))|((fractCountW==fractCountP)&(fractCountP!=0)))
