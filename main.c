@@ -248,8 +248,6 @@ void *producer(void* arguments){
 			f = fractal_new(name,*buf2,*buf3,*buf4,*buf5);
 			//**/printf("P - === Fractale lue : %s, %d, %d, %f, %f ===\n",f->name,fractal_get_width(f),fractal_get_height(f), fractal_get_a(f), fractal_get_b(f));
 			//**/fflush(stdout);
-			printf("insert prod");
-			fflush(stdout);
 			sbuf_insert(bufIn,f);
 			fractCountP++;			
 			//printf("unlock");
