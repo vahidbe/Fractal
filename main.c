@@ -286,7 +286,7 @@ void *consumer(void* arguments){
 		pthread_mutex_lock(&tuteur1);
 		printf("countProd : %d, numberProd : %d\nfront=rear : %d\n",countProd,numberProd,(bufIn->front==bufIn->rear));
 		fflush(stdout);
-		sleep(1);
+		sleep(0);
 		if(((countProd==numberProd)&(bufIn->front==bufIn->rear))|((fractCountW==fractCountP)&(fractCountP!=0)))
 		{
 			/**/printf("C - =====DONE=C=====\n");
