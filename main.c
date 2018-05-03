@@ -61,8 +61,7 @@ void sbuf_init(struct sbuf *sp, int n)
 {
 	if(sp==NULL)
 	{
-		printf("Ini - --- EXIT ---\n");
-		fflush(stdout);
+		fprintf(stderr,"Malloc error!\n");
 		exit(-1);
 	}
     sp->buf = (struct fractal**) calloc(n, sizeof(struct fractal*));
@@ -92,8 +91,8 @@ void sbuf_insert(struct sbuf *sp, struct fractal* f)
 	pthread_mutex_lock(&(sp->mutex));
 	sp->buf[sp->rear]=f;
 	sp->rear = (sp->rear)+1;
-	printf("Ins - Fractale inserted : %s, %d, %d, %f, %f\n",f->name,fractal_get_width(f),fractal_get_height(f), fractal_get_a(f), fractal_get_b(f));
-	fflush(stdout);
+	//printf("Ins - Fractale inserted : %s, %d, %d, %f, %f\n",f->name,fractal_get_width(f),fractal_get_height(f), fractal_get_a(f), fractal_get_b(f));
+	//fflush(stdout);
 	pthread_mutex_unlock(&(sp->mutex));
 	sem_post(&(sp->full));
 }
@@ -104,20 +103,18 @@ void sbuf_insert(struct sbuf *sp, struct fractal* f)
 struct fractal* sbuf_remove(struct sbuf *sp)
 {	
 	sem_wait(&(sp->full));
-	struct fractal* f = (struct fractal*)malloc(sizeof(struct fractal));
+	struct fractal* f;
 	pthread_mutex_lock(&(sp->mutex));
 	sp->rear = (sp->rear)-1;
 	f = sp->buf[sp->rear];
-	printf("Ins - Fractale removed : %s, %d, %d, %f, %f\n",f->name,fractal_get_width(f),fractal_get_height(f), fractal_get_a(f), fractal_get_b(f));
-	fflush(stdout);
+	//printf("Ins - Fractale removed : %s, %d, %d, %f, %f\n",f->name,fractal_get_width(f),fractal_get_height(f), fractal_get_a(f), fractal_get_b(f));
+	//fflush(stdout);
 	pthread_mutex_unlock(&(sp->mutex));
 	sem_post(&(sp->empty));
 	return f;
 }
 
 void *producer(void* arguments){	
-	/**/printf("P - --- DEBUT PRODUCTEUR ---\n");
-	/**/fflush(stdout);
 	struct args* argument=(struct args*) arguments;
 	char* fileName=argument->charP_arg;
 	free(argument);
@@ -148,14 +145,15 @@ void *producer(void* arguments){
 	char bufName[64];
 	if((buf1==NULL)|(buf2==NULL)|(buf3==NULL)|(buf4==NULL)|(buf5==NULL))
     	{
-		if(fclose(file)!=0)
-		{
-			return (NULL);
-		}
-		return (NULL);
+			fclose(file);				
+			free(buf1);
+			free(buf2);
+			free(buf3);
+			free(buf4);
+			free(buf5);
+			fprintf(stderr,"Malloc error!\n");
+			exit(-1);
     	}	
-	/**/printf("P - --- Fin malloc producteur ---\n");
-	/**/fflush(stdout);
 
 
 	x=fscanf(file,"%64s",buf1);
@@ -163,16 +161,15 @@ void *producer(void* arguments){
     	if(x==EOF)
 	{		
 		pthread_mutex_lock(&gardien);
-		/**/printf("P - lockG\n");
-		/**/fflush(stdout);
 		if(fclose(file)!=0)
-		{
+		{				
 			free(buf1);
 			free(buf2);
 			free(buf3);
 			free(buf4);
 			free(buf5);
-			return (NULL);
+			fprintf(stderr,"Error closing your file!\n");
+			exit(-1);
 		}
 		free(buf1);
 		free(buf2);
@@ -195,70 +192,57 @@ void *producer(void* arguments){
 			x=fscanf(file,"%d",buf2);
 			if(x==EOF)
 			{
-				//TODO: gérer les erreurs/la sortie
-				if(fclose(file)!=0)
-				{
-					return (NULL);
-				}
+				fclose(file);				
 				free(buf1);
 				free(buf2);
 				free(buf3);
 				free(buf4);
 				free(buf5);
-				return (NULL);
+				fprintf(stderr,"Error in you file, you don't respect the structure of input!\n");
+				exit(-1);
 			}
 			x=fscanf(file,"%d",buf3);
 			if(x==EOF)
 			{
-				//TODO: gérer les erreurs/la sortie
-				if(fclose(file)!=0)
-				{
-					return (NULL);
-				}
+				fclose(file);				
 				free(buf1);
 				free(buf2);
 				free(buf3);
 				free(buf4);
 				free(buf5);
-				return (NULL);
+				fprintf(stderr,"Error in you file, you don't respect the structure of input!\n");
+				exit(-1);
 			}
 			x=fscanf(file,"%lf",buf4);
 			if(x==EOF)
 			{
-				//TODO: gérer les erreurs/la sortie
-				if(fclose(file)!=0)
-				{
-					return (NULL);
-				}
+				fclose(file);				
 				free(buf1);
 				free(buf2);
 				free(buf3);
 				free(buf4);
 				free(buf5);
-				return (NULL);
+				fprintf(stderr,"Error in you file, you don't respect the structure of input!\n");
+				exit(-1);
 			}
 			x=fscanf(file,"%lf",buf5);
 			if(x==EOF)
 			{
-				if(fclose(file)!=0)
-				{
-					return (NULL);
-				}
+				fclose(file);			
 				free(buf1);
 				free(buf2);
 				free(buf3);
 				free(buf4);
 				free(buf5);
-				return (NULL);
+				fprintf(stderr,"Error in you file, you don't respect the structure of input!\n");
+				exit(-1);
 			}
 
-			struct fractal* f = (struct fractal*)malloc(sizeof(struct fractal));
+			struct fractal* f;
 			f = fractal_new(name,*buf2,*buf3,*buf4,*buf5);
-			/**/printf("P - === Fractale lue : %s, %d, %d, %f, %f ===\n",f->name,fractal_get_width(f),fractal_get_height(f), fractal_get_a(f), fractal_get_b(f));
-			/**/fflush(stdout);
-			/**/printf("P - *INSERT DU PRODUCTEUR*\n");
-			/**/fflush(stdout);
-			/**/sbuf_insert(bufIn,f);
+			//**/printf("P - === Fractale lue : %s, %d, %d, %f, %f ===\n",f->name,fractal_get_width(f),fractal_get_height(f), fractal_get_a(f), fractal_get_b(f));
+			//**/fflush(stdout);
+			sbuf_insert(bufIn,f);
 			pthread_mutex_lock(&gardien);
 			fractCountP++;
 			pthread_mutex_unlock(&gardien);
@@ -267,36 +251,23 @@ void *producer(void* arguments){
 			}
 		}
 	}
-	/**/printf("P - --- Fin producteur ---\n");
-	/**/fflush(stdout);
 	countProd++;
 	sem_post(&directeur);	
 	pthread_mutex_unlock(&gardien);
-	/**/printf("P - unlockG\n");
-	/**/fflush(stdout);
 	return NULL;
 }
 
 void *consumer(void* arguments){
 	int done=0;
-	/**/printf("C - --- DEBUT CONSOMMATEUR ---\n");
-	/**/fflush(stdout);
 	while(!done)
 	{
 		pthread_mutex_lock(&tuteur1);
-		printf("countProd : %d, numberProd : %d\nfront=rear : %d\n",countProd,numberProd,(bufIn->front==bufIn->rear));
-		fflush(stdout);
-		sleep(0);
-		if(((countProd==numberProd)&(bufIn->front==bufIn->rear))|((fractCountW==fractCountP)&(fractCountP!=0)))
+		if(((countProd==numberProd)&(bufIn->front==bufIn->rear))|((fractCountC==fractCountP)&(fractCountP!=0)))
 		{
-			/**/printf("C - =====DONE=C=====\n");
-			/**/fflush(stdout);
 			done=1;
 		}
 		else
 		{
-			/**/printf("C - *REMOVE DU CONSOMMATEUR*\n");
-			/**/fflush(stdout);
 			pthread_mutex_lock(&gardien);
 			fractCountC++;
 			pthread_mutex_unlock(&gardien);
@@ -311,15 +282,11 @@ void *consumer(void* arguments){
 					fractal_set_value(f,i,j,fractal_compute_value(f,i,j));
 				}
 			}
-			/**/printf("C - *INSERT DU CONSOMMATEUR*\n");
-			/**/fflush(stdout);
 			sbuf_insert(bufOut,f);
 			sleep(0);
 		}
 	}
 	pthread_mutex_unlock(&tuteur1);
-	/**/printf("C - --- Fin consommateur ---\n");
-	/**/fflush(stdout);
 	pthread_mutex_lock(&gardien);
 	countCons++;
 	pthread_mutex_unlock(&gardien);
@@ -329,43 +296,27 @@ void *consumer(void* arguments){
 
 void *writer(void* arguments){
 	int done2=0;
-	/**/printf("W - --- DEBUT WRITER ---\n");
-	/**/fflush(stdout);
-	printf("optionD = %d",optionD);
-	/**/printf("W - --- Debut ecriture writer ---\n");
-	/**/fflush(stdout);
 	if(!optionD){
-		/**/printf("W - ===OPTIOND-0===\n");
-		/**/fflush(stdout);
 		while(!done2){			
 			pthread_mutex_lock(&tuteur2);
-			printf("countCons : %d, numberThreads : %d\n",countCons, numberThreads);
-			fflush(stdout);
-			sleep(0);
 			if(((countCons==numberThreads)&(bufOut->front==bufOut->rear))|((fractCountW==fractCountP)&(fractCountP!=0)))
 			{
-				/**/printf("W - ===DONE=W===\n");
-				/**/fflush(stdout);
 				pthread_mutex_lock(&professor);
 				countEleves++;
 				pthread_mutex_unlock(&professor);
 				done2=1;
 			}
 			else{
-				/**/printf("W - *REMOVE DU WRITER*\n");
-				/**/fflush(stdout);
 				pthread_mutex_lock(&gardien);
 				fractCountW++;
 				pthread_mutex_unlock(&gardien);
 				struct fractal* f = (sbuf_remove(bufOut));
 				pthread_mutex_unlock(&tuteur2);
-				/**/printf("W - === Fractale lue : %s, %d, %d, %f, %f ===\n",f->name,fractal_get_width(f),fractal_get_height(f), fractal_get_a(f), fractal_get_b(f));
-				/**/fflush(stdout);
-				/**/printf("W - About to compute average\n");
-				/**/fflush(stdout);
+				//**/printf("W - === Fractale lue : %s, %d, %d, %f, %f ===\n",f->name,fractal_get_width(f),fractal_get_height(f), fractal_get_a(f), fractal_get_b(f));
+				//**/fflush(stdout);
 				double newAverage = fractal_compute_average(f);
-				/**/printf("W - Average computed == %f\n", newAverage);
-				/**/fflush(stdout);
+				//**/printf("W - Average computed == %f\n", newAverage);
+				//**/fflush(stdout);
 				pthread_mutex_lock(&professor);
 				if(newAverage>average)
 				{
@@ -379,30 +330,21 @@ void *writer(void* arguments){
 			
 		}
 		pthread_mutex_unlock(&tuteur2);
-		/**/printf("W - === ECRITURE ===\n");
-		/**/fflush(stdout);
 		pthread_mutex_lock(&professor);
-		printf("countEleves = %d, numberthreads = %d\n",countEleves,numberThreads);
-		fflush(stdout);
 		if((!sortie)&(countEleves==numberThreads))
 		{	
-			/**/printf("W - Plus grande fractale : %s avec une moyenne de : %f\n", highestF->name, average);
+			/**/printf("\n- Plus grande fractale : %s avec une moyenne de : %f\n\n", highestF->name, average);
 			/**/fflush(stdout);
 			write_bitmap_sdl(highestF,fileOutName);
 			sortie=1;
 		}		
 		pthread_mutex_unlock(&professor);
-		/**/printf("W - === FIN ECRITURE ===\n");
-		/**/fflush(stdout);
 	}
 	else
 	{
 		while(!done2)
 		{
 			pthread_mutex_lock(&tuteur2);
-			/**/printf("W - ===OPTIOND-1===\n");
-			/**/fflush(stdout);
-			sleep(0);
 			if(((countCons==numberThreads)&(bufOut->front==bufOut->rear))|((fractCountW==fractCountP)&(fractCountP!=0)))
 			{
 				done2=1;
@@ -413,8 +355,6 @@ void *writer(void* arguments){
 				fractCountW++;
 				pthread_mutex_unlock(&gardien);
 				struct fractal* f = (sbuf_remove(bufOut));
-				printf("Writing down\n");
-				fflush(stdout);
 				write_bitmap_sdl(f,fractal_get_name(f));
 				fractal_free(f);
 				pthread_mutex_unlock(&tuteur2);
@@ -423,8 +363,6 @@ void *writer(void* arguments){
 			sleep(0);
 		}
 	}
-	/**/printf("W - --- Fin writer ---\n");
-	/**/fflush(stdout);
 	pthread_mutex_lock(&gardien);
 	countWrit++;
 	pthread_mutex_unlock(&gardien);
@@ -434,6 +372,7 @@ void *writer(void* arguments){
 
 int main(int argc, char *argv[])
 {
+	printf("\n=== Début du programme ===\n");
 	numberThreads=0;
 	countProd = 0;
 	countCons = 0;
@@ -447,11 +386,14 @@ int main(int argc, char *argv[])
 	int count;
 	int optionsCount=0;
 	optionD=0;
-	bufIn=(malloc(sizeof(struct sbuf)));
-	bufOut=(malloc(sizeof(struct sbuf))); 					//TODO : Close si malloc echoue
+	bufIn=(malloc(sizeof(struct sbuf))); 
+	bufOut=(malloc(sizeof(struct sbuf))); 
 	highestF=malloc(sizeof(struct fractal));
-	/**/printf("M - --- Initialisation des variables terminée ---\n");
-	/**/fflush(stdout);
+	
+	if((bufIn==NULL)|(bufOut==NULL)|(highestF==NULL))
+	{
+		fprintf(stderr,"Malloc error!\n");
+	}
 
 	if((*argv[1]=='-')&(*(argv[1]+1)=='d')){
 		optionD=1;
@@ -475,17 +417,32 @@ int main(int argc, char *argv[])
 		numberThreads=argc-2-optionsCount; 
 	}
 	numberProd = argc-2-optionsCount;
+	if(numberProd==0)
+	{
+		fprintf(stderr,"You did'nt enter a file!\n");
+		free(bufIn);
+		free(bufOut);
+		free(highestF);
+		exit(-1);
+	}
 	
-	/**/printf("M - --- Lecture des options terminée ---\n");
+	char* string;
+	if(optionD)
+	{
+		string="OUI";
+	}
+	else
+	{
+		string="NON";
+	}
+	
+	/**/printf("\n\n - Affichage de toutes les fractales : %s -\n",string);
 	/**/fflush(stdout);
-	/**/printf("\nM - Nombre de threads qui vont être utilisés : %d \n \n",numberThreads);
+	/**/printf("\n - Nombre de threads qui vont être utilisés : %d -\n\n",numberThreads);
 	/**/fflush(stdout);
 	sem_init(&directeur, 0 ,numberThreads);
-	sbuf_init(bufIn, 100);        						//TODO : Si pas assez de place (trop de fractales), code peut planter (pas de consommateur)    
-	sbuf_init(bufOut, 100);    
-
-	/**/printf("M - --- Initialisation des buffers terminée ---\n");
-	/**/fflush(stdout);
+	sbuf_init(bufIn, 50);        						
+	sbuf_init(bufOut, 50);    
 	
 	if(numberThreads==0)
 	{
@@ -496,7 +453,7 @@ int main(int argc, char *argv[])
 	pthread_t cons[numberThreads];
 	pthread_t writ[numberThreads];
 	
-	/**/printf("M - --- Initialisation des tableaux de pthread_t terminée ---\n");
+	/**/printf("--- Initialisation du main terminée ---\n");
 	/**/fflush(stdout);
 	
 	for(count=optionsCount+1;count<argc;count++)
@@ -504,7 +461,6 @@ int main(int argc, char *argv[])
 		if(((*argv[count])=='-')&(count!=(argc)))
 		{ 	
 			//TODO : ENTREE STANDARD			
-			//fgets ( string, 256, stdin );
 		}
 		else
 		{
@@ -517,8 +473,6 @@ int main(int argc, char *argv[])
 				}
 				arguments->charP_arg=argv[count];
 				sem_wait(&directeur);
-				/**/printf("M - ---CREATION D'UN PRODUCTEUR---\n");
-				/**/fflush(stdout);
 				pthread_create(&(prod[count-optionsCount]), NULL, (void*) &producer, arguments);
 			}
 			else
@@ -528,7 +482,7 @@ int main(int argc, char *argv[])
 		}
 	}
 	
-	/**/printf("M - --- Initialisation des producteurs terminée ---\n");
+	/**/printf("--- Initialisation des producteurs terminée ---\n");
 	/**/fflush(stdout);
 	
 	int i;/*
@@ -543,22 +497,20 @@ int main(int argc, char *argv[])
 	for(i=0;(i<numberThreads);i++)
 	{
 		sem_wait(&directeur);
-		/**/printf("M - ---CREATION D'UN CONSOMMATEUR---\n");
-		/**/fflush(stdout);
 		pthread_create(&(cons[i]), NULL, (void*) &consumer, NULL);
 	}
 	
-	/**/printf("M - --- Initialisation des consommateurs terminée ---\n");
+	/**/printf("--- Initialisation des consommateurs terminée ---\n");
 	/**/fflush(stdout);
 
 	for(i=0;i<numberThreads;i++)
 	{
 		sem_wait(&directeur);
-		/**/printf("M - ---CREATION D'UN WRITER---\n");
-		/**/fflush(stdout);
 		pthread_create(&(writ[i]), NULL, (void*) &writer, NULL);
 	}	
-	/**/printf("M - --- Initialisation des writers terminée ---\n");
+	/**/printf("--- Initialisation des writers terminée ---\n");
+	/**/fflush(stdout);
+	/**/printf("=== Initialisation terminée ===\n");
 	/**/fflush(stdout);
 
 	while(countWrit<numberThreads)
@@ -566,19 +518,12 @@ int main(int argc, char *argv[])
 		
 	}
 	
-	/**/printf("M - --- Fin des threads ---\n");
-	/**/fflush(stdout);
-	
 	end:
 	
 	sbuf_clean(bufIn);
-	sbuf_clean(bufOut);
+	sbuf_clean(bufOut);	
 	
-	/**/printf("M - --- Buffers clean ---\n");
-	/**/fflush(stdout);
-	
-	
-	/**/printf("M - --- Fin du programme ---\n");
+	/**/printf("\n\n=== Fin du programme ===\n\n");
 	/**/fflush(stdout);
 	
 	return 0;
