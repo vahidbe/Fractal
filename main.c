@@ -333,11 +333,11 @@ void *writer(void* arguments){
 		/**/fflush(stdout);
 		while(!done2){			
 			pthread_mutex_lock(&tuteur2);
-			if((numberThreads-countCons)==1)
+			while((numberThreads-countCons)==1)
 			{
 				printf("1 CONS RESTANT\n");
 				fflush(stdout);
-				sleep(2);
+				sleep(2);				
 			}
 			printf("countCons : %d, numberThreads : %d\n",countCons, numberThreads);
 			fflush(stdout);
@@ -396,7 +396,7 @@ void *writer(void* arguments){
 		{
 			/**/printf("W - ===OPTIOND-1===\n");
 			/**/fflush(stdout);
-			if((numberThreads-countCons)==1)
+			while((numberThreads-countCons)==1)
 			{
 				printf("1 CONS RESTANT\n");
 				fflush(stdout);
