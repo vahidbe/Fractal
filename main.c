@@ -287,12 +287,12 @@ void *consumer(void* arguments){
 		{
 			pthread_mutex_lock(&gardien);
 			fractCountC++;
-			printf("fractcount++\n");
-		fflush(stdout);
+			//printf("fractcount++\n");
+			//fflush(stdout);
 			pthread_mutex_unlock(&gardien);
 			if(bufIn->front!=bufIn->rear){
-				printf("remove cons\n");
-				fflush(stdout);
+				//printf("remove cons\n");
+				//fflush(stdout);
 			struct fractal* f=(sbuf_remove(bufIn));
 			pthread_mutex_unlock(&tuteur1);
 			int i;
@@ -381,6 +381,7 @@ void *writer(void* arguments){
 			sleep(0);
 			if(bufOut->front==bufOut->rear){
 				sleep(0);
+				pthread_mutex_lock(&tuteur2);
 			if(((countCons==numberThreads)&(bufOut->front==bufOut->rear))|((fractCountW==fractCountP)&(fractCountP!=0)))
 			{
 				done2=1;
