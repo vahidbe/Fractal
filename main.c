@@ -372,7 +372,7 @@ void *writer(void* arguments){
 
 int main(int argc, char *argv[])
 {
-	printf("\n=== Début du programme ===\n");
+	printf("=== Début du programme ===\n");
 	numberThreads=0;
 	countProd = 0;
 	countCons = 0;
@@ -436,9 +436,9 @@ int main(int argc, char *argv[])
 		string="NON";
 	}
 	
-	/**/printf("\n\n - Affichage de toutes les fractales : %s -\n",string);
+	/**/printf("\n - Affichage de toutes les fractales : %s -\n\n",string);
 	/**/fflush(stdout);
-	/**/printf("\n - Nombre de threads qui vont être utilisés : %d -\n\n",numberThreads);
+	/**/printf("\n - Nombre de threads qui vont être utilisés : %d -\n \n",numberThreads);
 	/**/fflush(stdout);
 	sem_init(&directeur, 0 ,numberThreads);
 	sbuf_init(bufIn, 50);        						
@@ -523,7 +523,7 @@ int main(int argc, char *argv[])
 	sbuf_clean(bufIn);
 	sbuf_clean(bufOut);	
 	
-	/**/printf("=== Fin du programme ===\n\n");
+	/**/printf("=== Fin du programme ===\n");
 	/**/fflush(stdout);
 	
 	return 0;
