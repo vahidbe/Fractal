@@ -391,7 +391,7 @@ int main(int argc, char *argv[])
 	bufOut; 
 	highestF=malloc(sizeof(struct fractal));
 	
-	if((bufIn==NULL)|(bufOut==NULL)|(highestF==NULL))
+	if((highestF==NULL))
 	{
 		fprintf(stderr,"Malloc error!\n");
 	}
