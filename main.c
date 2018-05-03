@@ -264,7 +264,7 @@ void *consumer(void* arguments){
 	{
 		pthread_mutex_lock(&gardien);
 		printf("countProd %d, numberProd %d, fractCountC %d, fractCountP %d \n",countProd,numberProd,fractCountC,fractCountP);
-		if(((countProd==numberProd)|(bufIn->front==bufIn->rear))|(fractCountC==fractCountP)&(fractCountP!=0))
+		if(((countProd==numberProd)&(bufIn->front==bufIn->rear))|((fractCountC==fractCountP)&(fractCountP!=0)))
 		{
 			done=1;			
 			pthread_mutex_unlock(&gardien);
@@ -301,7 +301,7 @@ void *writer(void* arguments){
 			pthread_mutex_lock(&gardien);
 			sleep(0);
 			printf("countCons %d, numberThreads %d, fractCountW %d, fractCountP %d\n",countCons,numberThreads,fractCountW,fractCountP); fflush(stdout);
-			if(((countCons==numberThreads)|(bufOut->front==bufOut->rear))|(fractCountW==fractCountP)&(fractCountP!=0))
+			if(((countCons==numberThreads)&(bufOut->front==bufOut->rear))|((fractCountW==fractCountP)&(fractCountP!=0)))
 			{
 				countEleves++;
 				done2=1;
