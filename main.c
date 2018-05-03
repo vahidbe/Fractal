@@ -261,8 +261,6 @@ void *consumer(void* arguments){
 	int done=0;
 	while(!done)
 	{
-		
-		pthread_mutex_lock(&gardien);
 		pthread_mutex_lock(&tuteur1);
 		if(((countProd==numberProd)&(bufIn->front==bufIn->rear))|((fractCountC==fractCountP)&(fractCountP!=0)))
 		{
@@ -270,6 +268,7 @@ void *consumer(void* arguments){
 		}
 		else
 		{
+			pthread_mutex_lock(&gardien);
 			fractCountC++;
 			pthread_mutex_unlock(&gardien);
 			struct fractal* f=(sbuf_remove(bufIn));
@@ -288,6 +287,7 @@ void *consumer(void* arguments){
 		}
 	}
 	pthread_mutex_unlock(&tuteur1);
+	pthread_mutex_lock(&gardien);
 	countCons++;
 	pthread_mutex_unlock(&gardien);
 	sem_post(&directeur);
@@ -297,8 +297,7 @@ void *consumer(void* arguments){
 void *writer(void* arguments){
 	int done2=0;
 	if(!optionD){
-		while(!done2){	
-			pthread_mutex_lock(&gardien);		
+		while(!done2){			
 			pthread_mutex_lock(&tuteur2);
 			if(((countCons==numberThreads)&(bufOut->front==bufOut->rear))|((fractCountW==fractCountP)&(fractCountP!=0)))
 			{
@@ -308,6 +307,7 @@ void *writer(void* arguments){
 				done2=1;
 			}
 			else{
+				pthread_mutex_lock(&gardien);
 				fractCountW++;
 				pthread_mutex_unlock(&gardien);
 				struct fractal* f = (sbuf_remove(bufOut));
@@ -344,7 +344,6 @@ void *writer(void* arguments){
 	{
 		while(!done2)
 		{
-			pthread_mutex_lock(&gardien);
 			pthread_mutex_lock(&tuteur2);
 			if(((countCons==numberThreads)&(bufOut->front==bufOut->rear))|((fractCountW==fractCountP)&(fractCountP!=0)))
 			{
@@ -352,7 +351,7 @@ void *writer(void* arguments){
 			}
 			else
 			{
-				
+				pthread_mutex_lock(&gardien);
 				fractCountW++;
 				pthread_mutex_unlock(&gardien);
 				struct fractal* f = (sbuf_remove(bufOut));
@@ -364,6 +363,7 @@ void *writer(void* arguments){
 			sleep(0);
 		}
 	}
+	pthread_mutex_lock(&gardien);
 	countWrit++;
 	pthread_mutex_unlock(&gardien);
 	sem_post(&directeur);
