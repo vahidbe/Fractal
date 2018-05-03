@@ -21,8 +21,13 @@ int numberThreads;
 int numberProd;
 int optionD;
 char* fileOutName;
+int sortie=0;
+int done=0;
+int done2=0;
 
 sem_t directeur;
+pthread_mutex_t tuteur1;
+pthread_mutex_t tuteur2;
 pthread_mutex_t professor;
 pthread_mutex_t gardien;
 int countEleves;
@@ -265,9 +270,9 @@ void *producer(void* arguments){
 void *consumer(void* arguments){
 	/**/printf("C - --- DEBUT CONSOMMATEUR ---\n");
 	/**/fflush(stdout);
-	int done=0;
 	while(!done)
 	{		
+		pthread_mutex_lock(&tuteur1);
 		if((countProd==numberProd)&(bufIn->front==bufIn->rear))
 		{
 			/**/printf("C - =====DONE=C=====\n");
@@ -279,6 +284,7 @@ void *consumer(void* arguments){
 			/**/printf("C - *REMOVE DU CONSOMMATEUR*\n");
 			/**/fflush(stdout);
 			struct fractal* f=(sbuf_remove(bufIn));
+			pthread_mutex_unlock(&tuteur1);
 			int i;
 			int j;
 			for(i=0;i<f->width;i++)
@@ -293,6 +299,7 @@ void *consumer(void* arguments){
 			sbuf_insert(bufOut,f);
 		}
 	}
+	pthread_mutex_unlock(&tuteur1);
 	/**/printf("C - --- Fin consommateur ---\n");
 	/**/fflush(stdout);
 	pthread_mutex_lock(&gardien);
@@ -305,14 +312,13 @@ void *consumer(void* arguments){
 void *writer(void* arguments){
 	/**/printf("W - --- DEBUT WRITER ---\n");
 	/**/fflush(stdout);
-	int done=0;
 	/**/printf("W - --- Debut ecriture writer ---\n");
 	/**/fflush(stdout);
 	if(!optionD){
 		/**/printf("W - ===OPTIOND-0===\n");
 		/**/fflush(stdout);
-		while(!done){			
-			
+		while(!done2){			
+			pthread_mutex_lock(&tuteur2);
 			if((countCons==numberThreads)&(bufOut->front==bufOut->rear))
 			{
 				/**/printf("W - ===DONE=W===\n");
@@ -320,12 +326,13 @@ void *writer(void* arguments){
 				pthread_mutex_lock(&professor);
 				countEleves++;
 				pthread_mutex_unlock(&professor);
-				break;
+				done2=1;
 			}
 			else{
 				/**/printf("W - *REMOVE DU WRITER*\n");
 				/**/fflush(stdout);
 				struct fractal* f = (sbuf_remove(bufOut));
+				pthread_mutex_unlock(&tuteur2);
 				/**/printf("W - === Fractale lue : %s, %d, %d, %f, %f ===\n",f->name,fractal_get_width(f),fractal_get_height(f), fractal_get_a(f), fractal_get_b(f));
 				/**/fflush(stdout);
 				/**/printf("W - About to compute average\n");
@@ -344,15 +351,18 @@ void *writer(void* arguments){
 			}
 			
 		}
+		pthread_mutex_unlock(&tuteur2);
 		/**/printf("W - === ECRITURE ===\n");
 		/**/fflush(stdout);
-		if((pthread_mutex_trylock(&professor)==0)&(countEleves==numberThreads))
+		pthread_mutex_lock(&professor);
+		if((!sortie)&(countEleves==numberThreads))
 		{	
 			/**/printf("W - Plus grande fractale : %s avec une moyenne de : %f\n", highestF->name, average);
 			/**/fflush(stdout);
 			write_bitmap_sdl(highestF,fileOutName);
-			pthread_mutex_unlock(&professor);
-		}
+			sortie=1;
+		}		
+		pthread_mutex_unlock(&professor);
 		/**/printf("W - === FIN ECRITURE ===\n");
 		/**/fflush(stdout);
 	}
