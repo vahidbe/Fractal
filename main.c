@@ -372,7 +372,6 @@ void *writer(void* arguments){
 
 int main(int argc, char *argv[])
 {
-	printf("=== Début du programme ===\n");
 	numberThreads=0;
 	countProd = 0;
 	countCons = 0;
