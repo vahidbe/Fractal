@@ -157,10 +157,10 @@ void *producer(void* arguments){
 
 
 	x=fscanf(file,"%64s",buf1);
+	pthread_mutex_lock(&gardien);
 	while(!done){
     	if(x==EOF)
 	{		
-		pthread_mutex_lock(&gardien);
 		if(fclose(file)!=0)
 		{				
 			free(buf1);
@@ -179,7 +179,8 @@ void *producer(void* arguments){
 		done=1;
 	}
     	else
-    	{		
+    	{	
+		pthread_mutex_unlock(&gardien);	
 		if(buf1[0]=='#')
 		{
 			char trash[1024];
@@ -245,7 +246,6 @@ void *producer(void* arguments){
 			sbuf_insert(bufIn,f);
 			pthread_mutex_lock(&gardien);
 			fractCountP++;
-			pthread_mutex_unlock(&gardien);
 			x=fscanf(file,"%64s",buf1);
 			sleep(0);
 			}
