@@ -254,7 +254,6 @@ void *producer(void* arguments){
 	countProd++;
 	sem_post(&directeur);	
 	pthread_mutex_unlock(&gardien);
-	printf("fin prod\n");fflush(stdout);
 	return NULL;
 }
 
@@ -263,7 +262,6 @@ void *consumer(void* arguments){
 	while(!done)
 	{
 		pthread_mutex_lock(&gardien);
-		printf("countProd %d, numberProd %d, fractCountC %d, fractCountP %d \n",countProd,numberProd,fractCountC,fractCountP);
 		if(((countProd==numberProd)&(bufIn->front==bufIn->rear))|((fractCountC==fractCountP)&(fractCountP!=0)))
 		{
 			done=1;			
@@ -290,7 +288,6 @@ void *consumer(void* arguments){
 	pthread_mutex_lock(&gardien);
 	sem_post(&directeur);
 	pthread_mutex_unlock(&gardien);
-	printf("fin cons\n");fflush(stdout);
 	return NULL;
 }
 
@@ -300,7 +297,6 @@ void *writer(void* arguments){
 		while(!done2){			
 			pthread_mutex_lock(&gardien);
 			sleep(0);
-			printf("countCons %d, numberThreads %d, fractCountW %d, fractCountP %d\n",countCons,numberThreads,fractCountW,fractCountP); fflush(stdout);
 			if(((countCons==numberThreads)&(bufOut->front==bufOut->rear))|((fractCountW==fractCountP)&(fractCountP!=0)))
 			{
 				countEleves++;
@@ -366,7 +362,6 @@ void *writer(void* arguments){
 	countWrit++;
 	pthread_mutex_unlock(&gardien);
 	sem_post(&directeur);
-	printf("fin writ\n");fflush(stdout);
 	return NULL;
 }
 
@@ -473,7 +468,6 @@ int main(int argc, char *argv[])
 				}
 				arguments->charP_arg=argv[count];
 				sem_wait(&directeur);
-				printf("new prod\n");fflush(stdout);
 				pthread_create(&(prod[count-optionsCount]), NULL, (void*) &producer, arguments);
 			}
 			else
@@ -498,7 +492,6 @@ int main(int argc, char *argv[])
 	for(i=0;(i<numberThreads);i++)
 	{
 		sem_wait(&directeur);
-		printf("new cons\n");fflush(stdout);
 		pthread_create(&(cons[i]), NULL, (void*) &consumer, NULL);
 	}
 	
@@ -508,7 +501,6 @@ int main(int argc, char *argv[])
 	for(i=0;i<numberThreads;i++)
 	{
 		sem_wait(&directeur);
-		printf("new writ\n");fflush(stdout);
 		pthread_create(&(writ[i]), NULL, (void*) &writer, NULL);
 	}	
 	/**/printf("--- Initialisation des writers terminée ---\n");
