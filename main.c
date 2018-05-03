@@ -274,7 +274,6 @@ void *consumer(void* arguments){
 			pthread_mutex_lock(&gardien);
 			fractCountC++;
 			pthread_mutex_unlock(&gardien);
-			if(bufIn->front==bufIn->rear){
 			struct fractal* f=(sbuf_remove(bufIn));
 			pthread_mutex_unlock(&tuteur1);
 			int i;
@@ -287,7 +286,6 @@ void *consumer(void* arguments){
 				}
 			}
 			sbuf_insert(bufOut,f);
-			}
 		}
 	}
 	pthread_mutex_unlock(&tuteur1);
@@ -317,7 +315,6 @@ void *writer(void* arguments){
 				pthread_mutex_lock(&gardien);
 				fractCountW++;
 				pthread_mutex_unlock(&gardien);
-				if(bufOut->front==bufOut->rear){
 				struct fractal* f = (sbuf_remove(bufOut));
 				pthread_mutex_unlock(&tuteur2);
 				//**/printf("W - === Fractale lue : %s, %d, %d, %f, %f ===\n",f->name,fractal_get_width(f),fractal_get_height(f), fractal_get_a(f), fractal_get_b(f));
@@ -334,7 +331,7 @@ void *writer(void* arguments){
 				pthread_mutex_unlock(&professor);	
 				fractal_free(f);
 				sleep(0);
-			}}
+			}
 			
 		}
 		pthread_mutex_unlock(&tuteur2);
