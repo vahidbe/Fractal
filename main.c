@@ -160,6 +160,8 @@ void *producer(void* arguments){
     	if(x==EOF)
 	{		
 		pthread_mutex_lock(&gardien);
+		/**/printf("P - lockG\n");
+		/**/fflush(stdout);
 		if(fclose(file)!=0)
 		{
 			free(buf1);
@@ -263,6 +265,8 @@ void *producer(void* arguments){
 	countProd++;
 	sem_post(&directeur);	
 	pthread_mutex_unlock(&gardien);
+	/**/printf("P - unlockG\n");
+	/**/fflush(stdout);
 	return NULL;
 }
 
@@ -273,11 +277,15 @@ void *consumer(void* arguments){
 	while(!done)
 	{		
 		pthread_mutex_lock(&gardien);
+		/**/printf("P - lockG\n");
+		/**/fflush(stdout);
 		pthread_mutex_lock(&tuteur1);
 		printf("countProd : %d, numberProd : %d\nfront=rear : %d\n",countProd,numberProd,(bufIn->front==bufIn->rear));
 		fflush(stdout);
 		if((countProd==numberProd)&(bufIn->front==bufIn->rear))
 		{
+			/**/printf("P - unlockG\n");
+			/**/fflush(stdout);
 			pthread_mutex_unlock(&gardien);
 			/**/printf("C - =====DONE=C=====\n");
 			/**/fflush(stdout);
@@ -285,6 +293,8 @@ void *consumer(void* arguments){
 		}
 		else
 		{
+			/**/printf("P - unlockG\n");
+			/**/fflush(stdout);
 			pthread_mutex_unlock(&gardien);
 			/**/printf("C - *REMOVE DU CONSOMMATEUR*\n");
 			/**/fflush(stdout);
