@@ -504,6 +504,7 @@ int main(int argc, char *argv[])
 		if(((*argv[count])=='-')&(count!=(argc)))
 		{ 	
 			//TODO : ENTREE STANDARD			
+			//fgets ( string, 256, stdin );
 		}
 		else
 		{
