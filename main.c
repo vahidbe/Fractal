@@ -387,11 +387,11 @@ int main(int argc, char *argv[])
 	int count;
 	int optionsCount=0;
 	optionD=0;
-	bufIn;
-	bufOut; 
+	bufIn(malloc(sizeof(struct sbuf))); 
+	bufOut=(malloc(sizeof(struct sbuf))); 
 	highestF=malloc(sizeof(struct fractal));
 	
-	if((highestF==NULL))
+	if((bufIn==NULL)|(bufOut==NULL)|(highestF==NULL))
 	{
 		fprintf(stderr,"Malloc error!\n");
 	}
@@ -421,6 +421,9 @@ int main(int argc, char *argv[])
 	if(numberProd==0)
 	{
 		fprintf(stderr,"You did'nt enter a file!\n");
+		free(bufIn);
+		free(bufOut);
+		free(highestF);
 		exit(-1);
 	}
 	
