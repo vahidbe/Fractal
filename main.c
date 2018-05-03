@@ -312,6 +312,7 @@ void *consumer(void* arguments){
 void *writer(void* arguments){
 	/**/printf("W - --- DEBUT WRITER ---\n");
 	/**/fflush(stdout);
+	printf("optionD = %d",optionD);
 	/**/printf("W - --- Debut ecriture writer ---\n");
 	/**/fflush(stdout);
 	if(!optionD){
