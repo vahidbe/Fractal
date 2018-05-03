@@ -279,6 +279,7 @@ void *consumer(void* arguments){
 		sleep(0);
 		pthread_mutex_lock(&tuteur1);
 		if(bufIn->front==bufIn->rear){
+			pthread_mutex_unlock(&tuteur1);
 			sleep(0);
 		if(((countProd==numberProd)&(bufIn->front==bufIn->rear))|((fractCountC==fractCountP)&(fractCountP!=0)))
 		{
