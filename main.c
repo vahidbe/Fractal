@@ -159,27 +159,27 @@ void *producer(void* arguments){
 	x=fscanf(file,"%64s",buf1);
 	while(!done){
     	if(x==EOF)
-	{		
-		pthread_mutex_lock(&gardien);
-		if(fclose(file)!=0)
-		{				
+		{		
+			if(fclose(file)!=0)
+			{				
+				free(buf1);
+				free(buf2);
+				free(buf3);
+				free(buf4);
+				free(buf5);
+				fprintf(stderr,"Error closing your file!\n");
+				exit(-1);
+			}
 			free(buf1);
 			free(buf2);
 			free(buf3);
 			free(buf4);
 			free(buf5);
-			fprintf(stderr,"Error closing your file!\n");
-			exit(-1);
+			done=1;
 		}
-		free(buf1);
-		free(buf2);
-		free(buf3);
-		free(buf4);
-		free(buf5);
-		done=1;
-	}
     	else
     	{		
+		pthread_mutex_unlock(&gardien);
 		if(buf1[0]=='#')
 		{
 			char trash[1024];
@@ -249,7 +249,6 @@ void *producer(void* arguments){
 			/**/fflush(stdout);
 			pthread_mutex_lock(&gardien);
 			fractCountP++;
-			pthread_mutex_unlock(&gardien);
 			x=fscanf(file,"%64s",buf1);
 			}
 		}
