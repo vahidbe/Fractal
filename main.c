@@ -287,7 +287,7 @@ void *consumer(void* arguments){
 		else
 		{
 			pthread_mutex_lock(&gardien);
-			fractCountC++;$
+			fractCountC++;
 			printf("fractcount++\n");
 		fflush(stdout);
 			pthread_mutex_unlock(&gardien);
