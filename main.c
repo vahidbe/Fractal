@@ -274,6 +274,8 @@ void *consumer(void* arguments){
 	int done=0;
 	while(!done)
 	{
+		printf("in the while\n");
+		fflush(stdout);
 		sleep(0);
 		pthread_mutex_lock(&tuteur1);
 		if(bufIn->front==bufIn->rear){
@@ -285,7 +287,9 @@ void *consumer(void* arguments){
 		else
 		{
 			pthread_mutex_lock(&gardien);
-			fractCountC++;
+			fractCountC++;$
+			printf("fractcount++\n");
+		fflush(stdout);
 			pthread_mutex_unlock(&gardien);
 			if(bufIn->front!=bufIn->rear){
 				printf("remove cons\n");
