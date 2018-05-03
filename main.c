@@ -282,6 +282,10 @@ void *consumer(void* arguments){
 		pthread_mutex_lock(&tuteur1);
 		printf("countProd : %d, numberProd : %d\nfront=rear : %d\n",countProd,numberProd,(bufIn->front==bufIn->rear));
 		fflush(stdout);
+		if((numberProd-countProd)==1)
+		{
+			sleep(0);
+		}
 		if((countProd==numberProd)&(bufIn->front==bufIn->rear))
 		{
 			/**/printf("P - unlockG\n");
