@@ -387,7 +387,7 @@ int main(int argc, char *argv[])
 	int count;
 	int optionsCount=0;
 	optionD=0;
-	bufIn=(malloc(sizeof(struct sbuf))); 
+	bufIn(malloc(sizeof(struct sbuf))); 
 	bufOut=(malloc(sizeof(struct sbuf))); 
 	highestF=malloc(sizeof(struct fractal));
 	
