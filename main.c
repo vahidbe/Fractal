@@ -288,6 +288,9 @@ void *consumer(void* arguments){
 			}
 			sbuf_insert(bufOut,f);
 			}
+			else{
+			pthread_mutex_unlock(&tuteur1);
+			}
 		}
 	}
 	pthread_mutex_unlock(&tuteur1);
@@ -334,7 +337,10 @@ void *writer(void* arguments){
 				pthread_mutex_unlock(&professor);	
 				fractal_free(f);
 				sleep(0);
-			}}
+			}else{
+			pthread_mutex_unlock(&tuteur1);
+			}
+			}
 			
 		}
 		pthread_mutex_unlock(&tuteur2);
