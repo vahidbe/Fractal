@@ -161,8 +161,6 @@ void *producer(void* arguments){
     	if(x==EOF)
 	{		
 		pthread_mutex_lock(&gardien);
-		/**/printf("P - lockG\n");
-		/**/fflush(stdout);
 		if(fclose(file)!=0)
 		{				
 			free(buf1);
@@ -374,6 +372,7 @@ void *writer(void* arguments){
 
 int main(int argc, char *argv[])
 {
+	printf("\n=== Début du programme ===\n");
 	numberThreads=0;
 	countProd = 0;
 	countCons = 0;
@@ -387,7 +386,7 @@ int main(int argc, char *argv[])
 	int count;
 	int optionsCount=0;
 	optionD=0;
-	bufIn=(malloc(sizeof(struct sbuf)));
+	bufIn=(malloc(sizeof(struct sbuf))); 
 	bufOut=(malloc(sizeof(struct sbuf))); 
 	highestF=malloc(sizeof(struct fractal));
 	
@@ -421,7 +420,10 @@ int main(int argc, char *argv[])
 	if(numberProd==0)
 	{
 		fprintf(stderr,"You did'nt enter a file!\n");
-		goto end;
+		free(bufIn);
+		free(bufOut);
+		free(highestF);
+		exit(-1);
 	}
 	
 	char* string;
@@ -434,9 +436,9 @@ int main(int argc, char *argv[])
 		string="NON";
 	}
 	
-	/**/printf("\n - Affichage de toutes les fractales : %s -\n\n",string);
+	/**/printf("\n\n - Affichage de toutes les fractales : %s -\n",string);
 	/**/fflush(stdout);
-	/**/printf("\n - Nombre de threads qui vont être utilisés : %d -\n \n",numberThreads);
+	/**/printf("\n - Nombre de threads qui vont être utilisés : %d -\n\n",numberThreads);
 	/**/fflush(stdout);
 	sem_init(&directeur, 0 ,numberThreads);
 	sbuf_init(bufIn, 50);        						
@@ -521,7 +523,7 @@ int main(int argc, char *argv[])
 	sbuf_clean(bufIn);
 	sbuf_clean(bufOut);	
 	
-	/**/printf("=== Fin du programme ===\n");
+	/**/printf("\n\n=== Fin du programme ===\n\n");
 	/**/fflush(stdout);
 	
 	return 0;
