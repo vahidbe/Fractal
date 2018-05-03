@@ -161,8 +161,6 @@ void *producer(void* arguments){
     	if(x==EOF)
 	{		
 		pthread_mutex_lock(&gardien);
-		/**/printf("P - lockG\n");
-		/**/fflush(stdout);
 		if(fclose(file)!=0)
 		{				
 			free(buf1);
