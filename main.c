@@ -19,6 +19,7 @@ int countCons;
 int countWrit;
 int numberThreads;
 int numberProd;
+int numberCons;
 int optionD;
 char* fileOutName;
 int sortie=0;
@@ -444,7 +445,7 @@ int main(int argc, char *argv[])
 	/**/fflush(stdout);
 	/**/printf("\nM - Nombre de threads qui vont être utilisés : %d \n \n",numberThreads);
 	/**/fflush(stdout);
-	sem_init(&directeur, 0 ,numberThreads-1);
+	sem_init(&directeur, 0 ,numberThreads);
 	sbuf_init(bufIn, 100);        						//TODO : Si pas assez de place (trop de fractales), code peut planter (pas de consommateur)    
 	sbuf_init(bufOut, 100);    
 
@@ -494,7 +495,15 @@ int main(int argc, char *argv[])
 	/**/printf("M - --- Initialisation des producteurs terminée ---\n");
 	/**/fflush(stdout);
 	
-	int i;
+	int i;/*
+	if((numberThreads%2)!=0)
+	{
+		numberCons=(numberThreads+1)/2;
+	}
+	else
+	{
+		numberCons=numberThreads/2;
+	}*/
 	for(i=0;(i<numberThreads);i++)
 	{
 		/**/printf("M - ---CREATION D'UN CONSOMMATEUR---\n");
