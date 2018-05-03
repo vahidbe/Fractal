@@ -421,7 +421,7 @@ int main(int argc, char *argv[])
 	if(numberProd==0)
 	{
 		fprintf(stderr,"You did'nt enter a file!\n");
-		exit(-1);
+		goto end;
 	}
 	
 	char* string;
