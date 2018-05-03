@@ -242,7 +242,11 @@ void *producer(void* arguments){
 			f = fractal_new(name,*buf2,*buf3,*buf4,*buf5);
 			//**/printf("P - === Fractale lue : %s, %d, %d, %f, %f ===\n",f->name,fractal_get_width(f),fractal_get_height(f), fractal_get_a(f), fractal_get_b(f));
 			//**/fflush(stdout);
+			/**/printf("P - *INSERT DU PRODUCTEUR*\n");
+			/**/fflush(stdout);
 			sbuf_insert(bufIn,f);
+			/**/printf("P - *INSERT DU PRODUCTEUR TERMINE*\n");
+			/**/fflush(stdout);
 			pthread_mutex_lock(&gardien);
 			fractCountP++;
 			pthread_mutex_unlock(&gardien);
@@ -251,6 +255,8 @@ void *producer(void* arguments){
 			}
 		}
 	}
+	/**/printf("P - --- Fin producteur ---\n");
+	/**/fflush(stdout);
 	countProd++;
 	sem_post(&directeur);	
 	pthread_mutex_unlock(&gardien);
@@ -272,7 +278,10 @@ void *consumer(void* arguments){
 			pthread_mutex_lock(&gardien);
 			fractCountC++;
 			pthread_mutex_unlock(&gardien);
+			/**/printf("C - *REMOVE DU CONSOMMATEUR*\n");
+			/**/fflush(stdout);
 			struct fractal* f=(sbuf_remove(bufIn));
+			/**/printf("C - *REMOVE DU CONSOMMATEUR TERMINE* ");
 			pthread_mutex_unlock(&tuteur1);
 			int i;
 			int j;
@@ -283,7 +292,11 @@ void *consumer(void* arguments){
 					fractal_set_value(f,i,j,fractal_compute_value(f,i,j));
 				}
 			}
-			sbuf_insert(bufOut,f);
+			/**/printf("C - *INSERT DU CONSOMMATEUR*\n");
+			/**/fflush(stdout);
+			sbuf_insert(bufOut,f);	
+			/**/printf("C - *INSERT DU CONSOMMATEUR TERMINE*\n");	
+			/**/fflush(stdout);
 			sleep(0);
 		}
 	}
@@ -292,6 +305,8 @@ void *consumer(void* arguments){
 	countCons++;
 	pthread_mutex_unlock(&gardien);
 	sem_post(&directeur);
+	/**/printf("C - --- Fin consommateur ---\n");
+	/**/fflush(stdout);
 	return NULL;
 }
 
@@ -312,7 +327,11 @@ void *writer(void* arguments){
 				pthread_mutex_lock(&gardien);
 				fractCountW++;
 				pthread_mutex_unlock(&gardien);
+				/**/printf("W - *REMOVE DU WRITER*\n");
+				/**/fflush(stdout);
 				struct fractal* f = (sbuf_remove(bufOut));
+				/**/printf("W - *REMOVE DU WRITER TERMINE*\n");
+				/**/fflush(stdout);
 				pthread_mutex_unlock(&tuteur2);
 				//**/printf("W - === Fractale lue : %s, %d, %d, %f, %f ===\n",f->name,fractal_get_width(f),fractal_get_height(f), fractal_get_a(f), fractal_get_b(f));
 				//**/fflush(stdout);
@@ -365,6 +384,7 @@ void *writer(void* arguments){
 			sleep(0);
 		}
 	}
+	/**/printf("W - --- Fin writer ---\n");
 	pthread_mutex_lock(&gardien);
 	countWrit++;
 	pthread_mutex_unlock(&gardien);
