@@ -309,7 +309,6 @@ void *consumer(void* arguments){
 			}
 		}
 	}
-	pthread_mutex_unlock(&tuteur1);
 	pthread_mutex_lock(&gardien);
 	countCons++;
 	pthread_mutex_unlock(&gardien);
@@ -355,12 +354,11 @@ void *writer(void* arguments){
 				fractal_free(f);
 				sleep(0);
 			}else{
-			pthread_mutex_unlock(&tuteur1);
+			pthread_mutex_unlock(&tuteur2);
 			}
 			}
 			
 		}
-		pthread_mutex_unlock(&tuteur2);
 		pthread_mutex_lock(&professor);
 		if((!sortie)&(countEleves==numberThreads))
 		{	
@@ -379,7 +377,7 @@ void *writer(void* arguments){
 			sleep(0);
 			if(bufOut->front==bufOut->rear){
 				sleep(0);
-				pthread_mutex_lock(&tuteur2);
+				pthread_mutex_unlock(&tuteur2);
 			if(((countCons==numberThreads)&(bufOut->front==bufOut->rear))|((fractCountW==fractCountP)&(fractCountP!=0)))
 			{
 				done2=1;
