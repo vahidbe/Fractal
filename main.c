@@ -257,6 +257,7 @@ void *producer(void* arguments){
 			/**/fflush(stdout);
 			/**/sbuf_insert(bufIn,f);
 			x=fscanf(file,"%64s",buf1);
+			sleep(0);
 			}
 		}
 	}
@@ -309,6 +310,7 @@ void *consumer(void* arguments){
 			/**/printf("C - *INSERT DU CONSOMMATEUR*\n");
 			/**/fflush(stdout);
 			sbuf_insert(bufOut,f);
+			sleep(0);
 		}
 	}
 	pthread_mutex_unlock(&tuteur1);
@@ -333,7 +335,7 @@ void *writer(void* arguments){
 		/**/fflush(stdout);
 		while(!done2){			
 			pthread_mutex_lock(&tuteur2);
-			while((numberThreads-countCons)==1)
+			if((numberThreads-countCons)==1)
 			{
 				printf("1 CONS RESTANT\n");
 				fflush(stdout);
@@ -370,6 +372,7 @@ void *writer(void* arguments){
 				}
 				pthread_mutex_unlock(&professor);	
 				fractal_free(f);
+				sleep(0);
 			}
 			
 		}
@@ -396,7 +399,7 @@ void *writer(void* arguments){
 		{
 			/**/printf("W - ===OPTIOND-1===\n");
 			/**/fflush(stdout);
-			while((numberThreads-countCons)==1)
+			if((numberThreads-countCons)==1)
 			{
 				printf("1 CONS RESTANT\n");
 				fflush(stdout);
@@ -414,6 +417,7 @@ void *writer(void* arguments){
 				write_bitmap_sdl(f,fractal_get_name(f));
 				fractal_free(f);
 			}
+			sleep(0);
 		}
 	}
 	/**/printf("W - --- Fin writer ---\n");
