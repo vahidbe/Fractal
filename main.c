@@ -275,6 +275,8 @@ void *consumer(void* arguments){
 			fractCountC++;
 			pthread_mutex_unlock(&gardien);
 			if(bufIn->front!=bufIn->rear){
+				printf("remove cons\n");
+				fflush(stdout);
 			struct fractal* f=(sbuf_remove(bufIn));
 			pthread_mutex_unlock(&tuteur1);
 			int i;
