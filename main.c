@@ -104,7 +104,7 @@ void sbuf_insert(struct sbuf *sp, struct fractal* f)
 struct fractal* sbuf_remove(struct sbuf *sp)
 {	
 	sem_wait(&(sp->full));
-	struct fractal* f;
+	struct fractal* f = (struct fractal*)malloc(sizeof(struct fractal));
 	pthread_mutex_lock(&(sp->mutex));
 	sp->rear = (sp->rear)-1;
 	f = sp->buf[sp->rear];
@@ -166,14 +166,13 @@ void *producer(void* arguments){
 		/**/printf("P - lockG\n");
 		/**/fflush(stdout);
 		if(fclose(file)!=0)
-		{				
+		{
 			free(buf1);
 			free(buf2);
 			free(buf3);
 			free(buf4);
 			free(buf5);
-			fprinf(stderr,"Error closing your file!\n");
-			exit(-1);
+			return (NULL);
 		}
 		free(buf1);
 		free(buf2);
@@ -196,50 +195,61 @@ void *producer(void* arguments){
 			x=fscanf(file,"%d",buf2);
 			if(x==EOF)
 			{
-				fclose(file)				
+				//TODO: gérer les erreurs/la sortie
+				if(fclose(file)!=0)
+				{
+					return (NULL);
+				}
 				free(buf1);
 				free(buf2);
 				free(buf3);
 				free(buf4);
 				free(buf5);
-				fprinf(stderr,"Error in you file, you don't respect the structure of input!\n");
-				exit(-1);
+				return (NULL);
 			}
 			x=fscanf(file,"%d",buf3);
 			if(x==EOF)
 			{
-				fclose(file)				
+				//TODO: gérer les erreurs/la sortie
+				if(fclose(file)!=0)
+				{
+					return (NULL);
+				}
 				free(buf1);
 				free(buf2);
 				free(buf3);
 				free(buf4);
 				free(buf5);
-				fprinf(stderr,"Error in you file, you don't respect the structure of input!\n");
-				exit(-1);
+				return (NULL);
 			}
 			x=fscanf(file,"%lf",buf4);
 			if(x==EOF)
 			{
-				fclose(file)				
+				//TODO: gérer les erreurs/la sortie
+				if(fclose(file)!=0)
+				{
+					return (NULL);
+				}
 				free(buf1);
 				free(buf2);
 				free(buf3);
 				free(buf4);
 				free(buf5);
-				fprinf(stderr,"Error in you file, you don't respect the structure of input!\n");
-				exit(-1);
+				return (NULL);
 			}
 			x=fscanf(file,"%lf",buf5);
 			if(x==EOF)
 			{
-				fclose(file)				
+				if(fclose(file)!=0)
+				{
+					return (NULL);
+				}
 				free(buf1);
 				free(buf2);
 				free(buf3);
 				free(buf4);
 				free(buf5);
-				fprinf(stderr,"Error in you file, you don't respect the structure of input!\n");
-				exit(-1);
+				return (NULL);
 			}
 
 			struct fractal* f;
@@ -366,6 +376,7 @@ void *writer(void* arguments){
 				}
 				pthread_mutex_unlock(&professor);	
 				fractal_free(f);
+				free(f);
 				sleep(0);
 			}
 			
@@ -474,8 +485,8 @@ int main(int argc, char *argv[])
 	/**/printf("\nM - Nombre de threads qui vont être utilisés : %d \n \n",numberThreads);
 	/**/fflush(stdout);
 	sem_init(&directeur, 0 ,numberThreads);
-	sbuf_init(bufIn, 50);        						
-	sbuf_init(bufOut, 50);    
+	sbuf_init(bufIn, 100);        						//TODO : Si pas assez de place (trop de fractales), code peut planter (pas de consommateur)    
+	sbuf_init(bufOut, 100);    
 
 	/**/printf("M - --- Initialisation des buffers terminée ---\n");
 	/**/fflush(stdout);
