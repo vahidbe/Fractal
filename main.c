@@ -261,21 +261,17 @@ void *consumer(void* arguments){
 	int done=0;
 	while(!done)
 	{
-		sleep(0);
-		pthread_mutex_lock(&tuteur1);
-		if(bufIn->front==bufIn->rear){
-			sleep(0);
+		pthread_mutex_lock(&gardien);
 		if(((countProd==numberProd)&(bufIn->front==bufIn->rear))|((fractCountC==fractCountP)&(fractCountP!=0)))
 		{
-			done=1;
-		}}
+			done=1;			
+			pthread_mutex_unlock(&gardien);
+		}
 		else
 		{
-			pthread_mutex_lock(&gardien);
 			fractCountC++;
-			pthread_mutex_unlock(&gardien);
 			struct fractal* f=(sbuf_remove(bufIn));
-			pthread_mutex_unlock(&tuteur1);
+			pthread_mutex_unlock(&gardien);
 			int i;
 			int j;
 			for(i=0;i<f->width;i++)
@@ -288,11 +284,10 @@ void *consumer(void* arguments){
 			sbuf_insert(bufOut,f);
 		}
 	}
-	pthread_mutex_unlock(&tuteur1);
+	countCons++;	
 	pthread_mutex_lock(&gardien);
-	countCons++;
-	pthread_mutex_unlock(&gardien);
 	sem_post(&directeur);
+	pthread_mutex_unlock(&gardien);
 	return NULL;
 }
 
@@ -300,42 +295,36 @@ void *writer(void* arguments){
 	int done2=0;
 	if(!optionD){
 		while(!done2){			
-			pthread_mutex_lock(&tuteur2);
+			pthread_mutex_lock(&gardien);
 			sleep(0);
-			if(bufOut->front==bufOut->rear){
-				sleep(0);
 			if(((countCons==numberThreads)&(bufOut->front==bufOut->rear))|((fractCountW==fractCountP)&(fractCountP!=0)))
 			{
-				pthread_mutex_lock(&professor);
 				countEleves++;
-				pthread_mutex_unlock(&professor);
 				done2=1;
-			}}
-			else{
-				pthread_mutex_lock(&gardien);
-				fractCountW++;
 				pthread_mutex_unlock(&gardien);
+			}
+			else{
+				fractCountW++;
 				struct fractal* f = (sbuf_remove(bufOut));
-				pthread_mutex_unlock(&tuteur2);
+				pthread_mutex_unlock(&gardien);
 				//**/printf("W - === Fractale lue : %s, %d, %d, %f, %f ===\n",f->name,fractal_get_width(f),fractal_get_height(f), fractal_get_a(f), fractal_get_b(f));
 				//**/fflush(stdout);
 				double newAverage = fractal_compute_average(f);
 				//**/printf("W - Average computed == %f\n", newAverage);
 				//**/fflush(stdout);
-				pthread_mutex_lock(&professor);
+				pthread_mutex_lock(&gardien);
 				if(newAverage>average)
 				{
 					average=newAverage;
 					*highestF=*f;
 				}
-				pthread_mutex_unlock(&professor);	
+				pthread_mutex_unlock(&gardien);	
 				fractal_free(f);
 				sleep(0);
 			}
 			
 		}
-		pthread_mutex_unlock(&tuteur2);
-		pthread_mutex_lock(&professor);
+		pthread_mutex_lock(&gardien);
 		if((!sortie)&(countEleves==numberThreads))
 		{	
 			/**/printf("\n- Plus grande fractale : %s avec une moyenne de : %f\n\n", highestF->name, average);
@@ -343,31 +332,29 @@ void *writer(void* arguments){
 			write_bitmap_sdl(highestF,fileOutName);
 			sortie=1;
 		}		
-		pthread_mutex_unlock(&professor);
+		pthread_mutex_unlock(&gardien);
 	}
 	else
 	{
 		while(!done2)
 		{
-			pthread_mutex_lock(&tuteur2);			
+			pthread_mutex_unlock(&gardien);			
 			sleep(0);
 			if(bufOut->front==bufOut->rear){
 				sleep(0);
 			if(((countCons==numberThreads)&(bufOut->front==bufOut->rear))|((fractCountW==fractCountP)&(fractCountP!=0)))
 			{
 				done2=1;
+				pthread_mutex_unlock(&gardien);
 			}}
 			else
 			{
-				pthread_mutex_lock(&gardien);
 				fractCountW++;
-				pthread_mutex_unlock(&gardien);
 				struct fractal* f = (sbuf_remove(bufOut));
 				write_bitmap_sdl(f,fractal_get_name(f));
 				fractal_free(f);
-				pthread_mutex_unlock(&tuteur2);
+				pthread_mutex_unlock(&gardien);
 			}
-			pthread_mutex_unlock(&tuteur2);
 			sleep(0);
 		}
 	}
