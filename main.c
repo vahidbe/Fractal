@@ -214,7 +214,7 @@ void *producer(void* arguments){
 				exit(-1);
 			}
 			x=fscanf(file,"%lf",buf4);
-			if(x!=sizeof(long float))
+			if(x!=sizeof(double))
 			{
 				fclose(file);				
 				free(buf1);
@@ -226,7 +226,7 @@ void *producer(void* arguments){
 				exit(-1);
 			}
 			x=fscanf(file,"%lf",buf5);
-			if(x!=sizeof(long float))
+			if(x!=sizeof(double))
 			{
 				fclose(file);			
 				free(buf1);
