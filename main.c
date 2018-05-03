@@ -409,6 +409,8 @@ void *writer(void* arguments){
 			else
 			{
 				struct fractal* f = (sbuf_remove(bufOut));
+				printf("Writing down\n");
+				fflush(stdout);
 				write_bitmap_sdl(f,fractal_get_name(f));
 				fractal_free(f);
 			}
