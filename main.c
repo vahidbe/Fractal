@@ -474,8 +474,8 @@ int main(int argc, char *argv[])
 	if(numberProd==0)
 	{
 		fprintf(stderr,"You did'nt enter a file!\n");
-		goto end;
-	}
+		exit(-1);
+		}
 	
 	char* string;
 	if(optionD)
