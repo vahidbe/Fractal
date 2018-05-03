@@ -337,7 +337,7 @@ void *writer(void* arguments){
 			{
 				printf("1 CONS RESTANT\n");
 				fflush(stdout);
-				sleep(5);
+				sleep(2);
 			}
 			printf("countCons : %d, numberThreads : %d\n",countCons, numberThreads);
 			fflush(stdout);
