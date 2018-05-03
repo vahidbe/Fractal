@@ -274,8 +274,6 @@ void *consumer(void* arguments){
 	int done=0;
 	while(!done)
 	{
-		printf("in the while\n");
-		fflush(stdout);
 		sleep(0);
 		pthread_mutex_lock(&tuteur1);
 		if(bufIn->front==bufIn->rear){
@@ -329,6 +327,7 @@ void *writer(void* arguments){
 			sleep(0);
 			if(bufOut->front==bufOut->rear){
 				sleep(0);
+				pthread_mutex_unlock(&tuteur2);
 			if(((countCons==numberThreads)&(bufOut->front==bufOut->rear))|((fractCountW==fractCountP)&(fractCountP!=0)))
 			{
 				pthread_mutex_lock(&professor);
