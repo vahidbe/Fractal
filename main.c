@@ -387,8 +387,8 @@ int main(int argc, char *argv[])
 	int count;
 	int optionsCount=0;
 	optionD=0;
-	bufIn;
-	bufOut; 
+	bufIn=(malloc(sizeof(struct sbuf)));
+	bufOut=(malloc(sizeof(struct sbuf))); 
 	highestF=malloc(sizeof(struct fractal));
 	
 	if((bufIn==NULL)|(bufOut==NULL)|(highestF==NULL))
@@ -421,7 +421,7 @@ int main(int argc, char *argv[])
 	if(numberProd==0)
 	{
 		fprintf(stderr,"You did'nt enter a file!\n");
-		exit(-1);
+		goto end;
 	}
 	
 	char* string;
