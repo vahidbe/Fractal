@@ -275,10 +275,7 @@ void *consumer(void* arguments){
 	/**/printf("C - --- DEBUT CONSOMMATEUR ---\n");
 	/**/fflush(stdout);
 	while(!done)
-	{		
-		pthread_mutex_lock(&gardien);
-		/**/printf("P - lockG\n");
-		/**/fflush(stdout);
+	{
 		pthread_mutex_lock(&tuteur1);
 		printf("countProd : %d, numberProd : %d\nfront=rear : %d\n",countProd,numberProd,(bufIn->front==bufIn->rear));
 		fflush(stdout);
@@ -290,18 +287,12 @@ void *consumer(void* arguments){
 		}
 		if((countProd==numberProd)&(bufIn->front==bufIn->rear))
 		{
-			/**/printf("P - unlockG\n");
-			/**/fflush(stdout);
-			pthread_mutex_unlock(&gardien);
 			/**/printf("C - =====DONE=C=====\n");
 			/**/fflush(stdout);
 			done=1;
 		}
 		else
 		{
-			/**/printf("P - unlockG\n");
-			/**/fflush(stdout);
-			pthread_mutex_unlock(&gardien);
 			/**/printf("C - *REMOVE DU CONSOMMATEUR*\n");
 			/**/fflush(stdout);
 			struct fractal* f=(sbuf_remove(bufIn));
