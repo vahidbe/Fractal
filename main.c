@@ -262,10 +262,11 @@ void *consumer(void* arguments){
 	while(!done)
 	{
 		pthread_mutex_lock(&tuteur1);
+		if(bufIn->front==bufIn->rear){
 		if(((countProd==numberProd)&(bufIn->front==bufIn->rear))|((fractCountC==fractCountP)&(fractCountP!=0)))
 		{
 			done=1;
-		}
+		}}
 		else
 		{
 			pthread_mutex_lock(&gardien);
@@ -299,13 +300,14 @@ void *writer(void* arguments){
 	if(!optionD){
 		while(!done2){			
 			pthread_mutex_lock(&tuteur2);
+			if(bufOut->front==bufOut->rear){
 			if(((countCons==numberThreads)&(bufOut->front==bufOut->rear))|((fractCountW==fractCountP)&(fractCountP!=0)))
 			{
 				pthread_mutex_lock(&professor);
 				countEleves++;
 				pthread_mutex_unlock(&professor);
 				done2=1;
-			}
+			}}
 			else{
 				pthread_mutex_lock(&gardien);
 				fractCountW++;
@@ -345,10 +347,11 @@ void *writer(void* arguments){
 		while(!done2)
 		{
 			pthread_mutex_lock(&tuteur2);
+			if(bufOut->front==bufOut->rear){
 			if(((countCons==numberThreads)&(bufOut->front==bufOut->rear))|((fractCountW==fractCountP)&(fractCountP!=0)))
 			{
 				done2=1;
-			}
+			}}
 			else
 			{
 				pthread_mutex_lock(&gardien);
