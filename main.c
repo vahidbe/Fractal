@@ -356,6 +356,8 @@ void *writer(void* arguments){
 		/**/printf("W - === ECRITURE ===\n");
 		/**/fflush(stdout);
 		pthread_mutex_lock(&professor);
+		printf("countEleves = %d, numberthreads = %d\n",countEleves,numberThreads);
+		fflush(stdout);
 		if((!sortie)&(countEleves==numberThreads))
 		{	
 			/**/printf("W - Plus grande fractale : %s avec une moyenne de : %f\n", highestF->name, average);
