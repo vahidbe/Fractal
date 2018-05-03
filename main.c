@@ -300,7 +300,7 @@ void *writer(void* arguments){
 	if(!optionD){
 		while(!done2){			
 			pthread_mutex_lock(&tuteur2);
-			printf("countCons = %d, numberThreads = %d, fractCountW = %d, fractCountP = %d\n",countCons,numberThreads,fractCountW,fractCountP);
+			printf("countCons = %d, numberThread = %d, fractCountW = %d, fractCountP = %d\n",countCons,numberThread,fractCountW,fractCountP);
 			if(((countCons==numberThreads)&(bufOut->front==bufOut->rear))|((fractCountW==fractCountP)&(fractCountP!=0)))
 			{
 				pthread_mutex_lock(&professor);
