@@ -158,7 +158,8 @@ void *producer(void* arguments){
 	x=fscanf(file,"%64s",buf1);
 	while(!done){
     	if(x==EOF)
-	{
+	{		
+		pthread_mutex_lock(&gardien);
 		if(fclose(file)!=0)
 		{
 			free(buf1);
@@ -259,10 +260,9 @@ void *producer(void* arguments){
 	}
 	/**/printf("P - --- Fin producteur ---\n");
 	/**/fflush(stdout);
-	pthread_mutex_lock(&gardien);
 	countProd++;
+	sem_post(&directeur);	
 	pthread_mutex_unlock(&gardien);
-	sem_post(&directeur);
 	return NULL;
 }
 
@@ -272,17 +272,20 @@ void *consumer(void* arguments){
 	/**/fflush(stdout);
 	while(!done)
 	{		
+		pthread_mutex_lock(&gardien);
 		pthread_mutex_lock(&tuteur1);
-		printf("countProd : %d, numberProd : %d\nfront=rear : %d\n",countProd,numberProd,(bufIn->front==bufIn->rear));
+		printf("countProd : %d, numberProd : %d\nfront=rear : %d\n",countProd,numberProd,);
 		fflush(stdout);
 		if((countProd==numberProd)&(bufIn->front==bufIn->rear))
 		{
+			pthread_mutex_unlock(&gardien);
 			/**/printf("C - =====DONE=C=====\n");
 			/**/fflush(stdout);
 			done=1;
 		}
 		else
 		{
+			pthread_mutex_unlock(&gardien);
 			/**/printf("C - *REMOVE DU CONSOMMATEUR*\n");
 			/**/fflush(stdout);
 			struct fractal* f=(sbuf_remove(bufIn));
