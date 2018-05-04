@@ -531,7 +531,7 @@ int main(int argc, char *argv[])
 	      double b;
 	      char y[1];
 	      puts("Donnez le nom de la fractale :");
-	      scanf("%s", &name);
+	      scanf("%s", name);
 	      puts("Donnez la hauteur de la fractale :");
 	      scanf("%d", &height);
 	      puts("Donnez la largeur de la fractale :");
@@ -541,7 +541,7 @@ int main(int argc, char *argv[])
 	      puts("Donnez la partie imaginaire du c :");
 	      scanf("%lf", &b);
 	      puts("Voulez-vous entrer une autre fractale? (y/n) :");
-	      scanf("%s", &y);
+	      scanf("%s", y);
 		  struct fractal* f=fractal_new(name,height,width,a,b);
 		  sbuf_insert(bufIn,f);
 		  printf("name %s\n",fractal_get_name(f));
@@ -582,6 +582,8 @@ int main(int argc, char *argv[])
   for(i=0;(i<numberThreads);i++)
     {
       sem_wait(&directeur);
+	  /**/printf("--- CREATION CONS ---\n");
+		/**/fflush(stdout);
       pthread_create(&(cons[i]), NULL, (void*) &consumer, NULL);
     }
 	
@@ -591,6 +593,8 @@ int main(int argc, char *argv[])
   for(i=0;i<numberThreads;i++)
     {
       sem_wait(&directeur);
+	   /**/printf("--- CREATION WRIT ---\n");
+		/**/fflush(stdout);
       pthread_create(&(writ[i]), NULL, (void*) &writer, NULL);
     }	
   /**/printf("--- Initialisation des writers terminée ---\n");
