@@ -373,6 +373,7 @@ void *writer(void* arguments){
 				/**/printf("\n- You did not enter a fractal in your file!\n\n");
 				/**/fflush(stdout);
 				sortie=1;
+			}
 		}		
 		pthread_mutex_unlock(&professor);
 	}
