@@ -504,14 +504,14 @@ int main(int argc, char *argv[])
 			int endOfInput=0;
 			while(!endOfInput)
 			{
-				char* name;
+				char** name;
 				int height;
 				int width;
 				double a;
 				double b;
 				char y;
 				puts("Donnez le nom de la fractale :");
-				scanf("%s", &name);
+				scanf("%s", name);
 				puts("Donnez la hauteur de la fractale :");
 				scanf("%d", &height);
 				puts("Donnez la largeur de la fractale :");
@@ -526,7 +526,7 @@ int main(int argc, char *argv[])
 				{
 					endOfInput=1;
 				}
-				printf("%s %d %d %lf %lf",name,height,width,a,b);
+				printf("%s %d %d %lf %lf",*name,height,width,a,b);
 			}				
 		}
 		else
