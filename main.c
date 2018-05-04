@@ -521,6 +521,7 @@ int main(int argc, char *argv[])
     {
       if(((*argv[count])=='-')&(count!=(argc)))
 	{ 	
+	  numberThreads--;
 	  int endOfInput=0;
 	  while(!endOfInput)
 	    {
