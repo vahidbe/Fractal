@@ -513,19 +513,20 @@ int main(int argc, char *argv[])
 				puts("Donnez le nom de la fractale :");
 				scanf("%s", &name);
 				puts("Donnez la hauteur de la fractale :");
-				scanf("%s", &height);
+				scanf("%d", &height);
 				puts("Donnez la largeur de la fractale :");
-				scanf("%s", &width);
+				scanf("%d", &width);
 				puts("Donnez la partie réelle du c :");
-				scanf("%s", &a);
+				scanf("%lf", &a);
 				puts("Donnez la partie imaginaire du c :");
-				scanf("%s", &b);
+				scanf("%lf", &b);
 				puts("Voulez-vous entrer une autre fractale? (y/n) :");
 				scanf("%c", &y);
 				if(y!='y')
 				{
 					endOfInput=1;
 				}
+				printf("%s %d %d %lf %lf",name,height,width,a,b);
 			}				
 		}
 		else
