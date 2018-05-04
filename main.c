@@ -540,7 +540,7 @@ int main(int argc, char *argv[])
 			  exit(-1);
 		  }
 	      int* width=malloc(sizeof(int));
-		  if(witdh==NULL)
+		  if(width==NULL)
 		  {
 			  free(name);
 			  free(height);
