@@ -525,7 +525,7 @@ int main(int argc, char *argv[])
 				int width;
 				double a;
 				double b;
-				char y;
+				char y[1];
 				puts("Donnez le nom de la fractale :");
 				scanf("%s", &name);
 				puts("Donnez la hauteur de la fractale :");
@@ -537,8 +537,8 @@ int main(int argc, char *argv[])
 				puts("Donnez la partie imaginaire du c :");
 				scanf("%lf", &b);
 				puts("Voulez-vous entrer une autre fractale? (y/n) :");
-				scanf("%c", &y);
-				if(y!='y')
+				scanf("%s", &y);
+				if(y[0]!='y')
 				{
 					endOfInput=1;
 				}
