@@ -501,7 +501,32 @@ int main(int argc, char *argv[])
 	{
 		if(((*argv[count])=='-')&(count!=(argc)))
 		{ 	
-			//TODO : ENTREE STANDARD			
+			int endOfInput=0;
+			while(!endOfInput)
+			{
+				char* name;
+				int height;
+				int width;
+				double a;
+				double b;
+				char y;
+				puts("Donnez le nom de la fractale :");
+				scanf("%s", &name);
+				puts("Donnez la hauteur de la fractale :");
+				scanf("%s", &height);
+				puts("Donnez la largeur de la fractale :");
+				scanf("%s", &width);
+				puts("Donnez la partie réelle du c :");
+				scanf("%s", &a);
+				puts("Donnez la partie imaginaire du c :");
+				scanf("%s", &b);
+				puts("Voulez-vous entrer une autre fractale? (y/n) :");
+				scanf("%c", &y);
+				if(y!='y')
+				{
+					endOfInput=1;
+				}
+			}				
 		}
 		else
 		{
@@ -526,15 +551,7 @@ int main(int argc, char *argv[])
 	/**/printf("--- Initialisation des producteurs terminée ---\n");
 	/**/fflush(stdout);
 	
-	int i;/*
-	if((numberThreads%2)!=0)
-	{
-		numberCons=(numberThreads+1)/2;
-	}
-	else
-	{
-		numberCons=numberThreads/2;
-	}*/
+	int i;
 	for(i=0;(i<numberThreads);i++)
 	{
 		sem_wait(&directeur);
