@@ -263,7 +263,7 @@ void *producer(void* arguments){
 	}
 	pthread_mutex_lock(&gardien);
 	countProd++;
-	//sem_post(&directeur);	
+	sem_post(&directeur);	
 	pthread_mutex_unlock(&gardien);
 	return NULL;
 }
@@ -312,7 +312,7 @@ void *consumer(void* arguments){
 	pthread_mutex_lock(&gardien);
 	countCons++;
 	pthread_mutex_unlock(&gardien);
-	//sem_post(&directeur);
+	sem_post(&directeur);
 	return NULL;
 }
 
@@ -407,7 +407,7 @@ void *writer(void* arguments){
 	pthread_mutex_lock(&gardien);
 	countWrit++;
 	pthread_mutex_unlock(&gardien);
-	//sem_post(&directeur);
+	sem_post(&directeur);
 	return NULL;
 }
 
@@ -513,7 +513,7 @@ int main(int argc, char *argv[])
 					goto end;
 				}
 				arguments->charP_arg=argv[count];
-				//sem_wait(&directeur);
+				sem_wait(&directeur);
 				pthread_create(&(prod[count-optionsCount]), NULL, (void*) &producer, arguments);
 			}
 			else
@@ -526,10 +526,18 @@ int main(int argc, char *argv[])
 	/**/printf("--- Initialisation des producteurs terminée ---\n");
 	/**/fflush(stdout);
 	
-	int i;
+	int i;/*
+	if((numberThreads%2)!=0)
+	{
+		numberCons=(numberThreads+1)/2;
+	}
+	else
+	{
+		numberCons=numberThreads/2;
+	}*/
 	for(i=0;(i<numberThreads);i++)
 	{
-		//sem_wait(&directeur);
+		sem_wait(&directeur);
 		pthread_create(&(cons[i]), NULL, (void*) &consumer, NULL);
 	}
 	
@@ -538,7 +546,7 @@ int main(int argc, char *argv[])
 
 	for(i=0;i<numberThreads;i++)
 	{
-		//sem_wait(&directeur);
+		sem_wait(&directeur);
 		pthread_create(&(writ[i]), NULL, (void*) &writer, NULL);
 	}	
 	/**/printf("--- Initialisation des writers terminée ---\n");
