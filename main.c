@@ -521,7 +521,6 @@ int main(int argc, char *argv[])
     {
       if(((*argv[count])=='-')&(count!=(argc)))
 	{ 	
-	  numberThreads--;
 	  int endOfInput=0;
 	  while(!endOfInput)
 	    {
@@ -550,8 +549,9 @@ int main(int argc, char *argv[])
 		  endOfInput=1;
 		}
 			
-	      printf("%s %d %d %lf %lf",*name,height,width,a,b);
-	    }				
+	      printf("%s %d %d %lf %lf\n",name,height,width,a,b);
+	    }			
+	countProd++;	
 	}
       else
 	{
