@@ -362,7 +362,7 @@ void *writer(void* arguments){
 		pthread_mutex_lock(&professor);
 		if((!sortie)&(countEleves==numberThreads))
 		{	
-			if(highestF!=NULL)
+			if(fractal_get_name(highestF)!=NULL)
 			{
 				/**/printf("\n- Plus grande fractale : %s avec une moyenne de : %f\n\n", highestF->name, average);
 				/**/fflush(stdout);
