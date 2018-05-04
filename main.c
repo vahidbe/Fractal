@@ -596,7 +596,7 @@ int main(int argc, char *argv[])
 		  struct fractal* f=fractal_new(name,*width,*height,*a,*b);
 		  sbuf_insert(bufIn,f);
 		  fractCountP++;
-	      if(y[0]!='y')
+	      if(*y!='y')
 		{
 		  endOfInput=1;
 		  free(name);
