@@ -584,18 +584,17 @@ int main(int argc, char *argv[])
 	      puts("Donnez le nom de la fractale :");
 	      scanf("%64s", name);
 	      puts("Donnez la hauteur de la fractale :");
-	      scanf("%d", *height);
+	      scanf("%d", height);
 	      puts("Donnez la largeur de la fractale :");
-	      scanf("%d", *width);
+	      scanf("%d", width);
 	      puts("Donnez la partie réelle du c :");
-	      scanf("%lf", *a);
+	      scanf("%lf", a);
 	      puts("Donnez la partie imaginaire du c :");
-	      scanf("%lf", *b);
+	      scanf("%lf", b);
 	      puts("Voulez-vous entrer une autre fractale? (y/n) :");
 	      scanf("%1s", y);
 		  struct fractal* f=fractal_new(name,*width,*height,*a,*b);
 		  sbuf_insert(bufIn,f);
-		  printf("name %s\n",fractal_get_name(f));
 		  fractCountP++;
 	      if(y[0]!='y')
 		{
@@ -608,7 +607,7 @@ int main(int argc, char *argv[])
 		  free(y);
 		}
 			
-	      printf("%s %d %d %lf %lf\n",name,height,width,a,b);
+	      printf("%s %d %d %lf %lf\n",name,*height,*width,*a,*b);
 	    }			
 	countProd++;	
 	}
