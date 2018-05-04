@@ -366,7 +366,7 @@ void *writer(void* arguments){
 	  {
 	    /**/printf("\n- Plus grande fractale : %s avec une moyenne de : %f\n\n", highestF->name, average);
 	    /**/fflush(stdout);
-	    write_bitmap_sdl(highestF,fileOutName);
+	    write_bitmap_sdl(highestF,fileOutName+".bmp");
 	  }
 	else
 	  {
@@ -396,7 +396,7 @@ void *writer(void* arguments){
 	      fractCountW++;
 	      pthread_mutex_unlock(&gardien);
 	      struct fractal* f = (sbuf_remove(bufOut));
-	      write_bitmap_sdl(f,fractal_get_name(f));
+	      write_bitmap_sdl(f,fractal_get_name(f)+".bmp");
 	      fractal_free(f);
 	      pthread_mutex_unlock(&tuteur2);
 	    }
