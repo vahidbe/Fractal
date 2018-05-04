@@ -527,16 +527,16 @@ int main(int argc, char *argv[])
 	      char* name=malloc(sizeof(char));
 		  if(name==NULL)
 		  {
-			  sbuf_free(bufIn);
-			  sbuf_free(bufOut);
+			  sbuf_clean(bufIn);
+			  sbuf_clean(bufOut);
 			  exit(-1);
 		  }
 	      int* height=malloc(sizeof(int));
 		  if(height==NULL)
 		  {
 			  free(name);
-			  sbuf_free(bufIn);
-			  sbuf_free(bufOut);
+			  sbuf_clean(bufIn);
+			  sbuf_clean(bufOut);
 			  exit(-1);
 		  }
 	      int* width=malloc(sizeof(int));
@@ -544,8 +544,8 @@ int main(int argc, char *argv[])
 		  {
 			  free(name);
 			  free(height);
-			  sbuf_free(bufIn);
-			  sbuf_free(bufOut);
+			  sbuf_clean(bufIn);
+			  sbuf_clean(bufOut);
 			  exit(-1);
 		  }
 	      double* a=malloc(sizeof(double));
@@ -554,8 +554,8 @@ int main(int argc, char *argv[])
 			  free(name);
 			  free(width);
 			  free(height);
-			  sbuf_free(bufIn);
-			  sbuf_free(bufOut);
+			  sbuf_clean(bufIn);
+			  sbuf_clean(bufOut);
 			  exit(-1);
 		  }
 	      double* b=malloc(sizeof(double));
@@ -565,8 +565,8 @@ int main(int argc, char *argv[])
 			  free(width);
 			  free(height);
 			  free(a);
-			  sbuf_free(bufIn);
-			  sbuf_free(bufOut);
+			  sbuf_clean(bufIn);
+			  sbuf_clean(bufOut);
 			  exit(-1);
 		  }
 	      char* y=malloc(sizeof(char));
@@ -577,8 +577,8 @@ int main(int argc, char *argv[])
 			  free(height);
 			  free(a);
 			  free(b);
-			  sbuf_free(bufIn);
-			  sbuf_free(bufOut);
+			  sbuf_clean(bufIn);
+			  sbuf_clean(bufOut);
 			  exit(-1);
 		  }
 	      puts("Donnez le nom de la fractale :");
