@@ -524,24 +524,75 @@ int main(int argc, char *argv[])
 	  int endOfInput=0;
 	  while(!endOfInput)
 	    {
-	      char name[64];
-	      int height;
-	      int width;
-	      double a;
-	      double b;
-	      char y[1];
+	      char* name=malloc(sizeof(char));
+		  if(name==NULL)
+		  {
+			  sbuf_free(bufIn);
+			  sbuf_free(bufOut);
+			  exit(-1);
+		  }
+	      int* height=malloc(sizeof(int));
+		  if(height==NULL)
+		  {
+			  free(name);
+			  sbuf_free(bufIn);
+			  sbuf_free(bufOut);
+			  exit(-1);
+		  }
+	      int* width=malloc(sizeof(int));
+		  if(witdh==NULL)
+		  {
+			  free(name);
+			  free(height);
+			  sbuf_free(bufIn);
+			  sbuf_free(bufOut);
+			  exit(-1);
+		  }
+	      double* a=malloc(sizeof(double));
+		  if(a==NULL)
+		  {
+			  free(name);
+			  free(width);
+			  free(height);
+			  sbuf_free(bufIn);
+			  sbuf_free(bufOut);
+			  exit(-1);
+		  }
+	      double* b=malloc(sizeof(double));
+		  if(b==NULL)
+		  {
+			  free(name);
+			  free(width);
+			  free(height);
+			  free(a);
+			  sbuf_free(bufIn);
+			  sbuf_free(bufOut);
+			  exit(-1);
+		  }
+	      char* y=malloc(sizeof(char));
+		  if(y==NULL)
+		  {
+			  free(name);
+			  free(width);
+			  free(height);
+			  free(a);
+			  free(b);
+			  sbuf_free(bufIn);
+			  sbuf_free(bufOut);
+			  exit(-1);
+		  }
 	      puts("Donnez le nom de la fractale :");
-	      scanf("%s", name);
+	      scanf("%64s", name);
 	      puts("Donnez la hauteur de la fractale :");
-	      scanf("%d", &height);
+	      scanf("%d", height);
 	      puts("Donnez la largeur de la fractale :");
-	      scanf("%d", &width);
+	      scanf("%d", width);
 	      puts("Donnez la partie réelle du c :");
-	      scanf("%lf", &a);
+	      scanf("%lf", a);
 	      puts("Donnez la partie imaginaire du c :");
-	      scanf("%lf", &b);
+	      scanf("%lf", b);
 	      puts("Voulez-vous entrer une autre fractale? (y/n) :");
-	      scanf("%s", y);
+	      scanf("%1s", y);
 		  struct fractal* f=fractal_new(name,height,width,a,b);
 		  sbuf_insert(bufIn,f);
 		  printf("name %s\n",fractal_get_name(f));
@@ -549,6 +600,12 @@ int main(int argc, char *argv[])
 	      if(y[0]!='y')
 		{
 		  endOfInput=1;
+		  free(name);
+		  free(height);
+		  free(width);
+		  free(a);
+		  free(b);
+		  free(y);
 		}
 			
 	      printf("%s %d %d %lf %lf\n",name,height,width,a,b);
