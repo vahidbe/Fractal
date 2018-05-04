@@ -458,7 +458,7 @@ int main(int argc, char *argv[])
   else{
     if((*argv[1]=='-')&(*(argv[1]+1)=='-'))
       {  
-	if ((*(argv[2]+2)=='m')&(*(argv[2]+3)=='a')&(*(argv[2]+4)=='x')&(*(argv[2]+5)=='t')&(*(argv[2]+6)=='h')&(*(argv[2]+7)=='r')&(*(argv[2]+8)=='e')&(*(argv[2]+9)=='a')&(*(argv[2]+10)=='d')&(*(argv[2]+11)=='s'))
+	if ((*(argv[1]+2)=='m')&(*(argv[1]+3)=='a')&(*(argv[1]+4)=='x')&(*(argv[1]+5)=='t')&(*(argv[1]+6)=='h')&(*(argv[1]+7)=='r')&(*(argv[1]+8)=='e')&(*(argv[1]+9)=='a')&(*(argv[1]+10)=='d')&(*(argv[1]+11)=='s'))
 	  {
 	    numberThreads = atoi(argv[2]);
 	    optionsCount++;
