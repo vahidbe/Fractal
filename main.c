@@ -312,7 +312,7 @@ void *consumer(void* arguments){
 	pthread_mutex_lock(&gardien);
 	countCons++;
 	pthread_mutex_unlock(&gardien);
-	//sem_post(&directeur);
+	sem_post(&directeur);
 	return NULL;
 }
 
@@ -407,7 +407,7 @@ void *writer(void* arguments){
 	pthread_mutex_lock(&gardien);
 	countWrit++;
 	pthread_mutex_unlock(&gardien);
-	//sem_post(&directeur);
+	sem_post(&directeur);
 	return NULL;
 }
 
@@ -529,7 +529,7 @@ int main(int argc, char *argv[])
 	int i;
 	for(i=0;(i<numberThreads);i++)
 	{
-		//sem_wait(&directeur);
+		sem_wait(&directeur);
 		pthread_create(&(cons[i]), NULL, (void*) &consumer, NULL);
 	}
 	
@@ -538,7 +538,7 @@ int main(int argc, char *argv[])
 
 	for(i=0;i<numberThreads;i++)
 	{
-		//sem_wait(&directeur);
+		sem_wait(&directeur);
 		pthread_create(&(writ[i]), NULL, (void*) &writer, NULL);
 	}	
 	/**/printf("--- Initialisation des writers terminée ---\n");
