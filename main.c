@@ -538,7 +538,7 @@ int main(int argc, char *argv[])
 				scanf("%lf", &b);
 				puts("Voulez-vous entrer une autre fractale? (y/n) :");
 				scanf("%s", &y);
-				sbuf_insert(fractal_new(name,height,width,a,b),bufIn);
+				sbuf_insert(bufIn,fractal_new(name,height,width,a,b));
 				if(y[0]!='y')
 				{
 					endOfInput=1;
