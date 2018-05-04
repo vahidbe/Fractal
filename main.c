@@ -529,7 +529,7 @@ int main(int argc, char *argv[])
 	      int width;
 	      double a;
 	      double b;
-	      char y;
+	      char y[1];
 	      puts("Donnez le nom de la fractale :");
 	      scanf("%s", &name);
 	      puts("Donnez la hauteur de la fractale :");
@@ -542,10 +542,13 @@ int main(int argc, char *argv[])
 	      scanf("%lf", &b);
 	      puts("Voulez-vous entrer une autre fractale? (y/n) :");
 	      scanf("%c", &y);
+		  sbuf_insert(bufIn,fractal_new(name,height,width,a,b));
+		  fractCountP++;
 	      if(y!='y')
 		{
 		  endOfInput=1;
 		}
+			
 	      printf("%s %d %d %lf %lf",*name,height,width,a,b);
 	    }				
 	}
