@@ -542,7 +542,9 @@ int main(int argc, char *argv[])
 	      scanf("%lf", &b);
 	      puts("Voulez-vous entrer une autre fractale? (y/n) :");
 	      scanf("%s", &y);
-		  sbuf_insert(bufIn,fractal_new(name,height,width,a,b));
+		  struct fractal* f=fractal_new(name,height,width,a,b);
+		  sbuf_insert(bufIn,f);
+		  printf("name %s\n",fractal_get_name(f));
 		  fractCountP++;
 	      if(y!='y')
 		{
