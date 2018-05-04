@@ -362,10 +362,17 @@ void *writer(void* arguments){
 		pthread_mutex_lock(&professor);
 		if((!sortie)&(countEleves==numberThreads))
 		{	
-			/**/printf("\n- Plus grande fractale : %s avec une moyenne de : %f\n\n", highestF->name, average);
-			/**/fflush(stdout);
-			write_bitmap_sdl(highestF,fileOutName);
-			sortie=1;
+			if(highestF!=NULL)
+			{
+				/**/printf("\n- Plus grande fractale : %s avec une moyenne de : %f\n\n", highestF->name, average);
+				/**/fflush(stdout);
+				write_bitmap_sdl(highestF,fileOutName);
+			}
+			else
+			{
+				/**/printf("\n- You did not enter a fractal in your file!\n\n");
+				/**/fflush(stdout);
+				sortie=1;
 		}		
 		pthread_mutex_unlock(&professor);
 	}
