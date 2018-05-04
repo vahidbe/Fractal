@@ -581,18 +581,18 @@ int main(int argc, char *argv[])
 			  sbuf_clean(bufOut);
 			  exit(-1);
 		  }
-	      puts("Donnez le nom de la fractale :");
+	      puts("\nDonnez le nom de la fractale :");
 	      scanf("%64s", name);
-	      puts("Donnez la hauteur de la fractale :");
-	      scanf("%d", height);
 	      puts("Donnez la largeur de la fractale :");
 	      scanf("%d", width);
+	      puts("Donnez la hauteur de la fractale :");
+	      scanf("%d", height);
 	      puts("Donnez la partie réelle du c :");
 	      scanf("%lf", a);
 	      puts("Donnez la partie imaginaire du c :");
 	      scanf("%lf", b);
 	      puts("Voulez-vous entrer une autre fractale? (y/n) :");
-	      scanf("%1s", y);
+	      scanf("%1s\n", y);
 		  struct fractal* f=fractal_new(name,*width,*height,*a,*b);
 		  sbuf_insert(bufIn,f);
 		  fractCountP++;
@@ -607,7 +607,7 @@ int main(int argc, char *argv[])
 		  free(y);
 		}
 			
-	      printf("%s %d %d %lf %lf\n",name,*height,*width,*a,*b);
+	      printf("%s %d %d %lf %lf\n\n",name,*height,*width,*a,*b);
 	    }			
 	countProd++;	
 	}
@@ -638,8 +638,6 @@ int main(int argc, char *argv[])
   for(i=0;(i<numberThreads);i++)
     {
       sem_wait(&directeur);
-	  /**/printf("--- CREATION CONS ---\n");
-		/**/fflush(stdout);
       pthread_create(&(cons[i]), NULL, (void*) &consumer, NULL);
     }
 	
@@ -649,8 +647,6 @@ int main(int argc, char *argv[])
   for(i=0;i<numberThreads;i++)
     {
       sem_wait(&directeur);
-	   /**/printf("--- CREATION WRIT ---\n");
-		/**/fflush(stdout);
       pthread_create(&(writ[i]), NULL, (void*) &writer, NULL);
     }	
   /**/printf("--- Initialisation des writers terminée ---\n");
