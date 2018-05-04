@@ -436,40 +436,24 @@ int main(int argc, char *argv[])
 		fprintf(stderr,"Malloc error!\n");
 	}
 
-	 if((*argv[1]=='-')&(*(argv[1]+1)=='d')){
-    optionD=1;
-    optionsCount++;
-    if(argc>2){
-      if((*(argv[2])=='-')&(*(argv[2]+1)=='-'))
-	{  
-	  if ((*(argv[2]+2)=='m')&(*(argv[2]+3)=='a')&(*(argv[2]+4)=='x')&(*(argv[2]+5)=='t')&(*(argv[2]+6)=='h')&(*(argv[2]+7)=='r')&(*(argv[2]+8)=='e')&(*(argv[2]+9)=='-a')&(*(argv[2]+10)=='d')&(*(argv[2]+11)=='s'))
-	    {
-	      numberThreads = atoi(argv[3]);
-	      optionsCount++;
-	      optionsCount++;
-	    }
-	  else
-	    {
-	      fprintf(stderr,"Wrong option\n");
-	    }
+	if((*argv[1]=='-')&(*(argv[1]+1)=='d')){
+		optionD=1;
+		optionsCount++;
+		if(argc>2){
+		if((*argv[2]=='-')&(*(argv[2]+1)=='-')){
+			numberThreads = atoi(argv[3]);
+			optionsCount++;
+			optionsCount++;
+		}}
 	}
-    }
-  }
-  else{
-    if((*argv[1]=='-')&(*(argv[1]+1)=='-'))
-      {  
-	if ((*(argv[2]+2)=='m')&(*(argv[2]+3)=='a')&(*(argv[2]+4)=='x')&(*(argv[2]+5)=='t')&(*(argv[2]+6)=='h')&(*(argv[2]+7)=='r')&(*(argv[2]+8)=='e')&(*(argv[2]+9)=='-a')&(*(argv[2]+10)=='d')&(*(argv[2]+11)=='s'))
-	  {
-	    numberThreads = atoi(argv[2]);
-	    optionsCount++;
-	    optionsCount++;
-	  }
-	else
-	  {
-	    fprintf(stderr,"Wrong option\n");
-	  }
-      }
-  }	
+	else{
+		if((*argv[1]=='-')&(*(argv[1]+1)=='-')){
+			numberThreads = atoi(argv[2]);
+			optionsCount++;
+			optionsCount++;
+
+		}
+	}	
 	if(numberThreads==0){
 		numberThreads=argc-2-optionsCount; 
 	}
