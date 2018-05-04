@@ -546,7 +546,7 @@ int main(int argc, char *argv[])
 		  sbuf_insert(bufIn,f);
 		  printf("name %s\n",fractal_get_name(f));
 		  fractCountP++;
-	      if(y!='y')
+	      if(y[0]!='y')
 		{
 		  endOfInput=1;
 		}
