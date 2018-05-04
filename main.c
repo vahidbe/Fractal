@@ -595,7 +595,7 @@ int main(int argc, char *argv[])
 	      scanf("%1s", y);
 		  struct fractal* f=fractal_new(name,*width,*height,*a,*b);
 		  sbuf_insert(bufIn,f);
-		  fractCountP++;
+		  fractCountP++;		  
 	      if(*y!='y')
 		{
 		  endOfInput=1;
@@ -606,9 +606,7 @@ int main(int argc, char *argv[])
 		  free(b);
 		  free(y);
 		}
-			
-	      printf("%s %d %d %lf %lf\n\n",name,*height,*width,*a,*b);
-	    }			
+	   }			
 	countProd++;	
 	}
       else
