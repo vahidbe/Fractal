@@ -318,7 +318,6 @@ void *consumer(void* arguments){
 
 void *writer(void* arguments){
   int done2=0;
-  if(!optionD){
     while(!done2){			
       pthread_mutex_lock(&tuteur2);
       sleep(0);
@@ -350,7 +349,10 @@ void *writer(void* arguments){
 	      average=newAverage;
 	      *highestF=*f;
 	    }
-	  pthread_mutex_unlock(&professor);	
+	  pthread_mutex_unlock(&professor);
+	  if(optionD){
+	  	write_bitmap_sdl(f,strcat(fractal_get_name(f),".bmp"));
+		}	
 	  fractal_free(f);
 	  sleep(0);
 	}else{
@@ -375,35 +377,7 @@ void *writer(void* arguments){
 	    sortie=1;
 	  }
       }		
-    pthread_mutex_unlock(&professor);
-  }
-  else
-    {
-      while(!done2)
-	{
-	  pthread_mutex_lock(&tuteur2);			
-	  sleep(0);
-	  if(bufOut->front==bufOut->rear){
-	    sleep(0);
-	    pthread_mutex_unlock(&tuteur2);
-	    if(((countCons==numberThreads)&(bufOut->front==bufOut->rear))|((fractCountW==fractCountP)&(fractCountP!=0)))
-	      {
-		done2=1;
-	      }}
-	  else
-	    {
-	      pthread_mutex_lock(&gardien);
-	      fractCountW++;
-	      pthread_mutex_unlock(&gardien);
-	      struct fractal* f = (sbuf_remove(bufOut));
-	      write_bitmap_sdl(f,strcat(fractal_get_name(f),".bmp"));
-	      fractal_free(f);
-	      pthread_mutex_unlock(&tuteur2);
-	    }
-	  pthread_mutex_unlock(&tuteur2);
-	  sleep(0);
-	}
-    }
+  pthread_mutex_unlock(&professor);
   pthread_mutex_lock(&gardien);
   countWrit++;
   pthread_mutex_unlock(&gardien);

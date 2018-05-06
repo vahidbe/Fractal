@@ -1,0 +1,6070 @@
+commit 0c56dc89e5fd3a88dab214c358783a667cd56dea
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Fri May 4 14:03:38 2018 +0200
+
+    Revert "test"
+    
+    This reverts commit 4af74aff236c9a273cc8234b0269d3d57600fd9c.
+
+ Makefile |  10 ++++++++++
+ main     | Bin 0 -> 23208 bytes
+ main.o   | Bin 0 -> 24888 bytes
+ 3 files changed, 10 insertions(+)
+
+commit 4af74aff236c9a273cc8234b0269d3d57600fd9c
+Author: vahidbe <vahid.beyraghi@student.uclouvain.be>
+Date:   Fri May 4 14:03:01 2018 +0200
+
+    test
+
+ Makefile |  10 ----------
+ main     | Bin 23208 -> 0 bytes
+ main.o   | Bin 24888 -> 0 bytes
+ 3 files changed, 10 deletions(-)
+
+commit 2f21e1fbb2a66de13c9d306456efce38222289cf
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Fri May 4 14:01:06 2018 +0200
+
+    clean
+
+ fract.txt                               | 17 -----------------
+ backup jsp quoi.txt => tests/backup.txt |  0
+ backup_main.c => tests/backup_main.c    |  0
+ backup_mainF.c => tests/backup_mainF.c  |  0
+ tests/fract.txt                         | 30 +++++++++++++++---------------
+ fract1.txt => tests/fract1.txt          |  0
+ fract2.txt => tests/fract2.txt          |  0
+ fract3.txt => tests/fract3.txt          |  0
+ fract4.txt => tests/fract4.txt          |  0
+ fract5.txt => tests/fract5.txt          |  0
+ main test.c => tests/main test.c        |  0
+ 11 files changed, 15 insertions(+), 32 deletions(-)
+
+commit 9ead7ba77e4d336e0f38eb91fb38ca099c6b5de9
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Fri May 4 14:00:02 2018 +0200
+
+    Revert "Version clean"
+    
+    This reverts commit e673e5f9e53932b930d88eb6308b30a142b618cc.
+
+ backup jsp quoi.txt     | 519 +++++++++++++++++++++++++++++++++++++++
+ backup_main.c           | 629 ++++++++++++++++++++++++++++++++++++++++++++++++
+ backup_mainF.c          | 530 ++++++++++++++++++++++++++++++++++++++++
+ fract.txt               |  17 ++
+ fract1.txt              |   1 +
+ fract2.txt              |   5 +
+ fract3.txt              |   1 +
+ fract4.txt              |   1 +
+ fract5.txt              |   2 +
+ libfractal/fractal.o    | Bin 0 -> 9864 bytes
+ libfractal/libfractal.a | Bin 0 -> 22454 bytes
+ libfractal/tools.o      | Bin 0 -> 12144 bytes
+ main                    | Bin 0 -> 23208 bytes
+ main test.c             |  13 +
+ main.o                  | Bin 0 -> 24888 bytes
+ tests/fract.txt         |  30 +--
+ 16 files changed, 1733 insertions(+), 15 deletions(-)
+
+commit 546ea85ec574051966d26a3837800960527c8925
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Fri May 4 13:59:56 2018 +0200
+
+    Revert "test"
+    
+    This reverts commit 2ea480b7e0fee39dfda56b11f85d33d850591373.
+
+ tests/Main_Test     | Bin 0 -> 13400 bytes
+ tests/fract.txt     |  17 ++
+ tests/test main.txt | 572 ++++++++++++++++++++++++++++++++++++++++++++++++++++
+ tests/testArgv.c    |   9 +
+ tests/testProd.c    | 134 ++++++++++++
+ tests/test_main.c   | 226 +++++++++++++++++++++
+ 6 files changed, 958 insertions(+)
+
+commit 2ea480b7e0fee39dfda56b11f85d33d850591373
+Author: vahidbe <vahid.beyraghi@student.uclouvain.be>
+Date:   Fri May 4 13:58:55 2018 +0200
+
+    test
+
+ tests/Main_Test     | Bin 13400 -> 0 bytes
+ tests/fract.txt     |  17 --
+ tests/test main.txt | 572 ----------------------------------------------------
+ tests/testArgv.c    |   9 -
+ tests/testProd.c    | 134 ------------
+ tests/test_main.c   | 226 ---------------------
+ 6 files changed, 958 deletions(-)
+
+commit e673e5f9e53932b930d88eb6308b30a142b618cc
+Author: vahidbe <vahid.beyraghi@student.uclouvain.be>
+Date:   Fri May 4 13:41:08 2018 +0200
+
+    Version clean
+
+ backup jsp quoi.txt     | 519 ---------------------------------------
+ backup_main.c           | 629 ------------------------------------------------
+ backup_mainF.c          | 530 ----------------------------------------
+ fract.txt               |  17 --
+ fract1.txt              |   1 -
+ fract2.txt              |   5 -
+ fract3.txt              |   1 -
+ fract4.txt              |   1 -
+ fract5.txt              |   2 -
+ libfractal/fractal.o    | Bin 9864 -> 0 bytes
+ libfractal/libfractal.a | Bin 22454 -> 0 bytes
+ libfractal/tools.o      | Bin 12144 -> 0 bytes
+ main                    | Bin 23208 -> 0 bytes
+ main test.c             |  13 -
+ main.o                  | Bin 24888 -> 0 bytes
+ tests/fract.txt         |  30 +--
+ 16 files changed, 15 insertions(+), 1733 deletions(-)
+
+commit 2be705bdc3c910c709791ef2a229557cca08ff4a
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Fri May 4 13:35:22 2018 +0200
+
+    strcat
+
+ main.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+commit d1d651855e8beae0fb7b00ea4ce184538a5de334
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Fri May 4 13:34:08 2018 +0200
+
+    .bmp
+
+ main.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+commit 258d0eaa2a3df21e75fbdf9e3bebc78de160929e
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Fri May 4 13:21:08 2018 +0200
+
+    version correcte
+
+ main.c | 6 ++----
+ 1 file changed, 2 insertions(+), 4 deletions(-)
+
+commit 39e75be3cbb4d52bbdc9a65bbc17c9059a65f118
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Fri May 4 13:16:54 2018 +0200
+
+    corr
+
+ main.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 51f7bf6dbeb7df265f5d34f8aeca565201830d06
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Fri May 4 13:16:29 2018 +0200
+
+    corr
+
+ main.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 8fe94dee22d4bd1bb9b06d3072907f29dc0f8d9c
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Fri May 4 13:14:18 2018 +0200
+
+    version stdin
+
+ fract5.txt |  1 +
+ main.c     | 14 +++++---------
+ 2 files changed, 6 insertions(+), 9 deletions(-)
+
+commit 4576b0f8c231a22793d61a3604f5cfb1e103d4bd
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Fri May 4 13:07:46 2018 +0200
+
+    corr
+
+ main.c | 11 +++++------
+ 1 file changed, 5 insertions(+), 6 deletions(-)
+
+commit 8bf9f85a1a53e4c90242b5c0e75aa6058bbc574d
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Fri May 4 13:06:38 2018 +0200
+
+    test
+
+ main.c | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
+
+commit e07473a84b91e2ca5155871abafffa0c1a4af3cf
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Fri May 4 13:05:28 2018 +0200
+
+    corr
+
+ main.c | 24 ++++++++++++------------
+ 1 file changed, 12 insertions(+), 12 deletions(-)
+
+commit 6ae5caa3e58f913404f987953ae024e0c007ad83
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Fri May 4 13:04:19 2018 +0200
+
+    corr
+
+ main.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 7628fe0951bd96cc90c90c35c76a297e352126f0
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Fri May 4 13:03:48 2018 +0200
+
+    corr
+
+ main.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 10b04d96f7d98b54d1d44148e1ae7d7bd8ded7cd
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Fri May 4 13:01:42 2018 +0200
+
+    corr
+
+ main.c | 81 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++----------
+ 1 file changed, 69 insertions(+), 12 deletions(-)
+
+commit 4c23b62918af0247ad6d1a19f7675aee6c6c80b4
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Fri May 4 12:53:17 2018 +0200
+
+    corr
+
+ main.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 58cbfb7368e9676d89218b3ae9d95ee868a924d8
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Fri May 4 12:52:34 2018 +0200
+
+    test
+
+ main.c | 8 ++++++--
+ 1 file changed, 6 insertions(+), 2 deletions(-)
+
+commit 4e925e3a55cb42363382b575c83354c23a172bd2
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Fri May 4 12:50:34 2018 +0200
+
+    test
+
+ main.c | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+commit b4270d62a5a5e3f5ffa205b95addf895ec18f7cd
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Fri May 4 12:47:31 2018 +0200
+
+    test
+
+ main.c | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+commit 8f086ee64666e349b471b67406c2467363aed631
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Fri May 4 12:42:11 2018 +0200
+
+    corr
+
+ main.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 7daa15d3f279b7b37d81f2fec40c2831ff5a86dd
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Fri May 4 12:39:17 2018 +0200
+
+    corr
+
+ main.c | 1 +
+ 1 file changed, 1 insertion(+)
+
+commit c8fdee69bc3a355c1b3bad2dca28f1b708d3222f
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Fri May 4 12:38:08 2018 +0200
+
+    corr
+
+ main.c | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
+
+commit dc0c14799c13f9a70386b54c3c85ef727c4ca60b
+Merge: 7db9e34 8c40564
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Fri May 4 12:33:32 2018 +0200
+
+    Merge branch 'master' of https://github.com/vahidbe/Fractal
+
+commit 7db9e3469d03d4815f703467d1e5b9297d772fc2
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Fri May 4 12:32:43 2018 +0200
+
+    corr
+
+ main.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 8c4056475f0793a5f1ef941329e4362e200de81e
+Author: BellonGuillaume <33180570+BellonGuillaume@users.noreply.github.com>
+Date:   Fri May 4 12:31:41 2018 +0200
+
+    Wrong option corrigée
+    
+    correction de wrong option
+
+ main.c | 903 +++++++++++++++++++++++++++++++++--------------------------------
+ 1 file changed, 453 insertions(+), 450 deletions(-)
+
+commit 8ea13e643ecac00a1e00316484b0fa758a96fd28
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Fri May 4 12:30:35 2018 +0200
+
+    corr
+
+ main.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 9253576ff713b96877c37995de02d640b9a8d077
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Fri May 4 12:28:14 2018 +0200
+
+    Revert "Revert "Wrong option ajouté""
+    
+    This reverts commit 85e813381236353046478af01c7388638068a4c6.
+
+ main.c | 50 +++++++++++++++++++++++++++++++++-----------------
+ 1 file changed, 33 insertions(+), 17 deletions(-)
+
+commit ad464bf1f94bf7f813683a61878502bdd09a4d2c
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Fri May 4 12:24:19 2018 +0200
+
+    corr
+
+ main.c | 1 +
+ 1 file changed, 1 insertion(+)
+
+commit 85e813381236353046478af01c7388638068a4c6
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Fri May 4 12:22:58 2018 +0200
+
+    Revert "Wrong option ajouté"
+    
+    This reverts commit 238212718eb04a93cf0b6312828ddb57fb144ba5.
+
+ main.c | 50 +++++++++++++++++---------------------------------
+ 1 file changed, 17 insertions(+), 33 deletions(-)
+
+commit 3be02f73d3fd180349aaffb542d60c25f61e425f
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Fri May 4 12:20:23 2018 +0200
+
+    corr
+
+ main.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit b8a2ab39e818b34f4e0bfab575e791be95a3e198
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Fri May 4 12:19:01 2018 +0200
+
+    update stdin
+
+ main.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit b8e841f9d88e83aa0379d552c21799e9502d7801
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Fri May 4 12:17:05 2018 +0200
+
+    corr
+
+ main.c | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+commit fabe596c447eeba8e5ceda90344519374db61f42
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Fri May 4 12:16:03 2018 +0200
+
+    test
+
+ main.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+commit a201d3cd17578d46dcbdde95d87b755549f88283
+Merge: 3480180 2382127
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Fri May 4 12:13:42 2018 +0200
+
+    Merge branch 'master' of https://github.com/vahidbe/Fractal
+
+commit 3480180c03791bc9cdb659420b16d8d2fd7f4fcb
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Fri May 4 12:13:23 2018 +0200
+
+    test
+
+ main.c | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+commit 238212718eb04a93cf0b6312828ddb57fb144ba5
+Author: BellonGuillaume <33180570+BellonGuillaume@users.noreply.github.com>
+Date:   Fri May 4 12:13:08 2018 +0200
+
+    Wrong option ajouté
+    
+    Il faut maintenant bien écrire l'option "maxthreads".
+
+ main.c | 50 +++++++++++++++++++++++++++++++++-----------------
+ 1 file changed, 33 insertions(+), 17 deletions(-)
+
+commit 32020b3ee064fef8e1c3806a91dea96fee1db08b
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Fri May 4 12:10:50 2018 +0200
+
+    corr
+
+ main.c | 9 +++++----
+ 1 file changed, 5 insertions(+), 4 deletions(-)
+
+commit 1d49bc2bb98df207b72017c06c672e6d370c05ce
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Fri May 4 12:09:13 2018 +0200
+
+    test input
+
+ main.c | 37 +++++++++++++++++++++++++++----------
+ 1 file changed, 27 insertions(+), 10 deletions(-)
+
+commit 0db6f4b99e553fb233a4e39396828bf9d81d0096
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Fri May 4 11:59:34 2018 +0200
+
+    Revert "Revert "Revert "suppression directeurs"""
+    
+    This reverts commit 34b0442c5c3f237a43ac193f3c3eeb63c5c73234.
+
+ main.c | 22 +++++++++++++++-------
+ 1 file changed, 15 insertions(+), 7 deletions(-)
+
+commit 34b0442c5c3f237a43ac193f3c3eeb63c5c73234
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Fri May 4 11:58:18 2018 +0200
+
+    Revert "Revert "suppression directeurs""
+    
+    This reverts commit 84f173990d9618e92faab525973d8f73344e6095.
+
+ main.c | 22 +++++++---------------
+ 1 file changed, 7 insertions(+), 15 deletions(-)
+
+commit 84f173990d9618e92faab525973d8f73344e6095
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Fri May 4 11:56:49 2018 +0200
+
+    Revert "suppression directeurs"
+    
+    This reverts commit 9eed8a958302a7cc45b3abd9e66c800eb7a6e1be.
+
+ main.c | 22 +++++++++++++++-------
+ 1 file changed, 15 insertions(+), 7 deletions(-)
+
+commit 669df9ffb09c8faa0bc274ab2fe91f05f07dee0f
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Fri May 4 11:56:47 2018 +0200
+
+    Revert "test"
+    
+    This reverts commit 0729a835726ea331aafdb4c291f9d297f65e079e.
+
+ main.c | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
+
+commit 0729a835726ea331aafdb4c291f9d297f65e079e
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Fri May 4 11:50:13 2018 +0200
+
+    test
+
+ main.c | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
+
+commit 9eed8a958302a7cc45b3abd9e66c800eb7a6e1be
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Fri May 4 11:46:14 2018 +0200
+
+    suppression directeurs
+
+ main.c | 22 +++++++---------------
+ 1 file changed, 7 insertions(+), 15 deletions(-)
+
+commit 40e057573870e590960ad0f490748650f395c71d
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Fri May 4 11:38:31 2018 +0200
+
+    corr
+
+ main.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit ef0b69a4c69cd1b4fee835240c916c03cab7af45
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Fri May 4 11:37:30 2018 +0200
+
+    clean
+
+ main.c | 1 +
+ 1 file changed, 1 insertion(+)
+
+commit ba605728929f38b25ceb87f82952b2627fcfb058
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Fri May 4 11:35:28 2018 +0200
+
+    azd
+
+ main.c | 15 +++++++++++----
+ 1 file changed, 11 insertions(+), 4 deletions(-)
+
+commit 50935b7e63749a7c5e5290309d2e8652d6568286
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Thu May 3 22:24:56 2018 +0200
+
+    zéfef
+
+ main.c | 6 ++----
+ 1 file changed, 2 insertions(+), 4 deletions(-)
+
+commit 88d3bec264c58af04497195b8d1e5bc1d9cbd56f
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Thu May 3 22:17:22 2018 +0200
+
+    zfe
+
+ main.c | 2 --
+ 1 file changed, 2 deletions(-)
+
+commit fe249755b44d4d417db9a6d6e5da4ecb1ee55b8b
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Thu May 3 22:16:44 2018 +0200
+
+    zef
+
+ main.c | 9 +++++----
+ 1 file changed, 5 insertions(+), 4 deletions(-)
+
+commit 7dae8c3b0ed4a009d8b3bf8afd5258a3c18d7a74
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Thu May 3 22:14:30 2018 +0200
+
+    aezd
+
+ main.c | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
+
+commit 81b87aeddc07ab86332fb0d8d876d7b1900b734e
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Thu May 3 22:13:16 2018 +0200
+
+    zre
+
+ main.c | 1 +
+ 1 file changed, 1 insertion(+)
+
+commit bf759ac44761f417da1eb5c3424a2abf2db4a23a
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Thu May 3 22:11:23 2018 +0200
+
+    zf
+
+ main.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 0cd09fded2aad6b069f52adc498ea9a5eb30b54b
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Thu May 3 22:10:34 2018 +0200
+
+    z
+
+ main.c | 6 +++++-
+ 1 file changed, 5 insertions(+), 1 deletion(-)
+
+commit 1ca3e804c17f0140d05436a377605a1ca44e90c0
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Thu May 3 22:08:25 2018 +0200
+
+    zer
+
+ main.c | 25 +++++++++++++------------
+ 1 file changed, 13 insertions(+), 12 deletions(-)
+
+commit cb2a3ddd027c73e2938cab049697e06ebafbb05b
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Thu May 3 22:05:17 2018 +0200
+
+    serf
+
+ main.c | 18 ++++++++++++++----
+ 1 file changed, 14 insertions(+), 4 deletions(-)
+
+commit fde9dc9e3c3a41d2bcf43512b74948608b513dab
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Thu May 3 22:03:59 2018 +0200
+
+    kj
+
+ main.c | 8 +++++---
+ 1 file changed, 5 insertions(+), 3 deletions(-)
+
+commit 18adc0a4f43a7c16f1608f0f5095ef9d530a53c8
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Thu May 3 22:00:45 2018 +0200
+
+    s
+
+ main.c | 2 ++
+ 1 file changed, 2 insertions(+)
+
+commit ea70e552ce25c3ce65056aaae544742d023a3686
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Thu May 3 21:59:30 2018 +0200
+
+    plzzz
+
+ main.c | 8 +++++++-
+ 1 file changed, 7 insertions(+), 1 deletion(-)
+
+commit 353b8ac88b350669148fd0224fc05fd357340295
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Thu May 3 21:57:51 2018 +0200
+
+    pitiez
+
+ main.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+commit 3a12a1093c96a9f3be241f877f1ae028a55c17c2
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Thu May 3 21:54:33 2018 +0200
+
+    Revert "Revert "test""
+    
+    This reverts commit d5ff7ec958e5b6a0374924fc19c29583b6b773b9.
+
+ main.c | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
+
+commit f652be2f36461ea1f0dd1da9417fd4307ff0b168
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Thu May 3 21:54:30 2018 +0200
+
+    Revert "test"
+    
+    This reverts commit 7bb66b9ea21a2c73426211148b1a5e5270f8b5a3.
+
+ main.c | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+commit 5c5f40666ee6b2c2525c31e7cddeaa8acb6b97d5
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Thu May 3 21:54:20 2018 +0200
+
+    Revert "test"
+    
+    This reverts commit 03ecaa7fb2f2e995848148079167fa775594da84.
+
+ main.c | 49 +++++++++++++++++++++++++++++++------------------
+ 1 file changed, 31 insertions(+), 18 deletions(-)
+
+commit d2ade85f0db68c58367a08533490491709268ddc
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Thu May 3 21:54:17 2018 +0200
+
+    Revert "-"
+    
+    This reverts commit 98ef4ec65d92e1233e7d38289c86455dd31387ae.
+
+ main.c | 8 --------
+ 1 file changed, 8 deletions(-)
+
+commit 59f716276025e811d1a8dc86d52c407cfd4e2bf9
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Thu May 3 21:54:14 2018 +0200
+
+    Revert "-"
+    
+    This reverts commit eb1b6942c232c494ee7b1aaf214237a24a372ab8.
+
+ main.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+commit af582b4d9cdda0e788dc934b5cb8d9b66c73a6ef
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Thu May 3 21:54:13 2018 +0200
+
+    Revert "Revert "-""
+    
+    This reverts commit e808a74193413a87c03f994e7a663311f468e865.
+
+ main.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+commit 3b3998e93cc914bde3faaf2adce06d45b8eb6d1b
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Thu May 3 21:54:11 2018 +0200
+
+    Revert "-"
+    
+    This reverts commit a1c5681f45cf16f8b7e24d73b1814b4924b43a9c.
+
+ main.c | 6 ++----
+ 1 file changed, 2 insertions(+), 4 deletions(-)
+
+commit a1c5681f45cf16f8b7e24d73b1814b4924b43a9c
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Thu May 3 21:53:20 2018 +0200
+
+    -
+
+ main.c | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
+
+commit e808a74193413a87c03f994e7a663311f468e865
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Thu May 3 21:52:11 2018 +0200
+
+    Revert "-"
+    
+    This reverts commit eb1b6942c232c494ee7b1aaf214237a24a372ab8.
+
+ main.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+commit eb1b6942c232c494ee7b1aaf214237a24a372ab8
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Thu May 3 21:50:16 2018 +0200
+
+    -
+
+ main.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+commit 98ef4ec65d92e1233e7d38289c86455dd31387ae
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Thu May 3 21:49:00 2018 +0200
+
+    -
+
+ main.c | 8 ++++++++
+ 1 file changed, 8 insertions(+)
+
+commit 03ecaa7fb2f2e995848148079167fa775594da84
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Thu May 3 21:44:00 2018 +0200
+
+    test
+
+ main.c | 49 ++++++++++++++++++-------------------------------
+ 1 file changed, 18 insertions(+), 31 deletions(-)
+
+commit 7bb66b9ea21a2c73426211148b1a5e5270f8b5a3
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Thu May 3 21:37:10 2018 +0200
+
+    test
+
+ main.c | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+commit d5ff7ec958e5b6a0374924fc19c29583b6b773b9
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Thu May 3 21:33:58 2018 +0200
+
+    Revert "test"
+    
+    This reverts commit 2aff5615239321a6af17203b5bdf639e23d9367f.
+
+ main.c | 5 +----
+ 1 file changed, 1 insertion(+), 4 deletions(-)
+
+commit 2aff5615239321a6af17203b5bdf639e23d9367f
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Thu May 3 21:32:54 2018 +0200
+
+    test
+
+ main.c | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
+
+commit bff52605f76ac8e6e69a2af69d138b59d9b83459
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Thu May 3 20:22:28 2018 +0200
+
+    Revert "glob"
+    
+    This reverts commit aa70eb05a793e7953182fd19e609251f783639c6.
+
+ main.c | 10 +---------
+ 1 file changed, 1 insertion(+), 9 deletions(-)
+
+commit aa70eb05a793e7953182fd19e609251f783639c6
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Thu May 3 20:21:47 2018 +0200
+
+    glob
+
+ main.c | 10 +++++++++-
+ 1 file changed, 9 insertions(+), 1 deletion(-)
+
+commit d3481dc801117a5947010cf0657a9bbf4c9778a0
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Thu May 3 20:17:07 2018 +0200
+
+    sleep
+
+ main.c | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
+
+commit 8631e0eb275c2850fc842a387aa97ace69249842
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Thu May 3 20:16:20 2018 +0200
+
+    sleep
+
+ main.c | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+commit ad259b88ed02e2b12e7c33ea3c474d6affecb789
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Thu May 3 20:13:57 2018 +0200
+
+    empty if
+
+ main.c | 9 ++++++---
+ 1 file changed, 6 insertions(+), 3 deletions(-)
+
+commit f06334c84f12e8cd51ce416472a289fe1f6dd98c
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Thu May 3 20:10:48 2018 +0200
+
+    Revert "try gardien"
+    
+    This reverts commit 155b6201d4e53f32aebc830742b37cd9e1611b6f.
+
+ main.c | 12 ++++++------
+ 1 file changed, 6 insertions(+), 6 deletions(-)
+
+commit 155b6201d4e53f32aebc830742b37cd9e1611b6f
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Thu May 3 20:10:22 2018 +0200
+
+    try gardien
+
+ main.c | 12 ++++++------
+ 1 file changed, 6 insertions(+), 6 deletions(-)
+
+commit 6eeca1b8556e1aec5f42f2bb15e5931044c886bd
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Thu May 3 20:01:20 2018 +0200
+
+    test
+
+ main.c | 209 ++++++++++++++++++++++++-----------------------------------------
+ 1 file changed, 77 insertions(+), 132 deletions(-)
+
+commit 05d142f754366761b710c2f66a371599771fea7f
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Thu May 3 20:00:33 2018 +0200
+
+    stdin
+
+ main.c | 1 +
+ 1 file changed, 1 insertion(+)
+
+commit 8cb83e60d4ca2edca500ad2c6a8954f328311b6d
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Thu May 3 19:45:33 2018 +0200
+
+    0
+
+ main.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 358177e576db21425c0cf65b7da476dae2f2ccf0
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Thu May 3 19:44:17 2018 +0200
+
+    ze
+
+ backup_mainF.c | 530 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ main.c         |   4 +-
+ 2 files changed, 532 insertions(+), 2 deletions(-)
+
+commit a59d0298f98564efb748d7f1d7154a6e87b98357
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Thu May 3 19:35:17 2018 +0200
+
+    éz
+
+ main.c | 10 +++-------
+ 1 file changed, 3 insertions(+), 7 deletions(-)
+
+commit 048e088d8943375427596694e29f795ff72d08f0
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Thu May 3 19:24:36 2018 +0200
+
+    Revert "Revert "Revert "Revert "Revert "printf"""""
+    
+    This reverts commit f9f1c078dcb00a8f06666454dc632ec212466541.
+
+ main.c | 15 ++++++++-------
+ 1 file changed, 8 insertions(+), 7 deletions(-)
+
+commit f9f1c078dcb00a8f06666454dc632ec212466541
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Thu May 3 19:24:17 2018 +0200
+
+    Revert "Revert "Revert "Revert "printf""""
+    
+    This reverts commit b69d83e870b7ac52a0485c0801b13494b515a72a.
+
+ main.c | 15 +++++++--------
+ 1 file changed, 7 insertions(+), 8 deletions(-)
+
+commit b69d83e870b7ac52a0485c0801b13494b515a72a
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Thu May 3 19:23:54 2018 +0200
+
+    Revert "Revert "Revert "printf"""
+    
+    This reverts commit 2a35a6bb2fe67718768039260c1132200925c6e3.
+
+ main.c | 15 ++++++++-------
+ 1 file changed, 8 insertions(+), 7 deletions(-)
+
+commit bc40a6c1a0295a34ccbf8728bc8661b52474c790
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Thu May 3 19:23:47 2018 +0200
+
+    Revert "Revert "Revert "test"""
+    
+    This reverts commit e466aad8ab5777aa74d4e38591d3448b9802c8eb.
+
+ main.c | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
+
+commit 9a8b1d53d7b56b8b8c8ac267472afff0bdf1f028
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Thu May 3 19:23:14 2018 +0200
+
+    Revert "Revert "Revert "exit protocol update"""
+    
+    This reverts commit a0f0b4075289ba5f58bf6d12efc822103b8ada03.
+
+ main.c | 47 +++++++++++++++++++++++++++++------------------
+ 1 file changed, 29 insertions(+), 18 deletions(-)
+
+commit 306071e187ca96240ad200d0c04149ddd1fd2079
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Thu May 3 19:23:12 2018 +0200
+
+    Revert "Revert "Revert "corrections"""
+    
+    This reverts commit 6abb0cd866b48c22549eb771218b13d342ca2083.
+
+ main.c | 18 +++++++++---------
+ 1 file changed, 9 insertions(+), 9 deletions(-)
+
+commit 6abb0cd866b48c22549eb771218b13d342ca2083
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Thu May 3 19:22:51 2018 +0200
+
+    Revert "Revert "corrections""
+    
+    This reverts commit 443970665c1c87cefd1df2bf8cec4191c9d6f915.
+
+ main.c | 18 +++++++++---------
+ 1 file changed, 9 insertions(+), 9 deletions(-)
+
+commit a0f0b4075289ba5f58bf6d12efc822103b8ada03
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Thu May 3 19:22:33 2018 +0200
+
+    Revert "Revert "exit protocol update""
+    
+    This reverts commit 45d7d127b8047d47d38c8c4d5d51d3ae72356efc.
+
+ main.c | 47 ++++++++++++++++++-----------------------------
+ 1 file changed, 18 insertions(+), 29 deletions(-)
+
+commit e466aad8ab5777aa74d4e38591d3448b9802c8eb
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Thu May 3 19:22:31 2018 +0200
+
+    Revert "Revert "test""
+    
+    This reverts commit c226aaa37e908247a9ce6d213f106cd88c4b54f9.
+
+ main.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+commit 2a35a6bb2fe67718768039260c1132200925c6e3
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Thu May 3 19:22:22 2018 +0200
+
+    Revert "Revert "printf""
+    
+    This reverts commit c228a8ae7f0431b3f3a4053e8257271bb189edd8.
+
+ main.c | 15 +++++++--------
+ 1 file changed, 7 insertions(+), 8 deletions(-)
+
+commit 9e0287b22c38fec6a5ac781ccb211c0f09e70a45
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Thu May 3 19:21:13 2018 +0200
+
+    Revert "Revert "counts""
+    
+    This reverts commit 44ff72ac897e52a4be3895fc5132ac258d18753d.
+
+ main.c | 37 ++++++++++++++++++++++---------------
+ 1 file changed, 22 insertions(+), 15 deletions(-)
+
+commit 44ff72ac897e52a4be3895fc5132ac258d18753d
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Thu May 3 19:21:03 2018 +0200
+
+    Revert "counts"
+    
+    This reverts commit a535c5377db483e669df3b4abc4f3641d6dd22e1.
+
+ main.c | 37 +++++++++++++++----------------------
+ 1 file changed, 15 insertions(+), 22 deletions(-)
+
+commit c228a8ae7f0431b3f3a4053e8257271bb189edd8
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Thu May 3 19:21:00 2018 +0200
+
+    Revert "printf"
+    
+    This reverts commit bf2132a9a7c93c1c8e743992e71b5f70d4af8a33.
+
+ main.c | 15 ++++++++-------
+ 1 file changed, 8 insertions(+), 7 deletions(-)
+
+commit c226aaa37e908247a9ce6d213f106cd88c4b54f9
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Thu May 3 19:20:58 2018 +0200
+
+    Revert "test"
+    
+    This reverts commit 2d0156e540122b2392fd8da1d45e26fe06e79bd4.
+
+ main.c | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
+
+commit 45d7d127b8047d47d38c8c4d5d51d3ae72356efc
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Thu May 3 19:20:20 2018 +0200
+
+    Revert "exit protocol update"
+    
+    This reverts commit 2e5c95dc41bd4d13f33d1124b17adae006ac5efe.
+
+ main.c | 47 +++++++++++++++++++++++++++++------------------
+ 1 file changed, 29 insertions(+), 18 deletions(-)
+
+commit 443970665c1c87cefd1df2bf8cec4191c9d6f915
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Thu May 3 19:20:17 2018 +0200
+
+    Revert "corrections"
+    
+    This reverts commit b8d9aa1c8ce266aea292c8f07bf80c426f26e647.
+
+ main.c | 18 +++++++++---------
+ 1 file changed, 9 insertions(+), 9 deletions(-)
+
+commit 89d3b01a8bf09c644c0025513132652c5185d52e
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Thu May 3 19:20:14 2018 +0200
+
+    Revert "clean"
+    
+    This reverts commit 0917b6ca99237b77c5afb12abacd49d250b1f6c7.
+
+ main.c | 153 +++++++++++++++++++++++++++++++++++++++++++----------------------
+ 1 file changed, 101 insertions(+), 52 deletions(-)
+
+commit f4cc8d781e33d5206d151d315097d64358a11bf5
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Thu May 3 19:20:12 2018 +0200
+
+    Revert "try"
+    
+    This reverts commit 527fcd43d992a7b5e7157495f692eb64a8da366b.
+
+ main.c | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+commit 4bd10c2fd7ec647476dea6cf2bad6eac1ba68eb1
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Thu May 3 19:20:09 2018 +0200
+
+    Revert "correction"
+    
+    This reverts commit 01c0098df72257ea8b8fd63e5b4e0c8855175743.
+
+ main.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit fd0775f36c432f7f2cb9c3ba05eae4c784f1fffc
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Thu May 3 19:20:06 2018 +0200
+
+    Revert "corrections"
+    
+    This reverts commit 9065fe1a08a7818095da6dfea974a7a8941f28f0.
+
+ main.c | 9 +++------
+ 1 file changed, 3 insertions(+), 6 deletions(-)
+
+commit 92a52b8110440d3bf163c0af906b0a8a2478f6fa
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Thu May 3 19:20:03 2018 +0200
+
+    Revert "corr"
+    
+    This reverts commit 3d295905132ec2486ad246a916c9b6aea7e32eaf.
+
+ main.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 3cebc347ca81cc179a182cfddb4803c92eae3be7
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Thu May 3 19:20:02 2018 +0200
+
+    Revert "clean"
+    
+    This reverts commit 7c5bc40b6bc32433137785e77b8edbe826e780bf.
+
+ main.c | 2 ++
+ 1 file changed, 2 insertions(+)
+
+commit 60d2b9481e37b3c68e0a08078b89be4215768d0b
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Thu May 3 19:19:14 2018 +0200
+
+    Revert "version sans stdin finale"
+    
+    This reverts commit 719b533b778ed35dff3df2f13cc577a64f27a9e3.
+
+ main.c | 1 -
+ 1 file changed, 1 deletion(-)
+
+commit a2f48aebb105ffbf6a0373598956d80fc0002c03
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Thu May 3 19:19:12 2018 +0200
+
+    Revert "fracterr"
+    
+    This reverts commit 09210fa881a03d2fba6e52c0708058a89a933e16.
+
+ main.c | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
+
+commit e418800808fe07f8906dc47b4b4d7d850f710faa
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Thu May 3 19:19:10 2018 +0200
+
+    Revert "test"
+    
+    This reverts commit dec3849736a5cd49d39978154454ad5dc5b1eead.
+
+ main.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+commit 8ae26d1c0d2b6ab6146dd54c219a51500764cf6f
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Thu May 3 19:19:08 2018 +0200
+
+    Revert "Revert "fracterr""
+    
+    This reverts commit d1ef64fffd50894e2ccfe1b6ffebc864c76d5ac8.
+
+ main.c | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
+
+commit 70018b58a9a8d7de3337444e2c6d4cbfdd33cf61
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Thu May 3 19:19:06 2018 +0200
+
+    Revert "clean"
+    
+    This reverts commit ac7ee6908f17487993977260f0e7808eeed7d589.
+
+ main.c | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
+
+commit 177eed0f5a91d58482532c245991c6ffdd559415
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Thu May 3 19:19:04 2018 +0200
+
+    Revert "clean"
+    
+    This reverts commit a1f1fcf93bc3fac0b90e3ad513340274d176a0e5.
+
+ main.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 797786c2f09f68f5d1dcd3e3a50061c5477ccdb3
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Thu May 3 19:19:02 2018 +0200
+
+    Revert "clean"
+    
+    This reverts commit 82dab3a8da3eaba224f5c85b9b19d705befcc8d5.
+
+ main.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 15e6444dfd05c7c5062245935844d9093f063027
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Thu May 3 19:19:00 2018 +0200
+
+    Revert "test"
+    
+    This reverts commit 12e6d3f6072582008e363a3a30a1c6771e560ff4.
+
+ main.c | 16 +++++++++-------
+ 1 file changed, 9 insertions(+), 7 deletions(-)
+
+commit 5232351c7a00be435364c80e1d208da0fb71668f
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Thu May 3 19:18:58 2018 +0200
+
+    Revert "test"
+    
+    This reverts commit 0097b442cf82c9ca7439e4838eb21619b16fc47c.
+
+ main.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 46f6f6bd3c6152c17a62f2208421077acd30a630
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Thu May 3 19:18:55 2018 +0200
+
+    Revert "test"
+    
+    This reverts commit 62b19df9cd6a51c6bf02b55ca9763bc7368ede32.
+
+ main.c | 589 +++++++++++++++++++++++++++--------------------------------------
+ 1 file changed, 244 insertions(+), 345 deletions(-)
+
+commit 611baad3eda64c81a51f4ab07a6d15046d0ee17b
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Thu May 3 19:18:53 2018 +0200
+
+    Revert "test"
+    
+    This reverts commit 907a7f9eddefb0a50b58d3f67f589f839826128f.
+
+ backup_mainF.c | 530 -----------------------------------------------------
+ main.c         | 562 +++++++++++++++++++++++++++++++--------------------------
+ 2 files changed, 305 insertions(+), 787 deletions(-)
+
+commit a80e5699a1dc03e4a90c5a651caea3188f35c22a
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Thu May 3 19:18:45 2018 +0200
+
+    Revert "test"
+    
+    This reverts commit 3f2272f06b5303327001b2203d289abdf6cd76f0.
+
+ main.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+commit 38bdf9bf9fca08e743a05c0769d139bcce924eef
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Thu May 3 19:18:43 2018 +0200
+
+    Revert "printf"
+    
+    This reverts commit 577143b5e698eb94dd8999ca821848b835d8fc3f.
+
+ main.c | 105 +++++++++++++++++++++++++++++++++++++++++++++++------------------
+ 1 file changed, 77 insertions(+), 28 deletions(-)
+
+commit a0a22936b115242d34626e9c8ce00ae198b9827b
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Thu May 3 19:18:41 2018 +0200
+
+    Revert "test"
+    
+    This reverts commit f11f99218adf31b924110dcdcc50dcd4162ca4d8.
+
+ main.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 14f8803d19157d21bd874896538d163c7b1a3af8
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Thu May 3 19:18:39 2018 +0200
+
+    Revert "printf"
+    
+    This reverts commit 5b8d0b4a4feeeb1dc251615997a2c3a688bcf521.
+
+ main.c | 22 +---------------------
+ 1 file changed, 1 insertion(+), 21 deletions(-)
+
+commit 5e25d62ad5839e5bc72e1a6330d44d1791f7ec92
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Thu May 3 19:18:37 2018 +0200
+
+    Revert "test gardien"
+    
+    This reverts commit 50d800f63259692a4990c115d552962ed3ee75ff.
+
+ main.c | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+commit e50310ebd5a0050655fdfa15dbd46f85282fa8c4
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Thu May 3 19:18:33 2018 +0200
+
+    Revert "idem"
+    
+    This reverts commit 988eee96497e21e9568002685edd6b37a16c0dd2.
+
+ main.c | 27 ++++++++++++++-------------
+ 1 file changed, 14 insertions(+), 13 deletions(-)
+
+commit 988eee96497e21e9568002685edd6b37a16c0dd2
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Thu May 3 19:14:15 2018 +0200
+
+    idem
+
+ main.c | 27 +++++++++++++--------------
+ 1 file changed, 13 insertions(+), 14 deletions(-)
+
+commit 50d800f63259692a4990c115d552962ed3ee75ff
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Thu May 3 19:11:05 2018 +0200
+
+    test gardien
+
+ main.c | 4 +---
+ 1 file changed, 1 insertion(+), 3 deletions(-)
+
+commit 5b8d0b4a4feeeb1dc251615997a2c3a688bcf521
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Thu May 3 19:04:04 2018 +0200
+
+    printf
+
+ main.c | 22 +++++++++++++++++++++-
+ 1 file changed, 21 insertions(+), 1 deletion(-)
+
+commit f11f99218adf31b924110dcdcc50dcd4162ca4d8
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Thu May 3 18:56:01 2018 +0200
+
+    test
+
+ main.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 577143b5e698eb94dd8999ca821848b835d8fc3f
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Thu May 3 18:55:29 2018 +0200
+
+    printf
+
+ main.c | 105 ++++++++++++++++++-----------------------------------------------
+ 1 file changed, 28 insertions(+), 77 deletions(-)
+
+commit 3f2272f06b5303327001b2203d289abdf6cd76f0
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Thu May 3 18:52:11 2018 +0200
+
+    test
+
+ main.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+commit 907a7f9eddefb0a50b58d3f67f589f839826128f
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Thu May 3 18:51:37 2018 +0200
+
+    test
+
+ backup_mainF.c | 530 +++++++++++++++++++++++++++++++++++++++++++++++++++++
+ main.c         | 562 ++++++++++++++++++++++++++-------------------------------
+ 2 files changed, 787 insertions(+), 305 deletions(-)
+
+commit 62b19df9cd6a51c6bf02b55ca9763bc7368ede32
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Thu May 3 18:49:47 2018 +0200
+
+    test
+
+ main.c | 589 ++++++++++++++++++++++++++++++++++++++---------------------------
+ 1 file changed, 345 insertions(+), 244 deletions(-)
+
+commit 0097b442cf82c9ca7439e4838eb21619b16fc47c
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Thu May 3 18:48:50 2018 +0200
+
+    test
+
+ main.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 12e6d3f6072582008e363a3a30a1c6771e560ff4
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Thu May 3 18:48:10 2018 +0200
+
+    test
+
+ main.c | 16 +++++++---------
+ 1 file changed, 7 insertions(+), 9 deletions(-)
+
+commit 82dab3a8da3eaba224f5c85b9b19d705befcc8d5
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Thu May 3 18:44:03 2018 +0200
+
+    clean
+
+ main.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit a1f1fcf93bc3fac0b90e3ad513340274d176a0e5
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Thu May 3 18:42:38 2018 +0200
+
+    clean
+
+ main.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit ac7ee6908f17487993977260f0e7808eeed7d589
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Thu May 3 18:41:49 2018 +0200
+
+    clean
+
+ main.c | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
+
+commit d1ef64fffd50894e2ccfe1b6ffebc864c76d5ac8
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Thu May 3 18:31:48 2018 +0200
+
+    Revert "fracterr"
+    
+    This reverts commit 09210fa881a03d2fba6e52c0708058a89a933e16.
+
+ main.c | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
+
+commit dec3849736a5cd49d39978154454ad5dc5b1eead
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Thu May 3 18:30:52 2018 +0200
+
+    test
+
+ main.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+commit 09210fa881a03d2fba6e52c0708058a89a933e16
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Thu May 3 18:29:35 2018 +0200
+
+    fracterr
+
+ main.c | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
+
+commit 719b533b778ed35dff3df2f13cc577a64f27a9e3
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Thu May 3 18:19:57 2018 +0200
+
+    version sans stdin finale
+
+ main.c | 1 +
+ 1 file changed, 1 insertion(+)
+
+commit 7c5bc40b6bc32433137785e77b8edbe826e780bf
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Thu May 3 18:18:49 2018 +0200
+
+    clean
+
+ main.c | 2 --
+ 1 file changed, 2 deletions(-)
+
+commit 3d295905132ec2486ad246a916c9b6aea7e32eaf
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Thu May 3 18:18:00 2018 +0200
+
+    corr
+
+ main.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 9065fe1a08a7818095da6dfea974a7a8941f28f0
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Thu May 3 18:17:37 2018 +0200
+
+    corrections
+
+ main.c | 9 ++++++---
+ 1 file changed, 6 insertions(+), 3 deletions(-)
+
+commit 01c0098df72257ea8b8fd63e5b4e0c8855175743
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Thu May 3 18:16:01 2018 +0200
+
+    correction
+
+ main.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 527fcd43d992a7b5e7157495f692eb64a8da366b
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Thu May 3 18:15:18 2018 +0200
+
+    try
+
+ main.c | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+commit 0917b6ca99237b77c5afb12abacd49d250b1f6c7
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Thu May 3 18:12:18 2018 +0200
+
+    clean
+
+ main.c | 153 ++++++++++++++++++++++-------------------------------------------
+ 1 file changed, 52 insertions(+), 101 deletions(-)
+
+commit b8d9aa1c8ce266aea292c8f07bf80c426f26e647
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Thu May 3 17:59:46 2018 +0200
+
+    corrections
+
+ main.c | 18 +++++++++---------
+ 1 file changed, 9 insertions(+), 9 deletions(-)
+
+commit 2e5c95dc41bd4d13f33d1124b17adae006ac5efe
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Thu May 3 17:58:07 2018 +0200
+
+    exit protocol update
+
+ main.c | 47 ++++++++++++++++++-----------------------------
+ 1 file changed, 18 insertions(+), 29 deletions(-)
+
+commit 2d0156e540122b2392fd8da1d45e26fe06e79bd4
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Thu May 3 17:50:10 2018 +0200
+
+    test
+
+ main.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+commit bf2132a9a7c93c1c8e743992e71b5f70d4af8a33
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Thu May 3 17:31:38 2018 +0200
+
+    printf
+
+ main.c | 15 +++++++--------
+ 1 file changed, 7 insertions(+), 8 deletions(-)
+
+commit a535c5377db483e669df3b4abc4f3641d6dd22e1
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Thu May 3 17:23:04 2018 +0200
+
+    counts
+
+ main.c | 37 ++++++++++++++++++++++---------------
+ 1 file changed, 22 insertions(+), 15 deletions(-)
+
+commit cdcb7b7851967e210f4c216b2bcba8f266804865
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Thu May 3 17:11:46 2018 +0200
+
+    sleeps0
+
+ main.c | 8 ++++++--
+ 1 file changed, 6 insertions(+), 2 deletions(-)
+
+commit 4994a1784f2043968bc2ea4da1b34ad790431c86
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Thu May 3 16:11:15 2018 +0200
+
+    while
+
+ main.c | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+commit 5a65b787f70d11a97077b635b61bb05969dfb25a
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Thu May 3 16:10:06 2018 +0200
+
+    Revert "sleep 5"
+    
+    This reverts commit 13a57c494207d7e55f894cb269403afe431a036c.
+
+ main.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 13a57c494207d7e55f894cb269403afe431a036c
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Thu May 3 16:09:33 2018 +0200
+
+    sleep 5
+
+ main.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 7bd6884870908bb726869117a2f24fc55ab08408
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Thu May 3 16:07:01 2018 +0200
+
+    sleep 2 MARCHE PRESQUE
+
+ main.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+commit 6c89d32f82d079a747210993924b0b5dc5ae468e
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Thu May 3 15:58:51 2018 +0200
+
+    printf
+
+ main.c | 2 ++
+ 1 file changed, 2 insertions(+)
+
+commit b020321ce214f534b03f8cbfdeb473a95b2d20ba
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Thu May 3 15:55:05 2018 +0200
+
+    sleep1
+
+ main.c | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+commit f23a85bf3f3a8996402256f4ea04310bcf530f10
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Thu May 3 15:52:46 2018 +0200
+
+    fix -d sleep0
+
+ main.c | 6 ++++++
+ 1 file changed, 6 insertions(+)
+
+commit 6f05defc6ac695b67701f92d8675d7a26c113f2c
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Thu May 3 15:51:52 2018 +0200
+
+    sleep 0 fix
+
+ main.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+commit df5c5d6b5a26d69ff5cf268e1d3465f2287aeb1e
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Thu May 3 15:50:59 2018 +0200
+
+    idem writ
+
+ main.c | 8 ++++++++
+ 1 file changed, 8 insertions(+)
+
+commit 257b4a2739bb55376d0dba825ae1ab051547bbdc
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Thu May 3 15:48:46 2018 +0200
+
+    unlock gX
+
+ main.c | 11 +----------
+ 1 file changed, 1 insertion(+), 10 deletions(-)
+
+commit 6b1860231f162ce42a7734bda86f2b77b6225a58
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Thu May 3 15:48:03 2018 +0200
+
+    sleep 1
+
+ main.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit c1521c025ed6daaf25a3dd9b26f98dd622666e87
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Thu May 3 15:47:04 2018 +0200
+
+    printf
+
+ main.c | 2 ++
+ 1 file changed, 2 insertions(+)
+
+commit cae910d119c601a84371b1cfdf59e8e022d5d6b6
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Thu May 3 15:46:03 2018 +0200
+
+    sleep
+
+ main.c | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+commit 67e69c4ab2751ef62ffaceb3d64da16aa87b1d33
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Thu May 3 15:41:22 2018 +0200
+
+    Revert "add locks gardien"
+    
+    This reverts commit 9101e67885113a4d5513401f628694eb354f6ce2.
+
+ main.c | 15 +++++----------
+ 1 file changed, 5 insertions(+), 10 deletions(-)
+
+commit 9101e67885113a4d5513401f628694eb354f6ce2
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Thu May 3 15:40:19 2018 +0200
+
+    add locks gardien
+
+ main.c | 15 ++++++++++-----
+ 1 file changed, 10 insertions(+), 5 deletions(-)
+
+commit 8d4a4bbf475f8164feb0ed80e3c25089b1f7da10
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Thu May 3 15:38:07 2018 +0200
+
+    printf
+
+ main.c | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
+
+commit 390059bd407f55ab4695a24e682260ce792c77fc
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Thu May 3 15:35:55 2018 +0200
+
+    corr printf
+
+ main.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 42a38ea349d38898fa7d7b10d009500f0339f404
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Thu May 3 15:34:48 2018 +0200
+
+    -
+
+ main.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit eef567bcacec4912210ae43c01c1e11b5269a6b8
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Thu May 3 15:33:51 2018 +0200
+
+    lock gardien
+
+ main.c | 11 +++++++----
+ 1 file changed, 7 insertions(+), 4 deletions(-)
+
+commit 27a150670c375010d5a3b5aa9ae51a3248e3e5c4
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Thu May 3 15:30:03 2018 +0200
+
+    printf
+
+ main.c | 2 ++
+ 1 file changed, 2 insertions(+)
+
+commit 6cf14253ec178971219280517c007ad8ad3ef9af
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Thu May 3 15:26:17 2018 +0200
+
+    corr printf
+
+ main.c | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+commit ed4ad8e32b44c249b9d731725bd4153d5198f772
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Thu May 3 15:21:40 2018 +0200
+
+    init dir
+
+ main.c | 13 +++++++++++--
+ 1 file changed, 11 insertions(+), 2 deletions(-)
+
+commit 8d9dfb2535e1e5172c596f45d5ffd09bef1f7f47
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Thu May 3 15:12:10 2018 +0200
+
+    fix done
+
+ main.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+commit 6a113130b3fa40fe438c61cf9cc2117546b02dfd
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Thu May 3 15:09:06 2018 +0200
+
+    printf
+
+ main.c | 2 ++
+ 1 file changed, 2 insertions(+)
+
+commit 3a1b80c5b24f54d2713b36c3465174b4be606805
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Thu May 3 15:05:29 2018 +0200
+
+    dir init -1
+
+ main.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 4dc32bf16f80c431186631ac69d2ae8527b5beb2
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Thu May 3 15:04:38 2018 +0200
+
+    mutex init
+
+ main.c | 2 ++
+ 1 file changed, 2 insertions(+)
+
+commit f89c77ac5d9ccb103e252ee27bc20837853a622e
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Thu May 3 15:02:01 2018 +0200
+
+    corr done
+
+ main.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+commit 22b8bf4cc718685760e4c2c38fa469c531f1da2f
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Thu May 3 15:00:27 2018 +0200
+
+    s
+
+ main.c | 1 +
+ 1 file changed, 1 insertion(+)
+
+commit edec17c29c4fa9191c7fa31bfd61944a018adae7
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Thu May 3 14:45:42 2018 +0200
+
+    try fix elec
+
+ main.c | 26 ++++++++++++++++++--------
+ 1 file changed, 18 insertions(+), 8 deletions(-)
+
+commit 74dc26d63f1a40939b7712f956b3f531e0fcff13
+Author: BellonGuillaume <guillaume.bellon@student.uclouvain.be>
+Date:   Thu May 3 03:46:03 2018 +0200
+
+    Création d'un nouveau producteur consommateur
+
+ fract4.txt              |   2 +-
+ fract5.txt              |   1 +
+ fractOut                | Bin 3780054 -> 0 bytes
+ libfractal/fractal.o    | Bin 10384 -> 9864 bytes
+ libfractal/libfractal.a | Bin 22974 -> 22454 bytes
+ libfractal/tools.o      | Bin 12144 -> 12144 bytes
+ main                    | Bin 22640 -> 23208 bytes
+ main.c                  | 399 +++++++++++++++++-------------------------------
+ main.o                  | Bin 26648 -> 24888 bytes
+ 9 files changed, 145 insertions(+), 257 deletions(-)
+
+commit e1b5be8f16bfab9bf4872572d7e3054d842fb163
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 21:49:36 2018 +0200
+
+    s
+
+ main.c | 1 +
+ 1 file changed, 1 insertion(+)
+
+commit 47fbdce8301312ff943b0e31b70f2534063d928f
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 21:47:45 2018 +0200
+
+    s
+
+ main.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+commit 0015f758d1af7aebe937f6dc9fb6e1d7e7fa69f1
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 21:42:37 2018 +0200
+
+    s
+
+ main.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 8f37a06b48f8270e9f7c965916fde20346dc4e8c
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 21:41:39 2018 +0200
+
+    update
+
+ main.c | 7 +++++++
+ 1 file changed, 7 insertions(+)
+
+commit d99439f6c51c7106a0d68bf31eb7065eb9fdafaf
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 21:37:48 2018 +0200
+
+    back
+
+ backup jsp quoi.txt | 519 ++++++++++++++++++++++++++++++++++++++++++++++++++++
+ main.c              | 272 +++++++++++++++++----------
+ 2 files changed, 695 insertions(+), 96 deletions(-)
+
+commit 52c9facde309668507c53e5cfcde9624de45e47b
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 21:36:47 2018 +0200
+
+    Revert "try"
+    
+    This reverts commit aaa82806011c31243cc19efb687b9250699ac26c.
+
+ main.c | 4 +---
+ 1 file changed, 1 insertion(+), 3 deletions(-)
+
+commit ab64a7c35f7b1738b2ffa6c506e63ac40171ba85
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 21:34:58 2018 +0200
+
+    s
+
+ main.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit aaa82806011c31243cc19efb687b9250699ac26c
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 21:34:34 2018 +0200
+
+    try
+
+ main.c | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+commit 987e00eadca5e4f4e144a87290fc70215214c491
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 21:33:14 2018 +0200
+
+    s
+
+ main.c | 5 -----
+ 1 file changed, 5 deletions(-)
+
+commit 52969b27c89c58d2dba746e424bdc27eb30a0954
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 21:31:52 2018 +0200
+
+    try
+
+ main.c | 7 ++++++-
+ 1 file changed, 6 insertions(+), 1 deletion(-)
+
+commit 19fd572492813e9477c5603f53dbfc04a86dd408
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 21:27:48 2018 +0200
+
+    Revert "Revert "no mutex""
+    
+    This reverts commit 45a7ea5c06b5d8e59590cde76ace188bec815299.
+
+ main.c | 5 -----
+ 1 file changed, 5 deletions(-)
+
+commit 45a7ea5c06b5d8e59590cde76ace188bec815299
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 21:27:01 2018 +0200
+
+    Revert "no mutex"
+    
+    This reverts commit 323e25c7785a97b6ee99ac776bd3e777c1f0f2de.
+
+ main.c | 5 +++++
+ 1 file changed, 5 insertions(+)
+
+commit 323e25c7785a97b6ee99ac776bd3e777c1f0f2de
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 21:23:49 2018 +0200
+
+    no mutex
+
+ main.c | 5 -----
+ 1 file changed, 5 deletions(-)
+
+commit ad90a56153e41d9133bf2211b3682cb1a76328d7
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 21:21:14 2018 +0200
+
+    s
+
+ main.c | 12 ++----------
+ 1 file changed, 2 insertions(+), 10 deletions(-)
+
+commit f4fa91b6a78d1a7e30645fc95d739b34655d4a2e
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 21:17:43 2018 +0200
+
+    s
+
+ main.c | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+commit 0c445de4ae022e370bab5a4ef8b1edd2036cd7cb
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 21:16:22 2018 +0200
+
+    s
+
+ main.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+commit a11302f59cf06417a54c30e6d97cedc5a94bd158
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 21:15:56 2018 +0200
+
+    s
+
+ main.c | 8 ++++++--
+ 1 file changed, 6 insertions(+), 2 deletions(-)
+
+commit a702c62c5807015506e9f9d444b0a2a7111f5445
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 21:13:52 2018 +0200
+
+    test
+
+ main.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 535b94d9a6d946b5b957eee4680eadde9a7a131a
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 21:13:13 2018 +0200
+
+    test
+
+ main.c | 9 +++++----
+ 1 file changed, 5 insertions(+), 4 deletions(-)
+
+commit 5356b53b0cfa0b93b419533a3d4e1ed892df1f3e
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 21:11:01 2018 +0200
+
+    Revert "test"
+    
+    This reverts commit 7cd60dd7ac6f679627c00cc7528edab6738df445.
+
+ main.c | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+commit 7cd60dd7ac6f679627c00cc7528edab6738df445
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 21:09:54 2018 +0200
+
+    test
+
+ main.c | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+commit a8609e2f19294da27aeea7ffa4020da1c7263125
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 21:07:08 2018 +0200
+
+    revert
+
+ main.c | 18 +-----------------
+ 1 file changed, 1 insertion(+), 17 deletions(-)
+
+commit 8a993c074f13681564604f5eed8063b528b3bd48
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 21:03:36 2018 +0200
+
+    s
+
+ main.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit fb750376e5743a6137fa97cd14953c7179077d58
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 21:02:17 2018 +0200
+
+    s
+
+ main.c | 18 +++++++++++++++++-
+ 1 file changed, 17 insertions(+), 1 deletion(-)
+
+commit 595ac83f65ecf0a76724a0a7f4c26d2b2272a6b5
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 20:55:57 2018 +0200
+
+    s
+
+ main.c | 1 +
+ 1 file changed, 1 insertion(+)
+
+commit d9759254f2c82423dee89d4df5439963e932e037
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 20:54:16 2018 +0200
+
+    -
+
+ main.c | 1 +
+ 1 file changed, 1 insertion(+)
+
+commit 3544b62833021a60f2a9fd078036478720998e04
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 20:50:46 2018 +0200
+
+    -
+
+ main.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 9672e429532657b10a4e01ea9c92ea54843bc9ac
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 20:47:16 2018 +0200
+
+    -
+
+ main.c | 19 +++----------------
+ 1 file changed, 3 insertions(+), 16 deletions(-)
+
+commit c15d3569492ecf9dab5e44e9a53a9fc67f7f1b38
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 20:43:46 2018 +0200
+
+    -
+
+ main.c | 1 +
+ 1 file changed, 1 insertion(+)
+
+commit cff8d6ca11afab58863251b2e89b2711b35c42ca
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 20:41:35 2018 +0200
+
+    -
+
+ main.c | 1 +
+ 1 file changed, 1 insertion(+)
+
+commit c26846f22767aca45f839c91f37ca6caea7c628c
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 20:37:36 2018 +0200
+
+    test
+
+ main.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 49650263c163da995244b77ff76b258c8c8f2ec6
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 20:34:46 2018 +0200
+
+    -
+
+ main.c | 10 ++--------
+ 1 file changed, 2 insertions(+), 8 deletions(-)
+
+commit b129eb7872a7fb6f21fcaa4c5cda13ca233e8a13
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 20:32:28 2018 +0200
+
+    try
+
+ main.c | 11 ++++++++---
+ 1 file changed, 8 insertions(+), 3 deletions(-)
+
+commit 7956494693bba635b8293ae17eea4b1ccddd94c7
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 20:30:13 2018 +0200
+
+    test
+
+ main.c | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+commit 29002e14327284eea03c39ea6cdc4dd1d09ef212
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 20:25:29 2018 +0200
+
+    -
+
+ main.c | 7 +++++++
+ 1 file changed, 7 insertions(+)
+
+commit 46a446c6d3543a6ef3bac110ebaa8d3442bacfc3
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 20:22:36 2018 +0200
+
+    -
+
+ main.c | 10 +++++-----
+ 1 file changed, 5 insertions(+), 5 deletions(-)
+
+commit 96bf7b1da46ad3bf453cf662698e9a9daeb71295
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 20:21:38 2018 +0200
+
+    -
+
+ main.c | 5 +++++
+ 1 file changed, 5 insertions(+)
+
+commit 85f98bb830c3ab41633b8331cb524fc5aae9cac7
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 20:16:16 2018 +0200
+
+    -
+
+ main.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit b29e29ba56bdf48a8127cccc155dfa6efac86a18
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 20:11:06 2018 +0200
+
+    -
+
+ main.c | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+commit 8f5987b21a78896f477d648469254df6657c7c03
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 20:08:23 2018 +0200
+
+    -
+
+ main.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+commit c3d78609a8c0a4cfedfed17dfcf99ae47dee4e83
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 20:03:21 2018 +0200
+
+    -
+
+ main.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+commit a63a1207af2db733294af64b11a98056efd1bfd3
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 20:01:50 2018 +0200
+
+    -
+
+ main.c | 1 +
+ 1 file changed, 1 insertion(+)
+
+commit 4540df469d5b7f48d494377aa38d8a347ba8641e
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 20:00:48 2018 +0200
+
+    -
+
+ main.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+commit 85c376b7d3b52de5db2f0937a12543f83dc5dbd2
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 19:59:47 2018 +0200
+
+    ic
+
+ main.c | 1 +
+ 1 file changed, 1 insertion(+)
+
+commit d7a8fe493f10f9fe433efa981e3740f5385c6080
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 19:55:03 2018 +0200
+
+    :/
+
+ main.c | 13 +++++++------
+ 1 file changed, 7 insertions(+), 6 deletions(-)
+
+commit 79410972478feab38db0427d0118f704bebe1f3f
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 19:53:23 2018 +0200
+
+    -
+
+ main.c | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
+
+commit 08d2e88bce90171353e727ceded0866afc666af7
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 19:51:14 2018 +0200
+
+    -
+
+ main.c | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+commit 8abb94d4620306dd8de293bc7eaee0e12cef22f6
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 19:50:27 2018 +0200
+
+    FIX!
+
+ main.c | 6 ++++++
+ 1 file changed, 6 insertions(+)
+
+commit 56c2c3e08e24e220d07700956e6906c2e6e272ef
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 19:47:46 2018 +0200
+
+    test
+
+ main.c | 43 +++++++++++--------------------------------
+ 1 file changed, 11 insertions(+), 32 deletions(-)
+
+commit 124bf0ae8d6eba1cb573f37ea3dae8fd2ad9e0c9
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 19:43:53 2018 +0200
+
+    -
+
+ main.c | 9 +++++++--
+ 1 file changed, 7 insertions(+), 2 deletions(-)
+
+commit ec4e3ce2e4356472356d2d35f1997ca849ccc46f
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 19:39:11 2018 +0200
+
+    Revert "test"
+    
+    This reverts commit 08468fb139d99d0bfd2433011fba4bddc09cac40.
+
+ main.c | 6 ++----
+ 1 file changed, 2 insertions(+), 4 deletions(-)
+
+commit 08468fb139d99d0bfd2433011fba4bddc09cac40
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 19:38:29 2018 +0200
+
+    test
+
+ main.c | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
+
+commit aa40e6e7bef9162c7c7979c091498a83a2a42580
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 19:36:31 2018 +0200
+
+    test
+
+ main.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+commit 966302b59ad3a4515c32f8608a0f682944842b8f
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 19:35:10 2018 +0200
+
+    test
+
+ main.c | 8 ++++++++
+ 1 file changed, 8 insertions(+)
+
+commit 5e75ef19fb128ebd66693e3016a42ad9afae9d7a
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 19:33:34 2018 +0200
+
+    back
+
+ main.c | 13 ++++---------
+ 1 file changed, 4 insertions(+), 9 deletions(-)
+
+commit 707251854bb4ca07819a5ca5f85a6b10ccd4a0fd
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 19:31:22 2018 +0200
+
+    -
+
+ main.c | 1 +
+ 1 file changed, 1 insertion(+)
+
+commit 90181faf3b936e6b0f9d88b903a72481e73c3946
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 19:27:45 2018 +0200
+
+    -
+
+ main.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 821cd2a0b6b9354453ba8bc91ca7f15a0cc7e7a8
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 19:26:42 2018 +0200
+
+    -
+
+ main.c | 1 +
+ 1 file changed, 1 insertion(+)
+
+commit afc9495ed89731bf470d4c9c1f3069b4ad9c389c
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 19:24:49 2018 +0200
+
+    on off
+
+ main.c | 2 ++
+ 1 file changed, 2 insertions(+)
+
+commit e2b8307de16864894bc2682ff8829279a04d0e7f
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 19:22:28 2018 +0200
+
+    -
+
+ main.c | 11 +++++------
+ 1 file changed, 5 insertions(+), 6 deletions(-)
+
+commit 7804e0fcac64a15820926a8e3224b7b2955878fc
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 19:17:57 2018 +0200
+
+    test
+
+ main.c | 2 ++
+ 1 file changed, 2 insertions(+)
+
+commit a5e94ea106fdb44667df3dc7f96d3d193dd28b01
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 19:11:52 2018 +0200
+
+    -
+
+ main.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit b42971d235e7758e9cd68217d9b704378234f262
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 19:11:03 2018 +0200
+
+    -
+
+ main.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+commit 87ea57d7871672d6445f2fb2937d5cb68288305c
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 19:10:24 2018 +0200
+
+    -
+
+ main.c | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
+
+commit 2518e3c390d8acfc2f3f04f0c2aba8e169009e6c
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 19:09:03 2018 +0200
+
+    strcat
+
+ main.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+commit 69065b453cdc63d7b37a1f3e44b58b7377141229
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 19:08:10 2018 +0200
+
+    -
+
+ main.c | 7 ++++---
+ 1 file changed, 4 insertions(+), 3 deletions(-)
+
+commit a27c28cff19f8a4c42f006c8d4e6f75636ab49fd
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 19:06:57 2018 +0200
+
+    .bmp
+
+ main.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+commit 23f54ea57547a4b9a61e78e954c8f6ec5ea7ddf4
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 19:04:38 2018 +0200
+
+    exit fix
+
+ main.c | 8 ++------
+ 1 file changed, 2 insertions(+), 6 deletions(-)
+
+commit 8ec84127e8dbdf19b3d1f4da01ed313071ff33b4
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 19:00:08 2018 +0200
+
+    corr
+
+ main.c | 7 ++++++-
+ 1 file changed, 6 insertions(+), 1 deletion(-)
+
+commit 23f047d6a42b3a199701c10249f45801ceaedd47
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 18:52:11 2018 +0200
+
+    -
+
+ main.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 1d2a9ad5afcbf060994f4c5930fbbe8bf3565a2f
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 18:50:21 2018 +0200
+
+    -
+
+ main.c | 1 +
+ 1 file changed, 1 insertion(+)
+
+commit 9cb551be08153738a754dfe932b1c1522b27c148
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 18:49:13 2018 +0200
+
+    -
+
+ main.c | 1 +
+ 1 file changed, 1 insertion(+)
+
+commit d6c84616c360c1a1da93515ef792a878c64d0394
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 18:47:01 2018 +0200
+
+    test
+
+ main.c | 1 +
+ 1 file changed, 1 insertion(+)
+
+commit 80f7cd8be1d5a66764dbd77fb60796734a1f4da4
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 18:31:39 2018 +0200
+
+    corr writ
+
+ main.c | 6 ++----
+ 1 file changed, 2 insertions(+), 4 deletions(-)
+
+commit c5849df30502a49bce318f92cca2f73206317592
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 18:28:59 2018 +0200
+
+    -
+
+ main.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 5be00186145e7c22d453f1d6a543f75b4bc2f516
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 18:28:22 2018 +0200
+
+    update lock writ
+
+ main.c | 8 +++++++-
+ 1 file changed, 7 insertions(+), 1 deletion(-)
+
+commit 06014ee14836bad76df1e8fd53030913bf1d03bd
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 18:16:31 2018 +0200
+
+    test
+
+ main.c | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+commit a2a38d30b20c004267333933b8d1c5717afe871e
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 18:15:07 2018 +0200
+
+    test
+
+ main.c | 5 ++---
+ 1 file changed, 2 insertions(+), 3 deletions(-)
+
+commit 7a3ff894bad7fcd7ea173922b60b090d3bc4bf2c
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 18:12:05 2018 +0200
+
+    test
+
+ main.c | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+commit 7ff251116e640573ce36107b9d2b52797ce57b6b
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 18:08:52 2018 +0200
+
+    ok
+
+ main.c | 3 ---
+ 1 file changed, 3 deletions(-)
+
+commit 69f014b3aed2a6948ad2424c120e1700057b088d
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 18:06:54 2018 +0200
+
+    -
+
+ main.c | 2 ++
+ 1 file changed, 2 insertions(+)
+
+commit 3ef79dee638a18ccbece82613df5a6256f23e5ba
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 18:05:10 2018 +0200
+
+    -
+
+ main.c | 1 +
+ 1 file changed, 1 insertion(+)
+
+commit e99c97300f28d4812086aa0a49d48b747449a2d2
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 17:59:01 2018 +0200
+
+    clean
+
+ libfractal/fractal.c | 2 --
+ 1 file changed, 2 deletions(-)
+
+commit 819deda57017500a0e21a48485b05c576c58c96d
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 17:57:26 2018 +0200
+
+    clean
+
+ main.c | 15 ++++++++++-----
+ 1 file changed, 10 insertions(+), 5 deletions(-)
+
+commit 7adbbfd33a901ef21e6553b73afca961e4f48038
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 17:55:25 2018 +0200
+
+    test
+
+ main.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+commit 54c2d82b4c2e89ff7d78dae5e5ccd037ddd2f0d7
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 17:53:16 2018 +0200
+
+    -
+
+ main.c | 10 +---------
+ 1 file changed, 1 insertion(+), 9 deletions(-)
+
+commit 4eb7ccc23aa87cfff726ee417ab9e2a2ea9ab587
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 17:52:11 2018 +0200
+
+    -
+
+ main.c | 4 +---
+ 1 file changed, 1 insertion(+), 3 deletions(-)
+
+commit 97c22461166a6ffa7b80c3d30be288e946cb7732
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 17:51:18 2018 +0200
+
+    clean-
+
+ main.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit add6ada05ffbe419525181dae3a3f4531cedceef
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 17:50:36 2018 +0200
+
+    clean
+
+ main.c | 141 ++++++++++++-----------------------------------------------------
+ 1 file changed, 25 insertions(+), 116 deletions(-)
+
+commit 3a3ff338b1389c3c3fcfbcaf40c6041df0ef872b
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 17:42:16 2018 +0200
+
+    Revert "Revert "Revert "Revert "Revert "?"""""
+    
+    This reverts commit b635f2aae4b3ac3153c76b3ea7f56b92b1bf4636.
+
+ main.c | 142 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++--------
+ 1 file changed, 126 insertions(+), 16 deletions(-)
+
+commit b635f2aae4b3ac3153c76b3ea7f56b92b1bf4636
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 17:41:59 2018 +0200
+
+    Revert "Revert "Revert "Revert "?""""
+    
+    This reverts commit b2193368d5ee90a4d53a15e03bc9aad39e70f5a2.
+
+ main.c | 142 ++++++++---------------------------------------------------------
+ 1 file changed, 16 insertions(+), 126 deletions(-)
+
+commit b2193368d5ee90a4d53a15e03bc9aad39e70f5a2
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 17:41:36 2018 +0200
+
+    Revert "Revert "Revert "?"""
+    
+    This reverts commit 985356357268c87188ccdcd8a29535238f26ca84.
+
+ main.c | 142 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++--------
+ 1 file changed, 126 insertions(+), 16 deletions(-)
+
+commit 985356357268c87188ccdcd8a29535238f26ca84
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 17:40:55 2018 +0200
+
+    Revert "Revert "?""
+    
+    This reverts commit 1377a06619cfe4ebb2011d35c43e61c1093d8d20.
+
+ main.c | 142 ++++++++---------------------------------------------------------
+ 1 file changed, 16 insertions(+), 126 deletions(-)
+
+commit 1377a06619cfe4ebb2011d35c43e61c1093d8d20
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 17:39:11 2018 +0200
+
+    Revert "?"
+    
+    This reverts commit c342e48d197199dc78d260dbc81b6f663b213758.
+
+ main.c | 142 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++--------
+ 1 file changed, 126 insertions(+), 16 deletions(-)
+
+commit c342e48d197199dc78d260dbc81b6f663b213758
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 17:38:34 2018 +0200
+
+    ?
+
+ main.c | 142 ++++++++---------------------------------------------------------
+ 1 file changed, 16 insertions(+), 126 deletions(-)
+
+commit 57e6660fae925f547713e0509fc9cabe9465cb9a
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 17:35:08 2018 +0200
+
+    test
+
+ main.c | 146 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++--------
+ 1 file changed, 128 insertions(+), 18 deletions(-)
+
+commit dd152070e72d9706dc9960d09cd9572e93252054
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 17:33:25 2018 +0200
+
+    corr
+
+ main.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+commit c2af0c45669099a5645ea76ac15255325d50849a
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 17:32:54 2018 +0200
+
+    -
+
+ main.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit bb245a93d053448d2a995d1746925ac5464fd804
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 17:32:14 2018 +0200
+
+    mise au propre
+
+ backup_main.c | 615 +++++++++++++++++++++++++++++++++++++++++++++++++++-------
+ main.c        | 146 ++------------
+ main_ancien.c | 600 --------------------------------------------------------
+ newmain.c     |  56 ------
+ 4 files changed, 567 insertions(+), 850 deletions(-)
+
+commit 01efecc0bda9aad9796eefd7a8a219690b0bec10
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 17:22:56 2018 +0200
+
+    test stderr
+
+ main.c | 5 +++++
+ 1 file changed, 5 insertions(+)
+
+commit 0dd78650e8945ec34ca318576c8bf57ed1c22373
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 17:19:04 2018 +0200
+
+    exit
+
+ main.c | 6 ++++++
+ 1 file changed, 6 insertions(+)
+
+commit ef8242c4f7046f3abce93172d7e45ed5bd90f170
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 17:15:47 2018 +0200
+
+    CA MARCHE
+
+ main.c | 27 ---------------------------
+ 1 file changed, 27 deletions(-)
+
+commit e66407937809d42eca7911711b57dfe5dcd2aa4e
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 17:06:08 2018 +0200
+
+    test locks
+
+ main.c | 19 ++++++++++++++-----
+ 1 file changed, 14 insertions(+), 5 deletions(-)
+
+commit 47bbe307e8697096b0dafe8a308bbfa26fc14905
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 16:56:40 2018 +0200
+
+    revert
+
+ main.c | 49 ++++++++++++++++++++++++-------------------------
+ 1 file changed, 24 insertions(+), 25 deletions(-)
+
+commit 0c543f2e256df414c5e6cc7aa774e16c9173cb17
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 16:50:23 2018 +0200
+
+    -
+
+ main.c | 7 ++++++-
+ 1 file changed, 6 insertions(+), 1 deletion(-)
+
+commit c154f5edbf3e62698fbc9a387d9bedd4adc1a305
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 16:48:11 2018 +0200
+
+    yes!?
+
+ main.c | 7 +++----
+ 1 file changed, 3 insertions(+), 4 deletions(-)
+
+commit 89fbb12f25df1f50b97dcdbf0f06e1781c313799
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 16:46:56 2018 +0200
+
+    yes?
+
+ main.c | 8 +++++++-
+ 1 file changed, 7 insertions(+), 1 deletion(-)
+
+commit 862423fb7f20352cf6a7bdc80899c1435a43a41c
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 16:44:10 2018 +0200
+
+    yes
+
+ main.c | 8 +++++---
+ 1 file changed, 5 insertions(+), 3 deletions(-)
+
+commit 94b720549e58e8b6117078ec290c3e551ec3bc30
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 16:41:27 2018 +0200
+
+    -
+
+ main.c | 2 ++
+ 1 file changed, 2 insertions(+)
+
+commit cfed2ee4f5bd3c84f285a01b1675ffaea825ad47
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 16:40:01 2018 +0200
+
+    -
+
+ main.c | 7 +++++++
+ 1 file changed, 7 insertions(+)
+
+commit 61c001b2882965610092ee3d8cdcc7af95f0149d
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 16:38:19 2018 +0200
+
+    -
+
+ main.c | 16 ++++++++--------
+ 1 file changed, 8 insertions(+), 8 deletions(-)
+
+commit cbe568a9a4492aeb6a02852cce686cb87f5f7433
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 16:36:54 2018 +0200
+
+    -
+
+ main.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+commit 789ac30066cb0cbe4fc6d1f96c2a202902c389ed
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 16:35:24 2018 +0200
+
+    Revert "remove mutexs"
+    
+    This reverts commit 6fb3ad4a178a755e38e6c7f58a03cfb0eab4f91c.
+
+ main.c | 9 +++++++++
+ 1 file changed, 9 insertions(+)
+
+commit 6fb3ad4a178a755e38e6c7f58a03cfb0eab4f91c
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 16:33:34 2018 +0200
+
+    remove mutexs
+
+ main.c | 9 ---------
+ 1 file changed, 9 deletions(-)
+
+commit 296cd1e44bd77d3b34ab438c58e64024d7ca090b
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 16:31:03 2018 +0200
+
+    test
+
+ main.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+commit 4524ef66c00fd93f881e950265b1926d552cf9b0
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 16:27:54 2018 +0200
+
+    mutexs
+
+ main.c | 14 ++++++++++----
+ 1 file changed, 10 insertions(+), 4 deletions(-)
+
+commit 523417018b977d2bc836177026cd7d97302e3bf2
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 16:18:11 2018 +0200
+
+    -
+
+ main.c | 2 ++
+ 1 file changed, 2 insertions(+)
+
+commit 234cbe3215b73c1bb12b4ea704f6689accd358ee
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 16:16:26 2018 +0200
+
+    Revert "unlock en rab"
+    
+    This reverts commit d49f610f0f6c989423aec9d37a5fe1cb73982cf9.
+
+ main.c | 1 -
+ 1 file changed, 1 deletion(-)
+
+commit d49f610f0f6c989423aec9d37a5fe1cb73982cf9
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 16:15:31 2018 +0200
+
+    unlock en rab
+
+ main.c | 1 +
+ 1 file changed, 1 insertion(+)
+
+commit 17f18babe785a0027399bdbe90347fd339011be7
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 16:14:00 2018 +0200
+
+    -
+
+ main.c | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+commit 27a071db5a32bd1fda1aab538ed0123a4b771366
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 16:12:19 2018 +0200
+
+    -
+
+ main.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit b6fb463560d79c1d1d10297b456a2088fb73d93d
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 16:11:32 2018 +0200
+
+    -
+
+ main.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 12307874afe7e994891301a3d7de239d18ef6b1d
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 16:10:40 2018 +0200
+
+    new MutexCons
+
+ main.c | 13 +++++++------
+ 1 file changed, 7 insertions(+), 6 deletions(-)
+
+commit 7fcba09d72917bde1ccda5e743d8e11821422f96
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 16:01:00 2018 +0200
+
+    end of revert
+
+ main.c | 3 ---
+ 1 file changed, 3 deletions(-)
+
+commit a6320b4bcf95cbd9ac6336c7e0edef37412082db
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 16:00:06 2018 +0200
+
+    Revert "mutexCons"
+    
+    This reverts commit ad82e78f3c4c144cdc790529b5302ef502af66c8.
+
+ main.c | 7 +++----
+ 1 file changed, 3 insertions(+), 4 deletions(-)
+
+commit 3eb4a1b7926b7834f51225579e9117346d10ca71
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 15:59:27 2018 +0200
+
+    Revert "Revert "mutexCons""
+    
+    This reverts commit d43eac5be2d6914a90ee2bd5324814849a9114b7.
+
+ main.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+commit d43eac5be2d6914a90ee2bd5324814849a9114b7
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 15:59:19 2018 +0200
+
+    Revert "mutexCons"
+    
+    This reverts commit f01f7bcd5d614efde10ff64f43031fd4b47ec604.
+
+ main.c | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
+
+commit f01f7bcd5d614efde10ff64f43031fd4b47ec604
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 15:55:16 2018 +0200
+
+    mutexCons
+
+ main.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+commit 28b5d023ec1d55ddc109394bab5f6d0104e5cf39
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 15:54:38 2018 +0200
+
+    mutexCons
+
+ main.c | 6 +++++-
+ 1 file changed, 5 insertions(+), 1 deletion(-)
+
+commit ad82e78f3c4c144cdc790529b5302ef502af66c8
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 15:52:22 2018 +0200
+
+    mutexCons
+
+ main.c | 5 +++++
+ 1 file changed, 5 insertions(+)
+
+commit f24ae0fa4e7e5a3241ed808257900c62f18c41d6
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 15:42:59 2018 +0200
+
+    NumberThread
+
+ main.c | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
+
+commit 82810d5b1baaeb016a26a3123a2a8bea8371f1e0
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 15:40:34 2018 +0200
+
+    atoi
+
+ main.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+commit 4cf319213c398ee8ed2e6f76049fcdc70eaaa28d
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 15:32:15 2018 +0200
+
+    update main getvalue
+
+ main.c | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+commit 08a49257bd9d7a32b5e44ccaeb13bbaa92f6a978
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 15:30:47 2018 +0200
+
+    sdtin X
+
+ main.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+commit bfff42fcbfa28b7d5435fe225aabf28b3d352e62
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 15:30:17 2018 +0200
+
+    Revert "Revert "update main getvalue""
+    
+    This reverts commit 3cabc0f9b8cb2bc22e67b247c10c975bceb9fafa.
+
+ main.c | 28 +++++++++++++++-------------
+ 1 file changed, 15 insertions(+), 13 deletions(-)
+
+commit 3cabc0f9b8cb2bc22e67b247c10c975bceb9fafa
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 15:29:43 2018 +0200
+
+    Revert "update main getvalue"
+    
+    This reverts commit 6b15e59c6ee5dd13a117939da739eb26a428065b.
+
+ main.c | 28 +++++++++++++---------------
+ 1 file changed, 13 insertions(+), 15 deletions(-)
+
+commit 6b15e59c6ee5dd13a117939da739eb26a428065b
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 15:28:20 2018 +0200
+
+    update main getvalue
+
+ main.c | 28 +++++++++++++++-------------
+ 1 file changed, 15 insertions(+), 13 deletions(-)
+
+commit 6b0ed8ba252e8b256d54e8a5707b8ab725536d55
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 15:24:00 2018 +0200
+
+    -
+
+ main.c | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+commit ad40355df96cc4a25f6d04eaa4d1b4a2e2030a29
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 15:21:52 2018 +0200
+
+    update main -d
+
+ main.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+commit cbfc7e5cd563f9d3c3a1f2fd5e390b4e4afcb620
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 15:20:39 2018 +0200
+
+    update main -d
+
+ main.c | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+commit 55f9c7ed618c9e9a3bfa8f1d1227a06b865f8d3a
+Author: vahidbe <vahid.beyraghi@student.uclouvain.be>
+Date:   Wed May 2 15:16:39 2018 +0200
+
+    DONE
+
+ fract.txt               |   4 ++--
+ fract1.txt              |   2 +-
+ fract2.txt              |   5 +++--
+ fract3.txt              |   1 +
+ fract4.txt              |   1 +
+ fractOut                | Bin 0 -> 3780054 bytes
+ fractout                | Bin 2294 -> 0 bytes
+ libfractal/fractal.o    | Bin 10456 -> 10384 bytes
+ libfractal/libfractal.a | Bin 23046 -> 22974 bytes
+ libfractal/tools.o      | Bin 12144 -> 12144 bytes
+ main                    | Bin 22600 -> 22640 bytes
+ main.o                  | Bin 26712 -> 26648 bytes
+ "\357\273\277fract01"   | Bin 2294 -> 0 bytes
+ 13 files changed, 8 insertions(+), 5 deletions(-)
+
+commit a1fb81d8abca7485191abd2e94bf7f0c81599ab2
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 14:19:32 2018 +0200
+
+    corr main
+
+ main.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+commit 9ba2c5923d82c82456f1ede768f2c76cb266fac9
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 14:12:04 2018 +0200
+
+    fractal.c
+
+ libfractal/fractal.c | 1 +
+ 1 file changed, 1 insertion(+)
+
+commit 1de93cca11a63fda335ae352e5296401d6ddf373
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 14:09:48 2018 +0200
+
+    fractal.c
+
+ libfractal/fractal.c | 12 ++++++------
+ 1 file changed, 6 insertions(+), 6 deletions(-)
+
+commit 7ffd83d002de52b10aa8ba9f2340ba4dd33f94dc
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 14:07:01 2018 +0200
+
+    fractal.c
+
+ libfractal/fractal.c | 1 +
+ 1 file changed, 1 insertion(+)
+
+commit 0fdf92efdd4c2d2fbf99ceefdbcebac96af32789
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 14:06:13 2018 +0200
+
+    fractal.c
+
+ libfractal/fractal.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit c1d341db14e7c466a310adae15efe801cbc96334
+Author: BellonGuillaume <guillaume.bellon@student.uclouvain.be>
+Date:   Wed May 2 13:44:25 2018 +0200
+
+    Debug du premier matin après le travail de nuit
+    Changement des int en double
+    Enlevé le const de name
+    Chané le i en j dans compute_average
+    Changé les printf pour plus de lisibilité
+    Création du fichier fract2.txt qui contient les 4 premières fractales de fract.txt
+    rajout d'un include dans fractal.c
+
+ fract.txt               |   2 +-
+ fract1.txt              |   1 +
+ fract2.txt              |   4 ++
+ fractout                | Bin 0 -> 2294 bytes
+ libfractal/fractal.c    |  20 ++++++---
+ libfractal/fractal.h    |  10 ++---
+ libfractal/fractal.o    | Bin 7064 -> 10456 bytes
+ libfractal/libfractal.a | Bin 16614 -> 23046 bytes
+ libfractal/tools.o      | Bin 9104 -> 12144 bytes
+ main                    | Bin 18643 -> 22600 bytes
+ main.c                  | 117 ++++++++++++++++++++++++------------------------
+ main.o                  | Bin 13432 -> 26712 bytes
+ tests/Main_Test         | Bin 17680 -> 13400 bytes
+ tests/test              | Bin 13017 -> 0 bytes
+ "\357\273\277fract01"   | Bin 0 -> 2294 bytes
+ 15 files changed, 83 insertions(+), 71 deletions(-)
+
+commit 9061443bb98cad4b0dc9639978a21484a4b5be25
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 03:44:21 2018 +0200
+
+    Revert "test main"
+    
+    This reverts commit 5add1985def9af3c42dd5c82bea71e36072c542e.
+
+ main.c | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
+
+commit 5add1985def9af3c42dd5c82bea71e36072c542e
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 03:35:35 2018 +0200
+
+    test main
+
+ main.c | 5 +----
+ 1 file changed, 1 insertion(+), 4 deletions(-)
+
+commit 33e5f3a191428733e6033ff814afe7feefd25de7
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 03:23:44 2018 +0200
+
+    update fract
+
+ fract.txt | 30 +++++++++++++++---------------
+ 1 file changed, 15 insertions(+), 15 deletions(-)
+
+commit 169aacb4bcfe3d8435c102a01c33eeee6c68675a
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 03:16:03 2018 +0200
+
+    update main
+
+ main.c | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
+
+commit 52807d5e3f776f138fb850f05bedb757df0382eb
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 03:13:56 2018 +0200
+
+    -
+
+ main.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit f09698f1d4d09abb3b4d4a8ae8504af08a95dc43
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 03:13:36 2018 +0200
+
+    update main
+
+ main.c | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+commit 37fa647df6298284ce356820fbd7a0f4b3efd894
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 03:10:35 2018 +0200
+
+    Revert "try main"
+    
+    This reverts commit 9c453b52d53ea22f2492aaf95a09dc65f2cfbb90.
+
+ main.c | 10 +++++-----
+ 1 file changed, 5 insertions(+), 5 deletions(-)
+
+commit 9c453b52d53ea22f2492aaf95a09dc65f2cfbb90
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 03:09:03 2018 +0200
+
+    try main
+
+ main.c | 10 +++++-----
+ 1 file changed, 5 insertions(+), 5 deletions(-)
+
+commit 94438413f4bdd4375a6a92fd314098eb7599157f
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 03:07:09 2018 +0200
+
+    Revert "try main"
+    
+    This reverts commit 9d6f4d598929d3084930b19c4d2e6e1877eff552.
+
+ main.c | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
+
+commit 9d6f4d598929d3084930b19c4d2e6e1877eff552
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 03:06:28 2018 +0200
+
+    try main
+
+ main.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+commit 0d1d68877fbfdb15936ca21ae5052820db8c808b
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 03:05:06 2018 +0200
+
+    Revert "try fractal.c"
+    
+    This reverts commit 760ee79613db16d8d06e91749eed127ea8ef05af.
+
+ libfractal/fractal.c | 14 ++++++--------
+ 1 file changed, 6 insertions(+), 8 deletions(-)
+
+commit 760ee79613db16d8d06e91749eed127ea8ef05af
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 03:03:37 2018 +0200
+
+    try fractal.c
+
+ libfractal/fractal.c | 14 ++++++++------
+ 1 file changed, 8 insertions(+), 6 deletions(-)
+
+commit 2032d6ec937c84584a2578c5070b396d46bfa703
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 03:01:16 2018 +0200
+
+    Revert "try malloc main"
+    
+    This reverts commit 21c2c94f876a596ea3c38f8f358182c41f19b156.
+
+ main.c | 7 ++-----
+ 1 file changed, 2 insertions(+), 5 deletions(-)
+
+commit 21c2c94f876a596ea3c38f8f358182c41f19b156
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 02:59:49 2018 +0200
+
+    try malloc main
+
+ main.c | 7 +++++--
+ 1 file changed, 5 insertions(+), 2 deletions(-)
+
+commit 937830066335fe24405ffc5c74400d8f04ffde12
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 02:57:51 2018 +0200
+
+    Revert "test X"
+    
+    This reverts commit fe1c4db8e3b38c8bc096b54c7df2bf2203ec484b.
+
+ tests/test_main.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit fe1c4db8e3b38c8bc096b54c7df2bf2203ec484b
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 02:57:22 2018 +0200
+
+    test X
+
+ tests/test_main.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit cdf9cc5e1aab4d06f365831852032b4748ee12e7
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 02:56:25 2018 +0200
+
+    test
+
+ tests/test_main.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+commit da4a2d5bc57e4cf82de33bdae15c817bbb4062ed
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 02:54:27 2018 +0200
+
+    test
+
+ tests/test_main.c | 18 ++++++++++--------
+ 1 file changed, 10 insertions(+), 8 deletions(-)
+
+commit 1dcea06419a76cf74bad84e6ad25c02033aa6c28
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 02:53:33 2018 +0200
+
+    cast
+
+ main.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit e5410ddd3395c6dc4c534ccd6d48ae3c7194973f
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 02:47:08 2018 +0200
+
+    ->
+
+ main.c | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
+
+commit 78a737a0510e0a5a0e992cf87f0803599cf488ad
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 02:45:25 2018 +0200
+
+    ->
+
+ main.c | 14 ++++++--------
+ 1 file changed, 6 insertions(+), 8 deletions(-)
+
+commit 28d2ed25a2662a15f9a77834c66f0bee35b7be92
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 02:32:05 2018 +0200
+
+    -
+
+ main.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 28702bcea11410917ac98e372da3dbbeb8aae3ff
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 02:31:48 2018 +0200
+
+    -
+
+ main.c | 2 ++
+ 1 file changed, 2 insertions(+)
+
+commit da7a7b91faa765781923c4a8e1e3c58e484e5770
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 02:26:59 2018 +0200
+
+    buff**
+
+ main.c | 39 ++++++++++++++++++++-------------------
+ 1 file changed, 20 insertions(+), 19 deletions(-)
+
+commit 2e9545cf8ff673d4793f617f94b8d0fd550859f9
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 02:23:22 2018 +0200
+
+    buff**
+
+ main.c | 10 +++++-----
+ 1 file changed, 5 insertions(+), 5 deletions(-)
+
+commit 6bbec2ee4d5fee88584e92759a92c08fbcffbc66
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 02:22:10 2018 +0200
+
+    Revert "Revert "corr main et libfract""
+    
+    This reverts commit bd16e36ce17a864e40f8317c8c79e47d578988ea.
+
+ libfractal/fractal.c | 10 +++++-----
+ libfractal/fractal.h |  2 +-
+ main.c               | 22 +++++++++++-----------
+ 3 files changed, 17 insertions(+), 17 deletions(-)
+
+commit 8958d0111fd7ac7ed0e8c05323a0f74e7862700d
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 02:22:07 2018 +0200
+
+    Revert "Revert "-""
+    
+    This reverts commit 5bd4828dbb04225d0179dd36c8c2765ebe18fe41.
+
+ main.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit bd16e36ce17a864e40f8317c8c79e47d578988ea
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 02:18:58 2018 +0200
+
+    Revert "corr main et libfract"
+    
+    This reverts commit 2b0139a1db722ecd0dfbc3487320f811995e3a03.
+
+ libfractal/fractal.c | 10 +++++-----
+ libfractal/fractal.h |  2 +-
+ main.c               | 22 +++++++++++-----------
+ 3 files changed, 17 insertions(+), 17 deletions(-)
+
+commit 5bd4828dbb04225d0179dd36c8c2765ebe18fe41
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 02:18:56 2018 +0200
+
+    Revert "-"
+    
+    This reverts commit d74bfa35b90d2ce87268e1b02c6a03f9877aa6b8.
+
+ main.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit d74bfa35b90d2ce87268e1b02c6a03f9877aa6b8
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 02:15:10 2018 +0200
+
+    -
+
+ main.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 2b0139a1db722ecd0dfbc3487320f811995e3a03
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 02:13:19 2018 +0200
+
+    corr main et libfract
+
+ libfractal/fractal.c | 10 +++++-----
+ libfractal/fractal.h |  2 +-
+ main.c               | 22 +++++++++++-----------
+ 3 files changed, 17 insertions(+), 17 deletions(-)
+
+commit 48b50f64ded057e263dd7fcadd8b688f80e8cc8f
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 02:02:36 2018 +0200
+
+    -
+
+ main.c | 6 +++++-
+ 1 file changed, 5 insertions(+), 1 deletion(-)
+
+commit 5e673fdcde69f7da99ce151c78829e77c6bfcb99
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 02:00:08 2018 +0200
+
+    -
+
+ main.c | 2 ++
+ 1 file changed, 2 insertions(+)
+
+commit a029397e2e225bf08fe094a645a5d64a2653fa47
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 01:55:27 2018 +0200
+
+    -
+
+ libfractal/fractal.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 58c6f57a82f214357942752fd8b11eed4c042cc7
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 01:53:16 2018 +0200
+
+    corr remove
+
+ main.c | 10 +++++-----
+ 1 file changed, 5 insertions(+), 5 deletions(-)
+
+commit f39911618a4801cde13cbd7ab163e5617199fdc5
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 01:51:24 2018 +0200
+
+    corr fractal.c
+
+ libfractal/fractal.c | 10 +++++-----
+ main.c               |  5 +----
+ 2 files changed, 6 insertions(+), 9 deletions(-)
+
+commit b9e718121c01b7f0c0b68091296603c8c6874b79
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 01:46:25 2018 +0200
+
+    -
+
+ main.c | 2 ++
+ 1 file changed, 2 insertions(+)
+
+commit 181341dbcd35969b3c1781e3b929eda4ad434ed1
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 01:41:37 2018 +0200
+
+    corr main
+
+ main.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 494a6e31829e8707243d73e4cccc3b2c597d39dc
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 01:37:18 2018 +0200
+
+    corr main
+
+ main.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 843e947abd078b58bf392c3493dbf03ba5a3f022
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 01:35:37 2018 +0200
+
+    -
+
+ main.c | 2 ++
+ 1 file changed, 2 insertions(+)
+
+commit d1b6bb6598c603da99843735c63ae4c8de4b6897
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 01:32:41 2018 +0200
+
+    corr main
+
+ main.c | 10 +++++-----
+ 1 file changed, 5 insertions(+), 5 deletions(-)
+
+commit 9e18a2f2f6609d04c5b506a31df5971c79d95388
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 01:26:15 2018 +0200
+
+    corr main
+
+ main.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit dfc8a33b4909f3e5233f9930afdf0e0d2434e032
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 01:25:05 2018 +0200
+
+    corr main
+
+ main.c | 16 ++++++----------
+ 1 file changed, 6 insertions(+), 10 deletions(-)
+
+commit 3d1ba7131cd3b79ab1d96507f9b53b11b2306c16
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 01:21:36 2018 +0200
+
+    -
+
+ main.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+commit e0ca35f3529d071f12debdd51a7c6cbf5abe40da
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 01:17:43 2018 +0200
+
+    -
+
+ main.c | 7 ++++++-
+ 1 file changed, 6 insertions(+), 1 deletion(-)
+
+commit 3b308fdfe34ca494bb490d1d750dcf284cef4d1d
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 01:11:26 2018 +0200
+
+    -
+
+ main.c | 1 +
+ 1 file changed, 1 insertion(+)
+
+commit 4f8f1c655b83075391ea7b94e87d2e983001baed
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 01:08:36 2018 +0200
+
+    -
+
+ main.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 5933123c6c2a9dd54845a29f4857c7d5f1ccc87e
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 01:05:28 2018 +0200
+
+    -
+
+ main.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 5ed7535702a7337ce7b3fd8a738ec7bf46e7fc8d
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 01:03:16 2018 +0200
+
+    -
+
+ main.c | 1 +
+ 1 file changed, 1 insertion(+)
+
+commit 76da4a3496799a890cf94bedc7ef0f1aa0ea3568
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 00:59:39 2018 +0200
+
+    update main
+
+ main.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+commit 691bfab3bf8f732b8997c01c323dd66c90d6f672
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 00:58:01 2018 +0200
+
+    update main
+
+ main.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+commit 8688eaaa04802afd7253629fc9fa637abccb871f
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 00:52:13 2018 +0200
+
+    update main
+
+ main.c | 5 -----
+ 1 file changed, 5 deletions(-)
+
+commit 4d95296febd92fbb7305951976b252e0d4953efa
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 00:49:47 2018 +0200
+
+    -
+
+ main.c | 7 ++-----
+ 1 file changed, 2 insertions(+), 5 deletions(-)
+
+commit 3167ee35e0dcdd98bc4cef0dab3118095c28253f
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 00:48:08 2018 +0200
+
+    -
+
+ main.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+commit 73e901c54344cdcf36850aeef7bd73a92aa90bc4
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 00:47:39 2018 +0200
+
+    Revert "Revert "Revert "-"""
+    
+    This reverts commit 8d38b410541a6951c5211996687fc60f8254c4f6.
+
+ main.c | 28 ++++++++++++++--------------
+ 1 file changed, 14 insertions(+), 14 deletions(-)
+
+commit 8d38b410541a6951c5211996687fc60f8254c4f6
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 00:47:37 2018 +0200
+
+    Revert "Revert "-""
+    
+    This reverts commit 2347f542c1b1cf8adc258ee7c85032796bbd1c0c.
+
+ main.c | 28 ++++++++++++++--------------
+ 1 file changed, 14 insertions(+), 14 deletions(-)
+
+commit 2347f542c1b1cf8adc258ee7c85032796bbd1c0c
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 00:44:54 2018 +0200
+
+    Revert "-"
+    
+    This reverts commit 964da3e45fca133ab0bfde5cd2787c52af6a9079.
+
+ main.c | 28 ++++++++++++++--------------
+ 1 file changed, 14 insertions(+), 14 deletions(-)
+
+commit 964da3e45fca133ab0bfde5cd2787c52af6a9079
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 00:43:20 2018 +0200
+
+    -
+
+ main.c | 28 ++++++++++++++--------------
+ 1 file changed, 14 insertions(+), 14 deletions(-)
+
+commit b9966d7c1f056e6f56aa83ad362aeb9cdf836eb1
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 00:40:56 2018 +0200
+
+    -
+
+ main.c | 13 +++++++++----
+ 1 file changed, 9 insertions(+), 4 deletions(-)
+
+commit 6677ead8bdae53f9f9594fa1e5953849d697e2e6
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 00:30:26 2018 +0200
+
+    -
+
+ main.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 38b7e25ef1b2628226a171660d21fb71c7be0466
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 00:29:47 2018 +0200
+
+    -
+
+ main.c | 24 ++++++++++++------------
+ 1 file changed, 12 insertions(+), 12 deletions(-)
+
+commit 820bf2184359efdd2f810aeaacf0d54afd3b382f
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 00:28:58 2018 +0200
+
+    update main
+
+ main.c | 41 +++++++++++++++++++++++++----------------
+ 1 file changed, 25 insertions(+), 16 deletions(-)
+
+commit 9fcefd51f5990a1ceb2faac46024736ba80c7314
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 00:22:05 2018 +0200
+
+    update main
+
+ main.c | 6 ++----
+ 1 file changed, 2 insertions(+), 4 deletions(-)
+
+commit 31dfb6322bfb17bc1ded3f8137959884065a7b44
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed May 2 00:19:33 2018 +0200
+
+    update main
+
+ main.c | 18 ++++++------------
+ 1 file changed, 6 insertions(+), 12 deletions(-)
+
+commit 2de94dc35fa147a83126068ab9668427eae865aa
+Author: BellonGuillaume <33180570+BellonGuillaume@users.noreply.github.com>
+Date:   Wed May 2 00:15:26 2018 +0200
+
+    Again
+
+ main.c | 39 ++++++---------------------------------
+ 1 file changed, 6 insertions(+), 33 deletions(-)
+
+commit de70cb4447e5ae9b133c372a841199c89be02ed3
+Author: BellonGuillaume <33180570+BellonGuillaume@users.noreply.github.com>
+Date:   Wed May 2 00:04:19 2018 +0200
+
+    Update main.c
+    
+    Changemenst Guillaume
+
+ main.c | 38 ++++++++++++++++++++++----------------
+ 1 file changed, 22 insertions(+), 16 deletions(-)
+
+commit ab4d9c43965f50756e9a3eb756afb5ea11db1d8c
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Tue May 1 23:42:26 2018 +0200
+
+    main
+
+ main.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+commit 9964f3ef319c8657468ec29c52ca3b705b8ca111
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Tue May 1 23:38:25 2018 +0200
+
+    test
+
+ main.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 8705ba29de9544e1fd330fb3f31a1e2f61a79363
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Tue May 1 23:37:07 2018 +0200
+
+    update main
+
+ main.c | 41 +++++++++++++++++++++--------------------
+ 1 file changed, 21 insertions(+), 20 deletions(-)
+
+commit b8c1942df96c8710ef33c48e6652a35eb7ca7eca
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Tue May 1 23:29:30 2018 +0200
+
+    test
+
+ tests/test_main.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+commit b6c401f965afbf808c320daa6d07ebd791b8373b
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Tue May 1 23:26:12 2018 +0200
+
+    test
+
+ tests/test_main.c | 2 ++
+ 1 file changed, 2 insertions(+)
+
+commit 0841b7dbb69763c65572b7582b3204943543cd81
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Tue May 1 23:22:50 2018 +0200
+
+    test
+
+ tests/test_main.c | 20 +++++++++-----------
+ 1 file changed, 9 insertions(+), 11 deletions(-)
+
+commit 69924845a47d12636a5f5aee0059f18ce9ea17f6
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Tue May 1 23:19:17 2018 +0200
+
+    test
+
+ tests/test_main.c | 1 +
+ 1 file changed, 1 insertion(+)
+
+commit 6c188dc49bbfb1f0608c22e94d1320d141f72221
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Tue May 1 23:18:22 2018 +0200
+
+    test
+
+ tests/test_main.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+commit 401811c15b2c608ea24f7d9522f71cbb44648edc
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Tue May 1 23:18:05 2018 +0200
+
+    test
+
+ tests/test_main.c | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
+
+commit 84584d1ba5e5a82887ad196b1d2b0abdc09c57d1
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Tue May 1 23:17:25 2018 +0200
+
+    test
+
+ tests/test_main.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+commit 6bab294d594ec2c51d02128482359cd09b666da3
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Tue May 1 23:14:58 2018 +0200
+
+    test
+
+ tests/test_main.c | 16 ++++++++++++++++
+ 1 file changed, 16 insertions(+)
+
+commit cfb93cecce84ffa5670c47dda32d9a7c49a2f069
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Tue May 1 23:10:18 2018 +0200
+
+    test
+
+ tests/test_main.c | 10 +++++-----
+ 1 file changed, 5 insertions(+), 5 deletions(-)
+
+commit 55919a2ba9146997f70a97bec714830c38625ab1
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Tue May 1 23:09:10 2018 +0200
+
+    test
+
+ tests/test_main.c | 3 ---
+ 1 file changed, 3 deletions(-)
+
+commit 749f8a797773cd7f1942f6cbca89bab7067b3d47
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Tue May 1 23:06:57 2018 +0200
+
+    test
+
+ newmain.c         |  56 ++++++++
+ tests/test_main.c | 376 ++++++++++++++++--------------------------------------
+ 2 files changed, 168 insertions(+), 264 deletions(-)
+
+commit 1b994f124040d5395670bd3ac7ee113abadbd1a3
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Tue May 1 22:40:41 2018 +0200
+
+    -
+
+ main.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+commit 93cc2c71c4351b911c2cdaad5ec5e1af9eb3db20
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Tue May 1 22:34:44 2018 +0200
+
+    - getvalue
+
+ main.c | 45 ++++++++++++++++++++++-----------------------
+ 1 file changed, 22 insertions(+), 23 deletions(-)
+
+commit a52d1fbc372946277c3d967e82d185a2bac2d8b0
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Tue May 1 22:25:26 2018 +0200
+
+    -
+
+ main.c | 6 ++++++
+ 1 file changed, 6 insertions(+)
+
+commit 302e632692e0d9a0de1f326abda379accf6da896
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Tue May 1 22:00:53 2018 +0200
+
+    test
+
+ tests/test_main.c | 12 ++++++------
+ 1 file changed, 6 insertions(+), 6 deletions(-)
+
+commit c9cda790fc8552c8303724515b9fe150d08a56ca
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Tue May 1 21:59:40 2018 +0200
+
+    test
+
+ tests/test_main.c | 18 +++---------------
+ 1 file changed, 3 insertions(+), 15 deletions(-)
+
+commit 6a81f655563a68b034efe5c746100942d4ad29a2
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Tue May 1 21:56:11 2018 +0200
+
+    test
+
+ tests/test_main.c | 1 +
+ 1 file changed, 1 insertion(+)
+
+commit a6629e857895208b716cc5fbf2f94df42c2eef1f
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Tue May 1 21:53:58 2018 +0200
+
+    test
+
+ tests/test_main.c | 5 ++---
+ 1 file changed, 2 insertions(+), 3 deletions(-)
+
+commit fe811084942a00a3f328c8bf9b3583a44a0b55b4
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Tue May 1 21:50:33 2018 +0200
+
+    test
+
+ tests/test_main.c | 248 ++++++------------------------------------------------
+ 1 file changed, 25 insertions(+), 223 deletions(-)
+
+commit 6550be2bc849171e6a780a63381737fb923b2e33
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Tue May 1 21:38:55 2018 +0200
+
+    main
+
+ main.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit d51b9cc3ac867e6ed257b796a73bdeac94f8d2e0
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Tue May 1 21:37:04 2018 +0200
+
+    main
+
+ main.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+commit e3b48b8cf20ab9ed3561445f863990b584784dba
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Tue May 1 21:36:10 2018 +0200
+
+    main
+
+ main - Copie.c      | 593 ------------------------------------------------
+ main.c              | 640 ++++++++++++++++++++++++++--------------------------
+ main_ancien.c       | 600 ++++++++++++++++++++++++++++++++++++++++++++++++
+ tests/test main.txt | 572 ++++++++++++++++++++++++++++++++++++++++++++++
+ 4 files changed, 1489 insertions(+), 916 deletions(-)
+
+commit a6626a28f1611fbe705cb6d175e3f341ddafbf56
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Tue May 1 21:30:02 2018 +0200
+
+    main copy
+
+ main - Copie.c | 101 +++++++++++++++++++--------------------------------------
+ 1 file changed, 34 insertions(+), 67 deletions(-)
+
+commit ca280092239dcf728d332f20bf3eba017d4c0b57
+Author: BellonGuillaume <guillaume.bellon@student.uclouvain.be>
+Date:   Tue May 1 21:07:07 2018 +0200
+
+    test main
+
+ tests/Main_Test                    | Bin 0 -> 17680 bytes
+ tests/{test main.c => test_main.c} |   6 +++---
+ 2 files changed, 3 insertions(+), 3 deletions(-)
+
+commit 2434280932a6f2e905a8f8ef3ed8ef256fdd27ca
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Tue May 1 21:05:58 2018 +0200
+
+    -
+
+ main - Copie.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit a58ef0d57ca8a825f1445dd1dae3f21bd73c0352
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Tue May 1 21:04:17 2018 +0200
+
+    ...
+
+ main - Copie.c | 10 ++++++++--
+ 1 file changed, 8 insertions(+), 2 deletions(-)
+
+commit f0f4aa8386929e0e1ef264bd906ae0d13d0d0309
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Tue May 1 20:59:22 2018 +0200
+
+    clean main
+
+ main - Copie.c    | 620 ++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ tests/test main.c |   1 -
+ 2 files changed, 620 insertions(+), 1 deletion(-)
+
+commit 6f1e5bd77b3b3a6f109aefc5d6e78743d844df60
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Tue May 1 20:37:00 2018 +0200
+
+    test main
+
+ tests/test main.c | 573 ++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 573 insertions(+)
+
+commit f48d926a65d981dc3c75e2303072b0ba82ffb253
+Author: BellonGuillaume <33180570+BellonGuillaume@users.noreply.github.com>
+Date:   Tue May 1 20:32:02 2018 +0200
+
+    Revert "Revert "calloc""
+    
+    This reverts commit c2739dedea09fee409fc6a21e93a8e1ac3c681a1.
+
+ main.c | 116 ++++++++++++++++++++++++++++++++---------------------------------
+ 1 file changed, 58 insertions(+), 58 deletions(-)
+
+commit c2739dedea09fee409fc6a21e93a8e1ac3c681a1
+Author: BellonGuillaume <33180570+BellonGuillaume@users.noreply.github.com>
+Date:   Tue May 1 20:28:58 2018 +0200
+
+    Revert "calloc"
+    
+    This reverts commit 3c1c2bedcdb8552f14daf4481920c646372ac224.
+
+ main.c | 116 ++++++++++++++++++++++++++++++++---------------------------------
+ 1 file changed, 58 insertions(+), 58 deletions(-)
+
+commit d2ba613407ca64939690924f4b3a1f0b909e36e0
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Tue May 1 20:23:19 2018 +0200
+
+    fuck it
+
+ libfractal/fractal.o    | Bin 6952 -> 7064 bytes
+ libfractal/libfractal.a | Bin 19542 -> 16614 bytes
+ libfractal/tools.o      | Bin 12144 -> 9104 bytes
+ main                    | Bin 22440 -> 18643 bytes
+ main.o                  | Bin 19040 -> 13432 bytes
+ 5 files changed, 0 insertions(+), 0 deletions(-)
+
+commit f7c7e7ea0df382e4f5ebeb55fe05759cb4475e29
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Tue May 1 20:21:03 2018 +0200
+
+    +100
+
+ main.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+commit 3c1c2bedcdb8552f14daf4481920c646372ac224
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Tue May 1 20:18:59 2018 +0200
+
+    calloc
+
+ main.c | 116 ++++++++++++++++++++++++++++++++---------------------------------
+ 1 file changed, 58 insertions(+), 58 deletions(-)
+
+commit 6ccc0295ec910f480a68ed47d83d1889741f0643
+Author: BellonGuillaume <guillaume.bellon@student.uclouvain.be>
+Date:   Tue May 1 20:15:42 2018 +0200
+
+    ffluch(stdout)
+
+ main   | Bin 22440 -> 22440 bytes
+ main.c |  57 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ main.o | Bin 19480 -> 19040 bytes
+ 3 files changed, 57 insertions(+)
+
+commit c5750a928219a169c318e75f198e53576c843848
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Tue May 1 20:05:09 2018 +0200
+
+    -
+
+ main.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 230fb41eb9dcdd7087bc08ad8291b0b6cd771868
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Tue May 1 20:04:02 2018 +0200
+
+    test encore
+
+ main.c | 20 ++++++++++----------
+ 1 file changed, 10 insertions(+), 10 deletions(-)
+
+commit f8bbad09aabb22de6e8db7fd7632c981830a3e0f
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Tue May 1 20:00:50 2018 +0200
+
+    suite test
+
+ main.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 35eef179362c21e0e7b4e15fe9d4cd3f132b0f30
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Tue May 1 19:59:12 2018 +0200
+
+    test main
+
+ main.c | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+commit 46a0d4ea1c3f6ef8540a59ca94f518d0c16bddd8
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Tue May 1 19:51:01 2018 +0200
+
+    -
+
+ main.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 193d7f2df5ba1025980827931de84bbb74aeb50a
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Tue May 1 19:49:59 2018 +0200
+
+    -
+
+ main.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+commit 802440b24934c864b68f1d760562720205c8628b
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Tue May 1 19:47:03 2018 +0200
+
+    -
+
+ main.c | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+commit a83944f23afdd01f7733c9117d979651856d9122
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Tue May 1 19:43:10 2018 +0200
+
+    -
+
+ main.c | 10 +++++-----
+ 1 file changed, 5 insertions(+), 5 deletions(-)
+
+commit 7075d6f1e6a64da26078871f31c760caf778b1b6
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Tue May 1 19:36:26 2018 +0200
+
+    mutex
+
+ main.c | 12 ++++++------
+ 1 file changed, 6 insertions(+), 6 deletions(-)
+
+commit 5db2054948057f6b20262da4cae9c59a79c392ff
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Tue May 1 19:34:23 2018 +0200
+
+    -
+
+ main.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit fb098f5de039200ea3a6c59ae9a1901490a0f48a
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Tue May 1 19:30:23 2018 +0200
+
+    -
+
+ main.c | 12 ++++++++----
+ 1 file changed, 8 insertions(+), 4 deletions(-)
+
+commit d5a9ed46ba7decce027f1b851ede247712033092
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Tue May 1 19:16:44 2018 +0200
+
+    +0
+
+ main.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+commit 2ae223a57460750d6386bb342f6f8a65aa94fe15
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Tue May 1 19:12:16 2018 +0200
+
+    +100
+
+ main.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+commit 5a720e510230c525b93afc3f32dea80187221c74
+Author: BellonGuillaume <guillaume.bellon@student.uclouvain.be>
+Date:   Tue May 1 19:04:53 2018 +0200
+
+    Brol
+
+ main   | Bin 22440 -> 22440 bytes
+ main.c |   6 +++---
+ main.o | Bin 19200 -> 19480 bytes
+ 3 files changed, 3 insertions(+), 3 deletions(-)
+
+commit 9a67bdd91664332770ba7a2c14ed1721b0f01eb0
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Tue May 1 19:02:58 2018 +0200
+
+    -
+
+ main.c | 7 ++++---
+ 1 file changed, 4 insertions(+), 3 deletions(-)
+
+commit fd02c9c7371f09cc861f159f415b6287c75408b6
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Tue May 1 18:57:52 2018 +0200
+
+    -
+
+ main.c | 11 +++++------
+ 1 file changed, 5 insertions(+), 6 deletions(-)
+
+commit 2f3da77c87e2532c6201e7a81a23f689a6a30e09
+Author: BellonGuillaume <guillaume.bellon@student.uclouvain.be>
+Date:   Tue May 1 18:47:52 2018 +0200
+
+    Correction
+
+ libfractal/fractal.o    | Bin 7064 -> 6952 bytes
+ libfractal/libfractal.a | Bin 16614 -> 19542 bytes
+ libfractal/tools.o      | Bin 9104 -> 12144 bytes
+ main                    | Bin 18643 -> 22440 bytes
+ main.c                  |   4 ++--
+ main.o                  | Bin 13432 -> 19200 bytes
+ 6 files changed, 2 insertions(+), 2 deletions(-)
+
+commit 42cd068b898748d8f051ba138ade2c5e20a16047
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Tue May 1 18:45:27 2018 +0200
+
+    -
+
+ main.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+commit c3702bb59ce61788a5952dd09719580dd5414f09
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Tue May 1 18:39:40 2018 +0200
+
+    -
+
+ main.c | 20 ++++++++++++--------
+ 1 file changed, 12 insertions(+), 8 deletions(-)
+
+commit f9a60e565f89521e47219acd5a86d67e54495f09
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Tue May 1 18:32:12 2018 +0200
+
+    -
+
+ main.c | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
+
+commit 96f2407b9d867190315bb3c4ac946b47fdaf12c2
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Tue May 1 18:30:01 2018 +0200
+
+    -
+
+ main.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+commit c55a50abd9200df69cf691f135ec2127b8936717
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Tue May 1 18:27:32 2018 +0200
+
+    -
+
+ main.c | 3 +++
+ 1 file changed, 3 insertions(+)
+
+commit 5693973eed3e9d668cd019adf98f3cf30ab66122
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Tue May 1 18:24:33 2018 +0200
+
+    -
+
+ main.c | 1 +
+ 1 file changed, 1 insertion(+)
+
+commit 3de79bb3090080faf40f566cfefd06f72db15300
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Tue May 1 18:22:23 2018 +0200
+
+    -
+
+ main.c | 34 ++++++++++++++++++++--------------
+ 1 file changed, 20 insertions(+), 14 deletions(-)
+
+commit 748293f90dce0e1deeb20ba67397cbab20a1380f
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Tue May 1 18:18:56 2018 +0200
+
+    correction producteur et consommateur
+
+ main.c | 10 +++++-----
+ 1 file changed, 5 insertions(+), 5 deletions(-)
+
+commit 31eac0c9ea899e9fc3d77e8a93340d975cde9d52
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Tue May 1 18:17:26 2018 +0200
+
+    -
+
+ main.c | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+commit 33b5966332c6cd58e458490ccf6f67c865a880a7
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Tue May 1 18:14:46 2018 +0200
+
+    -
+
+ main.c | 17 ++++++++++-------
+ 1 file changed, 10 insertions(+), 7 deletions(-)
+
+commit 104908c78c89f5a06fcc35b9e69e6515732ba40c
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Tue May 1 18:11:21 2018 +0200
+
+    -
+
+ main.c | 1 +
+ 1 file changed, 1 insertion(+)
+
+commit b0c5046a36f4dba9ff9234122d2f89a998b35d33
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Tue May 1 18:07:44 2018 +0200
+
+    -
+
+ main.c | 1 +
+ 1 file changed, 1 insertion(+)
+
+commit ffc4f6ef20f9c26269d4774923bd19922ef178c6
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Tue May 1 18:03:47 2018 +0200
+
+    test main
+
+ main.c | 12 ++++++------
+ 1 file changed, 6 insertions(+), 6 deletions(-)
+
+commit 6d7a742cae5c62a68813a8a0d098448a0696fa8c
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Tue May 1 17:59:45 2018 +0200
+
+    test main
+
+ main.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+commit 0fe7ba48bc6c9847f1d9db7fc9bde0bd2870267d
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Tue May 1 17:54:07 2018 +0200
+
+    test changement fichier
+
+ ProjetFractal/Makefile => Makefile                    |   0
+ ProjetFractal/tests/Test                              | Bin 13017 -> 0 bytes
+ ProjetFractal/backup_main.c => backup_main.c          |   0
+ ProjetFractal/fract.txt => fract.txt                  |   0
+ {ProjetFractal/libfractal => libfractal}/Makefile     |   0
+ {ProjetFractal/libfractal => libfractal}/fractal.c    |   0
+ {ProjetFractal/libfractal => libfractal}/fractal.h    |   0
+ {ProjetFractal/libfractal => libfractal}/fractal.o    | Bin
+ {ProjetFractal/libfractal => libfractal}/libfractal.a | Bin
+ {ProjetFractal/libfractal => libfractal}/tools.c      |   0
+ {ProjetFractal/libfractal => libfractal}/tools.o      | Bin
+ ProjetFractal/main => main                            | Bin
+ ProjetFractal/main test.c => main test.c              |   0
+ ProjetFractal/main.c => main.c                        |   0
+ ProjetFractal/main.o => main.o                        | Bin
+ {ProjetFractal/tests => tests}/fract.txt              |   0
+ {ProjetFractal/tests => tests}/test                   | Bin
+ {ProjetFractal/tests => tests}/testArgv.c             |   0
+ {ProjetFractal/tests => tests}/testProd.c             |   0
+ 19 files changed, 0 insertions(+), 0 deletions(-)
+
+commit f8732e469e0bcd7960df0ac74454ab1298eb758f
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Tue May 1 17:52:53 2018 +0200
+
+    update main
+
+ ProjetFractal/main.c | 14 +++++++++-----
+ 1 file changed, 9 insertions(+), 5 deletions(-)
+
+commit 0e5af8cf8c5dc04f7f312ffbb27c222c22bf1701
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Tue May 1 17:46:58 2018 +0200
+
+    ajout printf
+
+ ProjetFractal/main.c | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+commit ad190ea7af3bad0662e402d225fb8d6375b630b3
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Tue May 1 17:42:56 2018 +0200
+
+    ajout printf
+
+ ProjetFractal/main.c | 2 ++
+ 1 file changed, 2 insertions(+)
+
+commit baab2035c0208622b888366c0e43294eb6c0f437
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Tue May 1 17:41:57 2018 +0200
+
+    ajout printf
+
+ ProjetFractal/main.c | 7 +++++++
+ 1 file changed, 7 insertions(+)
+
+commit c348bfbb6b72b4c13e55015162559be81c0a9263
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Tue May 1 17:36:57 2018 +0200
+
+    correction creation producteur
+
+ ProjetFractal/main.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+commit 07ebcd62de26e2a20bcde50f34ed03bdfc9132bc
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Tue May 1 17:34:43 2018 +0200
+
+    update main
+
+ ProjetFractal/main.c | 1 +
+ 1 file changed, 1 insertion(+)
+
+commit a703c90b5e87f663496eaffb7780dc5413198d0f
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Tue May 1 17:31:37 2018 +0200
+
+    update main
+
+ ProjetFractal/main.c | 3 +++
+ 1 file changed, 3 insertions(+)
+
+commit 4ecde01d3bc660e79eb34c4d09c5e6a6fd0166a5
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Tue May 1 17:29:49 2018 +0200
+
+    update main
+
+ ProjetFractal/main.c | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+commit 33097a5af733fd83543448ec861217264583090f
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Tue May 1 17:26:35 2018 +0200
+
+    update main
+
+ ProjetFractal/main.c | 5 +----
+ 1 file changed, 1 insertion(+), 4 deletions(-)
+
+commit 8ed2c0d12ca9d64147ec6e58d1661035f0a4f30b
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Tue May 1 17:24:47 2018 +0200
+
+    update main
+
+ ProjetFractal/main.c | 7 ++++++-
+ 1 file changed, 6 insertions(+), 1 deletion(-)
+
+commit 4807780ae060992aad32ac5546f50156e72adef0
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Tue May 1 17:22:14 2018 +0200
+
+    update main
+
+ ProjetFractal/main.c | 8 ++------
+ 1 file changed, 2 insertions(+), 6 deletions(-)
+
+commit 7a5b1e382148aa9ac33afc994a1502ed1ace5c9b
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Tue May 1 17:20:08 2018 +0200
+
+    update main
+
+ ProjetFractal/main.c | 8 ++------
+ 1 file changed, 2 insertions(+), 6 deletions(-)
+
+commit 1416a0528ea4bcb37b77a3a8b919b9ab1eab3d55
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Tue May 1 17:15:42 2018 +0200
+
+    update main
+
+ ProjetFractal/main.c | 2 ++
+ 1 file changed, 2 insertions(+)
+
+commit a7c7abf8c6e9b3b4303d523bf19e99b3aea30376
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Tue May 1 17:12:34 2018 +0200
+
+    update main
+
+ ProjetFractal/main.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+commit 51680bad01fc0cde72a0a0ad5084eca9f7fdeb29
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Tue May 1 17:11:27 2018 +0200
+
+    update main
+
+ ProjetFractal/main.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 0a98b1769c4f7769fd93bb5709b9c726330c3468
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Tue May 1 17:10:19 2018 +0200
+
+    update main
+
+ ProjetFractal/main.c | 16 ++++++++--------
+ 1 file changed, 8 insertions(+), 8 deletions(-)
+
+commit 53bbc5d5022698deee7fab5964b4138bec74e229
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Tue May 1 17:05:32 2018 +0200
+
+    update main
+
+ ProjetFractal/main.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 7f026fa3c87abe77f68a4f7ff3d95cf537ac4193
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Tue May 1 17:04:12 2018 +0200
+
+    update main
+
+ ProjetFractal/fractout.txt | 0
+ ProjetFractal/main.c       | 9 ++++-----
+ 2 files changed, 4 insertions(+), 5 deletions(-)
+
+commit 8fc398e12312f54ac9e797e21f26200476a6d7ef
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Tue May 1 17:00:09 2018 +0200
+
+    update main
+
+ ProjetFractal/main.c | 23 ++++-------------------
+ 1 file changed, 4 insertions(+), 19 deletions(-)
+
+commit 5ad16bddc514936d0c30d3ceab9d4337eabcf669
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Tue May 1 16:55:15 2018 +0200
+
+    update main
+
+ ProjetFractal/main.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 97223490e7764df90fd09edd6a4d05d6bcec9cb6
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Tue May 1 16:53:30 2018 +0200
+
+    update main
+
+ ProjetFractal/main.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 2ab82ec910ee8a6ca16b46b362e7d2a2df2efdf2
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Tue May 1 16:51:41 2018 +0200
+
+    update main
+
+ ProjetFractal/main.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 5c4583adcb1b0365d33b46ee36efe5dbfd380283
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Tue May 1 16:51:06 2018 +0200
+
+    update main
+
+ ProjetFractal/main.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 256c99cea1424daaf54b7ea0c2050ae1fdd3501b
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Tue May 1 16:46:37 2018 +0200
+
+    update main
+
+ ProjetFractal/main.c | 7 ++++---
+ 1 file changed, 4 insertions(+), 3 deletions(-)
+
+commit ecd19a49884ac18bf58bd19bfdcf500b377cc1bd
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Tue May 1 16:41:12 2018 +0200
+
+    calloc2
+
+ ProjetFractal/main.c | 20 +++++++++++++++++++-
+ 1 file changed, 19 insertions(+), 1 deletion(-)
+
+commit 8dcc72ea02f0171b68d64311a7864a18f28fad27
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Tue May 1 16:37:55 2018 +0200
+
+    update main
+
+ ProjetFractal/main.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 7ba8c87f17f310e05c0fb806d746db663bc40b40
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Tue May 1 16:36:13 2018 +0200
+
+    update main
+
+ ProjetFractal/main.c | 1 +
+ 1 file changed, 1 insertion(+)
+
+commit ec3a27a6943b82c04d0ec27da30ff38a987bda7e
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Tue May 1 16:35:37 2018 +0200
+
+    update main
+
+ ProjetFractal/main.c | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
+
+commit c5c4574329fd02ec06a0869fcd14c9e5fe092448
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Tue May 1 16:33:15 2018 +0200
+
+    update main
+
+ ProjetFractal/main.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 9a5e1566685c290dade3e629e456c0ea8cf4d30c
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Tue May 1 16:32:31 2018 +0200
+
+    update main
+
+ ProjetFractal/main.c | 1 +
+ 1 file changed, 1 insertion(+)
+
+commit 38705a1013cabff570fc9c450b331d42057663c1
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Tue May 1 16:30:49 2018 +0200
+
+    update main
+
+ ProjetFractal/main.c | 1 +
+ 1 file changed, 1 insertion(+)
+
+commit f2fac5f54d59a188bb7177729eb50ab9901012a6
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Tue May 1 16:28:09 2018 +0200
+
+    update main
+
+ ProjetFractal/main.c | 7 ++++++-
+ 1 file changed, 6 insertions(+), 1 deletion(-)
+
+commit cc793454a5ee3b44af5fcb58467be28ed1ed0695
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Tue May 1 16:10:55 2018 +0200
+
+    test printf main
+
+ ProjetFractal/main.c | 14 +++++++-------
+ 1 file changed, 7 insertions(+), 7 deletions(-)
+
+commit f877e1eb625e739191c135e1722f547a6e7fbb67
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Tue May 1 16:06:06 2018 +0200
+
+    test printf main
+
+ ProjetFractal/main.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit fdc600f1b85a26c18ee1cbb0301191decf7e4017
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Tue May 1 14:47:25 2018 +0200
+
+    corrections
+
+ ProjetFractal/main.c | 22 +++++++++++-----------
+ 1 file changed, 11 insertions(+), 11 deletions(-)
+
+commit ad1bd36dd40beba565309effb7a59e208952ca16
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Tue May 1 14:41:21 2018 +0200
+
+    corrections
+
+ ProjetFractal/main.c | 30 +++++++++++-------------------
+ 1 file changed, 11 insertions(+), 19 deletions(-)
+
+commit 7be60ab457106ed9d3d2286ac98758fb4c4c7125
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Tue May 1 14:31:30 2018 +0200
+
+    corrections
+
+ ProjetFractal/main.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 42ebb7a446a4e3902845132cbf79bfd8b963d3ab
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Tue May 1 14:27:36 2018 +0200
+
+    sem_getvalue correction (cons et writ)
+
+ ProjetFractal/main.c | 12 +++++++++---
+ 1 file changed, 9 insertions(+), 3 deletions(-)
+
+commit 0bd40df217fec8091dda0843c24fff7fcf6d1883
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Tue May 1 14:12:06 2018 +0200
+
+    printf
+
+ ProjetFractal/main.c | 3 ---
+ 1 file changed, 3 deletions(-)
+
+commit d9a52cff6c6c228ac20d6dcee55bfdb16e8c72ac
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Tue May 1 14:11:19 2018 +0200
+
+    printf
+
+ ProjetFractal/main.c | 18 ++++++++++++++++++
+ 1 file changed, 18 insertions(+)
+
+commit d5fba2ae9ec49d2f9ab29c61042a4241c932ce45
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Tue May 1 14:04:55 2018 +0200
+
+    update main
+
+ ProjetFractal/main.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+commit 86835c6a895be4e3bda0e54cc20a106cac1d1227
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Mon Apr 30 21:01:53 2018 +0200
+
+    ajout des flag et de la gestion de la fermeture du programme
+    
+    il faudra checker tout ça pcq c'est vraiment complexe
+
+ ProjetFractal/main.c     | 153 +++++++++++++++++++++++++++++++++++------------
+ ProjetFractal/tests/test | Bin 12712 -> 13017 bytes
+ 2 files changed, 114 insertions(+), 39 deletions(-)
+
+commit 0667d1f538813d4997b16f69c9f12e4830e42f12
+Author: Guillaume Bellon <bellon@organa.info.ucl.ac.be>
+Date:   Mon Apr 30 16:04:01 2018 +0200
+
+    Ajout de la partie sur la lecture de l'entree standard
+
+ ProjetFractal/fract.txt               |  17 ++++++++++++++
+ ProjetFractal/fractout.txt            |   0
+ ProjetFractal/libfractal/fractal.o    | Bin 6968 -> 7064 bytes
+ ProjetFractal/libfractal/libfractal.a | Bin 19574 -> 16614 bytes
+ ProjetFractal/libfractal/tools.o      | Bin 12160 -> 9104 bytes
+ ProjetFractal/main                    | Bin 18160 -> 18643 bytes
+ ProjetFractal/main.c                  |  43 +++++++++++++++++++++++++++++-----
+ ProjetFractal/main.o                  | Bin 13424 -> 13432 bytes
+ ProjetFractal/tests/Test              | Bin 0 -> 13017 bytes
+ 9 files changed, 54 insertions(+), 6 deletions(-)
+
+commit f1fff83334768545025c7d6a0737e796d8aecde4
+Author: BellonGuillaume <guillaume.bellon@student.uclouvain.be>
+Date:   Sun Apr 29 19:52:53 2018 +0200
+
+    Compilation du main de base
+
+ ProjetFractal/Makefile |   4 ++--
+ ProjetFractal/main     | Bin 0 -> 18160 bytes
+ ProjetFractal/main.c   |   2 +-
+ 3 files changed, 3 insertions(+), 3 deletions(-)
+
+commit 1d6b47496a1b7c68cb6882384f0ffb0af7f6187d
+Author: BellonGuillaume <guillaume.bellon@student.uclouvain.be>
+Date:   Sun Apr 29 19:23:56 2018 +0200
+
+    Compilation et debug des make
+
+ ProjetFractal/libfractal/fractal.c    |   8 ++---
+ ProjetFractal/libfractal/fractal.o    | Bin 0 -> 6968 bytes
+ ProjetFractal/libfractal/libfractal.a | Bin 0 -> 19574 bytes
+ ProjetFractal/libfractal/tools.c      |   2 +-
+ ProjetFractal/libfractal/tools.o      | Bin 0 -> 12160 bytes
+ ProjetFractal/main.c                  |  65 +++++++++++++++++-----------------
+ ProjetFractal/main.o                  | Bin 1824 -> 13424 bytes
+ ProjetFractal/tests/fract.txt         |   1 +
+ ProjetFractal/tests/test              | Bin 0 -> 12712 bytes
+ 9 files changed, 39 insertions(+), 37 deletions(-)
+
+commit a861ef3edc6f34a778028ddb1d50b8ca48ce48b4
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Sun Apr 29 15:42:17 2018 +0200
+
+    update main : PRODUCTEUR FONCTIONNEL
+
+ ProjetFractal/main.c | 239 +++++++++++++++++++++++++--------------------------
+ 1 file changed, 115 insertions(+), 124 deletions(-)
+
+commit 7d8f5e80f4490799a3d4a9d9a54f76f8ab4caa20
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Sun Apr 29 15:19:57 2018 +0200
+
+    update test
+    
+    testProd validé
+
+ ProjetFractal/tests/fract.txt     |  18 ++-
+ ProjetFractal/tests/testLecture.c | 124 -------------------
+ ProjetFractal/tests/testProd.c    | 247 +++++++++++++++++++-------------------
+ 3 files changed, 139 insertions(+), 250 deletions(-)
+
+commit e8095c6489c6cfab3c5a05519c8cd8432b706673
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Sun Apr 29 15:00:23 2018 +0200
+
+    update test
+
+ ProjetFractal/tests/testArgv - Copie.c | 152 ---------------------------------
+ ProjetFractal/tests/testArgv.c         | 125 +--------------------------
+ ProjetFractal/tests/testArgv00.c       |   9 --
+ ProjetFractal/tests/testLecture.c      | 124 +++++++++++++++++++++++++++
+ 4 files changed, 128 insertions(+), 282 deletions(-)
+
+commit 0c0a6000b6941e45d7f756f45632b53ae8d04951
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Sun Apr 29 14:40:34 2018 +0200
+
+    update test
+
+ ProjetFractal/tests/testArgv.c | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+commit c82fa87354374bce08e4ed790dd814b37d611467
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Sun Apr 29 14:36:30 2018 +0200
+
+    update test
+
+ ProjetFractal/tests/Test               | Bin 12920 -> 0 bytes
+ ProjetFractal/tests/testArgv - Copie.c | 152 +++++++++++++++++++++++++++++++++
+ ProjetFractal/tests/testArgv.c         |  64 +++++---------
+ 3 files changed, 171 insertions(+), 45 deletions(-)
+
+commit c6d08a305b95ae397045888c024cd11ab6796ae3
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Sun Apr 29 14:14:07 2018 +0200
+
+    delete sdl + update test
+
+ ProjetFractal/libfractal/sdl/BUGS.txt              |   18 -
+ ProjetFractal/libfractal/sdl/COPYING.txt           |  458 --
+ ProjetFractal/libfractal/sdl/README-SDL.txt        |   13 -
+ ProjetFractal/libfractal/sdl/README.txt            |   49 -
+ ProjetFractal/libfractal/sdl/VisualC.html          |  159 -
+ ProjetFractal/libfractal/sdl/WhatsNew.txt          |  727 ---
+ ProjetFractal/libfractal/sdl/docs.html             |  698 ---
+ ProjetFractal/libfractal/sdl/docs/html/audio.html  |  242 -
+ ProjetFractal/libfractal/sdl/docs/html/cdrom.html  |  260 -
+ ProjetFractal/libfractal/sdl/docs/html/event.html  |  216 -
+ .../libfractal/sdl/docs/html/eventfunctions.html   |  481 --
+ .../libfractal/sdl/docs/html/eventstructures.html  |  233 -
+ .../libfractal/sdl/docs/html/general.html          |  225 -
+ ProjetFractal/libfractal/sdl/docs/html/guide.html  |  174 -
+ .../libfractal/sdl/docs/html/guideaboutsdldoc.html |  148 -
+ .../sdl/docs/html/guideaudioexamples.html          |  228 -
+ .../libfractal/sdl/docs/html/guidebasicsinit.html  |  240 -
+ .../sdl/docs/html/guidecdromexamples.html          |  275 -
+ .../libfractal/sdl/docs/html/guidecredits.html     |  195 -
+ .../sdl/docs/html/guideeventexamples.html          |  247 -
+ .../libfractal/sdl/docs/html/guideexamples.html    |  188 -
+ .../libfractal/sdl/docs/html/guideinput.html       |  739 ---
+ .../sdl/docs/html/guideinputkeyboard.html          |  746 ---
+ .../libfractal/sdl/docs/html/guidepreface.html     |  178 -
+ .../libfractal/sdl/docs/html/guidethebasics.html   |  173 -
+ .../sdl/docs/html/guidetimeexamples.html           |  183 -
+ .../libfractal/sdl/docs/html/guidevideo.html       |  463 --
+ .../libfractal/sdl/docs/html/guidevideoopengl.html |  730 ---
+ ProjetFractal/libfractal/sdl/docs/html/index.html  | 1156 ----
+ .../libfractal/sdl/docs/html/joystick.html         |  296 -
+ .../libfractal/sdl/docs/html/reference.html        |  194 -
+ .../libfractal/sdl/docs/html/sdlactiveevent.html   |  335 -
+ .../libfractal/sdl/docs/html/sdladdtimer.html      |  296 -
+ .../libfractal/sdl/docs/html/sdlaudiocvt.html      |  556 --
+ .../libfractal/sdl/docs/html/sdlaudiospec.html     |  589 --
+ .../libfractal/sdl/docs/html/sdlblitsurface.html   |  339 -
+ .../libfractal/sdl/docs/html/sdlbuildaudiocvt.html |  291 -
+ ProjetFractal/libfractal/sdl/docs/html/sdlcd.html  |  359 --
+ .../libfractal/sdl/docs/html/sdlcdclose.html       |  217 -
+ .../libfractal/sdl/docs/html/sdlcdeject.html       |  226 -
+ .../libfractal/sdl/docs/html/sdlcdname.html        |  239 -
+ .../libfractal/sdl/docs/html/sdlcdnumdrives.html   |  205 -
+ .../libfractal/sdl/docs/html/sdlcdopen.html        |  275 -
+ .../libfractal/sdl/docs/html/sdlcdpause.html       |  233 -
+ .../libfractal/sdl/docs/html/sdlcdplay.html        |  243 -
+ .../libfractal/sdl/docs/html/sdlcdplaytracks.html  |  325 -
+ .../libfractal/sdl/docs/html/sdlcdresume.html      |  233 -
+ .../libfractal/sdl/docs/html/sdlcdstatus.html      |  273 -
+ .../libfractal/sdl/docs/html/sdlcdstop.html        |  226 -
+ .../libfractal/sdl/docs/html/sdlcdtrack.html       |  313 -
+ .../libfractal/sdl/docs/html/sdlcloseaudio.html    |  205 -
+ .../libfractal/sdl/docs/html/sdlcolor.html         |  300 -
+ .../libfractal/sdl/docs/html/sdlcondbroadcast.html |  224 -
+ .../libfractal/sdl/docs/html/sdlcondsignal.html    |  224 -
+ .../libfractal/sdl/docs/html/sdlcondwait.html      |  231 -
+ .../sdl/docs/html/sdlcondwaittimeout.html          |  230 -
+ .../libfractal/sdl/docs/html/sdlconvertaudio.html  |  407 --
+ .../sdl/docs/html/sdlconvertsurface.html           |  271 -
+ .../libfractal/sdl/docs/html/sdlcreatecond.html    |  240 -
+ .../libfractal/sdl/docs/html/sdlcreatecursor.html  |  398 --
+ .../libfractal/sdl/docs/html/sdlcreatemutex.html   |  249 -
+ .../sdl/docs/html/sdlcreatergbsurface.html         |  458 --
+ .../sdl/docs/html/sdlcreatergbsurfacefrom.html     |  256 -
+ .../sdl/docs/html/sdlcreatesemaphore.html          |  303 -
+ .../libfractal/sdl/docs/html/sdlcreatethread.html  |  223 -
+ .../sdl/docs/html/sdlcreateyuvoverlay.html         |  256 -
+ .../libfractal/sdl/docs/html/sdldelay.html         |  231 -
+ .../libfractal/sdl/docs/html/sdldestroycond.html   |  206 -
+ .../libfractal/sdl/docs/html/sdldestroymutex.html  |  209 -
+ .../sdl/docs/html/sdldestroysemaphore.html         |  278 -
+ .../libfractal/sdl/docs/html/sdldisplayformat.html |  262 -
+ .../sdl/docs/html/sdldisplayformatalpha.html       |  250 -
+ .../sdl/docs/html/sdldisplayyuvoverlay.html        |  246 -
+ .../sdl/docs/html/sdlenablekeyrepeat.html          |  238 -
+ .../libfractal/sdl/docs/html/sdlenableunicode.html |  252 -
+ .../libfractal/sdl/docs/html/sdlenvvars.html       | 1227 ----
+ .../libfractal/sdl/docs/html/sdlevent.html         |  994 ---
+ .../libfractal/sdl/docs/html/sdleventstate.html    |  276 -
+ .../libfractal/sdl/docs/html/sdlexposeevent.html   |  252 -
+ .../libfractal/sdl/docs/html/sdlfillrect.html      |  291 -
+ .../libfractal/sdl/docs/html/sdlflip.html          |  259 -
+ .../libfractal/sdl/docs/html/sdlfreecursor.html    |  209 -
+ .../libfractal/sdl/docs/html/sdlfreesurface.html   |  219 -
+ .../libfractal/sdl/docs/html/sdlfreewav.html       |  222 -
+ .../sdl/docs/html/sdlfreeyuvoverlay.html           |  233 -
+ .../libfractal/sdl/docs/html/sdlgetappstate.html   |  263 -
+ .../sdl/docs/html/sdlgetaudiostatus.html           |  221 -
+ .../libfractal/sdl/docs/html/sdlgetcliprect.html   |  229 -
+ .../libfractal/sdl/docs/html/sdlgetcursor.html     |  219 -
+ .../libfractal/sdl/docs/html/sdlgeterror.html      |  205 -
+ .../sdl/docs/html/sdlgeteventfilter.html           |  235 -
+ .../libfractal/sdl/docs/html/sdlgetgammaramp.html  |  219 -
+ .../libfractal/sdl/docs/html/sdlgetkeyname.html    |  216 -
+ .../libfractal/sdl/docs/html/sdlgetkeystate.html   |  253 -
+ .../libfractal/sdl/docs/html/sdlgetmodstate.html   |  257 -
+ .../libfractal/sdl/docs/html/sdlgetmousestate.html |  253 -
+ .../sdl/docs/html/sdlgetrelativemousestate.html    |  235 -
+ .../libfractal/sdl/docs/html/sdlgetrgb.html        |  231 -
+ .../libfractal/sdl/docs/html/sdlgetrgba.html       |  222 -
+ .../libfractal/sdl/docs/html/sdlgetthreadid.html   |  209 -
+ .../libfractal/sdl/docs/html/sdlgetticks.html      |  206 -
+ .../libfractal/sdl/docs/html/sdlgetvideoinfo.html  |  226 -
+ .../sdl/docs/html/sdlgetvideosurface.html          |  208 -
+ .../libfractal/sdl/docs/html/sdlglattr.html        |  379 --
+ .../sdl/docs/html/sdlglgetattribute.html           |  247 -
+ .../sdl/docs/html/sdlglgetprocaddress.html         |  262 -
+ .../libfractal/sdl/docs/html/sdlglloadlibrary.html |  231 -
+ .../sdl/docs/html/sdlglsetattribute.html           |  286 -
+ .../libfractal/sdl/docs/html/sdlglswapbuffers.html |  212 -
+ .../libfractal/sdl/docs/html/sdlinit.html          |  368 --
+ .../libfractal/sdl/docs/html/sdlinitsubsystem.html |  283 -
+ .../libfractal/sdl/docs/html/sdljoyaxisevent.html  |  330 -
+ .../libfractal/sdl/docs/html/sdljoyballevent.html  |  340 -
+ .../sdl/docs/html/sdljoybuttonevent.html           |  351 --
+ .../libfractal/sdl/docs/html/sdljoyhatevent.html   |  413 --
+ .../libfractal/sdl/docs/html/sdljoystickclose.html |  223 -
+ .../sdl/docs/html/sdljoystickeventstate.html       |  290 -
+ .../sdl/docs/html/sdljoystickgetaxis.html          |  271 -
+ .../sdl/docs/html/sdljoystickgetball.html          |  262 -
+ .../sdl/docs/html/sdljoystickgetbutton.html        |  231 -
+ .../sdl/docs/html/sdljoystickgethat.html           |  297 -
+ .../libfractal/sdl/docs/html/sdljoystickindex.html |  218 -
+ .../libfractal/sdl/docs/html/sdljoystickname.html  |  238 -
+ .../sdl/docs/html/sdljoysticknumaxes.html          |  225 -
+ .../sdl/docs/html/sdljoysticknumballs.html         |  225 -
+ .../sdl/docs/html/sdljoysticknumbuttons.html       |  225 -
+ .../sdl/docs/html/sdljoysticknumhats.html          |  225 -
+ .../libfractal/sdl/docs/html/sdljoystickopen.html  |  259 -
+ .../sdl/docs/html/sdljoystickopened.html           |  233 -
+ .../sdl/docs/html/sdljoystickupdate.html           |  211 -
+ ProjetFractal/libfractal/sdl/docs/html/sdlkey.html | 2630 --------
+ .../libfractal/sdl/docs/html/sdlkeyboardevent.html |  375 --
+ .../libfractal/sdl/docs/html/sdlkeysym.html        |  355 --
+ .../libfractal/sdl/docs/html/sdlkillthread.html    |  223 -
+ .../libfractal/sdl/docs/html/sdllistmodes.html     |  310 -
+ .../libfractal/sdl/docs/html/sdlloadbmp.html       |  219 -
+ .../libfractal/sdl/docs/html/sdlloadwav.html       |  296 -
+ .../libfractal/sdl/docs/html/sdllockaudio.html     |  208 -
+ .../libfractal/sdl/docs/html/sdllocksurface.html   |  306 -
+ .../sdl/docs/html/sdllockyuvoverlay.html           |  252 -
+ .../libfractal/sdl/docs/html/sdlmaprgb.html        |  254 -
+ .../libfractal/sdl/docs/html/sdlmaprgba.html       |  242 -
+ .../libfractal/sdl/docs/html/sdlmixaudio.html      |  237 -
+ .../sdl/docs/html/sdlmousebuttonevent.html         |  346 --
+ .../sdl/docs/html/sdlmousemotionevent.html         |  365 --
+ .../libfractal/sdl/docs/html/sdlmutexp.html        |  241 -
+ .../libfractal/sdl/docs/html/sdlmutexv.html        |  235 -
+ .../libfractal/sdl/docs/html/sdlnumjoysticks.html  |  222 -
+ .../libfractal/sdl/docs/html/sdlopenaudio.html     |  578 --
+ .../libfractal/sdl/docs/html/sdloverlay.html       |  362 --
+ .../libfractal/sdl/docs/html/sdlpalette.html       |  301 -
+ .../libfractal/sdl/docs/html/sdlpauseaudio.html    |  221 -
+ .../libfractal/sdl/docs/html/sdlpeepevents.html    |  321 -
+ .../libfractal/sdl/docs/html/sdlpixelformat.html   |  528 --
+ .../libfractal/sdl/docs/html/sdlpollevent.html     |  269 -
+ .../libfractal/sdl/docs/html/sdlpumpevents.html    |  244 -
+ .../libfractal/sdl/docs/html/sdlpushevent.html     |  266 -
+ .../libfractal/sdl/docs/html/sdlquit.html          |  244 -
+ .../libfractal/sdl/docs/html/sdlquitevent.html     |  263 -
+ .../libfractal/sdl/docs/html/sdlquitsubsystem.html |  248 -
+ .../libfractal/sdl/docs/html/sdlrect.html          |  258 -
+ .../libfractal/sdl/docs/html/sdlremovetimer.html   |  236 -
+ .../libfractal/sdl/docs/html/sdlresizeevent.html   |  307 -
+ .../libfractal/sdl/docs/html/sdlsavebmp.html       |  236 -
+ .../libfractal/sdl/docs/html/sdlsempost.html       |  299 -
+ .../libfractal/sdl/docs/html/sdlsemtrywait.html    |  319 -
+ .../libfractal/sdl/docs/html/sdlsemvalue.html      |  273 -
+ .../libfractal/sdl/docs/html/sdlsemwait.html       |  298 -
+ .../sdl/docs/html/sdlsemwaittimeout.html           |  322 -
+ .../libfractal/sdl/docs/html/sdlsetalpha.html      |  500 --
+ .../libfractal/sdl/docs/html/sdlsetcliprect.html   |  241 -
+ .../libfractal/sdl/docs/html/sdlsetcolorkey.html   |  321 -
+ .../libfractal/sdl/docs/html/sdlsetcolors.html     |  358 --
+ .../libfractal/sdl/docs/html/sdlsetcursor.html     |  222 -
+ .../sdl/docs/html/sdlseteventfilter.html           |  284 -
+ .../libfractal/sdl/docs/html/sdlsetgamma.html      |  231 -
+ .../libfractal/sdl/docs/html/sdlsetgammaramp.html  |  230 -
+ .../libfractal/sdl/docs/html/sdlsetmodstate.html   |  237 -
+ .../libfractal/sdl/docs/html/sdlsetpalette.html    |  352 --
+ .../libfractal/sdl/docs/html/sdlsettimer.html      |  267 -
+ .../libfractal/sdl/docs/html/sdlsetvideomode.html  |  558 --
+ .../libfractal/sdl/docs/html/sdlshowcursor.html    |  239 -
+ .../libfractal/sdl/docs/html/sdlsurface.html       |  597 --
+ .../libfractal/sdl/docs/html/sdlsyswmevent.html    |  233 -
+ .../libfractal/sdl/docs/html/sdlthreadid.html      |  190 -
+ .../libfractal/sdl/docs/html/sdlunlockaudio.html   |  211 -
+ .../libfractal/sdl/docs/html/sdlunlocksurface.html |  219 -
+ .../sdl/docs/html/sdlunlockyuvoverlay.html         |  225 -
+ .../libfractal/sdl/docs/html/sdlupdaterect.html    |  266 -
+ .../libfractal/sdl/docs/html/sdlupdaterects.html   |  255 -
+ .../libfractal/sdl/docs/html/sdluserevent.html     |  337 -
+ .../sdl/docs/html/sdlvideodrivername.html          |  243 -
+ .../libfractal/sdl/docs/html/sdlvideoinfo.html     |  408 --
+ .../libfractal/sdl/docs/html/sdlvideomodeok.html   |  270 -
+ .../libfractal/sdl/docs/html/sdlwaitevent.html     |  231 -
+ .../libfractal/sdl/docs/html/sdlwaitthread.html    |  231 -
+ .../libfractal/sdl/docs/html/sdlwarpmouse.html     |  205 -
+ .../libfractal/sdl/docs/html/sdlwasinit.html       |  284 -
+ .../libfractal/sdl/docs/html/sdlwmgetcaption.html  |  222 -
+ .../libfractal/sdl/docs/html/sdlwmgrabinput.html   |  224 -
+ .../sdl/docs/html/sdlwmiconifywindow.html          |  211 -
+ .../libfractal/sdl/docs/html/sdlwmsetcaption.html  |  212 -
+ .../libfractal/sdl/docs/html/sdlwmseticon.html     |  260 -
+ .../sdl/docs/html/sdlwmtogglefullscreen.html       |  205 -
+ ProjetFractal/libfractal/sdl/docs/html/thread.html |  313 -
+ ProjetFractal/libfractal/sdl/docs/html/time.html   |  206 -
+ ProjetFractal/libfractal/sdl/docs/html/video.html  |  507 --
+ ProjetFractal/libfractal/sdl/docs/html/wm.html     |  188 -
+ .../libfractal/sdl/docs/images/rainbow.gif         |  Bin 1715 -> 0 bytes
+ ProjetFractal/libfractal/sdl/docs/index.html       |   55 -
+ ProjetFractal/libfractal/sdl/include/SDL.h         |  101 -
+ ProjetFractal/libfractal/sdl/include/SDL_active.h  |   63 -
+ ProjetFractal/libfractal/sdl/include/SDL_audio.h   |  284 -
+ .../libfractal/sdl/include/SDL_byteorder.h         |   29 -
+ ProjetFractal/libfractal/sdl/include/SDL_cdrom.h   |  202 -
+ ProjetFractal/libfractal/sdl/include/SDL_config.h  |   45 -
+ .../libfractal/sdl/include/SDL_config_dreamcast.h  |  106 -
+ .../libfractal/sdl/include/SDL_config_macos.h      |  112 -
+ .../libfractal/sdl/include/SDL_config_macosx.h     |  150 -
+ .../libfractal/sdl/include/SDL_config_minimal.h    |   62 -
+ .../libfractal/sdl/include/SDL_config_nds.h        |  115 -
+ .../libfractal/sdl/include/SDL_config_os2.h        |  141 -
+ .../libfractal/sdl/include/SDL_config_symbian.h    |  146 -
+ .../libfractal/sdl/include/SDL_config_win32.h      |  183 -
+ ProjetFractal/libfractal/sdl/include/SDL_copying.h |   22 -
+ ProjetFractal/libfractal/sdl/include/SDL_cpuinfo.h |   69 -
+ ProjetFractal/libfractal/sdl/include/SDL_endian.h  |  214 -
+ ProjetFractal/libfractal/sdl/include/SDL_error.h   |   72 -
+ ProjetFractal/libfractal/sdl/include/SDL_events.h  |  356 --
+ ProjetFractal/libfractal/sdl/include/SDL_getenv.h  |   28 -
+ .../libfractal/sdl/include/SDL_joystick.h          |  187 -
+ .../libfractal/sdl/include/SDL_keyboard.h          |  135 -
+ ProjetFractal/libfractal/sdl/include/SDL_keysym.h  |  326 -
+ ProjetFractal/libfractal/sdl/include/SDL_loadso.h  |   78 -
+ ProjetFractal/libfractal/sdl/include/SDL_main.h    |  106 -
+ ProjetFractal/libfractal/sdl/include/SDL_mouse.h   |  143 -
+ ProjetFractal/libfractal/sdl/include/SDL_mutex.h   |  177 -
+ ProjetFractal/libfractal/sdl/include/SDL_name.h    |   11 -
+ ProjetFractal/libfractal/sdl/include/SDL_opengl.h  | 6570 --------------------
+ .../libfractal/sdl/include/SDL_platform.h          |  110 -
+ ProjetFractal/libfractal/sdl/include/SDL_quit.h    |   55 -
+ ProjetFractal/libfractal/sdl/include/SDL_rwops.h   |  155 -
+ ProjetFractal/libfractal/sdl/include/SDL_stdinc.h  |  620 --
+ ProjetFractal/libfractal/sdl/include/SDL_syswm.h   |  226 -
+ ProjetFractal/libfractal/sdl/include/SDL_thread.h  |  115 -
+ ProjetFractal/libfractal/sdl/include/SDL_timer.h   |  125 -
+ ProjetFractal/libfractal/sdl/include/SDL_types.h   |   28 -
+ ProjetFractal/libfractal/sdl/include/SDL_version.h |   91 -
+ ProjetFractal/libfractal/sdl/include/SDL_video.h   |  951 ---
+ ProjetFractal/libfractal/sdl/include/begin_code.h  |  196 -
+ ProjetFractal/libfractal/sdl/include/close_code.h  |   46 -
+ ProjetFractal/libfractal/sdl/lib/x64/SDL.dll       |  Bin 306688 -> 0 bytes
+ ProjetFractal/libfractal/sdl/lib/x64/SDL.lib       |  Bin 41512 -> 0 bytes
+ ProjetFractal/libfractal/sdl/lib/x64/SDLmain.lib   |  Bin 11176 -> 0 bytes
+ ProjetFractal/libfractal/sdl/lib/x86/SDL.dll       |  Bin 303616 -> 0 bytes
+ ProjetFractal/libfractal/sdl/lib/x86/SDL.lib       |  Bin 42522 -> 0 bytes
+ ProjetFractal/libfractal/sdl/lib/x86/SDLmain.lib   |  Bin 8214 -> 0 bytes
+ ProjetFractal/tests/{fichier.txt => fract.txt}     |    0
+ ProjetFractal/tests/testArgv.c                     |    4 +-
+ 259 files changed, 1 insertion(+), 76087 deletions(-)
+
+commit 2f5139696d3e3ef67b0899607dd4b51577be3c32
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Sun Apr 29 14:08:10 2018 +0200
+
+    update main
+
+ ProjetFractal/main.c | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
+
+commit 0f9a751ed44a7d3339e3e3f8c5bdd8f883bca455
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Sun Apr 29 14:06:16 2018 +0200
+
+    update test
+
+ ProjetFractal/tests/Test       | Bin 12920 -> 12920 bytes
+ ProjetFractal/tests/testArgv.c |   5 ++++-
+ 2 files changed, 4 insertions(+), 1 deletion(-)
+
+commit 18f2d834b6acfa04c983fb6d82b7770a746d8fc4
+Merge: 9d32190 529274e
+Author: vahidbe <38432333+vahidbe@users.noreply.github.com>
+Date:   Sun Apr 29 13:42:33 2018 +0200
+
+    Merge pull request #1 from vahidbe/fractal-intel
+    
+    Fractal intel
+
+commit 529274e3f37e2f375193e1ccda325429549e6682
+Merge: 0d4bd89 9d32190
+Author: vahidbe <38432333+vahidbe@users.noreply.github.com>
+Date:   Sun Apr 29 13:42:01 2018 +0200
+
+    Merge branch 'master' into fractal-intel
+
+commit 0d4bd89b13d30339e8417c13d1383d6816f733a9
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Sun Apr 29 13:30:48 2018 +0200
+
+    update test
+
+ ProjetFractal/tests/Test                          | Bin 0 -> 12920 bytes
+ ProjetFractal/tests/ficher.txt                    |   2 --
+ ProjetFractal/tests/fichier.txt                   |   2 ++
+ ProjetFractal/tests/testArgv.c                    |  32 ++++++++++++----------
+ ProjetFractal/tests/{testLecture.c => testProd.c} |   0
+ 5 files changed, 19 insertions(+), 17 deletions(-)
+
+commit 1fede2caf6fed940ee90888742429315c5428464
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Sun Apr 29 13:06:53 2018 +0200
+
+    update test
+
+ ProjetFractal/main.c              |  18 ++---
+ ProjetFractal/tests/testArgv.c    | 149 ++++++++++++++++++++++++++++++++++++++
+ ProjetFractal/tests/testArgv00.c  |   9 +++
+ ProjetFractal/tests/testLecture.c |   2 +-
+ 4 files changed, 168 insertions(+), 10 deletions(-)
+
+commit 007b746f6d95daa1a7c0cb6966d89ac75af7eaff
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Sat Apr 28 20:47:16 2018 +0200
+
+    update test
+
+ ProjetFractal/main.c              | 2 +-
+ ProjetFractal/tests/testLecture.c | 8 ++++++++
+ 2 files changed, 9 insertions(+), 1 deletion(-)
+
+commit ab78031bb4b845f30a3a730be415d2cb58feb968
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Sat Apr 28 20:43:55 2018 +0200
+
+    update main
+
+ ProjetFractal/main.c              | 6 +++---
+ ProjetFractal/tests/testLecture.c | 6 +++---
+ 2 files changed, 6 insertions(+), 6 deletions(-)
+
+commit c2271ee8b43b23033fd59569b1efd943c2b474ad
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Sat Apr 28 18:45:58 2018 +0200
+
+    ajout test lecture
+
+ ProjetFractal/main.c              |   3 +-
+ ProjetFractal/tests/ficher.txt    |   2 +
+ ProjetFractal/tests/testLecture.c | 127 ++++++++++++++++++++++++++++++++++++++
+ 3 files changed, 130 insertions(+), 2 deletions(-)
+
+commit afe24a73eabef8914e9fc699b6d86255e59b4c37
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Sat Apr 28 18:40:04 2018 +0200
+
+    update main
+    
+    ajout lecture producteur
+
+ ProjetFractal/main.c | 128 +++++++++++++++++++++++++++++++++++++++++++++++++--
+ 1 file changed, 124 insertions(+), 4 deletions(-)
+
+commit df277fc7a716cf61a97e53ec06e6b5e143528bbd
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Sat Apr 28 17:47:00 2018 +0200
+
+    update fractal
+    
+    ajout du calcul de la moyenne
+
+ ProjetFractal/libfractal/fractal.c | 13 +++++++++++++
+ ProjetFractal/libfractal/fractal.h | 10 ++++++++++
+ ProjetFractal/main.c               |  3 ++-
+ 3 files changed, 25 insertions(+), 1 deletion(-)
+
+commit b0f468bb395b9d7db819213cf9665c2685a0f85c
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Sat Apr 28 17:15:45 2018 +0200
+
+    update main
+
+ ProjetFractal/main.c | 16 ++--------------
+ 1 file changed, 2 insertions(+), 14 deletions(-)
+
+commit 6d4bca114938a16a783e501277ad1ced57627fb6
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Sat Apr 28 17:13:27 2018 +0200
+
+    update main
+
+ ProjetFractal/main.c | 7 ++-----
+ 1 file changed, 2 insertions(+), 5 deletions(-)
+
+commit 0314b74d2fb7e15afd4cadd2e48eb30782e83f20
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Sat Apr 28 17:03:45 2018 +0200
+
+    update main
+
+ ProjetFractal/main.c | 12 ++++++------
+ 1 file changed, 6 insertions(+), 6 deletions(-)
+
+commit 72ea6c5a0e08837695231e63b06f0c67aebe283d
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Fri Apr 27 20:47:12 2018 +0200
+
+    update main
+    
+    Correction du producteur consommateur, correction des fonctions producteur consommateur, ajout de la fonction writer, correction du main
+
+ ProjetFractal/backup_main.c | 146 ++++++++++++++++++++++++++++++
+ ProjetFractal/main.c        | 210 ++++++++++++++++++++++++++++++++++----------
+ 2 files changed, 312 insertions(+), 44 deletions(-)
+
+commit 9d321905f1eda3338d96390603a086899d35e320
+Author: BellonGuillaume <33180570+BellonGuillaume@users.noreply.github.com>
+Date:   Fri Apr 27 08:55:36 2018 +0200
+
+    Lib thread
+
+ ProjetFractal/main.c | 1 +
+ 1 file changed, 1 insertion(+)
+
+commit a734b6015f5deac452d565a08dae8de7f8aec98f
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Thu Apr 26 20:14:11 2018 +0200
+
+    corrections compilation
+
+ ProjetFractal/main.c | 47 +++++++++++++++++++++++++----------------------
+ 1 file changed, 25 insertions(+), 22 deletions(-)
+
+commit b86e3fa4d5389267f67897967a2696f1c4d450e0
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Thu Apr 26 19:36:07 2018 +0200
+
+    Todos, semaphore include
+
+ ProjetFractal/libfractal/tools.c             |  2 +-
+ ProjetFractal/{main (copy).c => main test.c} |  0
+ ProjetFractal/main.c                         |  6 ++++--
+ ProjetFractal/main.c~                        | 13 -------------
+ 4 files changed, 5 insertions(+), 16 deletions(-)
+
+commit e93cc3650c36d844ce0cbceb660cad3c81671758
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Thu Apr 26 19:13:13 2018 +0200
+
+    makefile nico
+
+ ProjetFractal/Makefile | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+commit d47d1b19f74ddbc64739af999a639e1795a31ebe
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Thu Apr 26 19:09:08 2018 +0200
+
+    lpthread???
+
+ ProjetFractal/Makefile | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit bb06810ca375e69b59b833e234c9cb6454f65fa7
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Thu Apr 26 19:06:36 2018 +0200
+
+    update main
+    
+    toujours le problème des librairies sdl et pthread
+
+ ProjetFractal/main.c | 134 ++++++++++++++++++++++++++++++++++++++++++++++-----
+ 1 file changed, 123 insertions(+), 11 deletions(-)
+
+commit 5d65c773311212406f924e3d84d8b8ad97aa3bcd
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Thu Apr 26 17:17:54 2018 +0200
+
+    imports
+
+ ProjetFractal/main.c | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+commit b35d1e90a95157fddb082bd86242d498524fdf51
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Thu Apr 26 17:15:55 2018 +0200
+
+    debut main
+    
+    bug sdl, bug pthread
+
+ ProjetFractal/Makefile                             |    2 +-
+ ProjetFractal/libfractal/fractal.o                 |  Bin 6600 -> 0 bytes
+ ProjetFractal/libfractal/sdl/BUGS.txt              |   18 +
+ ProjetFractal/libfractal/sdl/COPYING.txt           |  458 ++
+ ProjetFractal/libfractal/sdl/README-SDL.txt        |   13 +
+ ProjetFractal/libfractal/sdl/README.txt            |   49 +
+ ProjetFractal/libfractal/sdl/VisualC.html          |  159 +
+ ProjetFractal/libfractal/sdl/WhatsNew.txt          |  727 +++
+ ProjetFractal/libfractal/sdl/docs.html             |  698 +++
+ ProjetFractal/libfractal/sdl/docs/html/audio.html  |  242 +
+ ProjetFractal/libfractal/sdl/docs/html/cdrom.html  |  260 +
+ ProjetFractal/libfractal/sdl/docs/html/event.html  |  216 +
+ .../libfractal/sdl/docs/html/eventfunctions.html   |  481 ++
+ .../libfractal/sdl/docs/html/eventstructures.html  |  233 +
+ .../libfractal/sdl/docs/html/general.html          |  225 +
+ ProjetFractal/libfractal/sdl/docs/html/guide.html  |  174 +
+ .../libfractal/sdl/docs/html/guideaboutsdldoc.html |  148 +
+ .../sdl/docs/html/guideaudioexamples.html          |  228 +
+ .../libfractal/sdl/docs/html/guidebasicsinit.html  |  240 +
+ .../sdl/docs/html/guidecdromexamples.html          |  275 +
+ .../libfractal/sdl/docs/html/guidecredits.html     |  195 +
+ .../sdl/docs/html/guideeventexamples.html          |  247 +
+ .../libfractal/sdl/docs/html/guideexamples.html    |  188 +
+ .../libfractal/sdl/docs/html/guideinput.html       |  739 +++
+ .../sdl/docs/html/guideinputkeyboard.html          |  746 +++
+ .../libfractal/sdl/docs/html/guidepreface.html     |  178 +
+ .../libfractal/sdl/docs/html/guidethebasics.html   |  173 +
+ .../sdl/docs/html/guidetimeexamples.html           |  183 +
+ .../libfractal/sdl/docs/html/guidevideo.html       |  463 ++
+ .../libfractal/sdl/docs/html/guidevideoopengl.html |  730 +++
+ ProjetFractal/libfractal/sdl/docs/html/index.html  | 1156 ++++
+ .../libfractal/sdl/docs/html/joystick.html         |  296 +
+ .../libfractal/sdl/docs/html/reference.html        |  194 +
+ .../libfractal/sdl/docs/html/sdlactiveevent.html   |  335 +
+ .../libfractal/sdl/docs/html/sdladdtimer.html      |  296 +
+ .../libfractal/sdl/docs/html/sdlaudiocvt.html      |  556 ++
+ .../libfractal/sdl/docs/html/sdlaudiospec.html     |  589 ++
+ .../libfractal/sdl/docs/html/sdlblitsurface.html   |  339 +
+ .../libfractal/sdl/docs/html/sdlbuildaudiocvt.html |  291 +
+ ProjetFractal/libfractal/sdl/docs/html/sdlcd.html  |  359 ++
+ .../libfractal/sdl/docs/html/sdlcdclose.html       |  217 +
+ .../libfractal/sdl/docs/html/sdlcdeject.html       |  226 +
+ .../libfractal/sdl/docs/html/sdlcdname.html        |  239 +
+ .../libfractal/sdl/docs/html/sdlcdnumdrives.html   |  205 +
+ .../libfractal/sdl/docs/html/sdlcdopen.html        |  275 +
+ .../libfractal/sdl/docs/html/sdlcdpause.html       |  233 +
+ .../libfractal/sdl/docs/html/sdlcdplay.html        |  243 +
+ .../libfractal/sdl/docs/html/sdlcdplaytracks.html  |  325 +
+ .../libfractal/sdl/docs/html/sdlcdresume.html      |  233 +
+ .../libfractal/sdl/docs/html/sdlcdstatus.html      |  273 +
+ .../libfractal/sdl/docs/html/sdlcdstop.html        |  226 +
+ .../libfractal/sdl/docs/html/sdlcdtrack.html       |  313 +
+ .../libfractal/sdl/docs/html/sdlcloseaudio.html    |  205 +
+ .../libfractal/sdl/docs/html/sdlcolor.html         |  300 +
+ .../libfractal/sdl/docs/html/sdlcondbroadcast.html |  224 +
+ .../libfractal/sdl/docs/html/sdlcondsignal.html    |  224 +
+ .../libfractal/sdl/docs/html/sdlcondwait.html      |  231 +
+ .../sdl/docs/html/sdlcondwaittimeout.html          |  230 +
+ .../libfractal/sdl/docs/html/sdlconvertaudio.html  |  407 ++
+ .../sdl/docs/html/sdlconvertsurface.html           |  271 +
+ .../libfractal/sdl/docs/html/sdlcreatecond.html    |  240 +
+ .../libfractal/sdl/docs/html/sdlcreatecursor.html  |  398 ++
+ .../libfractal/sdl/docs/html/sdlcreatemutex.html   |  249 +
+ .../sdl/docs/html/sdlcreatergbsurface.html         |  458 ++
+ .../sdl/docs/html/sdlcreatergbsurfacefrom.html     |  256 +
+ .../sdl/docs/html/sdlcreatesemaphore.html          |  303 +
+ .../libfractal/sdl/docs/html/sdlcreatethread.html  |  223 +
+ .../sdl/docs/html/sdlcreateyuvoverlay.html         |  256 +
+ .../libfractal/sdl/docs/html/sdldelay.html         |  231 +
+ .../libfractal/sdl/docs/html/sdldestroycond.html   |  206 +
+ .../libfractal/sdl/docs/html/sdldestroymutex.html  |  209 +
+ .../sdl/docs/html/sdldestroysemaphore.html         |  278 +
+ .../libfractal/sdl/docs/html/sdldisplayformat.html |  262 +
+ .../sdl/docs/html/sdldisplayformatalpha.html       |  250 +
+ .../sdl/docs/html/sdldisplayyuvoverlay.html        |  246 +
+ .../sdl/docs/html/sdlenablekeyrepeat.html          |  238 +
+ .../libfractal/sdl/docs/html/sdlenableunicode.html |  252 +
+ .../libfractal/sdl/docs/html/sdlenvvars.html       | 1227 ++++
+ .../libfractal/sdl/docs/html/sdlevent.html         |  994 +++
+ .../libfractal/sdl/docs/html/sdleventstate.html    |  276 +
+ .../libfractal/sdl/docs/html/sdlexposeevent.html   |  252 +
+ .../libfractal/sdl/docs/html/sdlfillrect.html      |  291 +
+ .../libfractal/sdl/docs/html/sdlflip.html          |  259 +
+ .../libfractal/sdl/docs/html/sdlfreecursor.html    |  209 +
+ .../libfractal/sdl/docs/html/sdlfreesurface.html   |  219 +
+ .../libfractal/sdl/docs/html/sdlfreewav.html       |  222 +
+ .../sdl/docs/html/sdlfreeyuvoverlay.html           |  233 +
+ .../libfractal/sdl/docs/html/sdlgetappstate.html   |  263 +
+ .../sdl/docs/html/sdlgetaudiostatus.html           |  221 +
+ .../libfractal/sdl/docs/html/sdlgetcliprect.html   |  229 +
+ .../libfractal/sdl/docs/html/sdlgetcursor.html     |  219 +
+ .../libfractal/sdl/docs/html/sdlgeterror.html      |  205 +
+ .../sdl/docs/html/sdlgeteventfilter.html           |  235 +
+ .../libfractal/sdl/docs/html/sdlgetgammaramp.html  |  219 +
+ .../libfractal/sdl/docs/html/sdlgetkeyname.html    |  216 +
+ .../libfractal/sdl/docs/html/sdlgetkeystate.html   |  253 +
+ .../libfractal/sdl/docs/html/sdlgetmodstate.html   |  257 +
+ .../libfractal/sdl/docs/html/sdlgetmousestate.html |  253 +
+ .../sdl/docs/html/sdlgetrelativemousestate.html    |  235 +
+ .../libfractal/sdl/docs/html/sdlgetrgb.html        |  231 +
+ .../libfractal/sdl/docs/html/sdlgetrgba.html       |  222 +
+ .../libfractal/sdl/docs/html/sdlgetthreadid.html   |  209 +
+ .../libfractal/sdl/docs/html/sdlgetticks.html      |  206 +
+ .../libfractal/sdl/docs/html/sdlgetvideoinfo.html  |  226 +
+ .../sdl/docs/html/sdlgetvideosurface.html          |  208 +
+ .../libfractal/sdl/docs/html/sdlglattr.html        |  379 ++
+ .../sdl/docs/html/sdlglgetattribute.html           |  247 +
+ .../sdl/docs/html/sdlglgetprocaddress.html         |  262 +
+ .../libfractal/sdl/docs/html/sdlglloadlibrary.html |  231 +
+ .../sdl/docs/html/sdlglsetattribute.html           |  286 +
+ .../libfractal/sdl/docs/html/sdlglswapbuffers.html |  212 +
+ .../libfractal/sdl/docs/html/sdlinit.html          |  368 ++
+ .../libfractal/sdl/docs/html/sdlinitsubsystem.html |  283 +
+ .../libfractal/sdl/docs/html/sdljoyaxisevent.html  |  330 +
+ .../libfractal/sdl/docs/html/sdljoyballevent.html  |  340 +
+ .../sdl/docs/html/sdljoybuttonevent.html           |  351 ++
+ .../libfractal/sdl/docs/html/sdljoyhatevent.html   |  413 ++
+ .../libfractal/sdl/docs/html/sdljoystickclose.html |  223 +
+ .../sdl/docs/html/sdljoystickeventstate.html       |  290 +
+ .../sdl/docs/html/sdljoystickgetaxis.html          |  271 +
+ .../sdl/docs/html/sdljoystickgetball.html          |  262 +
+ .../sdl/docs/html/sdljoystickgetbutton.html        |  231 +
+ .../sdl/docs/html/sdljoystickgethat.html           |  297 +
+ .../libfractal/sdl/docs/html/sdljoystickindex.html |  218 +
+ .../libfractal/sdl/docs/html/sdljoystickname.html  |  238 +
+ .../sdl/docs/html/sdljoysticknumaxes.html          |  225 +
+ .../sdl/docs/html/sdljoysticknumballs.html         |  225 +
+ .../sdl/docs/html/sdljoysticknumbuttons.html       |  225 +
+ .../sdl/docs/html/sdljoysticknumhats.html          |  225 +
+ .../libfractal/sdl/docs/html/sdljoystickopen.html  |  259 +
+ .../sdl/docs/html/sdljoystickopened.html           |  233 +
+ .../sdl/docs/html/sdljoystickupdate.html           |  211 +
+ ProjetFractal/libfractal/sdl/docs/html/sdlkey.html | 2630 ++++++++
+ .../libfractal/sdl/docs/html/sdlkeyboardevent.html |  375 ++
+ .../libfractal/sdl/docs/html/sdlkeysym.html        |  355 ++
+ .../libfractal/sdl/docs/html/sdlkillthread.html    |  223 +
+ .../libfractal/sdl/docs/html/sdllistmodes.html     |  310 +
+ .../libfractal/sdl/docs/html/sdlloadbmp.html       |  219 +
+ .../libfractal/sdl/docs/html/sdlloadwav.html       |  296 +
+ .../libfractal/sdl/docs/html/sdllockaudio.html     |  208 +
+ .../libfractal/sdl/docs/html/sdllocksurface.html   |  306 +
+ .../sdl/docs/html/sdllockyuvoverlay.html           |  252 +
+ .../libfractal/sdl/docs/html/sdlmaprgb.html        |  254 +
+ .../libfractal/sdl/docs/html/sdlmaprgba.html       |  242 +
+ .../libfractal/sdl/docs/html/sdlmixaudio.html      |  237 +
+ .../sdl/docs/html/sdlmousebuttonevent.html         |  346 ++
+ .../sdl/docs/html/sdlmousemotionevent.html         |  365 ++
+ .../libfractal/sdl/docs/html/sdlmutexp.html        |  241 +
+ .../libfractal/sdl/docs/html/sdlmutexv.html        |  235 +
+ .../libfractal/sdl/docs/html/sdlnumjoysticks.html  |  222 +
+ .../libfractal/sdl/docs/html/sdlopenaudio.html     |  578 ++
+ .../libfractal/sdl/docs/html/sdloverlay.html       |  362 ++
+ .../libfractal/sdl/docs/html/sdlpalette.html       |  301 +
+ .../libfractal/sdl/docs/html/sdlpauseaudio.html    |  221 +
+ .../libfractal/sdl/docs/html/sdlpeepevents.html    |  321 +
+ .../libfractal/sdl/docs/html/sdlpixelformat.html   |  528 ++
+ .../libfractal/sdl/docs/html/sdlpollevent.html     |  269 +
+ .../libfractal/sdl/docs/html/sdlpumpevents.html    |  244 +
+ .../libfractal/sdl/docs/html/sdlpushevent.html     |  266 +
+ .../libfractal/sdl/docs/html/sdlquit.html          |  244 +
+ .../libfractal/sdl/docs/html/sdlquitevent.html     |  263 +
+ .../libfractal/sdl/docs/html/sdlquitsubsystem.html |  248 +
+ .../libfractal/sdl/docs/html/sdlrect.html          |  258 +
+ .../libfractal/sdl/docs/html/sdlremovetimer.html   |  236 +
+ .../libfractal/sdl/docs/html/sdlresizeevent.html   |  307 +
+ .../libfractal/sdl/docs/html/sdlsavebmp.html       |  236 +
+ .../libfractal/sdl/docs/html/sdlsempost.html       |  299 +
+ .../libfractal/sdl/docs/html/sdlsemtrywait.html    |  319 +
+ .../libfractal/sdl/docs/html/sdlsemvalue.html      |  273 +
+ .../libfractal/sdl/docs/html/sdlsemwait.html       |  298 +
+ .../sdl/docs/html/sdlsemwaittimeout.html           |  322 +
+ .../libfractal/sdl/docs/html/sdlsetalpha.html      |  500 ++
+ .../libfractal/sdl/docs/html/sdlsetcliprect.html   |  241 +
+ .../libfractal/sdl/docs/html/sdlsetcolorkey.html   |  321 +
+ .../libfractal/sdl/docs/html/sdlsetcolors.html     |  358 ++
+ .../libfractal/sdl/docs/html/sdlsetcursor.html     |  222 +
+ .../sdl/docs/html/sdlseteventfilter.html           |  284 +
+ .../libfractal/sdl/docs/html/sdlsetgamma.html      |  231 +
+ .../libfractal/sdl/docs/html/sdlsetgammaramp.html  |  230 +
+ .../libfractal/sdl/docs/html/sdlsetmodstate.html   |  237 +
+ .../libfractal/sdl/docs/html/sdlsetpalette.html    |  352 ++
+ .../libfractal/sdl/docs/html/sdlsettimer.html      |  267 +
+ .../libfractal/sdl/docs/html/sdlsetvideomode.html  |  558 ++
+ .../libfractal/sdl/docs/html/sdlshowcursor.html    |  239 +
+ .../libfractal/sdl/docs/html/sdlsurface.html       |  597 ++
+ .../libfractal/sdl/docs/html/sdlsyswmevent.html    |  233 +
+ .../libfractal/sdl/docs/html/sdlthreadid.html      |  190 +
+ .../libfractal/sdl/docs/html/sdlunlockaudio.html   |  211 +
+ .../libfractal/sdl/docs/html/sdlunlocksurface.html |  219 +
+ .../sdl/docs/html/sdlunlockyuvoverlay.html         |  225 +
+ .../libfractal/sdl/docs/html/sdlupdaterect.html    |  266 +
+ .../libfractal/sdl/docs/html/sdlupdaterects.html   |  255 +
+ .../libfractal/sdl/docs/html/sdluserevent.html     |  337 +
+ .../sdl/docs/html/sdlvideodrivername.html          |  243 +
+ .../libfractal/sdl/docs/html/sdlvideoinfo.html     |  408 ++
+ .../libfractal/sdl/docs/html/sdlvideomodeok.html   |  270 +
+ .../libfractal/sdl/docs/html/sdlwaitevent.html     |  231 +
+ .../libfractal/sdl/docs/html/sdlwaitthread.html    |  231 +
+ .../libfractal/sdl/docs/html/sdlwarpmouse.html     |  205 +
+ .../libfractal/sdl/docs/html/sdlwasinit.html       |  284 +
+ .../libfractal/sdl/docs/html/sdlwmgetcaption.html  |  222 +
+ .../libfractal/sdl/docs/html/sdlwmgrabinput.html   |  224 +
+ .../sdl/docs/html/sdlwmiconifywindow.html          |  211 +
+ .../libfractal/sdl/docs/html/sdlwmsetcaption.html  |  212 +
+ .../libfractal/sdl/docs/html/sdlwmseticon.html     |  260 +
+ .../sdl/docs/html/sdlwmtogglefullscreen.html       |  205 +
+ ProjetFractal/libfractal/sdl/docs/html/thread.html |  313 +
+ ProjetFractal/libfractal/sdl/docs/html/time.html   |  206 +
+ ProjetFractal/libfractal/sdl/docs/html/video.html  |  507 ++
+ ProjetFractal/libfractal/sdl/docs/html/wm.html     |  188 +
+ .../libfractal/sdl/docs/images/rainbow.gif         |  Bin 0 -> 1715 bytes
+ ProjetFractal/libfractal/sdl/docs/index.html       |   55 +
+ ProjetFractal/libfractal/sdl/include/SDL.h         |  101 +
+ ProjetFractal/libfractal/sdl/include/SDL_active.h  |   63 +
+ ProjetFractal/libfractal/sdl/include/SDL_audio.h   |  284 +
+ .../libfractal/sdl/include/SDL_byteorder.h         |   29 +
+ ProjetFractal/libfractal/sdl/include/SDL_cdrom.h   |  202 +
+ ProjetFractal/libfractal/sdl/include/SDL_config.h  |   45 +
+ .../libfractal/sdl/include/SDL_config_dreamcast.h  |  106 +
+ .../libfractal/sdl/include/SDL_config_macos.h      |  112 +
+ .../libfractal/sdl/include/SDL_config_macosx.h     |  150 +
+ .../libfractal/sdl/include/SDL_config_minimal.h    |   62 +
+ .../libfractal/sdl/include/SDL_config_nds.h        |  115 +
+ .../libfractal/sdl/include/SDL_config_os2.h        |  141 +
+ .../libfractal/sdl/include/SDL_config_symbian.h    |  146 +
+ .../libfractal/sdl/include/SDL_config_win32.h      |  183 +
+ ProjetFractal/libfractal/sdl/include/SDL_copying.h |   22 +
+ ProjetFractal/libfractal/sdl/include/SDL_cpuinfo.h |   69 +
+ ProjetFractal/libfractal/sdl/include/SDL_endian.h  |  214 +
+ ProjetFractal/libfractal/sdl/include/SDL_error.h   |   72 +
+ ProjetFractal/libfractal/sdl/include/SDL_events.h  |  356 ++
+ ProjetFractal/libfractal/sdl/include/SDL_getenv.h  |   28 +
+ .../libfractal/sdl/include/SDL_joystick.h          |  187 +
+ .../libfractal/sdl/include/SDL_keyboard.h          |  135 +
+ ProjetFractal/libfractal/sdl/include/SDL_keysym.h  |  326 +
+ ProjetFractal/libfractal/sdl/include/SDL_loadso.h  |   78 +
+ ProjetFractal/libfractal/sdl/include/SDL_main.h    |  106 +
+ ProjetFractal/libfractal/sdl/include/SDL_mouse.h   |  143 +
+ ProjetFractal/libfractal/sdl/include/SDL_mutex.h   |  177 +
+ ProjetFractal/libfractal/sdl/include/SDL_name.h    |   11 +
+ ProjetFractal/libfractal/sdl/include/SDL_opengl.h  | 6570 ++++++++++++++++++++
+ .../libfractal/sdl/include/SDL_platform.h          |  110 +
+ ProjetFractal/libfractal/sdl/include/SDL_quit.h    |   55 +
+ ProjetFractal/libfractal/sdl/include/SDL_rwops.h   |  155 +
+ ProjetFractal/libfractal/sdl/include/SDL_stdinc.h  |  620 ++
+ ProjetFractal/libfractal/sdl/include/SDL_syswm.h   |  226 +
+ ProjetFractal/libfractal/sdl/include/SDL_thread.h  |  115 +
+ ProjetFractal/libfractal/sdl/include/SDL_timer.h   |  125 +
+ ProjetFractal/libfractal/sdl/include/SDL_types.h   |   28 +
+ ProjetFractal/libfractal/sdl/include/SDL_version.h |   91 +
+ ProjetFractal/libfractal/sdl/include/SDL_video.h   |  951 +++
+ ProjetFractal/libfractal/sdl/include/begin_code.h  |  196 +
+ ProjetFractal/libfractal/sdl/include/close_code.h  |   46 +
+ ProjetFractal/libfractal/sdl/lib/x64/SDL.dll       |  Bin 0 -> 306688 bytes
+ ProjetFractal/libfractal/sdl/lib/x64/SDL.lib       |  Bin 0 -> 41512 bytes
+ ProjetFractal/libfractal/sdl/lib/x64/SDLmain.lib   |  Bin 0 -> 11176 bytes
+ ProjetFractal/libfractal/sdl/lib/x86/SDL.dll       |  Bin 0 -> 303616 bytes
+ ProjetFractal/libfractal/sdl/lib/x86/SDL.lib       |  Bin 0 -> 42522 bytes
+ ProjetFractal/libfractal/sdl/lib/x86/SDLmain.lib   |  Bin 0 -> 8214 bytes
+ ProjetFractal/libfractal/tools.c                   |    2 +-
+ ProjetFractal/main (copy).c                        |   13 +
+ ProjetFractal/main.c                               |   17 +-
+ ProjetFractal/main.c~                              |   13 +
+ ProjetFractal/main.o                               |  Bin 1504 -> 1824 bytes
+ 264 files changed, 76126 insertions(+), 5 deletions(-)
+
+commit 4c4d20d1fb1f50dad75af43f4a109328d5602a13
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed Apr 25 20:59:43 2018 +0200
+
+    -
+
+ ProjetFractal/libfractal/tools.c | 2 +-
+ ProjetFractal/main.c             | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+
+commit 92ebdd7764636c98e6e555fce70029fe47073125
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed Apr 25 20:45:58 2018 +0200
+
+    Revert "Revert "correction struct et makefile""
+    
+    This reverts commit d92e6591a8acab32661513467763141f956cb07f.
+
+ ProjetFractal/Makefile             |   2 +-
+ ProjetFractal/libfractal/fractal.c |   9 +++++----
+ ProjetFractal/libfractal/fractal.h |   8 ++++----
+ ProjetFractal/libfractal/fractal.o | Bin 0 -> 6600 bytes
+ ProjetFractal/main.c               |   6 ++++--
+ ProjetFractal/main.o               | Bin 0 -> 1504 bytes
+ 6 files changed, 14 insertions(+), 11 deletions(-)
+
+commit d92e6591a8acab32661513467763141f956cb07f
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed Apr 25 20:45:56 2018 +0200
+
+    Revert "correction struct et makefile"
+    
+    This reverts commit 10b4cb91d6aa2a9daf88e4683bfd420fce7c9c08.
+
+ ProjetFractal/Makefile             |   2 +-
+ ProjetFractal/libfractal/fractal.c |   9 ++++-----
+ ProjetFractal/libfractal/fractal.h |   8 ++++----
+ ProjetFractal/libfractal/fractal.o | Bin 6600 -> 0 bytes
+ ProjetFractal/main.c               |   6 ++----
+ ProjetFractal/main.o               | Bin 1504 -> 0 bytes
+ 6 files changed, 11 insertions(+), 14 deletions(-)
+
+commit 10b4cb91d6aa2a9daf88e4683bfd420fce7c9c08
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Wed Apr 25 13:53:24 2018 +0200
+
+    correction struct et makefile
+
+ ProjetFractal/Makefile             |   2 +-
+ ProjetFractal/libfractal/fractal.c |   9 +++++----
+ ProjetFractal/libfractal/fractal.h |   8 ++++----
+ ProjetFractal/libfractal/fractal.o | Bin 0 -> 6600 bytes
+ ProjetFractal/main.c               |   6 ++++--
+ ProjetFractal/main.o               | Bin 0 -> 1504 bytes
+ 6 files changed, 14 insertions(+), 11 deletions(-)
+
+commit e14705b01ae11729c1774a9e7a1cdd2bce449b1c
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Sun Apr 22 17:37:00 2018 +0200
+
+    MakeFile
+
+ ProjetFractal/Makefile | 11 ++++++++++-
+ ProjetFractal/main.c   |  4 +---
+ 2 files changed, 11 insertions(+), 4 deletions(-)
+
+commit bc590aa3aa4094ee52da34af59556c16345715d6
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Sun Apr 22 16:51:52 2018 +0200
+
+    Revert "Update fractal.c"
+    
+    This reverts commit 16f800085be671937408986b541b10639f479da4.
+
+ ProjetFractal/libfractal/fractal.c | 22 +++++++++-------------
+ 1 file changed, 9 insertions(+), 13 deletions(-)
+
+commit 16f800085be671937408986b541b10639f479da4
+Author: BellonGuillaume <33180570+BellonGuillaume@users.noreply.github.com>
+Date:   Sun Apr 22 16:49:55 2018 +0200
+
+    Update fractal.c
+
+ ProjetFractal/libfractal/fractal.c | 22 +++++++++++++---------
+ 1 file changed, 13 insertions(+), 9 deletions(-)
+
+commit 1bdb5d3e3a500d44794c1ec4cdf7a008c24fd586
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Sun Apr 22 16:46:55 2018 +0200
+
+    values, get et set
+
+ ProjetFractal/libfractal/fractal.c | 13 +++++++++----
+ 1 file changed, 9 insertions(+), 4 deletions(-)
+
+commit b88dd86357215b2adbc14dc13053cd234136f35c
+Author: BellonGuillaume <33180570+BellonGuillaume@users.noreply.github.com>
+Date:   Sun Apr 22 16:35:58 2018 +0200
+
+    Update fractal.c
+
+ ProjetFractal/libfractal/fractal.c | 8 ++++++--
+ 1 file changed, 6 insertions(+), 2 deletions(-)
+
+commit dabd067029792b457adc53cfb5d20d1d28c9b626
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Sun Apr 22 16:33:01 2018 +0200
+
+    -
+
+ ProjetFractal/libfractal/fractal.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 6c01073171a51488ce1315db2c4c64b56465ff00
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Sun Apr 22 16:27:45 2018 +0200
+
+    -
+
+ ProjetFractal/libfractal/fractal.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 8896be28a3d899a2c6dea791f7064cb0d7a8a4f3
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Sun Apr 22 16:26:29 2018 +0200
+
+    Update fractal.h
+
+ ProjetFractal/libfractal/fractal.c | 2 +-
+ ProjetFractal/libfractal/fractal.h | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+
+commit a44561901fcffc7aec0635b03eb6f87723c09bbb
+Merge: 4e631af 3ddc794
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Sun Apr 22 16:18:36 2018 +0200
+
+    Merge branch 'master' of https://github.com/vahidbe/Fractal
+
+commit 3ddc794b7eafd8d4b1e7862a5579bbf7dba6ccbe
+Author: BellonGuillaume <33180570+BellonGuillaume@users.noreply.github.com>
+Date:   Sun Apr 22 16:16:40 2018 +0200
+
+    Update fractal.c
+
+ ProjetFractal/libfractal/fractal.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 4e631af953c7c91831fbcb9461819045177e3d06
+Merge: ef8b406 1d1def8
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Sun Apr 22 16:16:39 2018 +0200
+
+    Merge branch 'master' of https://github.com/vahidbe/Fractal
+
+commit ef8b4060d702050dcdc0c8cd29d93c7eef3fa959
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Sun Apr 22 16:16:36 2018 +0200
+
+    -
+
+ ProjetFractal/libfractal/fractal.c | 11 ++++-------
+ ProjetFractal/libfractal/fractal.h |  2 +-
+ 2 files changed, 5 insertions(+), 8 deletions(-)
+
+commit 1d1def821d0c8eda54c5b2d816b2187e538fb13e
+Author: BellonGuillaume <33180570+BellonGuillaume@users.noreply.github.com>
+Date:   Sun Apr 22 16:15:18 2018 +0200
+
+    Update fractal.c
+
+ ProjetFractal/libfractal/fractal.c | 7 +++----
+ 1 file changed, 3 insertions(+), 4 deletions(-)
+
+commit d03a996e77642c400723c6c3e72e257fc3d654f8
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Sun Apr 22 16:12:38 2018 +0200
+
+    fractal free
+
+ ProjetFractal/libfractal/fractal.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit bd57df97e454f6cd44fc861918ded488b4ef8644
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Sun Apr 22 16:11:39 2018 +0200
+
+    -
+
+ ProjetFractal/libfractal/fractal.c | 5 -----
+ 1 file changed, 5 deletions(-)
+
+commit 8aa052700b0656366b21e2614ac8bd7889edcb6c
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Sun Apr 22 16:10:47 2018 +0200
+
+    Correction fractal
+
+ ProjetFractal/libfractal/fractal.c | 25 ++++++++++++++++++-------
+ ProjetFractal/libfractal/fractal.h | 12 ++++++------
+ 2 files changed, 24 insertions(+), 13 deletions(-)
+
+commit c9af013652c749296e54e723710997fd01f5ac05
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Sun Apr 22 16:04:34 2018 +0200
+
+    -
+
+ ProjetFractal/libfractal/fractal.h | 12 ++++++------
+ 1 file changed, 6 insertions(+), 6 deletions(-)
+
+commit d3426169c53fa234de3c43b3fcfdf903d7d36345
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Sun Apr 22 16:01:54 2018 +0200
+
+    constr
+
+ ProjetFractal/libfractal/fractal.c | 6 +++++-
+ 1 file changed, 5 insertions(+), 1 deletion(-)
+
+commit 038d6967e891dd9e424a2e8b32eaf765df06ba77
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Sun Apr 22 15:55:46 2018 +0200
+
+    Struct Fract
+
+ ProjetFractal/libfractal/fractal.h | 11 ++++++++---
+ 1 file changed, 8 insertions(+), 3 deletions(-)
+
+commit 84e3a07f7e9fe34eef6eee09d8b62031c15bf586
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Sun Apr 22 15:47:54 2018 +0200
+
+    Init
+
+ ProjetFractal/Makefile             |   1 +
+ ProjetFractal/libfractal/Makefile  |  15 +++++
+ ProjetFractal/libfractal/fractal.c |  54 ++++++++++++++++++
+ ProjetFractal/libfractal/fractal.h | 112 +++++++++++++++++++++++++++++++++++++
+ ProjetFractal/libfractal/tools.c   | 103 ++++++++++++++++++++++++++++++++++
+ ProjetFractal/main.c               |  11 ++++
+ 6 files changed, 296 insertions(+)
+
+commit e423d0ede886ecca107c773c49fd788d53a09cec
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Sun Apr 22 15:46:59 2018 +0200
+
+    Initial commit
+
+ .gitattributes | 2 ++
+ 1 file changed, 2 insertions(+)
