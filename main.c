@@ -482,7 +482,7 @@ void *writer(void* arguments)
 		  int i, j;
 		  for(i=0;i<fractal_get_width(f);i++){
 			  for(j=0;j<fractal_get_height(f);j++){
-				fractal_set_value(newF,fractal_get_value(f,i,j));
+				fractal_set_value(newF,i,j,fractal_get_value(f,i,j));
 			  }
 		  }
 		  fractal_free(f);
