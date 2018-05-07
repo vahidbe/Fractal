@@ -36,6 +36,7 @@ int countEleves;
 struct sbuf* bufIn;
 struct sbuf* bufOut;
 struct sbuf* highestF;
+struct charbuf* bufFName;
 double average;
 
 
@@ -52,6 +53,27 @@ struct sbuf{
   sem_t full;       				/* Nombre d'items dans le buffer */
   pthread_mutex_t mutex;
 };
+
+struct charbuf{
+  char** buf;
+  int n;
+  int front;
+  int rear;
+  pthread_mutex_t mutex;
+};
+
+int countLettres (char* name)
+{
+  int i=0;
+  int j=1;
+  while(j)
+    {
+      if((name[i])==NULL)
+	{j=0;}
+      i++;
+    }
+  return i;
+}
 
 /*
  * @pre sp!=NULL, n>0
@@ -72,13 +94,32 @@ void sbuf_init(struct sbuf *sp, int n)
   sem_init(&sp->full, 0, 0);      		/* Au début, rien à consommer */
 }
 
+void charbuf_init(struct charbuf *sp, int n)
+{
+  if(sp==NULL)
+    {
+      fprintf(stderr,"Malloc error!\n");
+      fflush(stderr);
+      exit(-1);
+    }
+  sp->buf = (char**) calloc(n, sizeof(char*));
+  sp->n = n;                       		/* Buffer content les entiers */
+  sp->front = sp->rear = 0;        		/* Buffer vide si front == rear */
+  pthread_mutex_init(&sp->mutex, NULL);      	/* Exclusion mutuelle */
+}
+
 /*
  * @pre sp!=NULL
  * @post libère le buffer
  */
 void sbuf_clean(struct sbuf *sp)
 {
-  free(sp->buf);
+  free(sp->buf); 				//TODO : Enlever toutes les fractales du buffer;
+}
+
+void charbuf_clean(struct charbuf *sp)
+{
+  free(sp->buf);				//TODO : Enlever toutes les fractales du buffer;
 }
 
 /* @pre sp!=NULL
@@ -91,10 +132,33 @@ void sbuf_insert(struct sbuf *sp, struct fractal* f)
   pthread_mutex_lock(&(sp->mutex));
   sp->buf[sp->rear]=f;
   sp->rear = (sp->rear)+1;
-  //printf("Ins - Fractale inserted : %s, %d, %d, %f, %f\n",f->name,fractal_get_width(f),fractal_get_height(f), fractal_get_a(f), fractal_get_b(f));
+  //printf("Ins - Fractale inserted : %s, %d, %d, %f, %f\n",(sp->buf[(sp->rear)-1])->name,fractal_get_width(f),fractal_get_height(f), fractal_get_a(f), fractal_get_b(f));
   //fflush(stdout);
   pthread_mutex_unlock(&(sp->mutex));
   sem_post(&(sp->full));
+}
+
+void sbuf_insertHighest(struct sbuf *sp, struct fractal* f)
+{
+  pthread_mutex_lock(&(sp->mutex));
+  sp->buf[sp->rear]=f;
+  sp->rear = (sp->rear)+1;
+  //printf("Ins - Fractale inserted : %s, %d, %d, %f, %f\n",(sp->buf[(sp->rear)-1])->name,fractal_get_width(f),fractal_get_height(f), fractal_get_a(f), fractal_get_b(f));
+  //fflush(stdout);
+  pthread_mutex_unlock(&(sp->mutex));
+}
+
+void charbuf_insert(struct charbuf *sp, char* f,int n)
+{
+
+  pthread_mutex_lock(&(sp->mutex));
+  sp->buf[sp->rear] = (char*)malloc(n*sizeof(char));
+  strcpy(sp->buf[sp->rear],f);
+  sp->rear = (sp->rear)+1;
+  //printf("Ins - Fractale inserted : %s, %d, %d, %f, %f\n",f->name,fractal_get_width(f),fractal_get_height(f), fractal_get_a(f), fractal_get_b(f));
+  //fflush(stdout);
+  pthread_mutex_unlock(&(sp->mutex));
+
 }
 
 /* @pre sbuf!=NULL
@@ -105,6 +169,7 @@ struct fractal* sbuf_remove(struct sbuf *sp)
   sem_wait(&(sp->full));
   struct fractal* f;
   pthread_mutex_lock(&(sp->mutex));
+  //printf("Nom dans le buf : %s\n",(sp->buf)[(sp->rear)-1
   sp->rear = (sp->rear)-1;
   f = sp->buf[sp->rear];
   //printf("Ins - Fractale removed : %s, %d, %d, %f, %f\n",f->name,fractal_get_width(f),fractal_get_height(f), fractal_get_a(f), fractal_get_b(f));
@@ -113,6 +178,55 @@ struct fractal* sbuf_remove(struct sbuf *sp)
   sem_post(&(sp->empty));
   return f;
 }
+
+
+struct fractal* sbuf_removeHighest(struct sbuf *sp)
+{	
+  struct fractal* f;
+  pthread_mutex_lock(&(sp->mutex));
+  //printf("Nom dans le buf : %s\n",(sp->buf)[(sp->rear)-1
+  sp->rear = (sp->rear)-1;
+  f = sp->buf[sp->rear];
+  //printf("Ins - Fractale removed : %s, %d, %d, %f, %f\n",f->name,fractal_get_width(f),fractal_get_height(f), fractal_get_a(f), fractal_get_b(f));
+  //fflush(stdout);
+  pthread_mutex_unlock(&(sp->mutex));
+  return f;
+}
+
+char* charbuf_remove(struct charbuf *sp)
+{
+  char* f;
+  pthread_mutex_lock(&(sp->mutex));
+  sp->rear = (sp->rear)-1;
+  f = sp->buf[sp->rear];
+  //printf("Ins - Fractale removed : %s, %d, %d, %f, %f\n",f->name,fractal_get_width(f),fractal_get_height(f), fractal_get_a(f), fractal_get_b(f));
+  //fflush(stdout);
+  pthread_mutex_unlock(&(sp->mutex));
+  return f;
+}
+
+int charbuf_already_used(struct charbuf *sp, char* name)
+{
+  int i;
+  int nLettres = countLettres(name);
+  pthread_mutex_lock(&(sp->mutex));
+  for(i=0; i<(sp->rear); i++)
+    {
+
+      if(strcmp(sp->buf[i],name)==0)
+	{
+	  pthread_mutex_unlock(&(sp->mutex));
+	  return 1;
+	}
+    }
+  pthread_mutex_unlock(&(sp->mutex));
+  charbuf_insert(bufFName,name,nLettres);
+  return 0;
+}
+
+
+
+
 
 void *producer(void* arguments){	
   struct args* argument=(struct args*) arguments;
@@ -248,15 +362,18 @@ void *producer(void* arguments){
 	    f = fractal_new(name,*buf2,*buf3,*buf4,*buf5);
 	    //**/printf("P - === Fractale lue : %s, %d, %d, %f, %f ===\n",f->name,fractal_get_width(f),fractal_get_height(f), fractal_get_a(f), fractal_get_b(f));
 	    //**/fflush(stdout);
-	    sbuf_insert(bufIn,f);
-	    fractCountP++;			
-	    //printf("unlock");
-	    //fflush(stdout);
-	    //pthread_mutex_unlock(&gardien);
-	    sleep(0);
-	    //pthread_mutex_lock(&gardien);	
-	    //printf("lock");
-	    //fflush(stdout);
+	    if(charbuf_already_used(bufFName,name)){fprintf(stderr,"Erreur de duplicata pour le nom de fractale : %s\n",name);}
+	    else{
+	      sbuf_insert(bufIn,f);
+	      fractCountP++;			
+	      //printf("unlock");
+	      //fflush(stdout);
+	      //pthread_mutex_unlock(&gardien);
+	      sleep(0);
+	      //pthread_mutex_lock(&gardien);	
+	      //printf("lock");
+	      //fflush(stdout);
+	    }
 	    x=fscanf(file,"%64s",buf1);
 	  }
       }
@@ -267,6 +384,7 @@ void *producer(void* arguments){
   pthread_mutex_unlock(&gardien);
   return NULL;
 }
+
 
 void *consumer(void* arguments){
   int done=0;
@@ -280,7 +398,8 @@ void *consumer(void* arguments){
 	if(((countProd==numberProd)&(bufIn->front==bufIn->rear))|((fractCountC==fractCountP)&(fractCountP!=0)))
 	  {
 	    done=1;
-	  }}
+	  }
+      }
       else
 	{
 	  pthread_mutex_lock(&gardien);
@@ -288,25 +407,28 @@ void *consumer(void* arguments){
 	  //printf("fractcount++\n");
 	  //fflush(stdout);
 	  pthread_mutex_unlock(&gardien);
-	  if(bufIn->front!=bufIn->rear){
-	    //printf("remove cons\n");
-	    //fflush(stdout);
-	    struct fractal* f=(sbuf_remove(bufIn));
-	    pthread_mutex_unlock(&tuteur1);
-	    int i;
-	    int j;
-	    for(i=0;i<f->width;i++)
-	      {
-		for(j=0;j<f->height;j++)
-		  {
-		    fractal_set_value(f,i,j,fractal_compute_value(f,i,j));
-		  }
-	      }
-	    sbuf_insert(bufOut,f);
-	  }
-	  else{
-	    pthread_mutex_unlock(&tuteur1);
-	  }
+	  if(bufIn->front!=bufIn->rear)
+	    {
+	      //printf("remove cons\n");
+	      //fflush(stdout);
+	      struct fractal* f=(sbuf_remove(bufIn));
+	      pthread_mutex_unlock(&tuteur1);
+	      int i;
+	      int j;
+	      for(i=0;i<f->width;i++)
+		{
+		  for(j=0;j<f->height;j++)
+		    {
+		      fractal_set_value(f,i,j,fractal_compute_value(f,i,j));
+		    }
+		}
+	      sbuf_insert(bufOut,f);
+		
+	    }
+	  else
+	    {
+	      pthread_mutex_unlock(&tuteur1);
+	    }
 	}
     }
   pthread_mutex_lock(&gardien);
@@ -316,93 +438,107 @@ void *consumer(void* arguments){
   return NULL;
 }
 
-void *writer(void* arguments){
+void *writer(void* arguments)
+{
   int done2=0;
-    while(!done2){			
+  while(!done2)
+    {			
       pthread_mutex_lock(&tuteur2);
       sleep(0);
-      if(bufOut->front==bufOut->rear){
-	sleep(0);
-	pthread_mutex_unlock(&tuteur2);
-	if(((countCons==numberThreads)&(bufOut->front==bufOut->rear))|((fractCountW==fractCountP)&(fractCountP!=0)))
-	  {
-	    pthread_mutex_lock(&professor);
-	    countEleves++;
-	    pthread_mutex_unlock(&professor);
-	    done2=1;
-	  }}
-      else{
-	pthread_mutex_lock(&gardien);
-	fractCountW++;
-	pthread_mutex_unlock(&gardien);
-	if(bufOut->front!=bufOut->rear){
-	  struct fractal* f = (sbuf_remove(bufOut));
-	  pthread_mutex_unlock(&tuteur2);
-	  //**/printf("W - === Fractale lue : %s, %d, %d, %f, %f ===\n",f->name,fractal_get_width(f),fractal_get_height(f), fractal_get_a(f), fractal_get_b(f));
-	  //**/fflush(stdout);
-	  double newAverage = fractal_compute_average(f);
-	  //**/printf("W - Average computed == %f\n", newAverage);
-	  //**/fflush(stdout);
-	  pthread_mutex_lock(&professor);
-	  if(newAverage>average)
-	    {
-	      average=newAverage;
-	      sbuf_clean(highestF);
-	      sbuf_init(highestF,50);
-	      sbuf_insert(highestF,f);
-	      maxEgal=0;
-	    }
-	  else if(newAverage==average)
-	    {
-		sbuf_insert(highestF,f);
-		maxEgal++;
-	    }
-	  pthread_mutex_unlock(&professor);
-	  if(optionD){
-	  	write_bitmap_sdl(f,strcat(fractal_get_name(f),".bmp"),fileOutName);
-		}	
-	  fractal_free(f);
+      if(bufOut->front==bufOut->rear)
+	{
 	  sleep(0);
-	}else{
 	  pthread_mutex_unlock(&tuteur2);
+	  if(((countCons==numberThreads)&(bufOut->front==bufOut->rear))|((fractCountW==fractCountP)&(fractCountP!=0)))
+	    {
+	      pthread_mutex_lock(&professor);
+	      countEleves++;
+	      pthread_mutex_unlock(&professor);
+	      done2=1;
+	    }
 	}
-      }
+      else
+	{
+	  pthread_mutex_lock(&gardien);
+	  fractCountW++;
+	  pthread_mutex_unlock(&gardien);
+	  if(bufOut->front!=bufOut->rear)
+	    {
+	      struct fractal* f = (sbuf_remove(bufOut));
+	      pthread_mutex_unlock(&tuteur2);
+	      //**/printf("W - === Fractale lue : %s, %d, %d, %f, %f ===\n",f->name,fractal_get_width(f),fractal_get_height(f), fractal_get_a(f), fractal_get_b(f));
+	      //**/fflush(stdout);
+	      double newAverage = fractal_compute_average(f);
+	      //**/printf("W - Average computed == %f\n", newAverage);
+	      //**/fflush(stdout);
+	      pthread_mutex_lock(&professor);
+	      if(newAverage>average)
+		{
+		  average=newAverage;
+		  sbuf_clean(highestF);
+		  sbuf_init(highestF,50);
+		  printf("Valeur nom avant insert : %s\n",f->name);
+		  sbuf_insertHighest(highestF,f);
+		  printf("Valeur nom buf après insert : %s\n",((highestF->buf)[(highestF->rear)-1])->name);
+		  maxEgal=0;
+		}
+	      else if(newAverage==average)
+		{
+		  sbuf_insertHighest(highestF,f);
+		  maxEgal++;
+		}
+	      pthread_mutex_unlock(&professor);
+	      if(optionD)
+		{
+		  write_bitmap_sdl(f,strcat(fractal_get_name(f),".bmp"));
+		}	
+	      fractal_free(f);
+	      sleep(0);
+	    }
+	  else
+	    {
+	      pthread_mutex_unlock(&tuteur2);
+	    }
+	}
 			
     }
-    pthread_mutex_lock(&professor);
-    if((!sortie)&(countEleves==numberThreads))
-      {	
-	if(highestF->rear!=highestF->front)
-	  {
+  pthread_mutex_lock(&professor);
+  if((!sortie)&(countEleves==numberThreads))
+    {	
+      if(highestF->rear!=highestF->front)
+	{
 	    
-	    if(maxEgal>0)
-		{
-			int i;
-			for(i = 0; i<maxEgal;i++)
-			{
-				struct fractal* f = sbuf_remove(highestF);
-				write_bitmap_sdl(f,strcat("fractout_",strcat(fractal_get_name(f),".bmp")),fileOutName);
-			fractal_free(f);
-			sortie = 1;
-			}
-		}
-	    else
+	  if(maxEgal>0)
 	    {
-				struct fractal* f = sbuf_remove(highestF);
-		    /**/printf("\n- Plus grande fractale : %s avec une moyenne de : %f\n\n", f->name, average);
-	            /**/fflush(stdout);
-		    write_bitmap_sdl(f,strcat(fileOutName,".bmp"),fileOutName);
-			fractal_free(f);
-			sortie = 1;
+	      int i;
+	      for(i = 0; i<maxEgal;i++)
+		{
+		  struct fractal* f = (sbuf_removeHighest(highestF));
+		  write_bitmap_sdl(f,strcat("fractout_",strcat(fractal_get_name(f),".bmp")));
+		  fractal_free(f);
+		}
 	    }
-	  }
-	else
-	  {
-	    /**/printf("\n- You did not enter a fractal in your file!\n\n");
-	    /**/fflush(stdout);
-	    sortie=1;
-	  }
-      }
+	  else
+	    {
+	      printf("Valeur nom buf avant remove : %s\n",highestF->buf[0]->name);
+	      struct fractal* f = (sbuf_removeHighest(highestF));
+	      printf("Valeur nom après remove : %s\n", f->name);
+	      printf("Fractale la plus grande : %s, %d, %d, %f, %f\n",fractal_get_name(f),f->height, f->width, f->a, f->b);
+	      fflush(stdout);
+	      //**/printf("\n- Plus grande fractale : %s avec une moyenne de : %f\n\n", f->name, average);
+	      //**/fflush(stdout);
+	      write_bitmap_sdl(f,strcat(fileOutName,".bmp"));
+	      fractal_free(f);
+	    }
+	  sortie = 1;
+	}
+      else
+	{
+	  /**/printf("\n- You did not enter a fractal in your file!\n\n");
+	  /**/fflush(stdout);
+	  sortie=1;
+	}
+    }
   
   pthread_mutex_unlock(&professor);
   pthread_mutex_lock(&gardien);
@@ -430,36 +566,41 @@ int main(int argc, char *argv[])
   int count;
   int optionsCount=0;
   optionD=0;
-  bufIn=(malloc(sizeof(struct sbuf))); 
-  bufOut=(malloc(sizeof(struct sbuf))); 
-  highestF=(malloc(sizeof(struct sbuf)));
+  bufIn=(struct sbuf*)malloc(sizeof(struct sbuf)); 
+  bufOut=(struct sbuf*)malloc(sizeof(struct sbuf)); 
+  highestF=(struct sbuf*)malloc(sizeof(struct sbuf));
+  bufFName=(struct charbuf*)malloc(sizeof(struct charbuf));
 	
-  if((bufIn==NULL)|(bufOut==NULL)|(highestF==NULL))
+  if((bufIn==NULL)|(bufOut==NULL)|(highestF==NULL)|(bufFName==NULL))
     {
       fprintf(stderr,"\nMalloc error!\n");
+      fflush(stderr);
+      exit(-1);
     }
 
-  if((*argv[1]=='-')&(*(argv[1]+1)=='d')){
-    optionD=1;
-    optionsCount++;
-    if(argc>2){
-      if((*(argv[2])=='-')&(*(argv[2]+1)=='-'))
-	{  
-	  if ((*(argv[2]+2)=='m')&(*(argv[2]+3)=='a')&(*(argv[2]+4)=='x')&(*(argv[2]+5)=='t')&(*(argv[2]+6)=='h')&(*(argv[2]+7)=='r')&(*(argv[2]+8)=='e')&(*(argv[2]+9)=='a')&(*(argv[2]+10)=='d')&(*(argv[2]+11)=='s'))
-	    {
-	      numberThreads = atoi(argv[3]);
-	      optionsCount++;
-	      optionsCount++;
-	    }
-	  else
-	    {
-	      fprintf(stderr,"\nWrong option\n");
-	      optionsCount++;
-	      optionsCount++;
+  if((*argv[1]=='-')&(*(argv[1]+1)=='d'))
+    {
+      optionD=1;
+      optionsCount++;
+      if(argc>2)
+	{
+	  if((*(argv[2])=='-')&(*(argv[2]+1)=='-'))
+	    {  
+	      if ((*(argv[2]+2)=='m')&(*(argv[2]+3)=='a')&(*(argv[2]+4)=='x')&(*(argv[2]+5)=='t')&(*(argv[2]+6)=='h')&(*(argv[2]+7)=='r')&(*(argv[2]+8)=='e')&(*(argv[2]+9)=='a')&(*(argv[2]+10)=='d')&(*(argv[2]+11)=='s'))
+		{
+		  numberThreads = atoi(argv[3]);
+		  optionsCount++;
+		  optionsCount++;
+		}
+	      else
+		{
+		  fprintf(stderr,"\nWrong option\n");
+		  optionsCount++;
+		  optionsCount++;
+		}
 	    }
 	}
     }
-  }
   else{
     if((*argv[1]=='-')&(*(argv[1]+1)=='-'))
       {  
@@ -477,9 +618,10 @@ int main(int argc, char *argv[])
 	  }
       }
   }	
-  if(numberThreads==0){
-    numberThreads=argc-2-optionsCount; 
-  }
+  if(numberThreads==0)
+    {
+      numberThreads=argc-2-optionsCount; 
+    }
   numberProd = argc-2-optionsCount;
   if(numberProd==0)
     {
@@ -487,6 +629,7 @@ int main(int argc, char *argv[])
       free(bufIn);
       free(bufOut);
       free(highestF);
+      free(bufFName);
       exit(-1);
     }
 	
@@ -507,7 +650,8 @@ int main(int argc, char *argv[])
   sem_init(&directeur, 0 ,numberThreads);
   sbuf_init(bufIn, 50);        						
   sbuf_init(bufOut, 50);
-  sbuf_init(highestF,10);   
+  sbuf_init(highestF, 50);   
+  charbuf_init(bufFName, 200);
 	
   if(numberThreads==0)
     {
@@ -529,62 +673,74 @@ int main(int argc, char *argv[])
 	  while(!endOfInput)
 	    {
 	      char* name=malloc(sizeof(char));
-		  if(name==NULL)
-		  {
-			  sbuf_clean(bufIn);
-			  sbuf_clean(bufOut);
-			  exit(-1);
-		  }
+	      if(name==NULL)
+		{
+		  sbuf_clean(bufIn);
+		  sbuf_clean(bufOut);
+		  sbuf_clean(highestF);
+		  charbuf_clean(bufFName);
+		  exit(-1);
+		}
 	      int* height=malloc(sizeof(int));
-		  if(height==NULL)
-		  {
-			  free(name);
-			  sbuf_clean(bufIn);
-			  sbuf_clean(bufOut);
-			  exit(-1);
-		  }
+	      if(height==NULL)
+		{
+		  free(name);
+		  sbuf_clean(bufIn);
+		  sbuf_clean(bufOut);
+		  sbuf_clean(highestF);
+		  charbuf_clean(bufFName);
+		  exit(-1);
+		}
 	      int* width=malloc(sizeof(int));
-		  if(width==NULL)
-		  {
-			  free(name);
-			  free(height);
-			  sbuf_clean(bufIn);
-			  sbuf_clean(bufOut);
-			  exit(-1);
-		  }
+	      if(width==NULL)
+		{
+		  free(name);
+		  free(height);
+		  sbuf_clean(bufIn);
+		  sbuf_clean(bufOut);
+		  sbuf_clean(highestF);
+		  charbuf_clean(bufFName);
+		  exit(-1);
+		}
 	      double* a=malloc(sizeof(double));
-		  if(a==NULL)
-		  {
-			  free(name);
-			  free(width);
-			  free(height);
-			  sbuf_clean(bufIn);
-			  sbuf_clean(bufOut);
-			  exit(-1);
-		  }
+	      if(a==NULL)
+		{
+		  free(name);
+		  free(width);
+		  free(height);
+		  sbuf_clean(bufIn);
+		  sbuf_clean(bufOut);
+		  sbuf_clean(highestF);
+		  charbuf_clean(bufFName);
+		  exit(-1);
+		}
 	      double* b=malloc(sizeof(double));
-		  if(b==NULL)
-		  {
-			  free(name);
-			  free(width);
-			  free(height);
-			  free(a);
-			  sbuf_clean(bufIn);
-			  sbuf_clean(bufOut);
-			  exit(-1);
-		  }
+	      if(b==NULL)
+		{
+		  free(name);
+		  free(width);
+		  free(height);
+		  free(a);
+		  sbuf_clean(bufIn);
+		  sbuf_clean(bufOut);
+		  sbuf_clean(highestF);
+		  charbuf_clean(bufFName);
+		  exit(-1);
+		}
 	      char* y=malloc(sizeof(char));
-		  if(y==NULL)
-		  {
-			  free(name);
-			  free(width);
-			  free(height);
-			  free(a);
-			  free(b);
-			  sbuf_clean(bufIn);
-			  sbuf_clean(bufOut);
-			  exit(-1);
-		  }
+	      if(y==NULL)
+		{
+		  free(name);
+		  free(width);
+		  free(height);
+		  free(a);
+		  free(b);
+		  sbuf_clean(bufIn);
+		  sbuf_clean(bufOut);
+		  sbuf_clean(highestF);
+		  charbuf_clean(bufFName);
+		  exit(-1);
+		}
 	      puts("\nDonnez le nom de la fractale :");
 	      scanf("%64s", name);
 	      puts("Donnez la largeur de la fractale :");
@@ -597,9 +753,19 @@ int main(int argc, char *argv[])
 	      scanf("%lf", b);
 	      puts("Voulez-vous entrer une autre fractale? (y/n) :");
 	      scanf("%1s", y);
-		  struct fractal* f=fractal_new(name,*width,*height,*a,*b);
+	      struct fractal* f=fractal_new(name,*width,*height,*a,*b);
+	      if(charbuf_already_used(bufFName,name))
+		{
+		  fprintf(stderr," Erreur de duplicata trouvée pour le nom de fractale : %s\n",name);
+		  fflush(stderr);
+		}
+	      else
+		{
+		  printf("Pas d'erreur de duplicata\n");
+		  fflush(stdout);
 		  sbuf_insert(bufIn,f);
-		  fractCountP++;		  
+		  fractCountP++;
+		}		  
 	      if(*y!='y')
 		{
 		  endOfInput=1;
@@ -610,8 +776,8 @@ int main(int argc, char *argv[])
 		  free(b);
 		  free(y);
 		}
-	   }			
-	countProd++;	
+	    }			
+	  countProd++;	
 	}
       else
 	{

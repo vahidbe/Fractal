@@ -122,6 +122,6 @@ int fractal_compute_value(struct fractal *f, int x, int y);
  * @fname: nom du fichier de sortie
  * @return: 0 si pas d'erreurs, -1 sinon
  */
-int write_bitmap_sdl(const struct fractal *f, const char *fname, const char *foutname);
+int write_bitmap_sdl(const struct fractal *f, const char *fname);
 
 #endif
