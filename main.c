@@ -68,7 +68,7 @@ int countLettres (char* name)
   int j=1;
   while(j)
     {
-      if((name[i])==NULL)
+      if((name[i])==0)
 	{j=0;}
       i++;
     }
