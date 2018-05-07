@@ -10,7 +10,6 @@
 #include <pthread.h>
 #include <semaphore.h>
 #include <stddef.h>
-#include <pthread.h>
 #include <sys/stat.h>
 #include <fcntl.h>
 
@@ -26,6 +25,7 @@ int sortie=0;
 int fractCountP=0;
 int fractCountC=0;
 int fractCountW=0;
+int maxEgal;
 
 sem_t directeur;
 pthread_mutex_t tuteur1;
@@ -35,7 +35,7 @@ pthread_mutex_t gardien;
 int countEleves;
 struct sbuf* bufIn;
 struct sbuf* bufOut;
-struct fractal* highestF;
+struct sbuf* highestF;
 double average;
 
 
@@ -347,11 +347,19 @@ void *writer(void* arguments){
 	  if(newAverage>average)
 	    {
 	      average=newAverage;
-	      *highestF=*f;
+	      sbuf_clean(highestF);
+	      sbuf_init(highestF,50);
+	      sbuf_insert(highestF,f);
+	      maxEgal=0;
+	    }
+	  else if(newAverage==average)
+	    {
+		sbuf_insert(highestF,f);
+		maxEgal++;
 	    }
 	  pthread_mutex_unlock(&professor);
 	  if(optionD){
-	  	write_bitmap_sdl(f,strcat(fractal_get_name(f),".bmp"));
+	  	write_bitmap_sdl(f,strcat(fractal_get_name(f),".bmp"),fileOutName);
 		}	
 	  fractal_free(f);
 	  sleep(0);
@@ -364,11 +372,29 @@ void *writer(void* arguments){
     pthread_mutex_lock(&professor);
     if((!sortie)&(countEleves==numberThreads))
       {	
-	if(fractal_get_name(highestF)!=NULL)
+	if(highestF->rear!=highestF->front)
 	  {
-	    /**/printf("\n- Plus grande fractale : %s avec une moyenne de : %f\n\n", highestF->name, average);
-	    /**/fflush(stdout);
-	    write_bitmap_sdl(highestF,strcat(fileOutName,".bmp"));
+	    
+	    if(maxEgal>0)
+		{
+			int i;
+			for(i = 0; i<maxEgal;i++)
+			{
+				struct fractal* f = sbuf_remove(highestF);
+				write_bitmap_sdl(f,strcat("fractout_",strcat(fractal_get_name(f),".bmp")),fileOutName);
+			fractal_free(f);
+			sortie = 1;
+			}
+		}
+	    else
+	    {
+				struct fractal* f = sbuf_remove(highestF);
+		    /**/printf("\n- Plus grande fractale : %s avec une moyenne de : %f\n\n", f->name, average);
+	            /**/fflush(stdout);
+		    write_bitmap_sdl(f,strcat(fileOutName,".bmp"),fileOutName);
+			fractal_free(f);
+			sortie = 1;
+	    }
 	  }
 	else
 	  {
@@ -376,12 +402,14 @@ void *writer(void* arguments){
 	    /**/fflush(stdout);
 	    sortie=1;
 	  }
-      }		
+      }
+  
   pthread_mutex_unlock(&professor);
   pthread_mutex_lock(&gardien);
   countWrit++;
   pthread_mutex_unlock(&gardien);
   sem_post(&directeur);
+
   return NULL;
 }
 
@@ -394,6 +422,7 @@ int main(int argc, char *argv[])
   countWrit = 0;
   countEleves = 0;
   average = 0.0;
+  maxEgal = 0;
   pthread_mutex_init(&tuteur1,NULL);
   pthread_mutex_init(&tuteur2,NULL);
   pthread_mutex_init(&professor,NULL);
@@ -403,7 +432,7 @@ int main(int argc, char *argv[])
   optionD=0;
   bufIn=(malloc(sizeof(struct sbuf))); 
   bufOut=(malloc(sizeof(struct sbuf))); 
-  highestF=malloc(sizeof(struct fractal));
+  highestF=(malloc(sizeof(struct sbuf)));
 	
   if((bufIn==NULL)|(bufOut==NULL)|(highestF==NULL))
     {
@@ -477,7 +506,8 @@ int main(int argc, char *argv[])
   /**/fflush(stdout);
   sem_init(&directeur, 0 ,numberThreads);
   sbuf_init(bufIn, 50);        						
-  sbuf_init(bufOut, 50);    
+  sbuf_init(bufOut, 50);
+  sbuf_init(highestF,10);   
 	
   if(numberThreads==0)
     {
@@ -628,13 +658,11 @@ int main(int argc, char *argv[])
 
   while(countWrit<numberThreads)
     {
-		
     }
-	
  end:
-	
   sbuf_clean(bufIn);
-  sbuf_clean(bufOut);	
+  sbuf_clean(bufOut);
+  sbuf_clean(highestF);
 	
   /**/printf("\n\n=== Fin du programme ===\n\n");
   /**/fflush(stdout);

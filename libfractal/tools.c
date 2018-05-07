@@ -8,6 +8,7 @@
 #include <unistd.h>
 #include <SDL/SDL.h>
 #include "fractal.h"
+#include <pthread.h>
 
 #define MAX_ITER 4096
 #define itoc(x) ((0x00ffffff/MAX_ITER)*(x))
@@ -24,8 +25,11 @@
 #define AMASK 0xff000000
 #endif
 
-int write_bitmap_sdl(const struct fractal *f, const char *fname)
+
+int write_bitmap_sdl(const struct fractal *f, const char *fname, const char *foutname)
 {
+    pthread_mutex_t duplicata;
+    pthread_mutex_init(&duplicata,NULL);
     SDL_Surface *back;
     SDL_Rect pix;
     int w, h, i, j, col;
@@ -52,12 +56,33 @@ int write_bitmap_sdl(const struct fractal *f, const char *fname)
         }
     }
 
-    if (SDL_SaveBMP(back, fname) < 0)
-        return -1;
-
-    SDL_FreeSurface(back);
-
-    return 0;
+	FILE* file;
+	file = fopen(fname,"r");
+	pthread_mutex_lock(&duplicata);
+	if((file==NULL)|(fname==foutname))
+	{
+    		if (SDL_SaveBMP(back, fname) < 0)
+		{
+			pthread_mutex_unlock(&duplicata);
+    		    	return -1;
+		}
+		pthread_mutex_unlock(&duplicata);
+	}
+	else
+	{
+		if(fclose(file)<0)
+		{
+			SDL_FreeSurface(back);
+			fprintf(stderr,"Erreur dans la fermeture du fichier\n");
+			fflush(stderr);
+			exit(-1);
+		}
+		pthread_mutex_unlock(&duplicata);
+		fprintf(stderr,"Duplicata trouve pour le nom de fractale : %s",fname);
+		fflush(stderr);
+	}
+    	SDL_FreeSurface(back);
+    	return 0;
 }
 
 static int iter_julia(double zx, double zy, double a, double b, int it)
