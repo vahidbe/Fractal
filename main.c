@@ -485,7 +485,6 @@ void *writer(void* arguments)
 				fractal_set_value(newF,i,j,fractal_get_value(f,i,j));
 			  }
 		  }
-		  fractal_free(f);
 		  sbuf_insertHighest(highestF,newF);
 		  printf("Valeur nom buf après insert : %s\n",(fractal_get_name((highestF->buf)[(highestF->rear)-1])));
 		  maxEgal=0;
