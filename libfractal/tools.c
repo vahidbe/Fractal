@@ -40,8 +40,6 @@ int write_bitmap_sdl(const struct fractal *f, const char *fname)
     for (i = 0; i < w; i++) {
         for (j = 0; j < h; j++) {
             col = itoc(fractal_get_value(f, i, j));
-			printf("%d\n",fractal_get_value(f, i, j));
-			fflush(stdout);
             rcol = col & 0xff;
             gcol = (col >> 8) & 0xff;
             bcol = (col >> 16) & 0xff;
