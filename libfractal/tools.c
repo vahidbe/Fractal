@@ -31,7 +31,7 @@ int write_bitmap_sdl(const struct fractal *f, const char *fname)
     int w, h, i, j, col;
     uint32_t pcol, rcol, gcol, bcol;
     w = fractal_get_width(f);
-	printf("%i\n,fractal_get_width(f));
+	printf("%i\n",fractal_get_width(f));
 	fflush(stdout);
     h = fractal_get_height(f);
 
