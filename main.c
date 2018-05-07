@@ -477,9 +477,9 @@ void *writer(void* arguments)
 		  average=newAverage;
 		  sbuf_clean(highestF);
 		  sbuf_init(highestF,50);
-		  printf("Valeur nom avant insert : %s\n",f->name);
-		  sbuf_insertHighest(highestF,f);
-		  printf("Valeur nom buf après insert : %s\n",((highestF->buf)[(highestF->rear)-1])->name);
+		  printf("Valeur nom avant insert : %s\n",fractal_get_name(f));
+		  sbuf_insertHighest(highestF,fractal_new(fractal_get_name(f),fractal_get_width(f),fractal_get_height(f),fractal_get_a(f),fractal_get_b(f));
+		  printf("Valeur nom buf après insert : %s\n",(fractal_get_name((highestF->buf)[(highestF->rear)-1])));
 		  maxEgal=0;
 		}
 	      else if(newAverage==average)
