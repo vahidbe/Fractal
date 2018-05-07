@@ -1,3 +1,140 @@
+commit 3974cce1d0cc863c52202d8cb67e8398e0e691e0
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Mon May 7 21:29:36 2018 +0200
+
+    test
+
+ main.c | 1 -
+ 1 file changed, 1 deletion(-)
+
+commit 4c8784ac85ac81075bd6ed0d43edc5aa7699332a
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Mon May 7 21:28:56 2018 +0200
+
+    test
+
+ main.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 397fbad0d3fadffebf7a9553370fea55a169d0cb
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Mon May 7 21:28:08 2018 +0200
+
+    test
+
+ main.c | 10 +++++++++-
+ 1 file changed, 9 insertions(+), 1 deletion(-)
+
+commit d56db1a31212a4b2124a0a96456ed34154b5339f
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Mon May 7 21:22:39 2018 +0200
+
+    test
+
+ libfractal/tools.c | 2 --
+ 1 file changed, 2 deletions(-)
+
+commit c572a1ca8c2e3c8869d8ba8cf0fab4deb6212620
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Mon May 7 21:21:47 2018 +0200
+
+    test
+
+ libfractal/tools.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+commit 54bd9312cf8e4454266311d0b123c195445d1a3e
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Mon May 7 21:19:45 2018 +0200
+
+    test
+
+ libfractal/tools.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 319f92580027a0293fc77c41a066a61a044cc5ec
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Mon May 7 21:19:14 2018 +0200
+
+    test
+
+ libfractal/tools.c | 2 ++
+ 1 file changed, 2 insertions(+)
+
+commit 0ef55168249edae8e4f78edf6051e3a25df05530
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Mon May 7 21:06:14 2018 +0200
+
+    test
+
+ main.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit a3a3e61ca8c967fd70719139255866ef8d8a3c1e
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Mon May 7 21:05:35 2018 +0200
+
+    test
+
+ main.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit cdb7080a43e45339e98b05fbf3909567c35f66d3
+Author: vahidbe <vahidbe@users.noreply.github.com>
+Date:   Mon May 7 21:04:32 2018 +0200
+
+    test
+
+ main.c | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+commit 778477d63d2bfee77f5a4b0c82b14e55d8beb4cf
+Author: BellonGuillaume <guillaume.bellon@student.uclouvain.be>
+Date:   Mon May 7 17:41:31 2018 +0200
+
+    Ajout de la gestion des duplicatas
+    Ajout de la gestion des plus grandes fractales de même valeur
+
+ fractal.txt          |   5 +-
+ fractal1.bmp         | Bin 5880054 -> 0 bytes
+ fractal2.bmp         | Bin 5880054 -> 0 bytes
+ fractout.bmp         | Bin 5880054 -> 0 bytes
+ libfractal/fractal.h |   2 +-
+ libfractal/tools.c   |  39 +---
+ main.c               | 532 +++++++++++++++++++++++++++++++++------------------
+ 7 files changed, 360 insertions(+), 218 deletions(-)
+
+commit d8b7f5c466187125d4e1df899a7a0d5dbe0c5b1a
+Author: BellonGuillaume <guillaume.bellon@student.uclouvain.be>
+Date:   Mon May 7 07:53:44 2018 +0200
+
+    Debug de la partie plusieurs fractales de même moyenne
+
+ fractal.txt          |   4 ++++
+ fractal1.bmp         | Bin 0 -> 5880054 bytes
+ fractal2.bmp         | Bin 0 -> 5880054 bytes
+ fractout.bmp         | Bin 0 -> 5880054 bytes
+ libfractal/fractal.h |   2 +-
+ libfractal/tools.c   |  39 +++++++++++++++++++++++++++-------
+ main.c               |  58 ++++++++++++++++++++++++++++++++++++++-------------
+ 7 files changed, 80 insertions(+), 23 deletions(-)
+
+commit 8a2546733986d86844dd4660c081ec35c00bd8aa
+Author: BellonGuillaume <guillaume.bellon@student.uclouvain.be>
+Date:   Sun May 6 23:01:53 2018 +0200
+
+    Gestion de l'option d nouveau
+    Création du git.stat
+
+ gitlog.stat             | 6070 +++++++++++++++++++++++++++++++++++++++++++++++
+ libfractal/fractal.o    |  Bin 9864 -> 0 bytes
+ libfractal/libfractal.a |  Bin 22454 -> 0 bytes
+ libfractal/tools.o      |  Bin 12144 -> 0 bytes
+ main                    |  Bin 23208 -> 0 bytes
+ main.c                  |   36 +-
+ main.o                  |  Bin 24888 -> 0 bytes
+ 7 files changed, 6075 insertions(+), 31 deletions(-)
+
 commit 0c56dc89e5fd3a88dab214c358783a667cd56dea
 Author: vahidbe <vahidbe@users.noreply.github.com>
 Date:   Fri May 4 14:03:38 2018 +0200
