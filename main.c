@@ -478,7 +478,15 @@ void *writer(void* arguments)
 		  sbuf_clean(highestF);
 		  sbuf_init(highestF,50);
 		  printf("Valeur nom avant insert : %s\n",fractal_get_name(f));
-		  sbuf_insertHighest(highestF,fractal_new(fractal_get_name(f),fractal_get_width(f),fractal_get_height(f),fractal_get_a(f),fractal_get_b(f)));
+		  struct fractal* newF = fractal_new(fractal_get_name(f),fractal_get_width(f),fractal_get_height(f),fractal_get_a(f),fractal_get_b(f));
+		  int i, j;
+		  for(i=0;i<fractal_get_width(f);i++){
+			  for(j=0;j<fractal_get_height(f);j++){
+				fractal_set_value(newF,fractal_get_value(f,i,j));
+			  }
+		  }
+		  fractal_free(f);
+		  sbuf_insertHighest(highestF,newF);
 		  printf("Valeur nom buf après insert : %s\n",(fractal_get_name((highestF->buf)[(highestF->rear)-1])));
 		  maxEgal=0;
 		}
