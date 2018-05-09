@@ -7,13 +7,16 @@
 #include <sys/ipc.h>
 #include <sys/sem.h>
 #include <pthread.h>
+#include "fractal.c"
+#include "fractal.h"
+#include "tools.c"
 #include <semaphore.h>
 #include <stddef.h>
 #include <pthread.h>
 #include <sys/stat.h>
 #include <fcntl.h>
 
-struct fractal* buff;
+struct fractal** buff;
 int fractCountP=0;
 char* fileName = "fractTest";
 int numberThreads=2;
@@ -152,18 +155,18 @@ void testProducer(){
   CU_ASSERT(0==strcmp("fract01",fractal_get_name(buff[0])));
   CU_ASSERT(0==strcmp("fract02",fractal_get_name(buff[1])));
   CU_ASSERT(0==strcmp("fract03",fractal_get_name(buff[2])));
-  CU_ASSERT(1400==fractal_get_width(buff[0])));
-  CU_ASSERT(1400==fractal_get_width(buff[1])));
-  CU_ASSERT(1400==fractal_get_width(buff[2])));
-  CU_ASSERT(900==fractal_get_height(buff[0])));
-  CU_ASSERT(1400==fractal_get_height(buff[1])));
-  CU_ASSERT(900==fractal_get_height(buff[2])));
-  CU_ASSERT(0.5==fractal_get_a(buff[0])));
-  CU_ASSERT(0.2==fractal_get_a(buff[1])));
-  CU_ASSERT(-1.5==fractal_get_a(buff[2])));
-  CU_ASSERT(0.1==fractal_get_b(buff[0])));
-  CU_ASSERT(3.5==fractal_get_b(buff[1])));
-  CU_ASSERT(2==fractal_get_b(buff[2])));
+  CU_ASSERT(1400==fractal_get_width(buff[0]));
+  CU_ASSERT(1400==fractal_get_width(buff[1]));
+  CU_ASSERT(1400==fractal_get_width(buff[2]));
+  CU_ASSERT(900==fractal_get_height(buff[0]));
+  CU_ASSERT(1400==fractal_get_height(buff[1]));
+  CU_ASSERT(900==fractal_get_height(buff[2]));
+  CU_ASSERT(0.5==fractal_get_a(buff[0]));
+  CU_ASSERT(0.2==fractal_get_a(buff[1]));
+  CU_ASSERT(-1.5==fractal_get_a(buff[2]));
+  CU_ASSERT(0.1==fractal_get_b(buff[0]));
+  CU_ASSERT(3.5==fractal_get_b(buff[1]));
+  CU_ASSERT(2==fractal_get_b(buff[2]));
   
   return NULL;
 }
@@ -179,6 +182,7 @@ void testWriter(){
 
 int main(int argc, char *argv[])
 {
+	buff=malloc(sizeof(struct fractal*)*3);
 	CU_pSuite pSuite = NULL;
 
    if (CUE_SUCCESS != CU_initialize_registry())
@@ -197,7 +201,6 @@ int main(int argc, char *argv[])
    }
 
    /* Run all tests using the CUnit Basic interface */
-   CU_basic_set_mode(CU_BRM_VERBOSE);
    CU_basic_run_tests();
    CU_cleanup_registry();
    return CU_get_error();
