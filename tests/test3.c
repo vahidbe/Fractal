@@ -185,10 +185,11 @@ void testSBUFREMOVE(void)
 {
    if (NULL != sb & NULL != fract) {
      struct fractal* f;
+     int rear=sb->rear;
      f = sbuf_remove(sb);
      CU_ASSERT_EQUAL(f,fract);
-     free(f);
-     CU_ASSERT(NULL == sb->buf[0]);
+     fractal_free(f);
+     CU_ASSERT(sb->rear == rear-1);
    }
 }
 
@@ -202,7 +203,7 @@ void testALREADYUSED(void)
       //CU_ASSERT(1==charbuf_already_used(cb,C_TEST));
       CU_ASSERT(!strcmp(cb->buf[0],fractal_get_name(fract)));
       //CU_ASSERT(!strcmp(cb->buf[1],C_TEST));
-      CU_ASSERT_EQUAL(cb->rear,2);
+      CU_ASSERT_EQUAL(cb->rear,1);
       CU_ASSERT_EQUAL(cb->front,0);
    }
 }
@@ -211,7 +212,7 @@ void testSBUFCLEAN(void)
 {
    if (NULL != sb & NULL != fract) {
       sbuf_clean(sb);
-      CU_ASSERT_PTR_NULL(sb);
+      CU_ASSERT_PTR_NULL(sb->buf);
    }
 }
 
@@ -219,7 +220,7 @@ void testCHARBUFCLEAN(void)
 {
    if (NULL != cb & NULL != fract) {
       charbuf_clean(cb);
-      CU_ASSERT_PTR_NULL(cb);
+      CU_ASSERT_PTR_NULL(cb->buf);
    }
 }
 
