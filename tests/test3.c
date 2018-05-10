@@ -40,7 +40,7 @@
 #include <fcntl.h>
 #include <stdio.h>
 #include <string.h>
-#include "./../main.h"
+#include "./../FractalMaker.h"
 #include "CUnit/Basic.h"
 #include <CUnit/CUnit.h>
 
@@ -93,7 +93,7 @@ void testFRACTALNEW(void){
 void testGETNAME(void)
 {
    if(NULL!=fract){
-   CU_ASSERT_EQUAL(fractal_get_name(fract),name);
+   CU_ASSERT(strcmp(fractal_get_name(fract),name)==0);
    }
 }
 
