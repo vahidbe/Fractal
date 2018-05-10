@@ -39,6 +39,21 @@ struct sbuf* highestF;
 struct charbuf* bufFName;
 double average;
 
+void sbuf_init(struct sbuf *sp, int n);
+void charbuf_init(struct charbuf *sp, int n);
+void sbuf_clean(struct sbuf *sp);
+void charbuf_clean(struct charbuf *sp);
+void sbuf_insert(struct sbuf *sp, struct fractal* f);
+void sbuf_insertHighest(struct sbuf *sp, struct fractal* f);
+void charbuf_insert(struct charbuf *sp, char* f);
+struct fractal* sbuf_remove(struct sbuf *sp);
+struct fractal* sbuf_removeHighest(struct sbuf *sp);
+int charbuf_already_used(struct charbuf *sp, char* name);
+void *producer(void* arguments);
+void *consumer(void* arguments);
+void *writer(void* arguments);	
+
+
 
 struct args{
   char* charP_arg;
