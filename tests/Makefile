@@ -9,7 +9,7 @@ test : test.o
 lib : 
 	$(MAKE) -C ./../libfractal/
 main :
-	$(MAKE) -C ./..
+	$(MAKE) -C ./../
 test.o : test.c ./../libfractal/fractal.h ./../main.c
 	gcc -c -I./../libfractal -I./../ test.c -lpthread -lSDL -lcunit
 test3.o : test3.c ./../libfractal/fractal.h ./../main.c

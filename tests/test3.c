@@ -30,9 +30,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
-#include "fractal.h"
-#include "fractal.c"
-#include "tools.c"
 #include <sys/types.h>
 #include <sys/ipc.h>
 #include <sys/sem.h>
@@ -43,6 +40,7 @@
 #include <fcntl.h>
 #include <stdio.h>
 #include <string.h>
+#include "main.c"
 #include "CUnit/Basic.h"
 #include <CUnit/CUnit.h>
 
@@ -89,7 +87,7 @@ void testFRACTALNEW(void){
    a = 0.37;
    b = 1.37;
    fract = fractal_new(name,width,height,a,b);
-   CU_ASSERT_TRUE(fract);
+   CU_ASSERT(fract != NULL);
    }
 }
 void testGETNAME(void)
@@ -99,7 +97,7 @@ void testGETNAME(void)
    }
 }
 
-void testWIDTH(void)
+void testGETWIDTH(void)
 {
    if(NULL!=fract){
    CU_ASSERT_EQUAL(fractal_get_width(fract),width);
@@ -135,11 +133,11 @@ void testSBUFINIT(void){
      CU_ASSERT_EQUAL(sb->n,10);
      CU_ASSERT_PTR_NOT_NULL(sb->buf);
      CU_ASSERT_EQUAL(sb->rear,0);
-     CU_ASEERT_EQUAL(sb->front,0);
+     CU_ASSERT_EQUAL(sb->front,0);
      sem_getvalue(sb->empty,empty);
-     CU_ASSERT_EQUAL(empty,10);
+     CU_ASSERT_EQUAL(*empty,10);
      sem_getvalue(sb->full,full);
-     CU_ASSERT_EQUAL(full,0);
+     CU_ASSERT_EQUAL(*full,0);
      CU_ASSERT(pthread_mutex_trylock(&(sb->mutex)));
      pthread_mutex_unlock(&(sb->mutex));
    }
@@ -148,11 +146,11 @@ void testSBUFINIT(void){
 
 void testCHARBUFINIT(void){
    if(NULL!=cb){
-     sbuf_init(cb,10);
+     charbuf_init(cb,10);
      CU_ASSERT_EQUAL(cb->n,10);
      CU_ASSERT_PTR_NOT_NULL(cb->buf);
      CU_ASSERT_EQUAL(cb->rear,0);
-     CU_ASEERT_EQUAL(cb->front,0);
+     CU_ASSERT_EQUAL(cb->front,0);
      CU_ASSERT(pthread_mutex_trylock(&(cb->mutex)));
      pthread_mutex_unlock(&(cb->mutex));
    }
@@ -186,7 +184,7 @@ void testCHARBUFINSERT(void)
 void testSBUFREMOVE(void)
 {
    if (NULL != sb & NULL != fract) {
-     struct fractal* = f;
+     struct fractal* f;
      f = sbuf_remove(sb);
      CU_ASSERT_EQUAL(f,fract);
      free(f);
@@ -197,7 +195,7 @@ void testSBUFREMOVE(void)
 void testALREADYUSED(void)
 {
    if (NULL != cb & NULL != fract) {
-      CU_ASSERT(1==charbuf_already_used(cb,fractal_get_name(f)));
+      CU_ASSERT(1==charbuf_already_used(cb,fractal_get_name(fract)));
       CU_ASSERT(0==charbuf_already_used(cb,"Ceci est un test"));
       CU_ASSERT(1==charbuf_already_used(cb,"Ceci est un test"));
       CU_ASSERT_EQUAL(cb->buf[0],fractal_get_name(fract));
