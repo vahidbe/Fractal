@@ -33,7 +33,6 @@
 #include "fractal.h"
 #include "fractal.c"
 #include "tools.c"
-#include "./../main.c"
 #include <sys/types.h>
 #include <sys/ipc.h>
 #include <sys/sem.h>
@@ -41,12 +40,13 @@
 #include <semaphore.h>
 #include <stddef.h>
 #include <sys/stat.h>
-#include <fcntl.h>#include <stdio.h>
+#include <fcntl.h>
+#include <stdio.h>
 #include <string.h>
 #include "CUnit/Basic.h"
 #include <CUnit/CUnit.h>
 
-static struct* sbuf sb;
+static struct sbuf* sb;
 static struct charbuf* cb;
 static struct fractal * fract;
 char *name;
@@ -61,13 +61,15 @@ int init_suite1(void)
    if (NULL == (sb =(struct sbuf *)malloc(sizeof(struct sbuf)))) {
       return -1;
    }
-   else if(NULL = (fract=(struct fractal*)malloc(sizeof(struct fractal)))) {
+   else if(NULL == (fract=(struct fractal*)malloc(sizeof(struct fractal)))) {
       free(sb);
       return -1;
-   else if(NULL = (cb=(struct charbuf*)malloc(sizeof(struct charbuf)))) {
+   }
+   else if(NULL == (cb=(struct charbuf*)malloc(sizeof(struct charbuf)))) {
       free(sb);
       free(fract);
       return -1;
+   }
    else {
       return 0;
    }
@@ -86,7 +88,7 @@ void testFRACTALNEW(void){
    width = 1400;
    a = 0.37;
    b = 1.37;
-   fract = frcatal_new(name,width,height,a,b);
+   fract = fractal_new(name,width,height,a,b);
    CU_ASSERT_TRUE(fract);
    }
 }
