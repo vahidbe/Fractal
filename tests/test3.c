@@ -138,7 +138,7 @@ void testSBUFINIT(void){
      CU_ASSERT_EQUAL(*empty,10);
      sem_getvalue(&sb->full,full);
      CU_ASSERT_EQUAL(*full,0);
-     CU_ASSERT(pthread_mutex_trylock(&(sb->mutex)));
+     CU_ASSERT(!pthread_mutex_trylock(&(sb->mutex)));
      pthread_mutex_unlock(&(sb->mutex));
    }
 }
@@ -151,7 +151,7 @@ void testCHARBUFINIT(void){
      CU_ASSERT_PTR_NOT_NULL(cb->buf);
      CU_ASSERT_EQUAL(cb->rear,0);
      CU_ASSERT_EQUAL(cb->front,0);
-     CU_ASSERT(pthread_mutex_trylock(&(cb->mutex)));
+     CU_ASSERT(!pthread_mutex_trylock(&(cb->mutex)));
      pthread_mutex_unlock(&(cb->mutex));
    }
 }
