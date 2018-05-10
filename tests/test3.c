@@ -40,7 +40,7 @@
 #include <fcntl.h>
 #include <stdio.h>
 #include <string.h>
-#include "main.c"
+#include "./../main.h"
 #include "CUnit/Basic.h"
 #include <CUnit/CUnit.h>
 
@@ -174,7 +174,7 @@ void testSBUFINSERT(void)
 void testCHARBUFINSERT(void)
 {
    if (NULL != cb & NULL != fract) {
-      sbuf_insert(cb, fractal_get_name(fract));
+      charbuf_insert(cb, fractal_get_name(fract));
       CU_ASSERT_EQUAL(fractal_get_name(fract),cb->buf[0]);
       CU_ASSERT_EQUAL(cb->rear,1);
       CU_ASSERT_EQUAL(cb->front,0);
@@ -216,13 +216,13 @@ void testSBUFCLEAN(void)
 void testCHARBUFCLEAN(void)
 {
    if (NULL != cb & NULL != fract) {
-      sbuf_clean(cb);
+      charbuf_clean(cb);
       CU_ASSERT_PTR_NULL(cb);
    }
 }
 
 
-int main(int argc,char* argv[])
+int main()
 {
    CU_pSuite pSuite = NULL;
 
