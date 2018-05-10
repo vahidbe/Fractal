@@ -1,9 +1,9 @@
 test3 : test3.o
-	gcc -o test3 test3.o -lpthread -lSDL
+	gcc -o test3 test3.o -lpthread -lSDL -lcunit
 	$(MAKE) -C ./../libfractal/
 	$(MAKE) -C ./../
 test : test.o
-	gcc -o test test.o main.o -lpthread -lSDL
+	gcc -o test test.o main.o -lpthread -lSDL -lcunit
 	$(MAKE) -C ./../libfractal/
 	$(MAKE) -C ./../
 lib : 
@@ -15,4 +15,4 @@ test.o : test.c ./../libfractal/fractal.h ./../main.c
 test3.o : test3.c ./../libfractal/fractal.h ./../main.c
 	gcc -c -I./../libfractal -I./../ test3.c -lpthread -lSDL -lcunit
 clean :
-	rm test test.o ./../libfractal/fractal.o ./../libfractal/tools.o ./../libfractal/libfractal.a ./../main ./../main.o
+	rm test3 test3.o test test.o ./../libfractal/fractal.o ./../libfractal/tools.o ./../libfractal/libfractal.a ./../main ./../main.o

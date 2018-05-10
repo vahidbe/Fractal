@@ -14,6 +14,7 @@
 #include <stddef.h>
 #include <pthread.h>
 #include <sys/stat.h>
+#include "CUnit/Basic.h"
 #include <fcntl.h>
 
 struct fractal** buff;
