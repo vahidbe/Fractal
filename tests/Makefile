@@ -13,4 +13,4 @@ test.o : test.c ./../libfractal/fractal.h ./../main.c
 test3.o : test3.c ./../libfractal/fractal.h ./../main.c
 	gcc -c -I./../libfractal ./../main.c test3.c -lpthread -lSDL -lcunit
 clean :
-	rm test test.o ./../libfractal/fractal.o ./../libfractal/tools.o ./../libfractal/libfractal.a
+	rm test test.o ./../libfractal/fractal.o ./../libfractal/tools.o ./../libfractal/libfractal.a ./../main ./../main.o
