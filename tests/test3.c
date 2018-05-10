@@ -134,9 +134,9 @@ void testSBUFINIT(void){
      CU_ASSERT_PTR_NOT_NULL(sb->buf);
      CU_ASSERT_EQUAL(sb->rear,0);
      CU_ASSERT_EQUAL(sb->front,0);
-     sem_getvalue(&(sb->empty),empty);
+     sem_getvalue(&sb->empty,empty);
      CU_ASSERT_EQUAL(*empty,10);
-     sem_getvalue(&(sb->full),full);
+     sem_getvalue(&sb->full,full);
      CU_ASSERT_EQUAL(*full,0);
      CU_ASSERT(pthread_mutex_trylock(&(sb->mutex)));
      pthread_mutex_unlock(&(sb->mutex));
@@ -174,7 +174,7 @@ void testSBUFINSERT(void)
 void testCHARBUFINSERT(void)
 {
    if (NULL != cb & NULL != fract) {
-      charbuf_insert(cb, fractal_get_name(fract));
+      sbuf_insert(cb, fractal_get_name(fract));
       CU_ASSERT_EQUAL(fractal_get_name(fract),cb->buf[0]);
       CU_ASSERT_EQUAL(cb->rear,1);
       CU_ASSERT_EQUAL(cb->front,0);
@@ -216,13 +216,13 @@ void testSBUFCLEAN(void)
 void testCHARBUFCLEAN(void)
 {
    if (NULL != cb & NULL != fract) {
-      charbuf_clean(cb);
+      sbuf_clean(cb);
       CU_ASSERT_PTR_NULL(cb);
    }
 }
 
 
-int mainTest()
+int main(int argc,char* argv[])
 {
    CU_pSuite pSuite = NULL;
 
@@ -238,7 +238,6 @@ int mainTest()
    }
 
    /* add the tests to the suite */
-   /* NOTE - ORDER IS IMPORTANT - MUST TEST fread() AFTER fprintf() */
    if ((NULL == CU_add_test(pSuite, "test of fractal_new", testFRACTALNEW)) ||
        (NULL == CU_add_test(pSuite, "test of fractal_get_name", testGETNAME)) ||
        (NULL == CU_add_test(pSuite, "test of fractal_get_width", testGETWIDTH)) ||

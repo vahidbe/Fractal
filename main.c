@@ -1,9 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
-#include "fractal.h"
-#include "fractal.c"
-#include "tools.c"
+#include "./libfractal/fractal.h"
+#include "./libfractal/fractal.c"
+#include "./libfractal/tools.c"
 #include <sys/types.h>
 #include <sys/ipc.h>
 #include <sys/sem.h>
@@ -52,7 +52,6 @@ int charbuf_already_used(struct charbuf *sp, char* name);
 void *producer(void* arguments);
 void *consumer(void* arguments);
 void *writer(void* arguments);	
-
 
 
 struct args{
@@ -532,6 +531,11 @@ void *writer(void* arguments)
 
 int main(int argc, char *argv[])
 {
+  if(argc<2)
+  {
+    fprintf(stderr,"Not enough arguments\n");
+    return -1;
+  }
   printf("\n=== Début du programme ===\n");
   numberThreads=0;
   countProd = 0;
