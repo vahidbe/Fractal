@@ -1,5 +1,5 @@
 test3 : test3.o
-	gcc -o test3 test3.o main.o -lpthread -lSDL
+	gcc -o test3 test3.o -lpthread -lSDL
 	$(MAKE) -C ./../libfractal/
 	$(MAKE) -C ./../
 test : test.o
