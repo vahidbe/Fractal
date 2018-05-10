@@ -62,19 +62,6 @@ struct charbuf{
   pthread_mutex_t mutex;
 };
 
-int countLettres (char* name)
-{
-  int i=0;
-  int j=1;
-  while(j)
-    {
-      if((name[i])==0)
-	{j=0;}
-      i++;
-    }
-  return i;
-}
-
 /*
  * @pre sp!=NULL, n>0
  * @post a construit un buffer partagé contenant n slots
@@ -156,11 +143,11 @@ void sbuf_insertHighest(struct sbuf *sp, struct fractal* f)
   pthread_mutex_unlock(&(sp->mutex));
 }
 
-void charbuf_insert(struct charbuf *sp, char* f,int n)
+void charbuf_insert(struct charbuf *sp, char* f)
 {
-
+  int n = (int)strlen(f);
   pthread_mutex_lock(&(sp->mutex));
-  sp->buf[sp->rear] = (char*)malloc(n*sizeof(char));
+  sp->buf[sp->rear] = (char*)malloc((n+1)*sizeof(char));
   strcpy(sp->buf[sp->rear],f);
   sp->rear = (sp->rear)+1;
   pthread_mutex_unlock(&(sp->mutex));
@@ -193,20 +180,9 @@ struct fractal* sbuf_removeHighest(struct sbuf *sp)
   return f;
 }
 
-char* charbuf_remove(struct charbuf *sp)
-{
-  char* f;
-  pthread_mutex_lock(&(sp->mutex));
-  sp->rear = (sp->rear)-1;
-  f = sp->buf[sp->rear];
-  pthread_mutex_unlock(&(sp->mutex));
-  return f;
-}
-
 int charbuf_already_used(struct charbuf *sp, char* name)
 {
   int i;
-  int nLettres = countLettres(name);
   pthread_mutex_lock(&(sp->mutex));
   for(i=0; i<(sp->rear); i++)
     {
@@ -218,7 +194,7 @@ int charbuf_already_used(struct charbuf *sp, char* name)
 	}
     }
   pthread_mutex_unlock(&(sp->mutex));
-  charbuf_insert(bufFName,name,nLettres);
+  charbuf_insert(bufFName,name);
   return 0;
 }
 
