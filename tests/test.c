@@ -1,32 +1,3 @@
-
-
- /*
- *  Simple example of a CUnit unit test.
- *
- *  This program (crudely) demonstrates a very simple "black box"
- *  test of the standard library functions fprintf() and fread().
- *  It uses suite initialization and cleanup functions to open
- *  and close a common temporary file used by the test functions.
- *  The test functions then write to and read from the temporary
- *  file in the course of testing the library functions.
- *
- *  The 2 test functions are added to a single CUnit suite, and
- *  then run using the CUnit Basic interface.  The output of the
- *  program (on CUnit version 2.0-2) is:
- *
- *           CUnit : A Unit testing framework for C.
- *           http://cunit.sourceforge.net/
- *
- *       Suite: Suite_1
- *         Test: test of fprintf() ... passed
- *         Test: test of fread() ... passed
- *
- *       --Run Summary: Type      Total     Ran  Passed  Failed
- *                      suites        1       1     n/a       0
- *                      tests         2       2       2       0
- *                      asserts       5       5       5       0
- */
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
@@ -76,6 +47,8 @@ int init_suite1(void)
 int clean_suite1(void)
 {
    free(fract);
+   sbuf_clean(sb);
+   charbuf_clean(cb);
    return 0;
 }
 
@@ -199,20 +172,9 @@ void testALREADYUSED(void)
    char* C_TEST = fractal_get_name(fract);
    if (NULL != cb & NULL != fract) {
       CU_ASSERT(1==charbuf_already_used(cb,fractal_get_name(fract)));
-      //CU_ASSERT(0==charbuf_already_used(cb,C_TEST));
-      //CU_ASSERT(1==charbuf_already_used(cb,C_TEST));
       CU_ASSERT(!strcmp(cb->buf[0],fractal_get_name(fract)));
-      //CU_ASSERT(!strcmp(cb->buf[1],C_TEST));
       CU_ASSERT_EQUAL(cb->rear,1);
       CU_ASSERT_EQUAL(cb->front,0);
-   }
-}
-
-void testSBUFCLEAN(void)
-{
-   if (NULL != sb & NULL != fract) {
-      sbuf_clean(sb);
-      CU_ASSERT_PTR_NULL(sb->buf);
    }
 }
 
@@ -252,9 +214,7 @@ int main()
        (NULL == CU_add_test(pSuite, "test of sbuf_insert", testSBUFINSERT)) ||
        (NULL == CU_add_test(pSuite, "test of charbuf_insert", testCHARBUFINSERT)) ||
        (NULL == CU_add_test(pSuite, "test of charbuf_already_used", testALREADYUSED)) ||
-       (NULL == CU_add_test(pSuite, "test of sbuf_remove", testSBUFREMOVE)) ||
-       (NULL == CU_add_test(pSuite, "test of sbuf_clean", testSBUFCLEAN)) ||
-       (NULL == CU_add_test(pSuite, "test of charbuf_clean", testCHARBUFCLEAN)))
+       (NULL == CU_add_test(pSuite, "test of sbuf_remove", testSBUFREMOVE)))
    {
       CU_cleanup_registry();
       return CU_get_error();
