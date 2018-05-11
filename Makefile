@@ -8,4 +8,4 @@ main.o : main.c ./libfractal/fractal.h
 FractalMaker.o : FractalMaker.c ./libfractal/fractal.h ./FractalMaker.h
 	gcc -c -I./libfractal ./FractalMaker.h FractalMaker.c -lpthread -lSDL
 clean :
-	rm main main.o ./libfractal/fractal.o ./libfractal/tools.o ./libfractal/libfractal.a FractalMaker.h.gch
+	rm main main.o ./FractalMaker.o ./libfractal/fractal.o ./libfractal/tools.o ./libfractal/libfractal.a FractalMaker.h.gch
